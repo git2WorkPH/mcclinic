@@ -27,3 +27,6 @@ These explicit initialization decisions take precedence over conflicting starter
 - Actual branch is `master`; see PROJECT.md for Git baseline and unresolved remote verification. Never rename/delete a branch implicitly.
 - Requirements below are Draft, tasks Proposed, ADRs Proposed. Nothing is approved for implementation. This initialization authorizes documentation and kit installation only.
 - Preserve all original kit files and `.gitkeep` files. No deletion, including a removal hidden in replacement, is authorized. Failing tests never justify deleting or disabling tests.
+
+## Implementation session override — 2026-09-10
+The owner now explicitly authorizes implementation of all 19 proposed task scopes. Approved task records contain evidence and supersede initialization-only status. This does not resolve unknown clinical/legal/privacy policy or authorize deletions. Existing duplicate Proposed records are historical; Approved records are canonical until completion. Current work begins on task/TASK-001-workspace-foundation from the user-created version-1 branch at a4fce11.

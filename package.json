@@ -1,0 +1,43 @@
+{
+  "name": "clinic-ehr",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=24.21.0 <25",
+    "pnpm": ">=10 <11"
+  },
+  "scripts": {
+    "dev:api": "pnpm --filter @ehr/api dev",
+    "dev:web": "pnpm --filter @ehr/clinical-app dev",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "lint": "oxlint apps packages tooling tests codegen.ts playwright.config.ts vitest.config.ts && node tooling/check-boundaries.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --exclude \"**/*.integration.test.ts\"",
+    "test:integration": "vitest run tests/database.integration.test.ts",
+    "test:web": "playwright test",
+    "build": "pnpm --filter @ehr/api build && pnpm --filter @ehr/clinical-app build",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "tsx": "4.23.13",
+    "oxlint": "1.82.0",
+    "vitest": "5.0.0",
+    "@playwright/test": "1.63.0",
+    "@testcontainers/postgresql": "12.1.0",
+    "pg": "8.23.0",
+    "@types/pg": "8.23.1",
+    "@types/node": "22.20.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/express": "5.0.6",
+    "@graphql-codegen/cli": "7.4.0",
+    "@graphql-codegen/typescript": "6.1.0",
+    "@graphql-codegen/typescript-resolvers": "6.1.0",
+    "@graphql-codegen/typescript-operations": "6.1.6",
+    "@graphql-codegen/typed-document-node": "7.1.0",
+    "@graphql-typed-document-node/core": "3.2.0",
+    "graphql": "16.11.0"
+  }
+}

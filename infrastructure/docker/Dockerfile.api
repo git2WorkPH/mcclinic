@@ -1,0 +1,10 @@
+FROM node:24.21.0-bookworm-slim
+RUN npm install --global pnpm@10.34.5
+WORKDIR /workspace
+COPY . .
+RUN pnpm install --frozen-lockfile && pnpm codegen && pnpm --filter @ehr/api build
+ENV HOST=0.0.0.0
+ENV PORT=4000
+USER node
+EXPOSE 4000
+CMD ["pnpm", "--filter", "@ehr/api", "start"]

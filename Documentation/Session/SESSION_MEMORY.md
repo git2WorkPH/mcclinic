@@ -1,38 +1,30 @@
 # Session memory
-Updated: 2026-09-10T22:27:50+10:00
-Current project phase: REQUIREMENTS / initial architecture and task proposals; no application implementation.
-Active requirement: none approved; draft set v0.1 in [requirements index](../Requirements/INDEX.md).
-Active task: none approved or executing; recommended [TASK-001](../Tasks/Proposed/TASK-001.md), Proposed.
-Current Git branch: `master` tracking cached `origin/master`.
-Latest commit / observed HEAD before this memory update: `6f00bacd5c95312c851e2a1e5e0ed288319567d9` (`initial commit`).
-Observed working-tree status before this memory update: original tracked files unchanged; new untracked `.agents/`, `AGENTS.md`, `README.md`, `Documentation/`, `Doc/`; initialization acceptance/memory finalized next, then staged with the documentation.
-Commit interpretation: this snapshot precedes the initialization documentation commit; inspect HEAD/log/diff at resume rather than treating the pre-update hash as stale automatically.
+Updated: 2026-09-10T22:49:11+10:00
+Phase: IMPLEMENTATION; all 19 task scopes approved by explicit owner request.
+Active requirement: REQ-FOUND-001/002 v0.1 verified; REQ-FOUND-009 design ready for review.
+Active task: TASK-001 Completed; TASK-015 Approved design prepared; remaining tasks Approved pending policies/dependencies.
+Current branch: task/TASK-001-workspace-foundation (created from user's version-1).
+Observed HEAD before this memory update: a4fce11894b8a877ac3b6cb86f51fc0186c150e0.
+Observed status before this update: new workspace/code/tests/manifests, task approvals and documentation; tracked nested starter files now deleted by an unexplained concurrent change. Those deletions are excluded from our commit. Lab design/rationale changes prepared separately.
 
-## Completed initialization
-- Installed six root project skills and Continuity Kit documents by copying; nested source kit and all existing files preserved.
-- Root AGENTS overrides inherited rationale paths: `Doc/Changes/Justification/` is canonical. No Jira; no deletions authorized.
-- Refined project/scope/glossary with actual master baseline, complete stack and unresolved platform/policy choices.
-- Created 22 Draft requirements: REQ-PROD-001, REQ-FOUND-001–009, REQ-FEAT-001–012.
-- Created 19 Proposed tasks: TASK-001–019; [index/dependencies](../Tasks/Proposed/INDEX.md). No Approved/Completed task exists.
-- Created five Proposed ADRs and nine Open findings; no ADR accepted or clinical rule silently approved.
+## Authorization and reconciliation
+- Owner: "use the project-development skills  I want you to implement all the proposed tasks".
+- User-created version-1 branch and 19 untracked Approved copies existed at session start. Approval records updated without relying on filenames. Proposed copies retained as historical evidence.
+- Technical ADR-001 selected within approved scope; substantive policy choices remain open. No deletion/push/merge authorized.
+- Live remote head check succeeded (only master at 6f00bac); FIND-009 resolved for branch discovery. No task branch existed before TASK-001.
 
-## Architecture and findings
-- [Architecture baseline](../Architecture/BASELINE.md): feature-owned modular monolith, inward dependencies, snapshot printing and future lab boundary.
-- [Assessment/findings index](../Assessment/INITIAL_ASSESSMENT.md): FIND-001 jurisdiction; 002 identity/permissions; 003 platforms; 004 document content; 005 lifecycle/audit; 006 retention/protection; 007 patient/scheduling policy; 008 starter conflicts; 009 remote Git visibility.
-- Starter main/global-package examples are inactive where root clarifications conflict; ADR-001 remains Proposed.
-- Remote `origin`: git@github.com:git2WorkPH/mcclinic.git. Live branch query failed DNS; cached refs show only origin/master, which is not proof of live remote state.
+## Implemented and verified
+- [TASK-001 acceptance](../Acceptance/TASK-001-acceptance.md): typed pnpm workspace, Express/Yoga, Zod configuration, generated GraphQL contracts, React Native Web candidate shell, Docker/Compose and CI/test tooling.
+- 5 API/config tests, 1 PostgreSQL integration test, 2 browser tests passed; lint, tsc, codegen drift, clean frozen install, builds, compiled API smoke and Docker build passed.
+- Runtime: isolated /private/tmp/ehr-runtime/node_modules/.bin (Node 24.21.0/pnpm 10.34.5); prepend to PATH for this host, whose default Node is 25.
+- [Development commands](../Project/DEVELOPMENT.md). No native or clinical/production claim.
+- [Lab design](../Architecture/LABORATORY-BOUNDARY.md) prepared under TASK-015; no lab runtime implementation.
 
-## Verification performed
-- Git branch/HEAD/status/log/branches/worktrees/remotes inspected; one original commit, one local branch/worktree, no local/cached task refs.
-- Prior nested memory was a placeholder with unknown Git fields; reconciled from actual repository evidence.
-- Documentation checks passed: required fields/statuses/counts, links, acyclic task graph and byte-for-byte preservation of original tracked files.
-- [Verification evidence](../Acceptance/INITIALIZATION.md); application tests/builds NOT RUN because application is absent.
+## Relevant records
+- [Approved execution index](../Tasks/Approved/INDEX.md), [TASK-001](../Tasks/Completed/TASK-001.md), [TASK-015](../Tasks/Approved/TASK-015.md).
+- [TASK-001 rationale](../../Doc/Changes/Justification/TASK-001-change.md).
+- [Decisions needed](../Assessment/DECISIONS-NEEDED.md): jurisdiction, identity/permission matrix, retention/protection, lifecycle/audit, patient/search/notes, document rules, scheduling and platform matrix.
+- Policy question remains unanswered. Owner explicitly answered "Leave the deletions unstaged" for the starter deletion question; preserve that preference.
 
-## Relevant files for next session
-- [Root routing](../../AGENTS.md) and [project settings](../Project/PROJECT.md).
-- [TASK-001](../Tasks/Proposed/TASK-001.md), [REQ-FOUND-001](../Requirements/Foundation/REQ-FOUND-001.md), [REQ-FOUND-002](../Requirements/Foundation/REQ-FOUND-002.md).
-- [ADR-001](../Architecture/Decisions/ADR-001.md), [FIND-009](../Assessment/Findings/FIND-009.md).
-- [Justification policy](../../Doc/Changes/Justification/README.md); no implementation justification needed for proposal bookkeeping.
-
-## Exact next recommended action
-Read this memory first and validate Git, then obtain explicit approval of TASK-001's bounded bootstrap scope and acceptance of ADR-001 (including linked foundation requirement details); retry live remote branch discovery before choosing/reusing its task branch. Only after approval/dependency checks create `Doc/Changes/Justification/TASK-001-change.md` and begin the approved setup. Until then, keep all tasks Proposed and implement nothing.
+## Exact next action
+Validate Git and this pre-commit snapshot, review/complete TASK-015 design on its own branch after the foundation commit, then continue TASK-002/003 once the owner supplies applicable policy answers. Do not implement guessed clinical/legal rules or stage the unexplained starter deletions.

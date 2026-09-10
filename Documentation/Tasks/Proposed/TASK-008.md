@@ -47,3 +47,6 @@ ADD the scenarios specified in linked requirements; use Vitest for domain/use ca
 - Acceptance/review: pending at `Documentation/Acceptance/TASK-008-acceptance.md`.
 - Commits: none for this task.
 - Next action: obtain explicit bounded task approval and resolve its dependencies/decisions; do not move to Approved yet.
+
+## Approval handoff — 2026-09-10
+Historical proposal retained without deletion. Current canonical task and approval evidence: [Approved TASK-008](../Approved/TASK-008.md).

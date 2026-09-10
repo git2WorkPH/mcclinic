@@ -16,3 +16,6 @@ Use observed master as local base without renaming. Re-run remote head/default/p
 - Resolution/defer evidence: pending; no owner decision fabricated.
 - Verification: documentation/Git inspection only; runtime and regulatory verification NOT RUN.
 - Deletions proposed: none.
+
+## Resolution — 2026-09-10
+Status: Resolved for branch discovery. A network-enabled `git ls-remote --heads origin` succeeded and returned only master at 6f00bacd5c95312c851e2a1e5e0ed288319567d9. Local branch inventory included user-created version-1 at a4fce11, master and no task refs. Created task/TASK-001-workspace-foundation from the current version-1 checkout while preserving untracked Approved task records. No remote push/merge/default-branch/protection change performed. Reinspect live branches before the next task branch.

@@ -42,3 +42,6 @@ Classification: ADD when approved; existing application code/tests are absent. N
 
 ## Decision history
 - 2026-09-10: v0.1 drafted from owner scope and installed kit; all detailed policy choices remain pending.
+
+## Implementation authorization — 2026-09-10
+The owner explicitly requested all proposed tasks be implemented. These technical criteria are the implementation baseline under that approval; policy-dependent findings remain open. See the current Approved task record.
