@@ -1,5 +1,5 @@
 # TASK-015 — Document future laboratory integration seam
-Status: Approved
+Status: Completed
 Requirements: [REQ-FOUND-009](../../Requirements/Foundation/REQ-FOUND-009.md) v0.1 AC-01–AC-03
 
 ## Objective
@@ -58,3 +58,6 @@ Execution: TASK-001 foundation starting; remaining tasks wait for dependencies a
 
 ## Dependency status at handoff
 Task approval is recorded above and remains valid. Policy-dependent implementation awaits the applicable answers in [decisions needed](../../Assessment/DECISIONS-NEEDED.md); no clinical/legal decisions are inferred from approval. Earlier proposal/pending text is retained as history, not current authority.
+
+## Completion — 2026-09-10
+Status: Completed. REQ-FOUND-009 v0.1 AC-01–03 satisfied by Documentation/Architecture/LABORATORY-BOUNDARY.md and reviewed in Documentation/Acceptance/TASK-015-acceptance.md. Branch task/TASK-015-laboratory-boundary, base f9c3390bed07e25a9bbb490b3780dfc2b9e85991. Live remote refresh returned only master and local exact-ID search found no TASK-015 branch before creation. No runtime lab capability introduced. Earlier proposal metadata is historical.

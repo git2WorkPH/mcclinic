@@ -49,4 +49,4 @@ ADD the scenarios specified in linked requirements; use Vitest for domain/use ca
 - Next action: obtain explicit bounded task approval and resolve its dependencies/decisions; do not move to Approved yet.
 
 ## Approval handoff — 2026-09-10
-Historical proposal retained without deletion. Current canonical task and approval evidence: [Approved TASK-015](../Approved/TASK-015.md).
+Historical proposal retained without deletion. Current canonical task and approval evidence: [Approved TASK-015](../Completed/TASK-015.md).

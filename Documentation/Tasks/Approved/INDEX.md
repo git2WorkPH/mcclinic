@@ -16,7 +16,7 @@ Owner explicitly approved all 19 task scopes on 2026-09-10. No repeat blanket ap
 - [TASK-012](TASK-012.md): Approved; dependencies/policy answers pending.
 - [TASK-013](TASK-013.md): Approved; dependencies/policy answers pending.
 - [TASK-014](TASK-014.md): Approved; dependencies/policy answers pending.
-- [TASK-015](TASK-015.md): Approved; lab boundary design ready for review.
+- [TASK-015](../Completed/TASK-015.md): Completed design; no runtime lab implementation.
 - [TASK-016](TASK-016.md): Approved; dependencies/policy answers pending.
 - [TASK-017](TASK-017.md): Approved; dependencies/policy answers pending.
 - [TASK-018](TASK-018.md): Approved; dependencies/policy answers pending.
