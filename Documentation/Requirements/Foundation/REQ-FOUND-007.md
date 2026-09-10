@@ -1,0 +1,45 @@
+# REQ-FOUND-007 — Printable clinical-document architecture
+Status: Draft
+Version: 0.1
+Owner: project owner (approval pending)
+Approval: none; high-level user scope is recorded, detailed rules below are proposals.
+
+## Objective and scope
+Separate approved clinical content snapshots from layout and platform print adapters.
+
+## Functional rules
+- FR-01: Rendering references an authorized issued document version and preserves patient/provider identity and provenance.
+- FR-02: Long/multipage content is not clipped; repeat rendering of the same snapshot/template yields equivalent clinical content.
+- FR-03: Print/export adapter failures are visible; a render/print request is never represented as confirmed physical printing.
+
+## Acceptance criteria
+- AC-01: Verify FR-01 with a synthetic scenario demonstrating its stated success and rejection outcomes, where applicable.
+- AC-02: Verify FR-02 with a synthetic scenario demonstrating its stated success and rejection outcomes, where applicable.
+- AC-03: Verify FR-03 with a synthetic scenario demonstrating its stated success and rejection outcomes, where applicable.
+
+## Authorization implications
+Server-side action/resource authorization is mandatory; grants and clinic scope await FIND-002. No client-only enforcement.
+
+## Data requirements
+Issued content snapshot, template version, renderer metadata and minimal render/print audit references.
+
+## Audit implications
+Use REQ-FOUND-005 for applicable create/update/issue/amend/status actions and approved access/render events; do not log unnecessary clinical content. Exact catalogue awaits FIND-005/FIND-006.
+
+## Expected tests
+Content and pagination fixtures, authorization, adapter cancellation/failure, supported-platform visual checks.
+Classification: ADD when approved; existing application code/tests are absent. No test removal or weakening is authorized.
+
+## Unresolved questions and findings
+- [FIND-001](../../Assessment/Findings/FIND-001.md)
+- [FIND-003](../../Assessment/Findings/FIND-003.md)
+- [FIND-004](../../Assessment/Findings/FIND-004.md)
+
+## Traceability and assessment
+- Proposed task: [TASK-012](../../Tasks/Proposed/TASK-012.md).
+- Architecture: [baseline](../../Architecture/BASELINE.md).
+- Current implementation: absent; all ACs unimplemented and runtime verification NOT RUN. See [initial assessment](../../Assessment/INITIAL_ASSESSMENT.md).
+- Acceptance evidence: none; no implementation approved.
+
+## Decision history
+- 2026-09-10: v0.1 drafted from owner scope and installed kit; all detailed policy choices remain pending.
