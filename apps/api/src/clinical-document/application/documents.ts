@@ -137,7 +137,7 @@ export function documentUseCases(
             "VALIDATION",
             "Only an issued demo version can be printed.",
           );
-        return renderer.render(document.kind, revision);
+        return revision.renderedHtml ?? renderer.render(document.kind, revision);
       });
     },
     printEvent(

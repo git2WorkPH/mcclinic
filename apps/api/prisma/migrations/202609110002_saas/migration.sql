@@ -1,0 +1,42 @@
+CREATE TABLE "Practice" ("id" UUID PRIMARY KEY, "name" TEXT NOT NULL, "branding" JSONB NOT NULL DEFAULT '{}', "version" INTEGER NOT NULL DEFAULT 1, "createdAt" TIMESTAMPTZ NOT NULL DEFAULT now());
+INSERT INTO "Practice" ("id","name") VALUES ('00000000-0000-4000-8000-000000000001','Default practice');
+CREATE TABLE "Membership" ("id" UUID PRIMARY KEY, "practiceId" UUID NOT NULL REFERENCES "Practice"("id"), "userId" UUID NOT NULL REFERENCES "User"("id"), "role" TEXT NOT NULL CHECK ("role" IN ('CLINICIAN','RECEPTION','ADMINISTRATOR')), "active" BOOLEAN NOT NULL DEFAULT true, "version" INTEGER NOT NULL DEFAULT 1, UNIQUE("practiceId","userId"));
+INSERT INTO "Membership" ("id","practiceId","userId","role") SELECT gen_random_uuid(),'00000000-0000-4000-8000-000000000001',"id","role" FROM "User";
+CREATE TABLE "PracticeSubscription" ("practiceId" UUID PRIMARY KEY REFERENCES "Practice"("id"), "plan" TEXT NOT NULL DEFAULT 'SOLO' CHECK ("plan" IN ('SOLO','TEAM')), "state" TEXT NOT NULL DEFAULT 'TRIAL' CHECK ("state" IN ('TRIAL','ACTIVE','PAST_DUE','RESTRICTED')), "until" TIMESTAMPTZ, "version" INTEGER NOT NULL DEFAULT 1);
+INSERT INTO "PracticeSubscription" ("practiceId","plan","state") VALUES ('00000000-0000-4000-8000-000000000001','TEAM','ACTIVE');
+CREATE TABLE "DocumentTemplate" ("id" UUID PRIMARY KEY, "practiceId" UUID NOT NULL REFERENCES "Practice"("id"), "kind" TEXT NOT NULL CHECK ("kind" IN ('PRESCRIPTION','CERTIFICATE')), "definition" JSONB NOT NULL, "version" INTEGER NOT NULL DEFAULT 1, "publishedVersion" INTEGER, UNIQUE("practiceId","kind"));
+CREATE TABLE "TemplateRevision" ("id" UUID PRIMARY KEY, "practiceId" UUID NOT NULL REFERENCES "Practice"("id"), "templateId" UUID NOT NULL REFERENCES "DocumentTemplate"("id"), "version" INTEGER NOT NULL, "definition" JSONB NOT NULL, "authorId" UUID NOT NULL REFERENCES "User"("id"), "recordedAt" TIMESTAMPTZ NOT NULL DEFAULT now(), UNIQUE("templateId","version"));
+CREATE TRIGGER template_revision_immutable BEFORE UPDATE OR DELETE ON "TemplateRevision" FOR EACH ROW EXECUTE FUNCTION reject_ehr_history_change();
+ALTER TABLE "Patient" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "Patient_practice_id" ON "Patient"("practiceId","id");
+ALTER TABLE "Consultation" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "Consultation_practice_id" ON "Consultation"("practiceId","id");
+ALTER TABLE "NoteRevision" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "NoteRevision_practice_id" ON "NoteRevision"("practiceId","id");
+ALTER TABLE "ClinicalDocument" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "ClinicalDocument_practice_id" ON "ClinicalDocument"("practiceId","id");
+ALTER TABLE "DocumentRevision" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "DocumentRevision_practice_id" ON "DocumentRevision"("practiceId","id");
+ALTER TABLE "Appointment" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "Appointment_practice_id" ON "Appointment"("practiceId","id");
+ALTER TABLE "AppointmentChange" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "AppointmentChange_practice_id" ON "AppointmentChange"("practiceId","id");
+ALTER TABLE "AuditEvent" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "AuditEvent_practice_id" ON "AuditEvent"("practiceId","id");
+ALTER TABLE "CommandReceipt" ADD COLUMN "practiceId" UUID NOT NULL DEFAULT '00000000-0000-4000-8000-000000000001' REFERENCES "Practice"("id");
+CREATE UNIQUE INDEX "CommandReceipt_practice_id" ON "CommandReceipt"("practiceId","id");
+ALTER TABLE "Consultation" ADD CONSTRAINT "Consultation_patientId_tenant" FOREIGN KEY ("practiceId","patientId") REFERENCES "Patient"("practiceId","id");
+ALTER TABLE "ClinicalDocument" ADD CONSTRAINT "ClinicalDocument_patientId_tenant" FOREIGN KEY ("practiceId","patientId") REFERENCES "Patient"("practiceId","id");
+ALTER TABLE "ClinicalDocument" ADD CONSTRAINT "ClinicalDocument_consultationId_tenant" FOREIGN KEY ("practiceId","consultationId") REFERENCES "Consultation"("practiceId","id");
+ALTER TABLE "NoteRevision" ADD CONSTRAINT "NoteRevision_consultationId_tenant" FOREIGN KEY ("practiceId","consultationId") REFERENCES "Consultation"("practiceId","id");
+ALTER TABLE "DocumentRevision" ADD CONSTRAINT "DocumentRevision_documentId_tenant" FOREIGN KEY ("practiceId","documentId") REFERENCES "ClinicalDocument"("practiceId","id");
+ALTER TABLE "Appointment" ADD CONSTRAINT "Appointment_patientId_tenant" FOREIGN KEY ("practiceId","patientId") REFERENCES "Patient"("practiceId","id");
+ALTER TABLE "AppointmentChange" ADD CONSTRAINT "AppointmentChange_appointmentId_tenant" FOREIGN KEY ("practiceId","appointmentId") REFERENCES "Appointment"("practiceId","id");
+ALTER TABLE "DocumentRevision" ADD COLUMN "renderedHtml" TEXT, ADD COLUMN "issueSnapshot" JSONB;
+-- Global identity events are retained outside any clinic's audit view; no memberships are granted here.
+INSERT INTO "Practice" ("id","name") VALUES ('00000000-0000-4000-8000-000000000002','Platform identity audit (internal)');
+
+ALTER TABLE "Membership" ADD COLUMN "canManage" BOOLEAN NOT NULL DEFAULT false;
+
+CREATE UNIQUE INDEX "DocumentTemplate_practice_id" ON "DocumentTemplate"("practiceId","id");
+ALTER TABLE "TemplateRevision" ADD CONSTRAINT "TemplateRevision_template_tenant" FOREIGN KEY ("practiceId","templateId") REFERENCES "DocumentTemplate"("practiceId","id");

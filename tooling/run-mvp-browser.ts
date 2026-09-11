@@ -1,6 +1,6 @@
 import { PostgreSqlContainer } from '@testcontainers/postgresql';
 import { Client } from 'pg';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { spawn, type ChildProcess } from 'node:child_process';
 import type { Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -11,7 +11,7 @@ import { createApp } from '../apps/api/src/app.js';
 const container=await new PostgreSqlContainer('postgres:17.6-alpine').start();
 const db=createDatabase(container.getConnectionUri());let server:Server|undefined,vite:ChildProcess|undefined;
 try{
- const sql=new Client({connectionString:container.getConnectionUri()});await sql.connect();try{await sql.query(readFileSync('apps/api/prisma/migrations/202609110001_mvp/migration.sql','utf8'));}finally{await sql.end();}
+ const sql=new Client({connectionString:container.getConnectionUri()});await sql.connect();try{await sql.query(readdirSync('apps/api/prisma/migrations').filter(n=>/^\d/.test(n)).sort().map(n=>readFileSync(`apps/api/prisma/migrations/${n}/migration.sql`,'utf8')).join('\n'));}finally{await sql.end();}
  await seedDemo(container.getConnectionUri(),'Synthetic-browser-2026');
  const app=createApp();installMvpGraphql(app,db);server=await new Promise<Server>((resolve,reject)=>{const s=app.listen(0,'127.0.0.1',()=>resolve(s));s.once('error',reject);});
  vite=spawn('pnpm',['--filter','@ehr/clinical-app','exec','vite','--host','127.0.0.1','--port','5174','--strictPort'],{stdio:'inherit',env:{...process.env,EHR_API_TARGET:`http://127.0.0.1:${(server.address() as AddressInfo).port}`}});

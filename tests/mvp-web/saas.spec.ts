@@ -1,0 +1,20 @@
+import { expect,test } from '@playwright/test';
+test('administrator creates a practice, customizes branding/templates, switches and simulates subscription recovery',async({page})=>{
+ await page.goto('/clinic');await page.getByLabel('Username',{exact:true}).fill('admin');await page.getByLabel('Password',{exact:true}).fill('Synthetic-browser-2026');await page.getByRole('button',{name:'Sign in',exact:true}).click();
+ await page.getByLabel('New practice name',{exact:true}).fill('Browser SaaS');await page.getByRole('button',{name:'Create practice',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Browser SaaS',exact:true})).toBeVisible();await expect(page.getByText('0 results',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Practice settings',exact:true}).click();
+ await page.getByLabel('Brand systemName',{exact:true}).fill('My Doctor Workspace');await page.getByLabel('Brand address',{exact:true}).fill('Synthetic clinic address');await page.getByLabel('Clinic logo upload',{exact:true}).setInputFiles({name:'synthetic-logo.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aRZkAAAAASUVORK5CYII=','base64')});await page.getByRole('button',{name:'Theme #194d80',exact:true}).click();await page.getByRole('button',{name:'Save branding',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'My Doctor Workspace',exact:true})).toBeVisible();await expect(page.getByRole('img',{name:'Practice logo',exact:true})).toBeVisible();
+ await page.getByLabel('Member username',{exact:true}).fill('clinician');await page.getByRole('button',{name:'Save membership',exact:true}).click();await expect(page.getByText('clinician · CLINICIAN · active · v1',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'CERTIFICATE template',exact:true}).click();await page.getByLabel('Template body',{exact:true}).fill('{{patient.fullName}} — {{patient.ageAtIssue}} years — {{patient.address}}');
+ const preview=page.frameLocator('iframe[title="Template live preview"]');await expect(preview.getByText(/Demo Patient — 36 years/)).toBeVisible();
+ await page.getByRole('button',{name:'Publish template',exact:true}).click();await expect(page.getByText(/Draft v1; published v1/)).toBeVisible();
+ await page.getByRole('button',{name:'RESTRICTED',exact:true}).click();await page.getByRole('button',{name:'Apply simulated subscription',exact:true}).click();await expect(page.getByText(/New clinical writes are restricted/)).toBeVisible();
+ const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export authorized records',exact:true}).click();expect((await download).suggestedFilename()).toBe('practice-export.json');
+ await page.getByRole('button',{name:'ACTIVE',exact:true}).click();await page.getByRole('button',{name:'Apply simulated subscription',exact:true}).click();await expect(page.getByText('Practice workspace · ACTIVE · SOLO',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Switch to Default practice',exact:true}).click();await expect(page.getByRole('heading',{name:'Default practice',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Switch to My Doctor Workspace',exact:true}).click();await expect(page.getByRole('heading',{name:'My Doctor Workspace',exact:true})).toBeVisible();
+ await page.reload();await expect(page.getByRole('heading',{name:'My Doctor Workspace',exact:true})).toBeVisible();
+ await page.screenshot({path:'test-results/mvp/saas-workspace.png',fullPage:true});
+});

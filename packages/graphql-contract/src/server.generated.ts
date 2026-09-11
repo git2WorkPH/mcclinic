@@ -145,6 +145,7 @@ export type Mutation = {
   checkIn: Appointment;
   closeConsultation: Consultation;
   createCertificate: ClinicalDocument;
+  createPractice: Scalars['String']['output'];
   createPrescription: ClinicalDocument;
   login: LoginPayload;
   logout: Scalars['Boolean']['output'];
@@ -154,6 +155,10 @@ export type Mutation = {
   reviseCertificate: ClinicalDocument;
   revisePrescription: ClinicalDocument;
   saveNote: Consultation;
+  savePracticeBranding: Scalars['String']['output'];
+  savePracticeTemplate: Scalars['String']['output'];
+  setPracticeMember: Scalars['String']['output'];
+  simulateSubscription: Scalars['String']['output'];
   startConsultation: Consultation;
   updatePatient: Patient;
 };
@@ -193,6 +198,11 @@ export type MutationCreateCertificateArgs = {
   content: CertificateInput;
   key: Scalars['String']['input'];
   patientId: Scalars['ID']['input'];
+};
+
+
+export type MutationCreatePracticeArgs = {
+  name: Scalars['String']['input'];
 };
 
 
@@ -261,6 +271,32 @@ export type MutationSaveNoteArgs = {
   key: Scalars['String']['input'];
   reason: Scalars['String']['input'];
   text: Scalars['String']['input'];
+};
+
+
+export type MutationSavePracticeBrandingArgs = {
+  expected: Scalars['Int']['input'];
+  input: Scalars['String']['input'];
+};
+
+
+export type MutationSavePracticeTemplateArgs = {
+  definition: Scalars['String']['input'];
+  expected: Scalars['Int']['input'];
+  kind: Scalars['String']['input'];
+  publish: Scalars['Boolean']['input'];
+};
+
+
+export type MutationSetPracticeMemberArgs = {
+  input: Scalars['String']['input'];
+};
+
+
+export type MutationSimulateSubscriptionArgs = {
+  expected: Scalars['Int']['input'];
+  plan: Scalars['String']['input'];
+  state: Scalars['String']['input'];
 };
 
 
@@ -344,7 +380,12 @@ export type Query = {
   noteRevisions: Array<NoteRevision>;
   patient: Patient;
   patients: PatientPage;
+  practiceExport: Scalars['String']['output'];
+  practiceSettings: Scalars['String']['output'];
+  practiceTemplates: Scalars['String']['output'];
+  practices: Scalars['String']['output'];
   previewDocument: Scalars['String']['output'];
+  previewPracticeTemplate: Scalars['String']['output'];
   providers: Array<Viewer>;
   systemStatus: SystemStatus;
 };
@@ -413,6 +454,12 @@ export type QueryPreviewDocumentArgs = {
   version: Scalars['Int']['input'];
 };
 
+
+export type QueryPreviewPracticeTemplateArgs = {
+  definition: Scalars['String']['input'];
+  kind?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type SystemStatus = {
   __typename?: 'SystemStatus';
   service: Scalars['String']['output'];
@@ -421,6 +468,7 @@ export type SystemStatus = {
 
 export type Viewer = {
   __typename?: 'Viewer';
+  canManage?: Maybe<Scalars['Boolean']['output']>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   role: Scalars['String']['output'];
@@ -655,6 +703,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   checkIn?: Resolver<ResolversTypes['Appointment'], ParentType, ContextType, RequireFields<MutationCheckInArgs, 'expected' | 'id' | 'key' | 'patientId'>>;
   closeConsultation?: Resolver<ResolversTypes['Consultation'], ParentType, ContextType, RequireFields<MutationCloseConsultationArgs, 'expected' | 'id' | 'key'>>;
   createCertificate?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationCreateCertificateArgs, 'content' | 'key' | 'patientId'>>;
+  createPractice?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreatePracticeArgs, 'name'>>;
   createPrescription?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationCreatePrescriptionArgs, 'content' | 'key' | 'patientId'>>;
   login?: Resolver<ResolversTypes['LoginPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'password' | 'username'>>;
   logout?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
@@ -664,6 +713,10 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   reviseCertificate?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationReviseCertificateArgs, 'content' | 'expected' | 'id' | 'issue' | 'key' | 'reason'>>;
   revisePrescription?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationRevisePrescriptionArgs, 'content' | 'expected' | 'id' | 'issue' | 'key' | 'reason'>>;
   saveNote?: Resolver<ResolversTypes['Consultation'], ParentType, ContextType, RequireFields<MutationSaveNoteArgs, 'expected' | 'finalize' | 'id' | 'key' | 'reason' | 'text'>>;
+  savePracticeBranding?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSavePracticeBrandingArgs, 'expected' | 'input'>>;
+  savePracticeTemplate?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSavePracticeTemplateArgs, 'definition' | 'expected' | 'kind' | 'publish'>>;
+  setPracticeMember?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSetPracticeMemberArgs, 'input'>>;
+  simulateSubscription?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSimulateSubscriptionArgs, 'expected' | 'plan' | 'state'>>;
   startConsultation?: Resolver<ResolversTypes['Consultation'], ParentType, ContextType, RequireFields<MutationStartConsultationArgs, 'key' | 'occurredAt' | 'patientId'>>;
   updatePatient?: Resolver<ResolversTypes['Patient'], ParentType, ContextType, RequireFields<MutationUpdatePatientArgs, 'expected' | 'id' | 'input' | 'key'>>;
 };
@@ -715,7 +768,12 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   noteRevisions?: Resolver<Array<ResolversTypes['NoteRevision']>, ParentType, ContextType, RequireFields<QueryNoteRevisionsArgs, 'id'>>;
   patient?: Resolver<ResolversTypes['Patient'], ParentType, ContextType, RequireFields<QueryPatientArgs, 'id'>>;
   patients?: Resolver<ResolversTypes['PatientPage'], ParentType, ContextType, RequireFields<QueryPatientsArgs, 'limit' | 'offset' | 'query'>>;
+  practiceExport?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  practiceSettings?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  practiceTemplates?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  practices?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   previewDocument?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<QueryPreviewDocumentArgs, 'id' | 'version'>>;
+  previewPracticeTemplate?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<QueryPreviewPracticeTemplateArgs, 'definition'>>;
   providers?: Resolver<Array<ResolversTypes['Viewer']>, ParentType, ContextType>;
   systemStatus?: Resolver<ResolversTypes['SystemStatus'], ParentType, ContextType>;
 };
@@ -726,6 +784,7 @@ export type SystemStatusResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type ViewerResolvers<ContextType = any, ParentType extends ResolversParentTypes['Viewer'] = ResolversParentTypes['Viewer']> = {
+  canManage?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

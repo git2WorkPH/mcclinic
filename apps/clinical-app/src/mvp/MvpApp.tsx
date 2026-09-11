@@ -1,3 +1,4 @@
+import { PracticeBar } from "./PracticeSettings";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import * as G from "@ehr/graphql-contract/operations";
@@ -20,8 +21,10 @@ export function MvpApp() {
     ),
     [actor, setActor] = useState<Viewer | null>(null),
     [checking, setChecking] = useState(Boolean(token));
+  const [brand,setBrand]=useState<{name:string;color:string}|null>(null);
   const [logoutError, setLogoutError] = useState("");
-  const request = useMemo(() => api(token), [token]);
+  const [practiceId,setPracticeId]=useState<string | undefined>(()=>sessionStorage.getItem("ehr-practice") ?? undefined);
+  const request = useMemo(() => api(token,practiceId), [token,practiceId]);
   useEffect(() => {
     let active = true;
     if (!token) {
@@ -54,8 +57,10 @@ export function MvpApp() {
     };
   }, [token, request]);
   function signedIn(value: G.SignInMutation["login"]) {
+    sessionStorage.removeItem("ehr-practice");
+    setPracticeId(undefined);
     sessionStorage.setItem("ehr-mvp-session", value.token);
-    setActor(value.actor);
+    setActor({...value.actor,canManage:null});
     setToken(value.token);
   }
   return (
@@ -65,8 +70,8 @@ export function MvpApp() {
           DEVELOPMENT MVP · SYNTHETIC DATA ONLY · NOT FOR CLINICAL USE
         </Text>
       </View>
-      <View style={styles.header}>
-        <Text style={styles.brand}>Moncal Clinical</Text>
+      <View style={[styles.header,brand?{backgroundColor:brand.color}:{}]}>
+        <Text style={styles.brand}>{brand?.name ?? "Moncal Clinical"}</Text>
         <Text style={styles.headerText}>A clear view of your clinic</Text>
         {actor && (
           <View style={styles.row}>
@@ -82,6 +87,7 @@ export function MvpApp() {
                     sessionStorage.removeItem("ehr-mvp-session");
                     setToken("");
                     setActor(null);
+                    setBrand(null);
                   })
                   .catch(() =>
                     setLogoutError(
@@ -103,7 +109,10 @@ export function MvpApp() {
           <Text>Checking session…</Text>
         </View>
       ) : actor ? (
-        <Workspace request={request} actor={actor} />
+        <>
+          <PracticeBar request={request} actor={actor} onBrand={setBrand} onSwitch={(id)=>{setBrand(null);sessionStorage.setItem("ehr-practice",id);setActor(null);setChecking(true);setPracticeId(id);}} />
+          <Workspace key={practiceId ?? "default"} request={request} actor={actor} />
+        </>
       ) : (
         <Login request={request} onLogin={signedIn} />
       )}

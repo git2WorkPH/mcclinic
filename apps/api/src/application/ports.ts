@@ -60,7 +60,7 @@ export interface DocumentRepository {
     state: string,
     revision: Omit<
       DocumentRevision,
-      "id" | "documentId" | "version" | "recordedAt"
+      "id" | "documentId" | "version" | "recordedAt" | "issueSnapshot" | "renderedHtml"
     >,
   ): Promise<ClinicalDocument>;
   revisions(id: string): Promise<DocumentRevision[]>;

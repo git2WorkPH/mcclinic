@@ -49,6 +49,7 @@ query Viewer {
     id
     name
     role
+    canManage
   }
 }
 mutation SignIn($username: String!, $password: String!) {
