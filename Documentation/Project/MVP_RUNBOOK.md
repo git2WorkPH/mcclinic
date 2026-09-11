@@ -10,9 +10,9 @@ Use Node 24.21.0, pnpm 10.34.5 and running Docker Desktop. From the repository r
 pnpm install --frozen-lockfile
 pnpm db:generate
 # Choose local-only passwords; keep these exports in both API/setup terminals.
-export POSTGRES_PASSWORD='choose-a-local-database-password'
-export DEMO_PASSWORD='choose-a-demo-password-at-least-12-characters'
-export DATABASE_URL="postgresql://ehr_dev:${POSTGRES_PASSWORD}@127.0.0.1:5432/ehr_dev"
+export POSTGRES_PASSWORD='sql'
+export DEMO_PASSWORD='d0ntg8sick!!'
+export DATABASE_URL="postgresql://postgres:${POSTGRES_PASSWORD}@127.0.0.1:5432/mcclinic"
 export MVP_SYNTHETIC_ONLY=true
 docker compose -f infrastructure/docker/compose.yaml up -d postgres
 # Wait for the service to be healthy, then:

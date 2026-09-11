@@ -66,7 +66,7 @@ export function MvpApp() {
         </Text>
       </View>
       <View style={styles.header}>
-        <Text style={styles.brand}>Clinic EHR</Text>
+        <Text style={styles.brand}>Moncal Clinical</Text>
         <Text style={styles.headerText}>A clear view of your clinic</Text>
         {actor && (
           <View style={styles.row}>
@@ -77,11 +77,17 @@ export function MvpApp() {
               secondary
               onPress={() => {
                 setLogoutError("");
-                void request(G.SignOutDocument, {}).then(() => {
-                  sessionStorage.removeItem("ehr-mvp-session");
-                  setToken("");
-                  setActor(null);
-                }).catch(() => setLogoutError("Sign out failed. Please retry to revoke your session."));
+                void request(G.SignOutDocument, {})
+                  .then(() => {
+                    sessionStorage.removeItem("ehr-mvp-session");
+                    setToken("");
+                    setActor(null);
+                  })
+                  .catch(() =>
+                    setLogoutError(
+                      "Sign out failed. Please retry to revoke your session.",
+                    ),
+                  );
               }}
             >
               Sign out
@@ -89,7 +95,9 @@ export function MvpApp() {
           </View>
         )}
       </View>
-      {Boolean(logoutError) && <Text accessibilityRole="alert">{logoutError}</Text>}
+      {Boolean(logoutError) && (
+        <Text accessibilityRole="alert">{logoutError}</Text>
+      )}
       {checking ? (
         <View style={styles.body}>
           <Text>Checking session…</Text>

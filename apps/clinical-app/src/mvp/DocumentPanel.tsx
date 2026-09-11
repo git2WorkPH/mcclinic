@@ -83,48 +83,50 @@ export function DocumentPanel({
             {result.error}
           </Text>
         )}
-        {result.value?.documents.filter(d => !sourceId || d.id === sourceId).map((d) => (
-          <View key={d.id} style={styles.item}>
-            <Text style={styles.subheading}>
-              {d.kind === "PRESCRIPTION"
-                ? "Prescription"
-                : "Medical certificate"}{" "}
-              · v{d.version}
-            </Text>
-            <Text style={styles.badge}>
-              {d.state} · {formatTime(d.createdAt)}
-            </Text>
-            <View style={styles.row}>
-              {d.authorId === actorId && (
-                <Button
-                  secondary
-                  onPress={() => {
-                    setEditing(d);
-                    setNewKind(d.kind);
-                  }}
-                >
-                  Edit{" "}
-                  {d.kind === "PRESCRIPTION" ? "prescription" : "certificate"} v
-                  {d.version}
-                </Button>
-              )}
-              {d.state === "ISSUED" && (
-                <Button
-                  onPress={() => setPreview({ id: d.id, version: d.version })}
-                >
-                  Preview{" "}
-                  {d.kind === "PRESCRIPTION" ? "prescription" : "certificate"} v
-                  {d.version}
-                </Button>
-              )}
+        {result.value?.documents
+          .filter((d) => !sourceId || d.id === sourceId)
+          .map((d) => (
+            <View key={d.id} style={styles.item}>
+              <Text style={styles.subheading}>
+                {d.kind === "PRESCRIPTION"
+                  ? "Prescription"
+                  : "Medical certificate"}{" "}
+                · v{d.version}
+              </Text>
+              <Text style={styles.badge}>
+                {d.state} · {formatTime(d.createdAt)}
+              </Text>
+              <View style={styles.row}>
+                {d.authorId === actorId && (
+                  <Button
+                    secondary
+                    onPress={() => {
+                      setEditing(d);
+                      setNewKind(d.kind);
+                    }}
+                  >
+                    Edit{" "}
+                    {d.kind === "PRESCRIPTION" ? "prescription" : "certificate"}{" "}
+                    v{d.version}
+                  </Button>
+                )}
+                {d.state === "ISSUED" && (
+                  <Button
+                    onPress={() => setPreview({ id: d.id, version: d.version })}
+                  >
+                    Preview{" "}
+                    {d.kind === "PRESCRIPTION" ? "prescription" : "certificate"}{" "}
+                    v{d.version}
+                  </Button>
+                )}
+              </View>
+              <DocumentVersions
+                request={request}
+                document={d}
+                onPreview={(version) => setPreview({ id: d.id, version })}
+              />
             </View>
-            <DocumentVersions
-              request={request}
-              document={d}
-              onPreview={(version) => setPreview({ id: d.id, version })}
-            />
-          </View>
-        ))}
+          ))}
       </Card>
       {Boolean(newKind) && (
         <DocumentEditor
