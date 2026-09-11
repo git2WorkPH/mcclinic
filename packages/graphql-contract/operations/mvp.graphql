@@ -1,0 +1,338 @@
+fragment PatientFields on Patient {
+  id
+  givenName
+  familyName
+  birthDate
+  phone
+  email
+  address
+  version
+  createdAt
+}
+fragment EncounterFields on Consultation {
+  id
+  patientId
+  providerId
+  occurredAt
+  state
+  version
+  noteState
+  noteVersion
+  noteText
+}
+fragment DocumentFields on ClinicalDocument {
+  id
+  kind
+  patientId
+  consultationId
+  authorId
+  state
+  version
+  contentJson
+  createdAt
+}
+fragment AppointmentFields on Appointment {
+  id
+  patientId
+  providerId
+  startsAt
+  endsAt
+  timeZone
+  state
+  version
+  checkedInAt
+  checkedInBy
+  cancellationReason
+}
+query Viewer {
+  me {
+    id
+    name
+    role
+  }
+}
+mutation SignIn($username: String!, $password: String!) {
+  login(username: $username, password: $password) {
+    token
+    actor {
+      id
+      name
+      role
+    }
+  }
+}
+mutation SignOut {
+  logout
+}
+query Providers {
+  providers {
+    id
+    name
+    role
+  }
+}
+query PatientSearch($query: String!, $offset: Int!, $limit: Int!) {
+  patients(query: $query, offset: $offset, limit: $limit) {
+    items {
+      ...PatientFields
+    }
+    total
+    offset
+  }
+}
+query PatientRecord($id: ID!) {
+  patient(id: $id) {
+    ...PatientFields
+  }
+}
+mutation RegisterPatient($key: String!, $input: PatientInput!) {
+  registerPatient(key: $key, input: $input) {
+    ...PatientFields
+  }
+}
+mutation UpdateProfile(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $input: PatientInput!
+) {
+  updatePatient(key: $key, id: $id, expected: $expected, input: $input) {
+    ...PatientFields
+  }
+}
+query ClinicalRecords($patientId: ID!) {
+  consultations(patientId: $patientId) {
+    ...EncounterFields
+  }
+  documents(patientId: $patientId) {
+    ...DocumentFields
+  }
+}
+mutation StartEncounter($key: String!, $patientId: ID!, $occurredAt: String!) {
+  startConsultation(key: $key, patientId: $patientId, occurredAt: $occurredAt) {
+    ...EncounterFields
+  }
+}
+mutation SaveClinicalNote(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $text: String!
+  $finalize: Boolean!
+  $reason: String!
+) {
+  saveNote(
+    key: $key
+    id: $id
+    expected: $expected
+    text: $text
+    finalize: $finalize
+    reason: $reason
+  ) {
+    ...EncounterFields
+  }
+}
+mutation CloseEncounter($key: String!, $id: ID!, $expected: Int!) {
+  closeConsultation(key: $key, id: $id, expected: $expected) {
+    ...EncounterFields
+  }
+}
+query NoteVersions($id: ID!) {
+  noteRevisions(id: $id) {
+    id
+    version
+    text
+    state
+    reason
+    recordedAt
+    authorId
+    previousVersion
+  }
+}
+mutation NewPrescription(
+  $key: String!
+  $patientId: ID!
+  $consultationId: ID
+  $content: PrescriptionInput!
+) {
+  createPrescription(
+    key: $key
+    patientId: $patientId
+    consultationId: $consultationId
+    content: $content
+  ) {
+    ...DocumentFields
+  }
+}
+mutation NewCertificate(
+  $key: String!
+  $patientId: ID!
+  $consultationId: ID
+  $content: CertificateInput!
+) {
+  createCertificate(
+    key: $key
+    patientId: $patientId
+    consultationId: $consultationId
+    content: $content
+  ) {
+    ...DocumentFields
+  }
+}
+mutation RevisePrescription(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $content: PrescriptionInput!
+  $issue: Boolean!
+  $reason: String!
+) {
+  revisePrescription(
+    key: $key
+    id: $id
+    expected: $expected
+    content: $content
+    issue: $issue
+    reason: $reason
+  ) {
+    ...DocumentFields
+  }
+}
+mutation ReviseCertificate(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $content: CertificateInput!
+  $issue: Boolean!
+  $reason: String!
+) {
+  reviseCertificate(
+    key: $key
+    id: $id
+    expected: $expected
+    content: $content
+    issue: $issue
+    reason: $reason
+  ) {
+    ...DocumentFields
+  }
+}
+query DocumentVersions($id: ID!) {
+  documentRevisions(id: $id) {
+    id
+    documentId
+    version
+    state
+    contentJson
+    patientName
+    issuerName
+    templateVersion
+    authorId
+    reason
+    previousVersion
+    recordedAt
+  }
+}
+query PreviewClinicalDocument($id: ID!, $version: Int!) {
+  previewDocument(id: $id, version: $version)
+}
+mutation PrintEvent(
+  $key: String!
+  $id: ID!
+  $version: Int!
+  $outcome: String!
+) {
+  recordPrint(key: $key, id: $id, version: $version, outcome: $outcome) {
+    id
+    version
+  }
+}
+query Schedule($from: String!, $to: String!, $providerId: ID, $patientId: ID) {
+  appointments(
+    from: $from
+    to: $to
+    providerId: $providerId
+    patientId: $patientId
+  ) {
+    ...AppointmentFields
+  }
+}
+mutation BookVisit($key: String!, $input: AppointmentInput!) {
+  bookAppointment(key: $key, input: $input) {
+    ...AppointmentFields
+  }
+}
+mutation RescheduleVisit(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $startsAt: String!
+  $endsAt: String!
+  $timeZone: String!
+) {
+  rescheduleAppointment(
+    key: $key
+    id: $id
+    expected: $expected
+    startsAt: $startsAt
+    endsAt: $endsAt
+    timeZone: $timeZone
+  ) {
+    ...AppointmentFields
+  }
+}
+mutation CancelVisit(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $reason: String!
+) {
+  cancelAppointment(key: $key, id: $id, expected: $expected, reason: $reason) {
+    ...AppointmentFields
+  }
+}
+mutation CheckInVisit(
+  $key: String!
+  $id: ID!
+  $expected: Int!
+  $patientId: ID!
+) {
+  checkIn(key: $key, id: $id, expected: $expected, patientId: $patientId) {
+    ...AppointmentFields
+  }
+}
+query VisitHistory($id: ID!) {
+  appointmentHistory(id: $id) {
+    version
+    snapshotJson
+    actorId
+    recordedAt
+  }
+}
+query PatientTimeline($patientId: ID!, $offset: Int!, $limit: Int!) {
+  history(patientId: $patientId, offset: $offset, limit: $limit) {
+    items {
+      id
+      type
+      occurredAt
+      recordedAt
+      summary
+      version
+      sourceId
+    }
+    total
+    offset
+  }
+}
+query AuditTrail($offset: Int!, $limit: Int!) {
+  auditEvents(offset: $offset, limit: $limit) {
+    id
+    actorId
+    action
+    subjectId
+    outcome
+    version
+    correlationId
+    recordedAt
+  }
+}

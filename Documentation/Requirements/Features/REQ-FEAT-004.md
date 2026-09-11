@@ -42,3 +42,6 @@ Classification: ADD when approved; existing application code/tests are absent. N
 
 ## Decision history
 - 2026-09-10: v0.1 drafted from owner scope and installed kit; all detailed policy choices remain pending.
+
+## v0.2-MVP acceptance overlay — 2026-09-10
+Owner explicitly authorizes reversible defaults in [MVP assumptions](../../Project/MVP_ASSUMPTIONS.md). Apply existing functional rules/ACs to those concrete local/synthetic defaults. Desktop web only; no production/legal/native claim. Earlier v0.1 policy questions and findings remain open for production; historical text is retained. Runtime evidence must demonstrate real database-backed behavior, permissions, integrity/audit and applicable failures before MVP completion.

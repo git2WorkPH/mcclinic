@@ -70,3 +70,8 @@ Execution: TASK-001 foundation starting; remaining tasks wait for dependencies a
 
 ## Dependency status at handoff
 Task approval is recorded above and remains valid. Policy-dependent implementation awaits the applicable answers in [decisions needed](../../Assessment/DECISIONS-NEEDED.md); no clinical/legal decisions are inferred from approval. Earlier proposal/pending text is retained as history, not current authority.
+
+## Authorized MVP scope — 2026-09-10
+Owner quote: "Use the project-development skill and continue implementing all approved tasks as a development MVP." Also: "I authorize you to make reasonable, reversible product and technical decisions without asking me to resolve every open finding first."
+Apply linked requirements v0.2-MVP and `Documentation/Project/MVP_ASSUMPTIONS.md`; pending production findings do not block this scope. Earlier task scope/approval history remains preserved. Acceptance requires actual applicable API/UI/database workflows, failure/denial/concurrency/audit/version/print evidence, and accurate production limitations. No deletion/push/deployment authorization.
+Branch: task/TASK-002-development-mvp, integrated across approved dependent tasks for full-journey verification. Base d5edb2081b82ac8d540d5d9fdfe83dff589a301d; live/local task search found no matching remaining task branches.

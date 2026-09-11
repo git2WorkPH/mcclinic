@@ -45,3 +45,7 @@ The image is a development foundation, not an approved production deployment. Re
 ## Technical references
 - [GraphQL Yoga documentation](https://the-guild.dev/graphql/yoga-server/docs)
 - [Prisma upgrade/configuration documentation](https://www.prisma.io/docs/guides/upgrade-prisma-orm/v7) for the pending persistence task; no Prisma implementation is claimed by TASK-001.
+
+## Current development MVP — 2026-09-11
+
+The preceding TASK-001 notes describe the preserved foundation baseline. Database-backed clinical workflows are now implemented separately at `/clinic`; follow [the MVP runbook](MVP_RUNBOOK.md) and [scoped assumptions](MVP_ASSUMPTIONS.md). Production readiness remains unverified.

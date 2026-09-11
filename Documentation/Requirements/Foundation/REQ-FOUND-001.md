@@ -45,3 +45,6 @@ Classification: ADD when approved; existing application code/tests are absent. N
 
 ## Implementation authorization — 2026-09-10
 The owner explicitly requested all proposed tasks be implemented. These technical criteria are the implementation baseline under that approval; policy-dependent findings remain open. See the current Approved task record.
+
+## v0.2-MVP acceptance overlay — 2026-09-10
+Owner explicitly authorizes reversible defaults in [MVP assumptions](../../Project/MVP_ASSUMPTIONS.md). Apply existing functional rules/ACs to those concrete local/synthetic defaults. Desktop web only; no production/legal/native claim. Earlier v0.1 policy questions and findings remain open for production; historical text is retained. Runtime evidence must demonstrate real database-backed behavior, permissions, integrity/audit and applicable failures before MVP completion.

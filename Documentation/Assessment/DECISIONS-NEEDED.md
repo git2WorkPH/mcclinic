@@ -15,3 +15,6 @@ All TASK-001–019 scopes were approved by the owner on 2026-09-10. No further b
 Technical recommendations already selected within approved scope: feature-owned modular monolith/workspace (ADR-001) and document-only future lab seam (ADR-005). Unresolved substantive choices in ADR-002/003/004 are not fabricated approvals.
 
 Until these answers arrive, preserve approved task status and do not implement guessed clinical/legal behavior, fake patient workflows, permissive authentication, or placeholder prescribing/certificate issuance.
+
+## MVP exception — 2026-09-10
+The owner authorized reversible defaults. These questions remain Open production findings and no longer block local synthetic MVP work. See ../Project/MVP_ASSUMPTIONS.md. No production claim or policy resolution is implied.

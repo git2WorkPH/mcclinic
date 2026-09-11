@@ -1,0 +1,52 @@
+type Viewer { id: ID! name: String! role: String! }
+type LoginPayload { token: String! actor: Viewer! }
+type Patient { id: ID! givenName: String! familyName: String! birthDate: String! phone: String! email: String! address: String! version: Int! createdAt: String! }
+type PatientPage { items: [Patient!]! total: Int! offset: Int! }
+input PatientInput { givenName: String! familyName: String! birthDate: String! phone: String! email: String! address: String! }
+type Consultation { id: ID! patientId: ID! providerId: ID! occurredAt: String! state: String! version: Int! noteState: String! noteVersion: Int! noteText: String! }
+type NoteRevision { id: ID! consultationId: ID! version: Int! text: String! state: String! authorId: ID! reason: String! previousVersion: Int recordedAt: String! }
+input MedicationInput { medication: String! strength: String! dose: String! route: String! frequency: String! duration: String! quantity: String! repeats: Int! }
+input PrescriptionInput { items: [MedicationInput!]! directions: String! }
+input CertificateInput { title: String! statement: String! startsOn: String! endsOn: String! }
+type ClinicalDocument { id: ID! kind: String! patientId: ID! consultationId: ID authorId: ID! state: String! version: Int! contentJson: String! createdAt: String! }
+type DocumentRevision { id: ID! documentId: ID! version: Int! state: String! contentJson: String! patientName: String! issuerName: String! templateVersion: String! authorId: ID! reason: String! previousVersion: Int recordedAt: String! }
+type Appointment { id: ID! patientId: ID! providerId: ID! startsAt: String! endsAt: String! timeZone: String! state: String! version: Int! checkedInAt: String checkedInBy: ID cancellationReason: String! }
+input AppointmentInput { patientId: ID! providerId: ID! startsAt: String! endsAt: String! timeZone: String! }
+type AppointmentChange { version: Int! snapshotJson: String! actorId: ID! recordedAt: String! }
+type HistoryEntry { id: ID! type: String! occurredAt: String! recordedAt: String! summary: String! version: Int! sourceId: ID! }
+type HistoryPage { items: [HistoryEntry!]! total: Int! offset: Int! }
+type AuditEvent { id: ID! actorId: ID action: String! subjectId: String! outcome: String! version: Int correlationId: String! recordedAt: String! }
+type PrintReceipt { id: ID! version: Int! }
+extend type Query {
+  me: Viewer
+  providers: [Viewer!]!
+  patients(query: String! = "", offset: Int! = 0, limit: Int! = 20): PatientPage!
+  patient(id: ID!): Patient!
+  consultations(patientId: ID!): [Consultation!]!
+  noteRevisions(id: ID!): [NoteRevision!]!
+  documents(patientId: ID!): [ClinicalDocument!]!
+  documentRevisions(id: ID!): [DocumentRevision!]!
+  previewDocument(id: ID!, version: Int!): String!
+  appointments(from: String!, to: String!, providerId: ID, patientId: ID): [Appointment!]!
+  appointmentHistory(id: ID!): [AppointmentChange!]!
+  history(patientId: ID!, offset: Int! = 0, limit: Int! = 20): HistoryPage!
+  auditEvents(offset: Int! = 0, limit: Int! = 50): [AuditEvent!]!
+}
+type Mutation {
+  login(username: String!, password: String!): LoginPayload!
+  logout: Boolean!
+  registerPatient(key: String!, input: PatientInput!): Patient!
+  updatePatient(key: String!, id: ID!, expected: Int!, input: PatientInput!): Patient!
+  startConsultation(key: String!, patientId: ID!, occurredAt: String!): Consultation!
+  saveNote(key: String!, id: ID!, expected: Int!, text: String!, finalize: Boolean!, reason: String!): Consultation!
+  closeConsultation(key: String!, id: ID!, expected: Int!): Consultation!
+  createPrescription(key: String!, patientId: ID!, consultationId: ID, content: PrescriptionInput!): ClinicalDocument!
+  createCertificate(key: String!, patientId: ID!, consultationId: ID, content: CertificateInput!): ClinicalDocument!
+  revisePrescription(key: String!, id: ID!, expected: Int!, content: PrescriptionInput!, issue: Boolean!, reason: String!): ClinicalDocument!
+  reviseCertificate(key: String!, id: ID!, expected: Int!, content: CertificateInput!, issue: Boolean!, reason: String!): ClinicalDocument!
+  recordPrint(key: String!, id: ID!, version: Int!, outcome: String!): PrintReceipt!
+  bookAppointment(key: String!, input: AppointmentInput!): Appointment!
+  rescheduleAppointment(key: String!, id: ID!, expected: Int!, startsAt: String!, endsAt: String!, timeZone: String!): Appointment!
+  cancelAppointment(key: String!, id: ID!, expected: Int!, reason: String!): Appointment!
+  checkIn(key: String!, id: ID!, expected: Int!, patientId: ID!): Appointment!
+}

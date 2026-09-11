@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client"
+  importFileExtension = "js"
+  output = "../src/infrastructure/prisma/generated"
+  moduleFormat = "esm"
+}
+datasource db {
+  provider = "postgresql"
+}
+model User {
+  id String @id @default(uuid()) @db.Uuid
+  username String @unique
+  name String
+  role String
+  passwordHash String
+  active Boolean @default(true)
+  sessions Session[]
+  consultations Consultation[]
+  documents ClinicalDocument[]
+  appointments Appointment[]
+}
+model Session {
+  id String @id @default(uuid()) @db.Uuid
+  tokenHash String @unique
+  userId String @db.Uuid
+  user User @relation(fields:[userId], references:[id], onDelete:Restrict)
+  expiresAt DateTime @db.Timestamptz
+  revokedAt DateTime? @db.Timestamptz
+}
+model Patient {
+  id String @id @default(uuid()) @db.Uuid
+  givenName String
+  familyName String
+  birthDate String
+  identityKey String @unique
+  phone String @default("")
+  email String @default("")
+  address String @default("")
+  version Int @default(1)
+  createdAt DateTime @default(now()) @db.Timestamptz
+  consultations Consultation[]
+  documents ClinicalDocument[]
+  appointments Appointment[]
+  @@index([familyName,givenName,id])
+}
+model Consultation {
+  id String @id @default(uuid()) @db.Uuid
+  patientId String @db.Uuid
+  patient Patient @relation(fields:[patientId],references:[id],onDelete:Restrict)
+  providerId String @db.Uuid
+  provider User @relation(fields:[providerId],references:[id],onDelete:Restrict)
+  occurredAt DateTime @db.Timestamptz
+  state String @default("OPEN")
+  version Int @default(1)
+  noteState String @default("DRAFT")
+  noteVersion Int @default(0)
+  noteText String @default("")
+  revisions NoteRevision[]
+  documents ClinicalDocument[]
+  @@unique([id,patientId])
+}
+model NoteRevision {
+  id String @id @default(uuid()) @db.Uuid
+  consultationId String @db.Uuid
+  consultation Consultation @relation(fields:[consultationId],references:[id],onDelete:Restrict)
+  version Int
+  text String
+  state String
+  authorId String @db.Uuid
+  reason String
+  previousVersion Int?
+  recordedAt DateTime @default(now()) @db.Timestamptz
+  @@unique([consultationId,version])
+}
+model ClinicalDocument {
+  id String @id @default(uuid()) @db.Uuid
+  kind String
+  patientId String @db.Uuid
+  patient Patient @relation(fields:[patientId],references:[id],onDelete:Restrict)
+  consultationId String? @db.Uuid
+  consultation Consultation? @relation(fields:[consultationId,patientId],references:[id,patientId],onDelete:Restrict)
+  authorId String @db.Uuid
+  author User @relation(fields:[authorId],references:[id],onDelete:Restrict)
+  state String @default("DRAFT")
+  version Int @default(1)
+  content Json
+  createdAt DateTime @default(now()) @db.Timestamptz
+  revisions DocumentRevision[]
+}
+model DocumentRevision {
+  id String @id @default(uuid()) @db.Uuid
+  documentId String @db.Uuid
+  document ClinicalDocument @relation(fields:[documentId],references:[id],onDelete:Restrict)
+  version Int
+  state String
+  content Json
+  patientSnapshot Json
+  issuerSnapshot Json
+  templateVersion String
+  authorId String @db.Uuid
+  reason String
+  previousVersion Int?
+  recordedAt DateTime @default(now()) @db.Timestamptz
+  @@unique([documentId,version])
+}
+model Appointment {
+  id String @id @default(uuid()) @db.Uuid
+  patientId String @db.Uuid
+  patient Patient @relation(fields:[patientId],references:[id],onDelete:Restrict)
+  providerId String @db.Uuid
+  provider User @relation(fields:[providerId],references:[id],onDelete:Restrict)
+  startsAt DateTime @db.Timestamptz
+  endsAt DateTime @db.Timestamptz
+  timeZone String
+  state String @default("BOOKED")
+  version Int @default(1)
+  checkedInAt DateTime? @db.Timestamptz
+  checkedInBy String? @db.Uuid
+  cancellationReason String @default("")
+  changes AppointmentChange[]
+  @@index([startsAt,id])
+}
+model AppointmentChange {
+  id String @id @default(uuid()) @db.Uuid
+  appointmentId String @db.Uuid
+  appointment Appointment @relation(fields:[appointmentId],references:[id],onDelete:Restrict)
+  version Int
+  snapshot Json
+  actorId String @db.Uuid
+  recordedAt DateTime @default(now()) @db.Timestamptz
+  @@unique([appointmentId,version])
+}
+model AuditEvent {
+  id String @id @default(uuid()) @db.Uuid
+  actorId String?
+  action String
+  subjectId String
+  outcome String
+  version Int?
+  correlationId String
+  recordedAt DateTime @default(now()) @db.Timestamptz
+  @@index([recordedAt,id])
+}
+model CommandReceipt {
+  id String @id @default(uuid()) @db.Uuid
+  actorId String @db.Uuid
+  key String
+  fingerprint String
+  result Json
+  createdAt DateTime @default(now()) @db.Timestamptz
+  @@unique([actorId,key])
+}
