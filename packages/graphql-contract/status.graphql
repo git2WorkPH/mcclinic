@@ -1,0 +1,3 @@
+query SystemStatus {
+  systemStatus { service status }
+}

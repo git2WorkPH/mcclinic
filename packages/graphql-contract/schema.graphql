@@ -1,0 +1,7 @@
+type SystemStatus {
+  service: String!
+  status: String!
+}
+type Query {
+  systemStatus: SystemStatus!
+}

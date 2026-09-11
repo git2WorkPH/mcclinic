@@ -1,0 +1,23 @@
+name: Verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  foundation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - run: npm install --global pnpm@10.34.5
+      - run: pnpm install --frozen-lockfile
+      - run: node tooling/check-codegen.mjs
+      - run: pnpm db:generate
+      - run: pnpm check
+      - run: pnpm test:integration
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:web
+      - run: pnpm test:mvp
+      - run: pnpm test:mvp:web
+      - run: pnpm exec tsx tooling/verify-mvp-runtime.ts
