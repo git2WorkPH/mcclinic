@@ -26,3 +26,6 @@ See [decisions needed](../../Assessment/DECISIONS-NEEDED.md). Original Proposed 
 
 ## Current state — 2026-09-11
 All 19 task scopes are Completed for their approved development MVP/design scope. Earlier pending entries are history. Canonical records are in Completed; see [MVP verification](../../Acceptance/MVP-VERIFICATION.md). Production findings remain Open.
+
+## SaaS continuation — 2026-09-12
+TASK-020–023 completed for v0.3 development; canonical records in Completed. [Evidence](../../Acceptance/SAAS-VERIFICATION.md). TASK-024 real payment provider integration remains Proposed and unapproved.

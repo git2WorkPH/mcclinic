@@ -1,3 +1,6 @@
+import { captureTemplate } from '../../modules/templates/infrastructure/snapshot.js';
+import { effectiveState } from '../../modules/subscription/application/policy.js';
+import { scoped, verifyMembership, clinicianDirectory, DEFAULT_PRACTICE } from '../../modules/practice/infrastructure/scope.js';
 import { PrismaClient, Prisma } from "./generated/client.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { createHash, randomUUID } from "node:crypto";
@@ -73,7 +76,8 @@ function translate(error: unknown): never {
     );
   throw error;
 }
-export function unitOfWork(tx: Tx): UnitOfWork {
+export function unitOfWork(raw: Tx, practiceId: string = DEFAULT_PRACTICE): UnitOfWork {
+  const tx=scoped(raw,practiceId);
   return {
     patients: {
       async get(id) {
@@ -261,9 +265,14 @@ export function unitOfWork(tx: Tx): UnitOfWork {
           data: { content: json(content), state, version: { increment: 1 } },
         });
         if (changed.count !== 1) conflict();
+        const current=await tx.clinicalDocument.findUniqueOrThrow({where:{id}});
+        const recordedAt=new Date().toISOString();
+        const captured=state==='ISSUED'?await captureTemplate(raw,practiceId,current.kind as 'PRESCRIPTION'|'CERTIFICATE',{...revision,id:'pending',documentId:id,version:expected+1,recordedAt}):{};
         await tx.documentRevision.create({
           data: {
             ...revision,
+            ...captured,
+            recordedAt: new Date(recordedAt),
             content: json(content),
             patientSnapshot: json(revision.patientSnapshot),
             issuerSnapshot: json(revision.issuerSnapshot),
@@ -370,11 +379,7 @@ export function unitOfWork(tx: Tx): UnitOfWork {
         );
       },
       async clinician(id) {
-        const value = await tx.user.findFirst({
-          where: { id, role: "CLINICIAN", active: true },
-          select: { id: true, name: true, role: true },
-        });
-        return value ? { ...value, role: value.role as Role } : null;
+        return (await clinicianDirectory(raw,practiceId,id))[0] ?? null;
       },
       async encounter(id) {
         return plain<Consultation | null>(
@@ -382,15 +387,7 @@ export function unitOfWork(tx: Tx): UnitOfWork {
         );
       },
     },
-    async directory() {
-      return (
-        await tx.user.findMany({
-          where: { active: true, role: "CLINICIAN" },
-          select: { id: true, name: true, role: true },
-          orderBy: { name: "asc" },
-        })
-      ).map((v) => ({ ...v, role: v.role as Role }));
-    },
+    async directory() { return (await clinicianDirectory(raw,practiceId)).map(v=>({...v,role:v.role as Role})); },
     async audit(event) {
       await tx.auditEvent.create({ data: event });
     },
@@ -409,12 +406,14 @@ export function persistence(database: Database): Persistence {
   return {
     async read(actor: Actor, action, subject, run) {
       return database.$transaction(async (tx) => {
-        const u = unitOfWork(tx);
+        await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${actor.practiceId ?? DEFAULT_PRACTICE}, 0))::text`;
+        const practiceId=await verifyMembership(tx,actor);
+        const u = unitOfWork(tx,practiceId);
         const result = await run(u);
         await u.audit({
           actorId: actor.id,
           action,
-          subjectId: subject,
+          subjectId: Array.isArray(result) && result.length === 0 ? "empty-result" : subject,
           outcome: "SUCCESS",
           correlationId: randomUUID(),
         });
@@ -427,11 +426,19 @@ export function persistence(database: Database): Persistence {
         .digest("hex");
       try {
         return await database.$transaction(
-          async (tx) => {
+          async (raw) => {
+            await raw.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${actor.practiceId ?? DEFAULT_PRACTICE}, 0))::text`;
+            const practiceId=await verifyMembership(raw,actor);
+            const tx=scoped(raw,practiceId);
+            if(!action.startsWith('document.print.')){
+              const sub=await raw.practiceSubscription.findUniqueOrThrow({where:{practiceId}});
+              if(effectiveState(sub)==='RESTRICTED')throw new AppError('FORBIDDEN','Subscription restricted: reads, prints and authorized exports remain available.');
+            }
+            const receiptKey=practiceId===DEFAULT_PRACTICE?key:practiceId+":"+key;
             // Serialize identical actor/key retries; different commands still use optimistic constraints.
             await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${actor.id + ":" + key}, 0))::text`;
             const previous = await tx.commandReceipt.findUnique({
-              where: { actorId_key: { actorId: actor.id, key } },
+              where: { actorId_key: { actorId: actor.id, key:receiptKey } },
             });
             if (previous) {
               if (previous.fingerprint !== fingerprint)
@@ -441,7 +448,7 @@ export function persistence(database: Database): Persistence {
                 );
               return plain(previous.result);
             }
-            const u = unitOfWork(tx);
+            const u = unitOfWork(raw,practiceId);
             const result = await run(u);
             const meta = result as { id?: string; version?: number };
             await u.audit({
@@ -455,7 +462,7 @@ export function persistence(database: Database): Persistence {
             await tx.commandReceipt.create({
               data: {
                 actorId: actor.id,
-                key,
+                key:receiptKey,
                 fingerprint,
                 result: json(result),
               },

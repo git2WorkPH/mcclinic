@@ -1,29 +1,33 @@
 # Session memory
-Updated: 2026-09-11 (Australia/Sydney)
-Phase: DEVELOPMENT MVP COMPLETE; owner local synthetic UAT next. Production readiness pending.
-Active requirement: v0.2-MVP across REQ-PROD-001, REQ-FOUND-001–009 and REQ-FEAT-001–012; original v0.1 preserved.
-Active task: none implementing; all 19 approved scopes completed for MVP/design only.
-Current branch: task/TASK-002-development-mvp.
-Observed HEAD before this memory update: 55cf441797f14651c0d9f7fbb69098fc64733a51 (owner: update credentials).
-Observed status before this memory update: verification follow-up edits, new compiled-runtime verifier, acceptance/requirements/runbook updates and Approved→Completed task relocations. No unexplained unstaged starter deletions.
+Updated: 2026-09-12 (Australia/Sydney).
+Phase: DEVELOPMENT SaaS v0.3 COMPLETE; local synthetic UAT next. Production readiness pending.
+Active requirement: REQ-FOUND-010 and REQ-FEAT-013–015 v0.3, extending the preserved v0.2 MVP.
+Active task: TASK-020–023 completed for approved scope; TASK-024 real payments Proposed only.
+Current branch: task/TASK-020-saas-practices.
+Observed HEAD before this memory update: 6be71e24fa231fa7e9ab15d4417d992a6828b92f (completed MVP).
+Observed status before this memory update: SaaS implementation/schema/generated/test changes and new requirements/ADR/tasks/acceptance/rationale/runbook. Owner edit in Documentation/Project/MVP_RUNBOOK.md changes a database name; preserve it unstaged and exclude it from this commit. No starter deletions present.
 
-## Reconciliation and authority
-- Previous memory was stale: owner commits 3194f5e and 55cf441 contain implementation/config/branding and starter-directory removal. Preserve these commits; this session did not delete or stage starter removals.
-- Owner authorizes all approved tasks plus reversible MVP defaults. No blanket reapproval needed. Production findings remain Open and nonblocking only for the synthetic local MVP.
-- No new deletion, purge, push, deployment or merge authorized. Preserve user changes. Any future starter deletions must remain unstaged.
+## Authorization / reconciliation
+- Owner explicitly approved bounded tenant/membership → branding → templates → simulated subscription implementation and reversible development defaults. Requirements/tasks retain approval evidence.
+- Prior memory matched the MVP completion commit. Local/worktree/live remote search found no TASK-020–023 branches; new branch uses verified 6be71e2. Do not merge/push/deploy, charge users, use real records or delete anything.
+- Existing starter removal was in the owner's earlier commit, not this work. Leave any future starter deletions unstaged.
 
-## Implemented / verified
-- Actual PostgreSQL patient/profile/search, consultation/note amendment/history, prescription/certificate draft/issue/amend/preview/print, appointment book/reschedule/cancel/check-in workflows.
-- Local identity, server permissions, atomic audit/revisions, idempotent retries, optimistic concurrency and database overlap constraints.
-- [Shared verification](../Acceptance/MVP-VERIFICATION.md): 5 unit/API + 1 foundation database + 9 MVP integration + 2 foundation browser + 3 MVP browser scenarios passed. Lint/boundaries/typecheck/codegen/build passed.
-- Fresh/repeated migrate deploy, compiled MVP API readiness, backup/restore and local Docker build passed. Five-page A4 demo certificate checked; physical printer and remote CI unverified.
-- Node 24.21.0 / pnpm 10.34.5: prepend /private/tmp/ehr-runtime/node_modules/.bin on this host. Docker required. Browser test API isolated on OS-assigned port; Vite 5174 must be free.
+## Implemented
+- Tenant-scoped database-backed clinical records, membership roles, explicit switching and a separate creator management grant for solo clinicians. Ordinary administrators still have no clinical access.
+- System name/header, PNG/JPEG logo, contacts and accessible theme choices; guided allowlisted prescription/certificate templates, full synthetic preview, draft/published versions and immutable issue-time rendered/value/branding snapshots.
+- SOLO/TEAM clinician seats, local simulated trial/active/past-due/restricted subscriptions, concurrent seat enforcement, preserved reads/print/role-limited export and simulated recovery. No payment provider.
+- Additive default-practice migration preserves existing patient versions/audit timestamps. Existing issued documents retain fallback rendering. Global identity audit is outside practice-visible exports.
 
-## Records / unresolved questions
-- [Assumptions](../Project/MVP_ASSUMPTIONS.md); [runbook](../Project/MVP_RUNBOOK.md) includes current correction for Compose identity and seed minimum; preserve owner-specific historical examples.
-- [Task index](../Tasks/Approved/INDEX.md); canonical remaining records now in ../Tasks/Completed/. Individual acceptance records map criteria to code/tests; rationale lives in root Doc/Changes/Justification/.
-- [Decisions](../Assessment/DECISIONS-NEEDED.md), ADR-002/003/004 MVP overlays. Clinical/legal/privacy/jurisdiction, production identity, retention/protection, signature/template and native/platform findings remain unresolved for production.
-- TASK-015 laboratory boundary remains design-only. No vendor integration.
+## Verification
+- [SaaS evidence](../Acceptance/SAAS-VERIFICATION.md): 8 unit/API + 14 PostgreSQL/API + 1 foundation database + 4 MVP/SaaS browser + 2 foundation browser scenarios passed (29 total).
+- Lint/dependency boundaries, TypeScript, generated contract drift and builds passed. Fresh/repeated migrations and compiled API readiness passed. Existing audit rollback/restore and print layout scenarios retained.
+- Final branding browser run passed; screenshot visually inspected. Prior scheduling/browser failure did not reproduce in subsequent complete runs; no assertions removed or weakened.
+- Node 24.21.0/pnpm 10.34.5 at /private/tmp/ehr-runtime/node_modules/.bin on this host. Tests use isolated Docker PostgreSQL 17.6-alpine. No existing local database was migrated by this session.
+
+## Relevant records / remaining questions
+- [SaaS runbook](../Project/SAAS_RUNBOOK.md), [assumptions](../Project/MVP_ASSUMPTIONS.md), [ADR-006](../Architecture/Decisions/ADR-006.md), [FIND-010](../Assessment/Findings/FIND-010.md).
+- Completed TASK-020–023 have per-task acceptance and Doc/Changes/Justification/TASK-020–023-saas.md. [TASK-024](../Tasks/Proposed/TASK-024.md) requires separate approval.
+- Original Philippine clinical/legal/privacy/signature/retention findings remain Open. RLS assessed but not enabled; non-owner database roles, production identity/support, scale/recovery and real billing require later work. No native, production or physical-printer certification.
 
 ## Exact next action
-Validate this pre-commit snapshot against Git and the completion commit, then perform owner synthetic-data UAT following MVP_RUNBOOK.md at /clinic. If changes are requested, read only the affected completed requirement/task/justification and record the bounded follow-up before editing. Do not reopen production policy questions as MVP blockers; do not infer production readiness from passing tests.
+Validate this snapshot against Git/completion commit; keep the owner runbook edit unstaged. For local UAT, follow SAAS_RUNBOOK.md using the existing synthetic DATABASE_URL: generate client, back up/migrate the existing database, start API/web, then create and switch practices and test settings/issued snapshots. Read only affected task/requirement/rationale for requested follow-up work. Do not treat production findings as development blockers or TASK-024 as approved.

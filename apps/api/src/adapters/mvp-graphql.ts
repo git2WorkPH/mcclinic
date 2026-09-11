@@ -1,3 +1,7 @@
+import { validateTemplate } from "../modules/templates/application/template.js";
+import { simulatedSubscription } from "../modules/subscription/application/policy.js";
+import { practiceUseCases } from "../modules/practice/application/practices.js";
+import { practiceServices } from "../modules/practice/infrastructure/practices.js";
 import { createSchema, createYoga, createGraphQLError } from "graphql-yoga";
 import { GraphQLError } from "graphql";
 import { readFileSync } from "node:fs";
@@ -31,6 +35,36 @@ const revision = (d: DocumentRevision) => ({
 });
 export function installMvpGraphql(app: Express, database: Database) {
   const services = composeMvp(database);
+  const practices = practiceUseCases(practiceServices(database), {
+    validateTemplate,
+    simulatedSubscription,
+  });
+  const brandInput = z
+    .object({
+      systemName: z.string(),
+      address: z.string(),
+      phone: z.string(),
+      email: z.string(),
+      logo: z.string(),
+      color: z.string(),
+    })
+    .strict();
+  const templateInput = z
+    .object({
+      heading: z.string(),
+      body: z.string(),
+      footer: z.string(),
+      layout: z.enum(["STANDARD", "COMPACT"]),
+      includeAddress: z.boolean(),
+    })
+    .strict();
+  const parse = (input: string) => {
+    try {
+      return JSON.parse(z.string().max(180000).parse(input));
+    } catch {
+      throw new AppError("VALIDATION", "Invalid settings JSON.");
+    }
+  };
   const attempts = new Map<string, { count: number; until: number }>();
   async function safe<T>(
     ctx: Context,
@@ -49,6 +83,8 @@ export function installMvpGraphql(app: Express, database: Database) {
       try {
         await database.auditEvent.create({
           data: {
+            practiceId:
+              ctx.actor?.practiceId ?? "00000000-0000-4000-8000-000000000002",
             actorId: ctx.actor?.id ?? null,
             action,
             subjectId: "request",
@@ -75,6 +111,30 @@ export function installMvpGraphql(app: Express, database: Database) {
   }
   const resolvers: Resolvers<Context> = {
     Query: {
+      practices: (_p, _a, c) =>
+        safe(c, "practice.list", async () =>
+          JSON.stringify(await practices.list(c.actor)),
+        ),
+      practiceSettings: (_p, _a, c) =>
+        safe(c, "practice.settings", async () =>
+          JSON.stringify(await practices.settings(c.actor)),
+        ),
+      practiceTemplates: (_p, _a, c) =>
+        safe(c, "template.list", async () =>
+          JSON.stringify(await practices.templates(c.actor)),
+        ),
+      practiceExport: (_p, _a, c) =>
+        safe(c, "practice.export", async () =>
+          JSON.stringify(await practices.export(c.actor)),
+        ),
+      previewPracticeTemplate: (_p, a, c) =>
+        safe(c, "template.preview", () =>
+          practices.previewTemplate(
+            c.actor,
+            templateInput.parse(parse(a.definition)),
+            a.kind ?? undefined,
+          ),
+        ),
       systemStatus: () => getSystemStatus(),
       me: (_p, _a, c) => c.actor,
       providers: (_p, _a, c) =>
@@ -160,6 +220,65 @@ export function installMvpGraphql(app: Express, database: Database) {
         }),
     },
     Mutation: {
+      createPractice: (_p, a, c) =>
+        safe(c, "practice.create", async () =>
+          JSON.stringify(
+            await practices.create(
+              c.actor,
+              z.string().trim().min(1).max(100).parse(a.name),
+            ),
+          ),
+        ),
+      setPracticeMember: (_p, a, c) =>
+        safe(c, "practice.member", async () =>
+          JSON.stringify(
+            await practices.member(
+              c.actor,
+              z
+                .object({
+                  username: z.string().min(1).max(100),
+                  role: z.enum(["CLINICIAN", "RECEPTION", "ADMINISTRATOR"]),
+                  active: z.boolean(),
+                  expected: v.expected,
+                })
+                .strict()
+                .parse(parse(a.input)),
+            ),
+          ),
+        ),
+      savePracticeBranding: (_p, a, c) =>
+        safe(c, "practice.brand", async () =>
+          JSON.stringify(
+            await practices.brand(
+              c.actor,
+              v.expected.parse(a.expected),
+              brandInput.parse(parse(a.input)),
+            ),
+          ),
+        ),
+      savePracticeTemplate: (_p, a, c) =>
+        safe(c, "template.save", async () =>
+          JSON.stringify(
+            await practices.saveTemplate(
+              c.actor,
+              a.kind,
+              v.expected.parse(a.expected),
+              templateInput.parse(parse(a.definition)),
+              a.publish,
+            ),
+          ),
+        ),
+      simulateSubscription: (_p, a, c) =>
+        safe(c, "subscription.simulate", async () =>
+          JSON.stringify(
+            await practices.subscription(
+              c.actor,
+              v.expected.parse(a.expected),
+              a.plan,
+              a.state,
+            ),
+          ),
+        ),
       login: (_p, a, c) =>
         safe(c, "session.login", async () => {
           const username = z.string().trim().min(1).max(100).parse(a.username),
@@ -368,12 +487,15 @@ export function installMvpGraphql(app: Express, database: Database) {
     logging: false,
     cors: false,
     maskedErrors: true,
-    context: async ({ request }) => {
+    context: async ({ request }): Promise<Context> => {
       const header = request.headers.get("authorization") ?? "";
       const token = header.startsWith("Bearer ") ? header.slice(7) : "";
       return {
         token,
-        actor: await services.identity.resolve(token),
+        actor: await practices.actor(
+          await services.identity.resolve(token),
+          request.headers.get("x-practice-id"),
+        ),
         clientKey: "local",
       };
     },

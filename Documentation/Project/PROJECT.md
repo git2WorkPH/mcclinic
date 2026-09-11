@@ -537,3 +537,6 @@ Earlier starter examples are retained for provenance; these specific settings su
 
 ## Current phase — 2026-09-11
 DEVELOPMENT MVP COMPLETE: 19 approved task scopes completed for local synthetic desktop web (laboratory scope remains design-only). Earlier REQUIREMENTS metadata is the initial baseline. [MVP assumptions](MVP_ASSUMPTIONS.md), [runbook](MVP_RUNBOOK.md), and [verification](../Acceptance/MVP-VERIFICATION.md) define current scope. Production readiness, regulatory verification and native support are not claimed.
+
+## Development SaaS extension — 2026-09-12
+TASK-020–023 complete for synthetic multi-practice SaaS v0.3. See [SaaS runbook](SAAS_RUNBOOK.md), [verification](../Acceptance/SAAS-VERIFICATION.md) and ADR-006. This supersedes the single-practice development scope; original baseline and production findings are preserved. No production release or real billing.

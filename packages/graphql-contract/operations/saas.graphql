@@ -1,0 +1,10 @@
+query Practices { practices }
+query PracticeSettings { practiceSettings }
+query PracticeTemplates { practiceTemplates }
+query PracticeExport { practiceExport }
+query TemplatePreview($definition:String!,$kind:String) { previewPracticeTemplate(definition:$definition,kind:$kind) }
+mutation CreatePractice($name:String!) { createPractice(name:$name) }
+mutation SetPracticeMember($input:String!) { setPracticeMember(input:$input) }
+mutation SaveBranding($expected:Int!,$input:String!) { savePracticeBranding(expected:$expected,input:$input) }
+mutation SaveTemplate($kind:String!,$expected:Int!,$definition:String!,$publish:Boolean!) { savePracticeTemplate(kind:$kind,expected:$expected,definition:$definition,publish:$publish) }
+mutation SimulateSubscription($expected:Int!,$plan:String!,$state:String!) { simulateSubscription(expected:$expected,plan:$plan,state:$state) }

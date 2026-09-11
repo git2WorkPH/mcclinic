@@ -1,6 +1,6 @@
 import { print } from "graphql";
 import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
-export function api(token: string) {
+export function api(token: string, practiceId?: string) {
   return async function request<T, V>(
     document: TypedDocumentNode<T, V>,
     variables: V,
@@ -12,6 +12,7 @@ export function api(token: string) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          ...(practiceId ? { "x-practice-id": practiceId } : {}),
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({ query: print(document), variables }),

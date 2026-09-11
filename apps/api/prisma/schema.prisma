@@ -14,6 +14,7 @@ model User {
   role String
   passwordHash String
   active Boolean @default(true)
+  memberships Membership[]
   sessions Session[]
   consultations Consultation[]
   documents ClinicalDocument[]
@@ -28,6 +29,7 @@ model Session {
   revokedAt DateTime? @db.Timestamptz
 }
 model Patient {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   givenName String
   familyName String
@@ -44,6 +46,7 @@ model Patient {
   @@index([familyName,givenName,id])
 }
 model Consultation {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   patientId String @db.Uuid
   patient Patient @relation(fields:[patientId],references:[id],onDelete:Restrict)
@@ -60,6 +63,7 @@ model Consultation {
   @@unique([id,patientId])
 }
 model NoteRevision {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   consultationId String @db.Uuid
   consultation Consultation @relation(fields:[consultationId],references:[id],onDelete:Restrict)
@@ -73,6 +77,7 @@ model NoteRevision {
   @@unique([consultationId,version])
 }
 model ClinicalDocument {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   kind String
   patientId String @db.Uuid
@@ -88,6 +93,9 @@ model ClinicalDocument {
   revisions DocumentRevision[]
 }
 model DocumentRevision {
+  renderedHtml String?
+  issueSnapshot Json?
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   documentId String @db.Uuid
   document ClinicalDocument @relation(fields:[documentId],references:[id],onDelete:Restrict)
@@ -104,6 +112,7 @@ model DocumentRevision {
   @@unique([documentId,version])
 }
 model Appointment {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   patientId String @db.Uuid
   patient Patient @relation(fields:[patientId],references:[id],onDelete:Restrict)
@@ -121,6 +130,7 @@ model Appointment {
   @@index([startsAt,id])
 }
 model AppointmentChange {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   appointmentId String @db.Uuid
   appointment Appointment @relation(fields:[appointmentId],references:[id],onDelete:Restrict)
@@ -131,6 +141,7 @@ model AppointmentChange {
   @@unique([appointmentId,version])
 }
 model AuditEvent {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   actorId String?
   action String
@@ -142,6 +153,7 @@ model AuditEvent {
   @@index([recordedAt,id])
 }
 model CommandReceipt {
+  practiceId String @default("00000000-0000-4000-8000-000000000001") @db.Uuid
   id String @id @default(uuid()) @db.Uuid
   actorId String @db.Uuid
   key String
@@ -149,4 +161,49 @@ model CommandReceipt {
   result Json
   createdAt DateTime @default(now()) @db.Timestamptz
   @@unique([actorId,key])
+}
+
+model Practice {
+ id String @id @default(uuid()) @db.Uuid
+ name String
+ branding Json @default("{}")
+ version Int @default(1)
+ createdAt DateTime @default(now()) @db.Timestamptz
+}
+model Membership {
+ canManage Boolean @default(false)
+ id String @id @default(uuid()) @db.Uuid
+ practiceId String @db.Uuid
+ userId String @db.Uuid
+ user User @relation(fields:[userId],references:[id],onDelete:Restrict)
+ role String
+ active Boolean @default(true)
+ version Int @default(1)
+ @@unique([practiceId,userId])
+}
+model PracticeSubscription {
+ practiceId String @id @db.Uuid
+ plan String @default("SOLO")
+ state String @default("TRIAL")
+ until DateTime? @db.Timestamptz
+ version Int @default(1)
+}
+model DocumentTemplate {
+ id String @id @default(uuid()) @db.Uuid
+ practiceId String @db.Uuid
+ kind String
+ definition Json
+ version Int @default(1)
+ publishedVersion Int?
+ @@unique([practiceId,kind])
+}
+model TemplateRevision {
+ id String @id @default(uuid()) @db.Uuid
+ practiceId String @db.Uuid
+ templateId String @db.Uuid
+ version Int
+ definition Json
+ authorId String @db.Uuid
+ recordedAt DateTime @default(now()) @db.Timestamptz
+ @@unique([templateId,version])
 }
