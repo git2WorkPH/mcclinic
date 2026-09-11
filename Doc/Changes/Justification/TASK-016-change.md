@@ -1,7 +1,7 @@
 
 # TASK-016 development MVP justification
-Task: Documentation/Tasks/Approved/TASK-016.md. Owner authorized all tasks and reversible MVP defaults on 2026-09-10.
-Requirements: [REQ-PROD-001](../../Requirements/Product/REQ-PROD-001.md) v0.1 AC-01–AC-03
+Task: Documentation/Tasks/Completed/TASK-016.md. Owner authorized all tasks and reversible MVP defaults on 2026-09-10.
+Requirements: [REQ-PROD-001](../../../Documentation/Requirements/Product/REQ-PROD-001.md) v0.1 AC-01–AC-03
 Baseline: linked v0.1 history plus v0.2-MVP overlay and MVP_ASSUMPTIONS.md.
 Status: Planned/in progress; no completion until evidence.
 
@@ -19,3 +19,13 @@ None. No code/test/field/endpoint/behavior is removed. Existing App and foundati
 
 ## Verification and recovery
 Run lint/typecheck/codegen drift, unit/integration/browser checks and builds with Node 24.21.0. Migrate/restore into isolated synthetic databases. Preserve failing evidence and repair implementation. Stop local processes to recover; no destructive cleanup. Results and remaining production findings go in Documentation/Acceptance/TASK-016-acceptance.md.
+
+## Verification follow-up — 2026-09-11
+ADD certificate amendment/snapshot and history paging/source navigation assertions without removing existing coverage. Browser review found a live development API on port 4000 could receive test requests. Give the isolated test API an OS-assigned port and pass its URL to Vite; retain the default development proxy. Preserve owner commits and current branding/configuration. Re-run database/browser/build checks before completion.
+
+## Final evidence — 2026-09-11
+Completed for development MVP; see `Documentation/Acceptance/TASK-016-acceptance.md` and shared `MVP-VERIFICATION.md`. Existing tests KEEP; new scenarios ADD. No new removal. Production findings remain Open.
+
+Generated contract review: owner formatting of server.generated.ts differed from the canonical generator. Regenerated from unchanged schemas/config, preserving the same exported types/fields; no hand patch. Drift check rerun after regeneration.
+
+Foundation regression isolation: KEEP both original browser assertions. The suite could not start while the owner's API occupied port 4000. Configure dedicated test API/web ports with explicit Vite target, retaining root foundation behavior and leaving the owner's processes untouched. Re-run before claiming final verification.

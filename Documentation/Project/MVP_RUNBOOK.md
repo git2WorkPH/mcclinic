@@ -1,5 +1,16 @@
 # Development MVP runbook
 
+**Current setup correction (2026-09-11):** the older shell example below was edited for an owner-specific database. For the repository Compose service, use database/user `ehr_dev`, a local URL-safe database password, and a demo password of at least 12 characters. The earlier demo password example fails seed validation. Do not copy historical credentials into a new environment. Use the corrected commands below; existing accounts are preserved.
+
+```sh
+# Set POSTGRES_PASSWORD and DEMO_PASSWORD locally before running.
+export DATABASE_URL="postgresql://ehr_dev:${POSTGRES_PASSWORD}@127.0.0.1:5432/ehr_dev"
+export MVP_SYNTHETIC_ONLY=true
+# Then follow install/generate, Compose, migrate and seed steps below.
+```
+
+The browser test API uses an OS-assigned isolated port; only Vite port 5174 must be free.
+
 Local synthetic data only. Production findings remain Open; read [MVP assumptions](MVP_ASSUMPTIONS.md). Never enter real patient information. Native platforms and production deployment are outside this MVP.
 
 ## Start
@@ -56,3 +67,5 @@ pnpm test:mvp:web
 ```
 
 Database/browser MVP tests create isolated synthetic PostgreSQL containers. The MVP browser runner uses ports 4000 and 5174; stop any conflicting development servers first. Browser printing opens the browser/OS print dialog; audit records a request/dialog return, never proof of physical printing.
+
+Foundation browser tests now use dedicated ports 4188/5188 (override with EHR_FOUNDATION_API_PORT/EHR_FOUNDATION_WEB_PORT); your development listeners need not be stopped.

@@ -44,7 +44,7 @@ describe('persistent local EHR MVP',()=>{
   });
   it('registers/searches/updates with duplicate and stale-write protection, surviving reconnect',async()=>{
     const p=await newPatient('Unique patient');
-    const found=await ok(G.PatientSearchDocument,{query:'Unique patient',offset:0,limit:20},reception);expect(found.patients.items.map(x=>x.id)).toContain(p.id);
+    const found=await ok(G.PatientSearchDocument,{query:'Unique patient Synthetic',offset:0,limit:20},reception);expect(found.patients.items.map(x=>x.id)).toContain(p.id);
     const duplicate=await request(G.RegisterPatientDocument,{key:randomUUID(),input:patientInput('unique patient')},reception);expect(duplicate.errors?.[0]?.extensions.code).toBe('CONFLICT');
     const input={...patientInput('Unique patient'),phone:'0411111111'};
     const writes=await Promise.all([request(G.UpdateProfileDocument,{key:randomUUID(),id:p.id,expected:1,input},reception),request(G.UpdateProfileDocument,{key:randomUUID(),id:p.id,expected:1,input:{...input,phone:'0422222222'}},reception)]);
@@ -83,6 +83,17 @@ describe('persistent local EHR MVP',()=>{
     let c=(await ok(G.NewCertificateDocument,{key:randomUUID(),patientId:p.id,content:certificate},clinician)).createCertificate;
     c=(await ok(G.ReviseCertificateDocument,{key:randomUUID(),id:c.id,expected:1,content:certificate,issue:true,reason:''},clinician)).reviseCertificate;
     expect((await ok(G.PreviewClinicalDocumentDocument,{id:c.id,version:2},clinician)).previewDocument).toContain('Synthetic statement');
+    const certificateOriginal=(await ok(G.PreviewClinicalDocumentDocument,{id:c.id,version:2},clinician)).previewDocument;
+    await ok(G.ReviseCertificateDocument,{key:randomUUID(),id:c.id,expected:2,content:{...certificate,statement:'Amended synthetic statement'},issue:true,reason:'Corrected statement'},clinician);
+    expect((await ok(G.PreviewClinicalDocumentDocument,{id:c.id,version:2},clinician)).previewDocument).toBe(certificateOriginal);
+    expect((await ok(G.DocumentVersionsDocument,{id:c.id},clinician)).documentRevisions).toHaveLength(3);
+    const wrongType=await request(G.ReviseCertificateDocument,{key:randomUUID(),id:d.id,expected:3,content:certificate,issue:true,reason:'Wrong kind'},clinician);expect(wrongType.errors?.[0]?.extensions.code).toBe('VALIDATION');
+    const page1=await ok(G.PatientTimelineDocument,{patientId:p.id,offset:0,limit:2},clinician);
+    const page2=await ok(G.PatientTimelineDocument,{patientId:p.id,offset:2,limit:2},clinician);
+    const all=await ok(G.PatientTimelineDocument,{patientId:p.id,offset:0,limit:100},clinician);
+    expect([...page1.history.items,...page2.history.items]).toEqual(all.history.items.slice(0,4));
+    expect(new Set(all.history.items.map(x=>x.id)).size).toBe(all.history.total);
+    for(const token of [reception,admin])expect((await request(G.PreviewClinicalDocumentDocument,{id:c.id,version:2},token)).errors?.[0]?.extensions.code).toBe('FORBIDDEN');
     const event=await ok(G.PrintEventDocument,{key:randomUUID(),id:d.id,version:2,outcome:'CANCELLED'},clinician);expect(event.recordPrint.version).toBe(2);
     const other=await newPatient();const encounter=(await ok(G.StartEncounterDocument,{key:randomUUID(),patientId:other.id,occurredAt:new Date().toISOString()},clinician)).startConsultation;
     const mismatch=await request(G.NewCertificateDocument,{key:randomUUID(),patientId:p.id,consultationId:encounter.id,content:certificate},clinician);expect(mismatch.errors?.[0]?.extensions.code).toBe('VALIDATION');

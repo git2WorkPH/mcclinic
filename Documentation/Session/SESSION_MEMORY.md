@@ -1,30 +1,29 @@
 # Session memory
-Updated: 2026-09-10T22:51:08+10:00
-Phase: IMPLEMENTATION; all 19 task scopes approved by explicit owner request.
-Active requirement: REQ-FOUND-001/002 v0.1 verified; REQ-FOUND-009 design verified.
-Active task: TASK-001 Completed; TASK-015 Completed; remaining tasks Approved pending policies/dependencies.
-Current branch: task/TASK-015-laboratory-boundary (stacked on completed TASK-001; original user version-1 preserved).
-Observed HEAD before this memory update: f9c3390bed07e25a9bbb490b3780dfc2b9e85991 (TASK-001 foundation commit).
-Observed status before this update: TASK-015 design/ADR/requirement/rationale/task/acceptance/memory updates; tracked nested-starter deletions remain unstaged by explicit owner instruction. No application changes since verified foundation commit.
+Updated: 2026-09-11 (Australia/Sydney)
+Phase: DEVELOPMENT MVP COMPLETE; owner local synthetic UAT next. Production readiness pending.
+Active requirement: v0.2-MVP across REQ-PROD-001, REQ-FOUND-001–009 and REQ-FEAT-001–012; original v0.1 preserved.
+Active task: none implementing; all 19 approved scopes completed for MVP/design only.
+Current branch: task/TASK-002-development-mvp.
+Observed HEAD before this memory update: 55cf441797f14651c0d9f7fbb69098fc64733a51 (owner: update credentials).
+Observed status before this memory update: verification follow-up edits, new compiled-runtime verifier, acceptance/requirements/runbook updates and Approved→Completed task relocations. No unexplained unstaged starter deletions.
 
-## Authorization and reconciliation
-- Owner: "use the project-development skills  I want you to implement all the proposed tasks".
-- User-created version-1 branch and 19 untracked Approved copies existed at session start. Approval records updated without relying on filenames. Proposed copies retained as historical evidence.
-- Technical ADR-001 selected within approved scope; substantive policy choices remain open. No deletion/push/merge authorized.
-- Live remote head check succeeded (only master at 6f00bac); FIND-009 resolved for branch discovery. No task branch existed before TASK-001.
+## Reconciliation and authority
+- Previous memory was stale: owner commits 3194f5e and 55cf441 contain implementation/config/branding and starter-directory removal. Preserve these commits; this session did not delete or stage starter removals.
+- Owner authorizes all approved tasks plus reversible MVP defaults. No blanket reapproval needed. Production findings remain Open and nonblocking only for the synthetic local MVP.
+- No new deletion, purge, push, deployment or merge authorized. Preserve user changes. Any future starter deletions must remain unstaged.
 
-## Implemented and verified
-- [TASK-001 acceptance](../Acceptance/TASK-001-acceptance.md): typed pnpm workspace, Express/Yoga, Zod configuration, generated GraphQL contracts, React Native Web candidate shell, Docker/Compose and CI/test tooling.
-- 5 API/config tests, 1 PostgreSQL integration test, 2 browser tests passed; lint, tsc, codegen drift, clean frozen install, builds, compiled API smoke and Docker build passed.
-- Runtime: isolated /private/tmp/ehr-runtime/node_modules/.bin (Node 24.21.0/pnpm 10.34.5); prepend to PATH for this host, whose default Node is 25.
-- [Development commands](../Project/DEVELOPMENT.md). No native or clinical/production claim.
-- [Lab design](../Architecture/LABORATORY-BOUNDARY.md) completed; [acceptance](../Acceptance/TASK-015-acceptance.md). No lab runtime implementation.
+## Implemented / verified
+- Actual PostgreSQL patient/profile/search, consultation/note amendment/history, prescription/certificate draft/issue/amend/preview/print, appointment book/reschedule/cancel/check-in workflows.
+- Local identity, server permissions, atomic audit/revisions, idempotent retries, optimistic concurrency and database overlap constraints.
+- [Shared verification](../Acceptance/MVP-VERIFICATION.md): 5 unit/API + 1 foundation database + 9 MVP integration + 2 foundation browser + 3 MVP browser scenarios passed. Lint/boundaries/typecheck/codegen/build passed.
+- Fresh/repeated migrate deploy, compiled MVP API readiness, backup/restore and local Docker build passed. Five-page A4 demo certificate checked; physical printer and remote CI unverified.
+- Node 24.21.0 / pnpm 10.34.5: prepend /private/tmp/ehr-runtime/node_modules/.bin on this host. Docker required. Browser test API isolated on OS-assigned port; Vite 5174 must be free.
 
-## Relevant records
-- [Approved execution index](../Tasks/Approved/INDEX.md), [TASK-001](../Tasks/Completed/TASK-001.md), [TASK-015](../Tasks/Completed/TASK-015.md).
-- [TASK-001 rationale](../../Doc/Changes/Justification/TASK-001-change.md).
-- [Decisions needed](../Assessment/DECISIONS-NEEDED.md): jurisdiction, identity/permission matrix, retention/protection, lifecycle/audit, patient/search/notes, document rules, scheduling and platform matrix.
-- Policy question remains unanswered. Owner explicitly answered "Leave the deletions unstaged" for the starter deletion question; preserve that preference.
+## Records / unresolved questions
+- [Assumptions](../Project/MVP_ASSUMPTIONS.md); [runbook](../Project/MVP_RUNBOOK.md) includes current correction for Compose identity and seed minimum; preserve owner-specific historical examples.
+- [Task index](../Tasks/Approved/INDEX.md); canonical remaining records now in ../Tasks/Completed/. Individual acceptance records map criteria to code/tests; rationale lives in root Doc/Changes/Justification/.
+- [Decisions](../Assessment/DECISIONS-NEEDED.md), ADR-002/003/004 MVP overlays. Clinical/legal/privacy/jurisdiction, production identity, retention/protection, signature/template and native/platform findings remain unresolved for production.
+- TASK-015 laboratory boundary remains design-only. No vendor integration.
 
 ## Exact next action
-Validate Git and this pre-commit snapshot, then obtain answers in DECISIONS-NEEDED.md, beginning with operating jurisdiction, data-protection policy and identity/session/permission decisions required by TASK-002/003. Continue already-approved tasks when their requirements are concrete; no repeat blanket approval needed. Do not implement guessed clinical/legal rules or stage the starter deletions.
+Validate this pre-commit snapshot against Git and the completion commit, then perform owner synthetic-data UAT following MVP_RUNBOOK.md at /clinic. If changes are requested, read only the affected completed requirement/task/justification and record the bounded follow-up before editing. Do not reopen production policy questions as MVP blockers; do not infer production readiness from passing tests.

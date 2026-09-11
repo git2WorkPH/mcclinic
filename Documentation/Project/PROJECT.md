@@ -534,3 +534,6 @@ Earlier starter examples are retained for provenance; these specific settings su
 - Canonical rationale location: `Doc/Changes/Justification/`. Root AGENTS overrides inherited skill paths.
 - Proposed details require explicit approval. Approval must record approver/date/exact scope/evidence; requirement or ADR acceptance alone does not approve implementation.
 - No real patient data, secrets, regulatory compliance claim, retention duration, prescribing entitlement, or certificate wording is established by this baseline.
+
+## Current phase — 2026-09-11
+DEVELOPMENT MVP COMPLETE: 19 approved task scopes completed for local synthetic desktop web (laboratory scope remains design-only). Earlier REQUIREMENTS metadata is the initial baseline. [MVP assumptions](MVP_ASSUMPTIONS.md), [runbook](MVP_RUNBOOK.md), and [verification](../Acceptance/MVP-VERIFICATION.md) define current scope. Production readiness, regulatory verification and native support are not claimed.

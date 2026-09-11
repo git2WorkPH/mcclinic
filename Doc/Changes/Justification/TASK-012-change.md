@@ -1,7 +1,7 @@
 
 # TASK-012 development MVP justification
-Task: Documentation/Tasks/Approved/TASK-012.md. Owner authorized all tasks and reversible MVP defaults on 2026-09-10.
-Requirements: [REQ-FOUND-007](../../Requirements/Foundation/REQ-FOUND-007.md) v0.1 AC-01–AC-03
+Task: Documentation/Tasks/Completed/TASK-012.md. Owner authorized all tasks and reversible MVP defaults on 2026-09-10.
+Requirements: [REQ-FOUND-007](../../../Documentation/Requirements/Foundation/REQ-FOUND-007.md) v0.1 AC-01–AC-03
 Baseline: linked v0.1 history plus v0.2-MVP overlay and MVP_ASSUMPTIONS.md.
 Status: Planned/in progress; no completion until evidence.
 
@@ -19,3 +19,6 @@ None. No code/test/field/endpoint/behavior is removed. Existing App and foundati
 
 ## Verification and recovery
 Run lint/typecheck/codegen drift, unit/integration/browser checks and builds with Node 24.21.0. Migrate/restore into isolated synthetic databases. Preserve failing evidence and repair implementation. Stop local processes to recover; no destructive cleanup. Results and remaining production findings go in Documentation/Acceptance/TASK-012-acceptance.md.
+
+## Final evidence — 2026-09-11
+Completed for development MVP; see `Documentation/Acceptance/TASK-012-acceptance.md` and shared `MVP-VERIFICATION.md`. Existing tests KEEP; new scenarios ADD. No new removal. Production findings remain Open.

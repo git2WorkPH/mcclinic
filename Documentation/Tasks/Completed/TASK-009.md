@@ -1,12 +1,12 @@
-# TASK-008 — Implement consultation notes and amendments
-Status: Approved
-Requirements: [REQ-FEAT-004](../../Requirements/Features/REQ-FEAT-004.md) v0.1 AC-01–AC-03
+# TASK-009 — Implement longitudinal patient history
+Status: Completed — development MVP only
+Requirements: [REQ-FEAT-005](../../Requirements/Features/REQ-FEAT-005.md) v0.1 AC-01–AC-03
 
 ## Objective
-Implement consultation notes and amendments, satisfying the linked requirement criteria.
+Implement longitudinal patient history, satisfying the linked requirement criteria.
 
 ## Scope
-Implement approved note format, draft save, finalization, amendment and concurrency feedback.
+Compose authorized consultation/note/prescription/certificate summaries with ordering, pagination and version drill-down.
 
 ## Out of scope
 Unrelated features, production deployment, real patient data, Jira, live laboratory integration, unapproved policy decisions, and all deletions. No approval is inferred from this proposal.
@@ -17,15 +17,15 @@ Unrelated features, production deployment, real patient data, Jira, live laborat
 - AC-03: Review confirms inward dependencies, approved scope, no unapproved removals, current justification and session memory. No unsupported compliance/platform claims.
 
 ## Expected code areas
-consultation note domain/use cases/adapters, clinical-app note editor, contracts/migrations (proposed paths; no application files exist yet).
+patient history application composition, source-module query ports, clinical-app history, GraphQL contracts (proposed paths; no application files exist yet).
 
 ## Expected test impact
 ADD the scenarios specified in linked requirements; use Vitest for domain/use cases, Testcontainers for PostgreSQL effects, and Playwright for supported web interactions. Native behavior needs native checks. TASK-015 is document-only and uses architecture review instead of runtime tests. Before changing any existing tests classify KEEP/ADD/UPDATE/SPLIT/REMOVE in the justification; no removals approved.
 
 ## Dependencies and decisions
-- Tasks: [TASK-007](TASK-007.md), [TASK-004](TASK-004.md).
+- Tasks: [TASK-008](TASK-008.md), [TASK-010](TASK-010.md), [TASK-011](TASK-011.md).
 - Architecture decision required: No new ADR anticipated; accepted applicable baseline decisions remain prerequisites. Raise a proposal if a new choice is discovered.
-- Resolve applicable policy blockers and approve linked requirement details before dependent work: [FIND-005](../../Assessment/Findings/FIND-005.md), [FIND-007](../../Assessment/Findings/FIND-007.md).
+- Resolve applicable policy blockers and approve linked requirement details before dependent work: [FIND-002](../../Assessment/Findings/FIND-002.md), [FIND-005](../../Assessment/Findings/FIND-005.md), [FIND-007](../../Assessment/Findings/FIND-007.md).
 - TASK-001 may proceed without settling clinical policy only after its bounded scope and ADR-001 are explicitly approved and remote branch discovery is resolved. TASK-015 is design-only; it does not depend on bootstrap implementation.
 
 ## Approval record
@@ -40,11 +40,11 @@ ADD the scenarios specified in linked requirements; use Vitest for domain/use ca
 ## Execution
 - Branch/base: unassigned; no task branch created.
 - Branch discovery: initial local/cached refs have no task branches; live remote query failed (FIND-009). Repeat exact-ID local/remote/worktree search before implementation.
-- Required justification before implementation: `Doc/Changes/Justification/TASK-008-change.md`.
+- Required justification before implementation: `Doc/Changes/Justification/TASK-009-change.md`.
 - Progress: not started; proposal only. No implementation edits authorized.
 
 ## Completion
-- Acceptance/review: pending at `Documentation/Acceptance/TASK-008-acceptance.md`.
+- Acceptance/review: pending at `Documentation/Acceptance/TASK-009-acceptance.md`.
 - Commits: none for this task.
 - Next action: obtain explicit bounded task approval and resolve its dependencies/decisions; do not move to Approved yet.
 
@@ -63,3 +63,8 @@ Task approval is recorded above and remains valid. Policy-dependent implementati
 Owner quote: "Use the project-development skill and continue implementing all approved tasks as a development MVP." Also: "I authorize you to make reasonable, reversible product and technical decisions without asking me to resolve every open finding first."
 Apply linked requirements v0.2-MVP and `Documentation/Project/MVP_ASSUMPTIONS.md`; pending production findings do not block this scope. Earlier task scope/approval history remains preserved. Acceptance requires actual applicable API/UI/database workflows, failure/denial/concurrency/audit/version/print evidence, and accurate production limitations. No deletion/push/deployment authorization.
 Branch: task/TASK-002-development-mvp, integrated across approved dependent tasks for full-journey verification. Base d5edb2081b82ac8d540d5d9fdfe83dff589a301d; live/local task search found no matching remaining task branches.
+
+## Current completion — 2026-09-11
+Status: Completed — development MVP only. This supersedes historical pending/in-progress metadata without resolving production findings.
+Acceptance: [verification and review](../../Acceptance/TASK-009-acceptance.md). Branch: task/TASK-002-development-mvp. Implementation owner commits: 3194f5e, 55cf441; verification/evidence follows in the session completion commit.
+Next: owner local synthetic UAT using MVP_RUNBOOK.md; production readiness requires separate decisions and evidence.

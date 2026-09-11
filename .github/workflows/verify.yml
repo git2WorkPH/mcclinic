@@ -20,3 +20,4 @@ jobs:
       - run: pnpm test:web
       - run: pnpm test:mvp
       - run: pnpm test:mvp:web
+      - run: pnpm exec tsx tooling/verify-mvp-runtime.ts

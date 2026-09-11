@@ -1,5 +1,5 @@
 # TASK-017 — Implement appointment booking and views
-Status: Approved
+Status: Completed — development MVP only
 Requirements: [REQ-FEAT-010](../../Requirements/Features/REQ-FEAT-010.md) v0.1 AC-01–AC-03
 
 ## Objective
@@ -63,3 +63,8 @@ Task approval is recorded above and remains valid. Policy-dependent implementati
 Owner quote: "Use the project-development skill and continue implementing all approved tasks as a development MVP." Also: "I authorize you to make reasonable, reversible product and technical decisions without asking me to resolve every open finding first."
 Apply linked requirements v0.2-MVP and `Documentation/Project/MVP_ASSUMPTIONS.md`; pending production findings do not block this scope. Earlier task scope/approval history remains preserved. Acceptance requires actual applicable API/UI/database workflows, failure/denial/concurrency/audit/version/print evidence, and accurate production limitations. No deletion/push/deployment authorization.
 Branch: task/TASK-002-development-mvp, integrated across approved dependent tasks for full-journey verification. Base d5edb2081b82ac8d540d5d9fdfe83dff589a301d; live/local task search found no matching remaining task branches.
+
+## Current completion — 2026-09-11
+Status: Completed — development MVP only. This supersedes historical pending/in-progress metadata without resolving production findings.
+Acceptance: [verification and review](../../Acceptance/TASK-017-acceptance.md). Branch: task/TASK-002-development-mvp. Implementation owner commits: 3194f5e, 55cf441; verification/evidence follows in the session completion commit.
+Next: owner local synthetic UAT using MVP_RUNBOOK.md; production readiness requires separate decisions and evidence.
