@@ -1,14 +1,14 @@
 # Session memory
 Updated: 2026-09-12 (Australia/Sydney).
-Phase: DEVELOPMENT onboarding v0.4 COMPLETE; synthetic local UAT next. Production readiness pending.
-Active requirement: REQ-FOUND-011 v0.4, preserving completed SaaS/MVP requirements.
-Active task: TASK-025 completed; TASK-024 real payments remains Proposed, not approved.
+Phase: DEVELOPMENT onboarding v0.4 COMPLETE; deployment-planning proposal prepared. Production readiness pending.
+Active requirement: REQ-FOUND-012 Draft deployment readiness; REQ-FOUND-011 v0.4 completed.
+Active task: TASK-026 deployment readiness/planning Proposed only; TASK-025 completed. TASK-024 remains Proposed.
 Current branch: task/TASK-025-account-onboarding.
-Observed HEAD before this memory update: 19c634b11b9aa805d2ca81cefd7ef42585fe242c (completed SaaS).
-Observed status before this memory update: intended onboarding/config/generated/tests/docs pending local commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
+Observed HEAD before this memory update: c77775443b59f41754b85c452c525c3b9708392f (completed onboarding).
+Observed status before this memory update: TASK-026 proposal, REQ-FOUND-012 draft and this memory update pending documentation commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
 
 ## Reconciliation / authorization
-- Previous memory described the parent of the SaaS completion commit; reconciled against 19c634b, branch, log and actual diff. New task branch created after local/worktree/live remote search found no TASK-025 branch.
+- Memory reconciled against onboarding completion commit c777754 and unchanged owner working-tree edits. Deployment request authorizes a proposal only; no implementation branch created.
 - Owner explicitly requested account onboarding before TASK-024 and canonical database name mcclinic. Approval recorded in TASK-025; ADR-007 records reversible local defaults. No deployment, push, live mail/payments, real records or deletion authorized.
 
 ## Implemented
@@ -28,5 +28,9 @@ Observed status before this memory update: intended onboarding/config/generated/
 - Canonical rationale: Doc/Changes/Justification/TASK-025-onboarding.md. Approved record retained as history. Original requirements/decisions and user edits preserved.
 - FIND-010 remains Open: public identity/licensing, production mail/outbox/recovery/key custody/abuse controls/support and payments. Philippine clinical/legal/privacy/retention/signature findings remain Open/nonblocking only for synthetic development. No automatic retention/account purge.
 
+## Deployment proposal verification
+- Read governance/assessment/architecture skills and inspected loopback runtime, local Compose, dev proxy and onboarding evidence. Checked current AWS primary sources for infrastructure/Free Tier. No application changes or new runtime tests; previous test results above are historical TASK-025 evidence.
+- New files: Requirements/Foundation/REQ-FOUND-012.md and Tasks/Proposed/TASK-026.md. AWS Singapore is an evaluation candidate, not an approved region; budget, ISP measurements and production policies remain undecided.
+
 ## Exact next action
-Validate this memory against the TASK-025 completion commit and owner working-tree changes. Follow ONBOARDING_RUNBOOK.md: with the existing local DATABASE_URL, back up and stop clients, run `pnpm db:rename` if its database is ehr_mvp/ehr_dev, update the URL to mcclinic, generate/migrate and start API/web. Perform synthetic registration→local mailbox verification→practice invitation→MFA/recovery UAT. Do not start TASK-024 without separate approval. Preserve .local/onboarding-key alongside database backups.
+Review TASK-026 for approval to produce the costed deployment plan and bounded follow-up tasks. No paid resources or deployment are authorized. For local UAT, Validate this memory against the TASK-025 completion commit and owner working-tree changes. Follow ONBOARDING_RUNBOOK.md: with the existing local DATABASE_URL, back up and stop clients, run `pnpm db:rename` if its database is ehr_mvp/ehr_dev, update the URL to mcclinic, generate/migrate and start API/web. Perform synthetic registration→local mailbox verification→practice invitation→MFA/recovery UAT. Do not start TASK-024 without separate approval. Preserve .local/onboarding-key alongside database backups.
