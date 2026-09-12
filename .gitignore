@@ -9,3 +9,5 @@ test-results/
 coverage/
 
 apps/api/src/infrastructure/prisma/generated/
+
+.local/

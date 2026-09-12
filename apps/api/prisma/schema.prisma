@@ -8,6 +8,9 @@ datasource db {
   provider = "postgresql"
 }
 model User {
+  email String? @unique
+  verifiedAt DateTime? @db.Timestamptz
+  credentialVersion Int @default(1)
   id String @id @default(uuid()) @db.Uuid
   username String @unique
   name String
@@ -206,4 +209,33 @@ model TemplateRevision {
  authorId String @db.Uuid
  recordedAt DateTime @default(now()) @db.Timestamptz
  @@unique([templateId,version])
+}
+
+model AccountToken {
+ credentialVersion Int?
+ id String @id @default(uuid()) @db.Uuid
+ tokenHash String @unique
+ kind String
+ email String
+ userId String? @db.Uuid
+ practiceId String? @db.Uuid
+ invitedBy String? @db.Uuid
+ role String?
+ practiceName String @default("")
+ expiresAt DateTime @db.Timestamptz
+ consumedAt DateTime? @db.Timestamptz
+ createdAt DateTime @default(now()) @db.Timestamptz
+}
+model SecurityFactor {
+ userId String @id @db.Uuid
+ secretCipher String?
+ pendingCipher String?
+ pendingExpires DateTime? @db.Timestamptz
+ enabled Boolean @default(false)
+ lastStep Int @default(-1)
+ recoveryHashes String[] @default([])
+}
+model AccountRate {
+ key String @id
+ count Int @default(1)
 }

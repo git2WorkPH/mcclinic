@@ -177,7 +177,7 @@ extend type Query {
   auditEvents(offset: Int! = 0, limit: Int! = 50): [AuditEvent!]!
 }
 type Mutation {
-  login(username: String!, password: String!): LoginPayload!
+  login(username: String!, password: String!, code: String): LoginPayload!
   logout: Boolean!
   registerPatient(key: String!, input: PatientInput!): Patient!
   updatePatient(
@@ -274,4 +274,20 @@ extend type Mutation {
 
 extend type Viewer {
   canManage: Boolean
+}
+
+
+input AccountRegistrationInput { email: String! name: String! password: String! practiceName: String! }
+extend type Query { accountMfaEnabled: Boolean! }
+extend type Mutation {
+ registerAccount(input: AccountRegistrationInput!): Boolean!
+ resendAccountVerification(email: String!): Boolean!
+ verifyAccount(token: String!): Boolean!
+ requestPasswordReset(email: String!): Boolean!
+ resetAccountPassword(token: String!, password: String!, code: String): Boolean!
+ invitePracticeMember(email: String!, role: String!): Boolean!
+ acceptPracticeInvitation(token: String!, password: String!, code: String): Boolean!
+ startAccountMfa(password: String!): String!
+ confirmAccountMfa(code: String!): String!
+ disableAccountMfa(password: String!, code: String!): Boolean!
 }

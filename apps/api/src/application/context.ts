@@ -1,5 +1,6 @@
 export type Role = "CLINICIAN" | "RECEPTION" | "ADMINISTRATOR";
 export interface Actor {
+  credentialVersion?: number;
   practiceId?: string;
   canManage?: boolean;
   id: string;

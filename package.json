@@ -19,7 +19,10 @@
     "db:seed": "tsx tooling/seed-mvp.ts",
     "dev:mvp": "pnpm --filter @ehr/api dev:mvp",
     "test:mvp": "vitest run tests/mvp.integration.test.ts",
-    "test:mvp:web": "tsx tooling/run-mvp-browser.ts"
+    "test:mvp:web": "tsx tooling/run-mvp-browser.ts",
+    "db:rename": "tsx tooling/rename-database.ts",
+    "dev:mailbox": "tsx tooling/read-local-mail.ts",
+    "test:onboarding": "vitest run tests/onboarding.integration.test.ts"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "7.4.0",
