@@ -1,0 +1,11 @@
+mutation RegisterAccount($input:AccountRegistrationInput!) { registerAccount(input:$input) }
+mutation ResendVerification($email:String!) { resendAccountVerification(email:$email) }
+mutation VerifyAccount($token:String!) { verifyAccount(token:$token) }
+mutation RequestPasswordReset($email:String!) { requestPasswordReset(email:$email) }
+mutation ResetAccountPassword($token:String!,$password:String!,$code:String) { resetAccountPassword(token:$token,password:$password,code:$code) }
+mutation InvitePracticeMember($email:String!,$role:String!) { invitePracticeMember(email:$email,role:$role) }
+mutation AcceptPracticeInvitation($token:String!,$password:String!,$code:String) { acceptPracticeInvitation(token:$token,password:$password,code:$code) }
+mutation StartAccountMfa($password:String!) { startAccountMfa(password:$password) }
+mutation ConfirmAccountMfa($code:String!) { confirmAccountMfa(code:$code) }
+mutation DisableAccountMfa($password:String!,$code:String!) { disableAccountMfa(password:$password,code:$code) }
+query AccountSecurity { accountMfaEnabled }

@@ -1,33 +1,32 @@
 # Session memory
 Updated: 2026-09-12 (Australia/Sydney).
-Phase: DEVELOPMENT SaaS v0.3 COMPLETE; local synthetic UAT next. Production readiness pending.
-Active requirement: REQ-FOUND-010 and REQ-FEAT-013–015 v0.3, extending the preserved v0.2 MVP.
-Active task: TASK-020–023 completed for approved scope; TASK-024 real payments Proposed only.
-Current branch: task/TASK-020-saas-practices.
-Observed HEAD before this memory update: 6be71e24fa231fa7e9ab15d4417d992a6828b92f (completed MVP).
-Observed status before this memory update: SaaS implementation/schema/generated/test changes and new requirements/ADR/tasks/acceptance/rationale/runbook. Owner edit in Documentation/Project/MVP_RUNBOOK.md changes a database name; preserve it unstaged and exclude it from this commit. No starter deletions present.
+Phase: DEVELOPMENT onboarding v0.4 COMPLETE; synthetic local UAT next. Production readiness pending.
+Active requirement: REQ-FOUND-011 v0.4, preserving completed SaaS/MVP requirements.
+Active task: TASK-025 completed; TASK-024 real payments remains Proposed, not approved.
+Current branch: task/TASK-025-account-onboarding.
+Observed HEAD before this memory update: 19c634b11b9aa805d2ca81cefd7ef42585fe242c (completed SaaS).
+Observed status before this memory update: intended onboarding/config/generated/tests/docs pending local commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
 
-## Authorization / reconciliation
-- Owner explicitly approved bounded tenant/membership → branding → templates → simulated subscription implementation and reversible development defaults. Requirements/tasks retain approval evidence.
-- Prior memory matched the MVP completion commit. Local/worktree/live remote search found no TASK-020–023 branches; new branch uses verified 6be71e2. Do not merge/push/deploy, charge users, use real records or delete anything.
-- Existing starter removal was in the owner's earlier commit, not this work. Leave any future starter deletions unstaged.
+## Reconciliation / authorization
+- Previous memory described the parent of the SaaS completion commit; reconciled against 19c634b, branch, log and actual diff. New task branch created after local/worktree/live remote search found no TASK-025 branch.
+- Owner explicitly requested account onboarding before TASK-024 and canonical database name mcclinic. Approval recorded in TASK-025; ADR-007 records reversible local defaults. No deployment, push, live mail/payments, real records or deletion authorized.
 
 ## Implemented
-- Tenant-scoped database-backed clinical records, membership roles, explicit switching and a separate creator management grant for solo clinicians. Ordinary administrators still have no clinical access.
-- System name/header, PNG/JPEG logo, contacts and accessible theme choices; guided allowlisted prescription/certificate templates, full synthetic preview, draft/published versions and immutable issue-time rendered/value/branding snapshots.
-- SOLO/TEAM clinician seats, local simulated trial/active/past-due/restricted subscriptions, concurrent seat enforcement, preserved reads/print/role-limited export and simulated recovery. No payment provider.
-- Additive default-practice migration preserves existing patient versions/audit timestamps. Existing issued documents retain fallback rendering. Global identity audit is outside practice-visible exports.
+- Normalized email registration, expiring single-use verification, optional atomic doctor practice/manager/SOLO trial creation and verified scoped staff invitations. Acceptance rechecks inviter permissions and clinician seats.
+- Password recovery, credential-version-bound reset links and race-safe session revocation; TOTP MFA with encrypted secret, one-time hashed recovery codes and replay protection. New accounts cannot inherit seeded default-practice access.
+- Actual GraphQL/React Native Web forms; private local mailbox links, including same-tab link handling. No external messages sent.
+- New-service database defaults are mcclinic. `pnpm db:rename` preserves existing database OID/data, refuses conflicting targets, and never drops or terminates connections. Existing credentials and Docker volume retained. No configured DATABASE_URL was available, so no existing local database was renamed/migrated.
 
-## Verification
-- [SaaS evidence](../Acceptance/SAAS-VERIFICATION.md): 8 unit/API + 14 PostgreSQL/API + 1 foundation database + 4 MVP/SaaS browser + 2 foundation browser scenarios passed (29 total).
-- Lint/dependency boundaries, TypeScript, generated contract drift and builds passed. Fresh/repeated migrations and compiled API readiness passed. Existing audit rollback/restore and print layout scenarios retained.
-- Final branding browser run passed; screenshot visually inspected. Prior scheduling/browser failure did not reproduce in subsequent complete runs; no assertions removed or weakened.
-- Node 24.21.0/pnpm 10.34.5 at /private/tmp/ehr-runtime/node_modules/.bin on this host. Tests use isolated Docker PostgreSQL 17.6-alpine. No existing local database was migrated by this session.
+## Verification / review
+- [TASK-025 evidence](../Acceptance/TASK-025-acceptance.md): 9 unit/API + 8 onboarding PostgreSQL/API + 14 existing MVP/SaaS PostgreSQL/API + 1 foundation database + 6 MVP/SaaS/onboarding browser + 2 foundation browser = 40 scenarios PASS.
+- Lint/AST boundaries, TypeScript, codegen drift and API/web builds PASS. Fresh/repeated migrations plus compiled API readiness PASS. Onboarding browser screenshot visually inspected. Project-review completed; no blocking development findings.
+- Initial sandbox listener failure was rerun with permission. Browser link/duplicate-key defects fixed without weakening assertions; complete rerun passed. Existing Image resizeMode deprecation warning remains nonblocking.
+- Node24.21.0/pnpm10.34.5 available at /private/tmp/ehr-runtime/node_modules/.bin; Docker PostgreSQL17.6-alpine and Playwright1.63 used. All database mutations for verification were in isolated containers.
 
-## Relevant records / remaining questions
-- [SaaS runbook](../Project/SAAS_RUNBOOK.md), [assumptions](../Project/MVP_ASSUMPTIONS.md), [ADR-006](../Architecture/Decisions/ADR-006.md), [FIND-010](../Assessment/Findings/FIND-010.md).
-- Completed TASK-020–023 have per-task acceptance and Doc/Changes/Justification/TASK-020–023-saas.md. [TASK-024](../Tasks/Proposed/TASK-024.md) requires separate approval.
-- Original Philippine clinical/legal/privacy/signature/retention findings remain Open. RLS assessed but not enabled; non-owner database roles, production identity/support, scale/recovery and real billing require later work. No native, production or physical-printer certification.
+## Relevant records / unresolved questions
+- [Runbook](../Project/ONBOARDING_RUNBOOK.md), [assumptions](../Project/MVP_ASSUMPTIONS.md), [requirement](../Requirements/Foundation/REQ-FOUND-011.md), [completed task](../Tasks/Completed/TASK-025.md), [ADR-007](../Architecture/Decisions/ADR-007.md).
+- Canonical rationale: Doc/Changes/Justification/TASK-025-onboarding.md. Approved record retained as history. Original requirements/decisions and user edits preserved.
+- FIND-010 remains Open: public identity/licensing, production mail/outbox/recovery/key custody/abuse controls/support and payments. Philippine clinical/legal/privacy/retention/signature findings remain Open/nonblocking only for synthetic development. No automatic retention/account purge.
 
 ## Exact next action
-Validate this snapshot against Git/completion commit; keep the owner runbook edit unstaged. For local UAT, follow SAAS_RUNBOOK.md using the existing synthetic DATABASE_URL: generate client, back up/migrate the existing database, start API/web, then create and switch practices and test settings/issued snapshots. Read only affected task/requirement/rationale for requested follow-up work. Do not treat production findings as development blockers or TASK-024 as approved.
+Validate this memory against the TASK-025 completion commit and owner working-tree changes. Follow ONBOARDING_RUNBOOK.md: with the existing local DATABASE_URL, back up and stop clients, run `pnpm db:rename` if its database is ehr_mvp/ehr_dev, update the URL to mcclinic, generate/migrate and start API/web. Perform synthetic registration→local mailbox verification→practice invitation→MFA/recovery UAT. Do not start TASK-024 without separate approval. Preserve .local/onboarding-key alongside database backups.

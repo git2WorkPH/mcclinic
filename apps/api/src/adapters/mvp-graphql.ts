@@ -1,3 +1,6 @@
+import {onboardingUseCases} from '../modules/onboarding/application/onboarding.js';
+import {onboardingStore} from '../modules/onboarding/infrastructure/store.js';
+import type {Delivery} from '../modules/onboarding/infrastructure/mailbox.js';
 import { validateTemplate } from "../modules/templates/application/template.js";
 import { simulatedSubscription } from "../modules/subscription/application/policy.js";
 import { practiceUseCases } from "../modules/practice/application/practices.js";
@@ -33,8 +36,9 @@ const revision = (d: DocumentRevision) => ({
   patientName: d.patientSnapshot.name,
   issuerName: d.issuerSnapshot.name,
 });
-export function installMvpGraphql(app: Express, database: Database) {
+export function installMvpGraphql(app: Express, database: Database, delivery?:Delivery) {
   const services = composeMvp(database);
+  const onboarding=onboardingUseCases(onboardingStore(database,delivery));
   const practices = practiceUseCases(practiceServices(database), {
     validateTemplate,
     simulatedSubscription,
@@ -111,6 +115,7 @@ export function installMvpGraphql(app: Express, database: Database) {
   }
   const resolvers: Resolvers<Context> = {
     Query: {
+      accountMfaEnabled: (_p,_a,c)=>safe(c,"account.security",()=>onboarding.status(c.actor)),
       practices: (_p, _a, c) =>
         safe(c, "practice.list", async () =>
           JSON.stringify(await practices.list(c.actor)),
@@ -220,6 +225,17 @@ export function installMvpGraphql(app: Express, database: Database) {
         }),
     },
     Mutation: {
+      registerAccount:(_p,a,c)=>safe(c,'account.register',async()=>{await onboarding.register(a.input);return true;}),
+      resendAccountVerification:(_p,a,c)=>safe(c,'account.verify.request',async()=>{await onboarding.resend(a.email);return true;}),
+      verifyAccount:(_p,a,c)=>safe(c,'account.verify',async()=>{await onboarding.verify(a.token);return true;}),
+      requestPasswordReset:(_p,a,c)=>safe(c,'account.reset.request',async()=>{await onboarding.resetRequest(a.email);return true;}),
+      resetAccountPassword:(_p,a,c)=>safe(c,'account.password.reset',async()=>{await onboarding.reset(a.token,a.password,z.string().max(64).parse(a.code??''));return true;}),
+      invitePracticeMember:(_p,a,c)=>safe(c,'membership.invite',async()=>{await onboarding.invite(c.actor,a.email,a.role);return true;}),
+      acceptPracticeInvitation:(_p,a,c)=>safe(c,'membership.accept',async()=>{await onboarding.accept(a.token,a.password,z.string().max(64).parse(a.code??''));return true;}),
+      startAccountMfa:(_p,a,c)=>safe(c,'account.mfa.enroll',async()=>JSON.stringify(await onboarding.startMfa(c.actor,z.string().max(256).parse(a.password)))),
+      confirmAccountMfa:(_p,a,c)=>safe(c,'account.mfa.enabled',async()=>JSON.stringify(await onboarding.confirmMfa(c.actor,z.string().max(64).parse(a.code)))),
+      disableAccountMfa:(_p,a,c)=>safe(c,'account.mfa.disabled',async()=>{await onboarding.disableMfa(c.actor,z.string().max(256).parse(a.password),z.string().max(64).parse(a.code));return true;}),
+
       createPractice: (_p, a, c) =>
         safe(c, "practice.create", async () =>
           JSON.stringify(
@@ -299,7 +315,7 @@ export function installMvpGraphql(app: Express, database: Database) {
             until:
               current && current.until > now ? current.until : now + 900000,
           });
-          const result = await services.identity.login(username, password);
+          const result = await services.identity.login(username, password, z.string().max(64).parse(a.code??""));
           attempts.delete(limitKey);
           return result;
         }),

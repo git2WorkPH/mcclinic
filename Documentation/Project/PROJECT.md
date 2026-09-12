@@ -540,3 +540,6 @@ DEVELOPMENT MVP COMPLETE: 19 approved task scopes completed for local synthetic 
 
 ## Development SaaS extension — 2026-09-12
 TASK-020–023 complete for synthetic multi-practice SaaS v0.3. See [SaaS runbook](SAAS_RUNBOOK.md), [verification](../Acceptance/SAAS-VERIFICATION.md) and ADR-006. This supersedes the single-practice development scope; original baseline and production findings are preserved. No production release or real billing.
+
+## Account onboarding development baseline — 2026-09-12
+The active baseline extends completed SaaS v0.3 with owner-approved TASK-025 account onboarding before Proposed TASK-024. Canonical PostgreSQL database name: **mcclinic**; historical ehr_mvp/ehr_dev database examples describe earlier states. Existing credentials and Docker volume remain unchanged. Use ONBOARDING_RUNBOOK.md for safe rename and local account flows. This is synthetic local development, not production readiness. Original profile/requirements history above is retained.

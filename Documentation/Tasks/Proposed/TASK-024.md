@@ -12,3 +12,5 @@ Subscription provider adapter, webhook boundary, entitlement reconciliation, Tes
 TASK-023 development simulator; provider/business and privacy decisions. New ADR required. No credentials or money movement until explicitly authorized.
 ## Requirements / rationale
 REQ-FEAT-015; future approved implementation requires Doc/Changes/Justification/TASK-024-payment-provider.md.
+
+2026-09-12 owner ordering: TASK-025 account onboarding must complete first. TASK-024 remains Proposed; no live billing approval inferred.

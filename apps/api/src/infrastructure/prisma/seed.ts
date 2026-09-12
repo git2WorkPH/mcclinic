@@ -21,7 +21,7 @@ export async function seedDemo(url: string, password: string) {
           },
         });
     }
-    for(const user of await db.user.findMany())await db.membership.upsert({where:{practiceId_userId:{practiceId:'00000000-0000-4000-8000-000000000001',userId:user.id}},update:{},create:{practiceId:'00000000-0000-4000-8000-000000000001',userId:user.id,role:user.role}});
+    for(const user of await db.user.findMany({where:{email:null}}))await db.membership.upsert({where:{practiceId_userId:{practiceId:'00000000-0000-4000-8000-000000000001',userId:user.id}},update:{},create:{practiceId:'00000000-0000-4000-8000-000000000001',userId:user.id,role:user.role}});
 
   } finally {
     await db.$disconnect();

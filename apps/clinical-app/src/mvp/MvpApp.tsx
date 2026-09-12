@@ -1,3 +1,4 @@
+import {OnboardingPanel,AccountSecurityPanel} from "./OnboardingPanel";
 import { PracticeBar } from "./PracticeSettings";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
@@ -111,10 +112,11 @@ export function MvpApp() {
       ) : actor ? (
         <>
           <PracticeBar request={request} actor={actor} onBrand={setBrand} onSwitch={(id)=>{setBrand(null);sessionStorage.setItem("ehr-practice",id);setActor(null);setChecking(true);setPracticeId(id);}} />
+          <AccountSecurityPanel key={"security:"+(practiceId ?? "default")} request={request} manager={actor.role==="ADMINISTRATOR"||Boolean(actor.canManage)} onReauthenticate={()=>{sessionStorage.removeItem("ehr-mvp-session");setToken("");setActor(null);setBrand(null);}} />
           <Workspace key={practiceId ?? "default"} request={request} actor={actor} />
         </>
       ) : (
-        <Login request={request} onLogin={signedIn} />
+        <><Login request={request} onLogin={signedIn} /><OnboardingPanel request={request} /></>
       )}
     </ScrollView>
   );
@@ -127,7 +129,7 @@ function Login({
   onLogin: (value: G.SignInMutation["login"]) => void;
 }) {
   const [username, setUsername] = useState(""),
-    [password, setPassword] = useState("");
+    [password, setPassword] = useState(""), [code,setCode]=useState("");
   const action = useAction();
   return (
     <View style={[styles.body, styles.login]}>
@@ -140,12 +142,13 @@ function Login({
           onChange={setPassword}
           password
         />
+        <Field label="Authenticator or recovery code" value={code} onChange={setCode} />
         <Button
           disabled={action.busy}
           onPress={() =>
             void action.run(async () => {
               onLogin(
-                (await request(G.SignInDocument, { username, password })).login,
+                (await request(G.SignInDocument, { username, password, code })).login,
               );
             })
           }

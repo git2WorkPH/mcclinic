@@ -11,6 +11,13 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AccountRegistrationInput = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  practiceName: Scalars['String']['input'];
+};
+
 export type Appointment = {
   __typename?: 'Appointment';
   cancellationReason: Scalars['String']['output'];
@@ -140,18 +147,26 @@ export type MedicationInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  acceptPracticeInvitation: Scalars['Boolean']['output'];
   bookAppointment: Appointment;
   cancelAppointment: Appointment;
   checkIn: Appointment;
   closeConsultation: Consultation;
+  confirmAccountMfa: Scalars['String']['output'];
   createCertificate: ClinicalDocument;
   createPractice: Scalars['String']['output'];
   createPrescription: ClinicalDocument;
+  disableAccountMfa: Scalars['Boolean']['output'];
+  invitePracticeMember: Scalars['Boolean']['output'];
   login: LoginPayload;
   logout: Scalars['Boolean']['output'];
   recordPrint: PrintReceipt;
+  registerAccount: Scalars['Boolean']['output'];
   registerPatient: Patient;
+  requestPasswordReset: Scalars['Boolean']['output'];
   rescheduleAppointment: Appointment;
+  resendAccountVerification: Scalars['Boolean']['output'];
+  resetAccountPassword: Scalars['Boolean']['output'];
   reviseCertificate: ClinicalDocument;
   revisePrescription: ClinicalDocument;
   saveNote: Consultation;
@@ -159,8 +174,17 @@ export type Mutation = {
   savePracticeTemplate: Scalars['String']['output'];
   setPracticeMember: Scalars['String']['output'];
   simulateSubscription: Scalars['String']['output'];
+  startAccountMfa: Scalars['String']['output'];
   startConsultation: Consultation;
   updatePatient: Patient;
+  verifyAccount: Scalars['Boolean']['output'];
+};
+
+
+export type MutationAcceptPracticeInvitationArgs = {
+  code?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
+  token: Scalars['String']['input'];
 };
 
 
@@ -193,6 +217,11 @@ export type MutationCloseConsultationArgs = {
 };
 
 
+export type MutationConfirmAccountMfaArgs = {
+  code: Scalars['String']['input'];
+};
+
+
 export type MutationCreateCertificateArgs = {
   consultationId?: InputMaybe<Scalars['ID']['input']>;
   content: CertificateInput;
@@ -214,7 +243,20 @@ export type MutationCreatePrescriptionArgs = {
 };
 
 
+export type MutationDisableAccountMfaArgs = {
+  code: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+
+export type MutationInvitePracticeMemberArgs = {
+  email: Scalars['String']['input'];
+  role: Scalars['String']['input'];
+};
+
+
 export type MutationLoginArgs = {
+  code?: InputMaybe<Scalars['String']['input']>;
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
 };
@@ -228,9 +270,19 @@ export type MutationRecordPrintArgs = {
 };
 
 
+export type MutationRegisterAccountArgs = {
+  input: AccountRegistrationInput;
+};
+
+
 export type MutationRegisterPatientArgs = {
   input: PatientInput;
   key: Scalars['String']['input'];
+};
+
+
+export type MutationRequestPasswordResetArgs = {
+  email: Scalars['String']['input'];
 };
 
 
@@ -241,6 +293,18 @@ export type MutationRescheduleAppointmentArgs = {
   key: Scalars['String']['input'];
   startsAt: Scalars['String']['input'];
   timeZone: Scalars['String']['input'];
+};
+
+
+export type MutationResendAccountVerificationArgs = {
+  email: Scalars['String']['input'];
+};
+
+
+export type MutationResetAccountPasswordArgs = {
+  code?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
+  token: Scalars['String']['input'];
 };
 
 
@@ -300,6 +364,11 @@ export type MutationSimulateSubscriptionArgs = {
 };
 
 
+export type MutationStartAccountMfaArgs = {
+  password: Scalars['String']['input'];
+};
+
+
 export type MutationStartConsultationArgs = {
   key: Scalars['String']['input'];
   occurredAt: Scalars['String']['input'];
@@ -312,6 +381,11 @@ export type MutationUpdatePatientArgs = {
   id: Scalars['ID']['input'];
   input: PatientInput;
   key: Scalars['String']['input'];
+};
+
+
+export type MutationVerifyAccountArgs = {
+  token: Scalars['String']['input'];
 };
 
 export type NoteRevision = {
@@ -369,6 +443,7 @@ export type PrintReceipt = {
 
 export type Query = {
   __typename?: 'Query';
+  accountMfaEnabled: Scalars['Boolean']['output'];
   appointmentHistory: Array<AppointmentChange>;
   appointments: Array<Appointment>;
   auditEvents: Array<AuditEvent>;
@@ -547,6 +622,7 @@ export type DirectiveResolverFn<TResult = Record<PropertyKey, never>, TParent = 
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AccountRegistrationInput: AccountRegistrationInput;
   Appointment: ResolverTypeWrapper<Appointment>;
   AppointmentChange: ResolverTypeWrapper<AppointmentChange>;
   AppointmentInput: AppointmentInput;
@@ -577,6 +653,7 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AccountRegistrationInput: AccountRegistrationInput;
   Appointment: Appointment;
   AppointmentChange: AppointmentChange;
   AppointmentInput: AppointmentInput;
@@ -698,18 +775,26 @@ export type LoginPayloadResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  acceptPracticeInvitation?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAcceptPracticeInvitationArgs, 'password' | 'token'>>;
   bookAppointment?: Resolver<ResolversTypes['Appointment'], ParentType, ContextType, RequireFields<MutationBookAppointmentArgs, 'input' | 'key'>>;
   cancelAppointment?: Resolver<ResolversTypes['Appointment'], ParentType, ContextType, RequireFields<MutationCancelAppointmentArgs, 'expected' | 'id' | 'key' | 'reason'>>;
   checkIn?: Resolver<ResolversTypes['Appointment'], ParentType, ContextType, RequireFields<MutationCheckInArgs, 'expected' | 'id' | 'key' | 'patientId'>>;
   closeConsultation?: Resolver<ResolversTypes['Consultation'], ParentType, ContextType, RequireFields<MutationCloseConsultationArgs, 'expected' | 'id' | 'key'>>;
+  confirmAccountMfa?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationConfirmAccountMfaArgs, 'code'>>;
   createCertificate?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationCreateCertificateArgs, 'content' | 'key' | 'patientId'>>;
   createPractice?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationCreatePracticeArgs, 'name'>>;
   createPrescription?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationCreatePrescriptionArgs, 'content' | 'key' | 'patientId'>>;
+  disableAccountMfa?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationDisableAccountMfaArgs, 'code' | 'password'>>;
+  invitePracticeMember?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationInvitePracticeMemberArgs, 'email' | 'role'>>;
   login?: Resolver<ResolversTypes['LoginPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'password' | 'username'>>;
   logout?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   recordPrint?: Resolver<ResolversTypes['PrintReceipt'], ParentType, ContextType, RequireFields<MutationRecordPrintArgs, 'id' | 'key' | 'outcome' | 'version'>>;
+  registerAccount?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRegisterAccountArgs, 'input'>>;
   registerPatient?: Resolver<ResolversTypes['Patient'], ParentType, ContextType, RequireFields<MutationRegisterPatientArgs, 'input' | 'key'>>;
+  requestPasswordReset?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRequestPasswordResetArgs, 'email'>>;
   rescheduleAppointment?: Resolver<ResolversTypes['Appointment'], ParentType, ContextType, RequireFields<MutationRescheduleAppointmentArgs, 'endsAt' | 'expected' | 'id' | 'key' | 'startsAt' | 'timeZone'>>;
+  resendAccountVerification?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationResendAccountVerificationArgs, 'email'>>;
+  resetAccountPassword?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationResetAccountPasswordArgs, 'password' | 'token'>>;
   reviseCertificate?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationReviseCertificateArgs, 'content' | 'expected' | 'id' | 'issue' | 'key' | 'reason'>>;
   revisePrescription?: Resolver<ResolversTypes['ClinicalDocument'], ParentType, ContextType, RequireFields<MutationRevisePrescriptionArgs, 'content' | 'expected' | 'id' | 'issue' | 'key' | 'reason'>>;
   saveNote?: Resolver<ResolversTypes['Consultation'], ParentType, ContextType, RequireFields<MutationSaveNoteArgs, 'expected' | 'finalize' | 'id' | 'key' | 'reason' | 'text'>>;
@@ -717,8 +802,10 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   savePracticeTemplate?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSavePracticeTemplateArgs, 'definition' | 'expected' | 'kind' | 'publish'>>;
   setPracticeMember?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSetPracticeMemberArgs, 'input'>>;
   simulateSubscription?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationSimulateSubscriptionArgs, 'expected' | 'plan' | 'state'>>;
+  startAccountMfa?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationStartAccountMfaArgs, 'password'>>;
   startConsultation?: Resolver<ResolversTypes['Consultation'], ParentType, ContextType, RequireFields<MutationStartConsultationArgs, 'key' | 'occurredAt' | 'patientId'>>;
   updatePatient?: Resolver<ResolversTypes['Patient'], ParentType, ContextType, RequireFields<MutationUpdatePatientArgs, 'expected' | 'id' | 'input' | 'key'>>;
+  verifyAccount?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationVerifyAccountArgs, 'token'>>;
 };
 
 export type NoteRevisionResolvers<ContextType = any, ParentType extends ResolversParentTypes['NoteRevision'] = ResolversParentTypes['NoteRevision']> = {
@@ -757,6 +844,7 @@ export type PrintReceiptResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  accountMfaEnabled?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   appointmentHistory?: Resolver<Array<ResolversTypes['AppointmentChange']>, ParentType, ContextType, RequireFields<QueryAppointmentHistoryArgs, 'id'>>;
   appointments?: Resolver<Array<ResolversTypes['Appointment']>, ParentType, ContextType, RequireFields<QueryAppointmentsArgs, 'from' | 'to'>>;
   auditEvents?: Resolver<Array<ResolversTypes['AuditEvent']>, ParentType, ContextType, RequireFields<QueryAuditEventsArgs, 'limit' | 'offset'>>;

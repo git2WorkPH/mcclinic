@@ -1,6 +1,8 @@
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 import { PostgreSqlContainer } from '@testcontainers/postgresql';
 import { Client } from 'pg';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, mkdtempSync } from 'node:fs';
 import { spawn, type ChildProcess } from 'node:child_process';
 import type { Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -8,6 +10,7 @@ import { createDatabase } from '../apps/api/src/infrastructure/prisma/database.j
 import { seedDemo } from '../apps/api/src/infrastructure/prisma/seed.js';
 import { installMvpGraphql } from '../apps/api/src/adapters/mvp-graphql.js';
 import { createApp } from '../apps/api/src/app.js';
+process.env.EHR_LOCAL_STATE_DIR=mkdtempSync(join(tmpdir(),'mcclinic-browser-'));
 const container=await new PostgreSqlContainer('postgres:17.6-alpine').start();
 const db=createDatabase(container.getConnectionUri());let server:Server|undefined,vite:ChildProcess|undefined;
 try{

@@ -1,0 +1,5 @@
+ALTER TABLE "User" ADD COLUMN "email" TEXT, ADD COLUMN "verifiedAt" TIMESTAMPTZ, ADD COLUMN "credentialVersion" INTEGER NOT NULL DEFAULT 1;
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE TABLE "AccountToken" ("id" UUID PRIMARY KEY, "tokenHash" TEXT NOT NULL UNIQUE, "credentialVersion" INTEGER, "kind" TEXT NOT NULL CHECK ("kind" IN ('VERIFY','RESET','INVITE')), "email" TEXT NOT NULL, "userId" UUID REFERENCES "User"("id"), "practiceId" UUID REFERENCES "Practice"("id"), "invitedBy" UUID REFERENCES "User"("id"), "role" TEXT, "practiceName" TEXT NOT NULL DEFAULT '', "expiresAt" TIMESTAMPTZ NOT NULL, "consumedAt" TIMESTAMPTZ, "createdAt" TIMESTAMPTZ NOT NULL DEFAULT now());
+CREATE TABLE "SecurityFactor" ("userId" UUID PRIMARY KEY REFERENCES "User"("id"), "secretCipher" TEXT, "pendingCipher" TEXT, "pendingExpires" TIMESTAMPTZ, "enabled" BOOLEAN NOT NULL DEFAULT false, "lastStep" INTEGER NOT NULL DEFAULT -1, "recoveryHashes" TEXT[] NOT NULL DEFAULT '{}');
+CREATE TABLE "AccountRate" ("key" TEXT PRIMARY KEY, "count" INTEGER NOT NULL DEFAULT 1);
