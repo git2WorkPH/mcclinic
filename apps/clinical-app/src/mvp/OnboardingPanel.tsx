@@ -34,6 +34,16 @@ export function OnboardingPanel({ request }: { request: Api }) {
     [code, setCode] = useState(""),
     [message, setMessage] = useState("");
   const action = useAction();
+  const togglePanel = () => {
+    const opening = !open;
+    setOpen(opening);
+    if (opening)
+      window.requestAnimationFrame(() =>
+        document
+          .getElementById("account-onboarding-panel")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      );
+  };
   useEffect(() => {
     const consumeLink = () => {
       const value = link();
@@ -57,11 +67,20 @@ export function OnboardingPanel({ request }: { request: Api }) {
   };
   return (
     <View style={[styles.body, { maxWidth: 650 }]}>
-      <Button secondary onPress={() => setOpen(!open)}>
+      <Button
+        secondary
+        accessibilityState={{ expanded: open }}
+        onPress={togglePanel}
+      >
         Account onboarding and recovery
       </Button>
       {open && (
-        <Card title={mode}>
+        <View nativeID="account-onboarding-panel">
+          <Text accessibilityRole="status" style={styles.success}>
+            Account options opened. Choose registration, verification, recovery,
+            or invitation acceptance below.
+          </Text>
+          <Card title={mode}>
           <Text style={styles.muted}>
             Synthetic accounts only. Messages are captured in the operator’s
             local mailbox; no email is sent.
@@ -235,7 +254,8 @@ export function OnboardingPanel({ request }: { request: Api }) {
               {message}
             </Text>
           )}
-        </Card>
+          </Card>
+        </View>
       )}
     </View>
   );

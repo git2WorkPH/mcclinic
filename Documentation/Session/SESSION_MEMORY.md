@@ -1,11 +1,11 @@
 # Session memory
-Updated: 2026-09-12 (Australia/Sydney).
+Updated: 2026-09-13 (Australia/Sydney).
 Phase: DEVELOPMENT onboarding v0.4 COMPLETE; deployment-planning proposal prepared. Production readiness pending.
 Active requirement: REQ-FOUND-012 Draft deployment readiness; REQ-FOUND-011 v0.4 completed.
 Active task: TASK-026 deployment readiness/planning Proposed only; TASK-025 completed. TASK-024 remains Proposed.
 Current branch: task/TASK-025-account-onboarding.
-Observed HEAD before this memory update: c77775443b59f41754b85c452c525c3b9708392f (completed onboarding).
-Observed status before this memory update: TASK-026 proposal, REQ-FOUND-012 draft and this memory update pending documentation commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
+Observed HEAD before this memory update: a6f969b0f75e53dba6a80c89f1f95cc6e56363c8 (deployment proposal).
+Observed status before this memory update: TASK-025 onboarding-control usability fix/tests/rationale/acceptance and this memory update pending local commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
 
 ## Reconciliation / authorization
 - Memory reconciled against onboarding completion commit c777754 and unchanged owner working-tree edits. Deployment request authorizes a proposal only; no implementation branch created.
@@ -32,5 +32,10 @@ Observed status before this memory update: TASK-026 proposal, REQ-FOUND-012 draf
 - Read governance/assessment/architecture skills and inspected loopback runtime, local Compose, dev proxy and onboarding evidence. Checked current AWS primary sources for infrastructure/Free Tier. No application changes or new runtime tests; previous test results above are historical TASK-025 evidence.
 - New files: Requirements/Foundation/REQ-FOUND-012.md and Tasks/Proposed/TASK-026.md. AWS Singapore is an evaluation candidate, not an approved region; budget, ISP measurements and production policies remain undecided.
 
+## Onboarding usability follow-up
+- Owner reported the Account onboarding and recovery control appeared inactive. The disclosure opened below a short viewport without announcing its state. It now exposes collapsed/expanded state, scrolls to the form and displays a status message.
+- Added browser regression passed with all 7 MVP/SaaS/onboarding browser scenarios; lint and TypeScript passed. Project-review found no data, authorization, API or clinical behavior change. The initial accessibility assertion exposed a missing emitted web attribute; implementation fixed and unchanged assertion passed.
+- No development server was listening on expected ports 5173/5174 at final inspection. A previously loaded browser tab may therefore be stale; restart API/web and reload `/clinic` to receive this fix.
+
 ## Exact next action
-Review TASK-026 for approval to produce the costed deployment plan and bounded follow-up tasks. No paid resources or deployment are authorized. For local UAT, Validate this memory against the TASK-025 completion commit and owner working-tree changes. Follow ONBOARDING_RUNBOOK.md: with the existing local DATABASE_URL, back up and stop clients, run `pnpm db:rename` if its database is ehr_mvp/ehr_dev, update the URL to mcclinic, generate/migrate and start API/web. Perform synthetic registration→local mailbox verification→practice invitation→MFA/recovery UAT. Do not start TASK-024 without separate approval. Preserve .local/onboarding-key alongside database backups.
+Restart the API and web processes from the current branch, open `http://127.0.0.1:5173/clinic`, hard reload once and verify the onboarding control reveals the form. Then review TASK-026 for approval. No paid resources or deployment are authorized. Follow ONBOARDING_RUNBOOK.md for mcclinic migration/UAT; do not start TASK-024 without separate approval.
