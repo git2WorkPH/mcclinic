@@ -34,3 +34,6 @@ Observed status before this memory update: intended TASK-032 code/tests/records 
 
 ## Exact next action
 Review TASK-032 locally and request an explicit merge if desired. TASK-027 cloud artifact/config packaging is the next previously proposed implementation task and still requires approval. Preserve unrelated appointment/consultation edits; do not push, deploy or start deeper store restructuring from this handoff.
+
+## Client demonstration — 2026-09-13
+Owner requested a prospect demo video. Created Documentation/Demos/MCClinic-Client-Demo.mp4 and accompanying README: captioned 1:44 walkthrough of real local synthetic workflows. Separate disposable PostgreSQL used; no application changes. MP4 full-decode check passed and document/history frames visually inspected. Raw capture/script retained in .local/client-demo-v2/. Observed HEAD a344c97; these media/docs and this memory addition are uncommitted. Four unrelated appointment/consultation edits remain unstaged. Next: review the demo locally; no sending/publishing authorized.
