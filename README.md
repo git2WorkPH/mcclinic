@@ -1,5 +1,7 @@
 # Consolidated EHR Codex starter
 
+> Current project: MCClinic includes a synthetic-data development MVP with clinical workflows, multiple practices and account onboarding. The original starter and foundation descriptions below are preserved as history. See the current account flows at the end of this README and the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) for local setup.
+
 Repository-local governance, six focused skills, EHR architecture, and concise committed session memory. This package contains documentation and templates; it does not include an application, approved implementation tasks, or live integrations.
 
 ## Install
@@ -38,3 +40,74 @@ The nested starter is preserved unchanged as source material. Root overrides gov
 
 ## Development foundation
 The approved TASK-001 workspace is implemented. See [local development](Documentation/Project/DEVELOPMENT.md) for pinned runtime, install, API/web startup and verification commands. This is a non-clinical shell; no patient workflow or prescribing capability is implemented. Remaining approved work is tracked in [decisions needed](Documentation/Assessment/DECISIONS-NEEDED.md).
+
+## Current MVP account and practice flows
+
+An **account identifies a person**. A **practice owns its subscription, patients and clinical records**. One account can belong to multiple practices with separate permissions. These flows describe the current local, synthetic-data implementation; they do not establish production identity verification or prescribing entitlement.
+
+### 1. New doctor starting a practice
+
+```mermaid
+flowchart TD
+  A[Open Account onboarding and recovery] --> B[Enter name, email, password and practice name]
+  B --> C[Register]
+  C --> D[Open verification link and verify account]
+  D --> E[System creates practice and simulated SOLO trial]
+  E --> F[Doctor receives clinician and practice-management permissions]
+  F --> G[Sign in with email and password]
+  G --> H[Open practice workspace]
+  H --> I[Configure branding and templates and invite staff]
+```
+
+The practice is created after successful account verification. The platform owner does not need to create it manually. Passwords must contain 12–128 characters.
+
+### 2. Staff member joining an existing practice
+
+```mermaid
+flowchart TD
+  A[Practice manager invites email and selects role] --> B[Invitee registers without a practice name]
+  B --> C[Verify account]
+  C --> D[Open invitation link]
+  D --> E[Accept using password and MFA if enabled]
+  E --> F[Sign in]
+  F --> G[Access invited practice with assigned permissions]
+```
+
+The manager sends invitations from **Account security and invitations**, choosing clinician, reception or administrator. An existing verified user skips registration and verification; the current invitation flow can be accessed from the sign-in page after signing out. Acceptance rechecks the inviter's authority and available clinician seats.
+
+### 3. Returning user signing in
+
+```mermaid
+flowchart TD
+  A[Enter email and password] --> B{MFA enabled?}
+  B -->|Yes| C[Enter authenticator or recovery code]
+  B -->|No| D[Sign in]
+  C --> D
+  D --> E[Load practice membership]
+  E --> F[Open workspace]
+  F --> G[Switch between practices you belong to]
+```
+
+Switching practices changes the applicable permissions and visible records. Patients and clinical records are not automatically shared between practices. MFA recovery codes are single-use.
+
+### 4. Signed-in user creating another practice
+
+```mermaid
+flowchart TD
+  A[Open practice bar] --> B[Enter New practice name]
+  B --> C[Click Create practice]
+  C --> D[Create separate practice and simulated SOLO trial]
+  D --> E[Creator receives management permission]
+  E --> F[Switch to the new practice]
+```
+
+**Create practice is currently visible to signed-in practice users, including reception users.** It is not restricted to the platform owner or existing administrators. A clinician creator remains a clinician with management permission; a non-clinician creator becomes an administrator in the new practice. This grants no additional authority in other practices or platform administration.
+
+### Development limitations and recovery
+
+- Registration without a practice name is intended for invitation-based joining. A dedicated “no practice yet—create one or accept an invitation” journey is not established.
+- Verification, invitation and password-reset messages go to the local development mailbox, not real email inboxes. Run `pnpm dev:mailbox` from the repository root, open the relevant link and complete the displayed action.
+- To recover an account, request a reset link, open it from the local mailbox and enter a new password plus an authenticator or recovery code if MFA is enabled. A successful reset revokes existing sessions.
+- Subscriptions are simulated; creating a practice does not charge anyone. Use synthetic data only. Clinical previews and prints remain marked **DEMO — NOT FOR CLINICAL USE**.
+
+See the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) for startup, verification, invitations, MFA and recovery instructions, and the [SaaS runbook](Documentation/Project/SAAS_RUNBOOK.md) for practice workflows.
