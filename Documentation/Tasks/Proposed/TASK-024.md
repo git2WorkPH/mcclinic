@@ -14,3 +14,5 @@ TASK-023 development simulator; provider/business and privacy decisions. New ADR
 REQ-FEAT-015; future approved implementation requires Doc/Changes/Justification/TASK-024-payment-provider.md.
 
 2026-09-12 owner ordering: TASK-025 account onboarding must complete first. TASK-024 remains Proposed; no live billing approval inferred.
+
+2026-09-13 sequencing decision: owner agreed TASK-024 follows TASK-026 deployment-readiness planning. The payment-provider sandbox may proceed after separately approved TASK-027/029 prerequisites are defined; it must complete before TASK-031 production go-live if paid subscriptions launch. Synthetic staging under TASK-028 continues to use simulated subscriptions and does not depend on live billing.

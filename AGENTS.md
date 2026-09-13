@@ -40,3 +40,6 @@ The owner authorizes TASK-020–023: practice isolation/membership, branding, ve
 
 ## Account onboarding — owner instruction 2026-09-12
 TASK-025 account onboarding is approved before TASK-024, which remains Proposed. Use REQ-FOUND-011 and ADR-007 for the local synthetic scope. The canonical database name is now mcclinic. Preserve existing databases through an explicit non-destructive rename; never drop a conflicting target or terminate connections automatically. Branch: task/TASK-025-account-onboarding from 19c634b. Existing owner edits and installed skills remain separate.
+
+## Deployment planning — owner instruction 2026-09-13
+The owner approves TASK-026 planning under REQ-FOUND-012 before TASK-024. Produce costed deployment architecture, recovery/network/staging gates and bounded proposed follow-up tasks on `task/TASK-026-deployment-readiness` from `e53b208`. Planning does not authorize provisioning, deployment, push, purchases, external mail/payments, real data, offline synchronization or deletions. TASK-024 remains Proposed.
