@@ -25,3 +25,5 @@ This is a development preview, not a released clinical service. All previews rem
 Prepared 2026-09-13 from the local TASK-032 working tree. Playwright drove actual UI actions against a fresh disposable PostgreSQL instance; no existing database was modified. A presentation frame supplies chapter titles and explanatory captions without changing application files. Recording scripts and raw footage are retained in ignored `.local/client-demo-v2/`.
 
 An initial take in `.local/client-demo/` stopped at the certificate's required-address validation; it is not the client deliverable. The final take supplies a synthetic patient address. Existing unrelated appointment/consultation edits remain untouched. Generated media is left uncommitted for review.
+
+Integration update: on 2026-09-13 the owner requested merging all changes. The final MP4 and this README are now committed on local master; raw takes remain ignored. Nothing was published or sent.

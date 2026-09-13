@@ -3,9 +3,9 @@ Updated: 2026-09-13 (Australia/Sydney).
 Phase: synthetic development MVP/SaaS; TASK-032 onboarding boundary refactor complete. Production readiness pending.
 Active requirements: REQ-FOUND-002 v0.2-MVP and REQ-FOUND-011.
 Active task: TASK-032 completed. TASK-024 and TASK-027–031 remain Proposed.
-Current branch: task/TASK-032-onboarding-boundaries.
-Observed HEAD before this memory update: 6d3a7494c3ac7d3f7eb3cd176cb1e95ebf1da32b.
-Observed status before this memory update: intended TASK-032 code/tests/records pending commit. Four unrelated appointment/consultation application/domain files modified during this session; preserve and exclude them. No staged deletions or starter changes.
+Current branch: master.
+Observed HEAD before this memory update: fd296b7 (client demo and clinical module formatting).
+Observed status before this memory update: clean after owner-approved fast-forward merge of all pending project changes, including TASK-032, four formatting-only files and the demo video/docs. No starter changes or deleted files. Ignored local captures/state remain outside Git. No push.
 
 ## Reconciliation and approval
 - Started from master 6d3a749 (README flow commit); prior owner edits were no longer uncommitted. Initial pending files were the TASK-032 assessment records from this conversation.
@@ -33,7 +33,10 @@ Observed status before this memory update: intended TASK-032 code/tests/records 
 - TASK-026 deployment planning is complete; [deployment plan](../Project/DEPLOYMENT_PLAN.md), proposed ADR-008/009 and TASK-027–031 remain the future deployment path. Earlier completed task records preserve full history.
 
 ## Exact next action
-Review TASK-032 locally and request an explicit merge if desired. TASK-027 cloud artifact/config packaging is the next previously proposed implementation task and still requires approval. Preserve unrelated appointment/consultation edits; do not push, deploy or start deeper store restructuring from this handoff.
+Review TASK-027 cloud artifact/config packaging for approval; TASK-032 and the demo are now merged locally. Do not push, deploy or start deeper store restructuring from this handoff.
 
 ## Client demonstration — 2026-09-13
 Owner requested a prospect demo video. Created Documentation/Demos/MCClinic-Client-Demo.mp4 and accompanying README: captioned 1:44 walkthrough of real local synthetic workflows. Separate disposable PostgreSQL used; no application changes. MP4 full-decode check passed and document/history frames visually inspected. Raw capture/script retained in .local/client-demo-v2/. Observed HEAD a344c97; these media/docs and this memory addition are uncommitted. Four unrelated appointment/consultation edits remain unstaged. Next: review the demo locally; no sending/publishing authorized.
+
+## Integration update — supersedes pending status above
+Owner requested “merge to master all the changes”. Committed remaining changes as fd296b7 and fast-forwarded master from 6d3a749, including a344c97. All four appointment/consultation files are structurally AST-equivalent to their prior versions. Existing 50-scenario verification included them; no behavior changed. Demo and documentation are now tracked. No starter deletion, merge conflict or uncommitted project change before this memory update. Raw media and local secrets remain ignored.
