@@ -1,46 +1,36 @@
 # Session memory
 Updated: 2026-09-13 (Australia/Sydney).
-Phase: DEVELOPMENT deployment-readiness planning COMPLETE; synthetic staging implementation pending approval. Production readiness pending.
-Active requirement: REQ-FOUND-012 v0.1 planning accepted; production evidence pending.
-Active task: TASK-026 completed for planning. TASK-027–031 and TASK-024 remain Proposed.
-Current branch: master.
-Observed HEAD before this memory update: f188b37 (starter preservation and local master integration).
-Owner approved local merge with starter preservation. Master fast-forwarded from a4fce11 through completed TASK-026 history; all 29 starter files match original master. Existing unstaged tracked edits verified byte-for-byte unchanged; untracked skills/config preserved. No push. Application tests were not rerun for this history integration; application tree matches the previously completed branch.
-Latest completed task commit: `00bfd5f` (`docs: complete deployment readiness plan`).
-Observed status after the task commit: no TASK-026 changes pending. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
+Phase: synthetic development MVP/SaaS; TASK-032 onboarding boundary refactor complete. Production readiness pending.
+Active requirements: REQ-FOUND-002 v0.2-MVP and REQ-FOUND-011.
+Active task: TASK-032 completed. TASK-024 and TASK-027–031 remain Proposed.
+Current branch: task/TASK-032-onboarding-boundaries.
+Observed HEAD before this memory update: 6d3a7494c3ac7d3f7eb3cd176cb1e95ebf1da32b.
+Observed status before this memory update: intended TASK-032 code/tests/records pending commit. Four unrelated appointment/consultation application/domain files modified during this session; preserve and exclude them. No staged deletions or starter changes.
 
-## Reconciliation / authorization
-- Memory reconciled against `e53b208` and unchanged owner working-tree edits. Live remote search found no TASK-026/deployment branch; local branch `task/TASK-026-deployment-readiness` was created without stashing or discarding changes.
-- Owner explicitly approved implementing TASK-026 and agreed TASK-024 follows deployment readiness. This authorizes planning artifacts only; no cloud provisioning, spending, deployment, push, real data, external mail/payment, offline synchronization or deletion.
-- Owner explicitly requested account onboarding before TASK-024 and canonical database name mcclinic. Approval recorded in TASK-025; ADR-007 records reversible local defaults. No deployment, push, live mail/payments, real records or deletion authorized.
+## Reconciliation and approval
+- Started from master 6d3a749 (README flow commit); prior owner edits were no longer uncommitted. Initial pending files were the TASK-032 assessment records from this conversation.
+- Read-only remote search initially failed DNS in sandbox; permitted retry found no TASK-032 branch. Created this branch without stashing or discarding work.
+- Owner authorized assessment and bounded refactoring, then explicitly approved exact code extractions with “yes i approved”. Approval targets/history: [TASK-032](../Tasks/Approved/TASK-032.md). No broader deletion, merge, push or deployment authorized.
 
-## Implemented
-- Normalized email registration, expiring single-use verification, optional atomic doctor practice/manager/SOLO trial creation and verified scoped staff invitations. Acceptance rechecks inviter permissions and clinician seats.
-- Password recovery, credential-version-bound reset links and race-safe session revocation; TOTP MFA with encrypted secret, one-time hashed recovery codes and replay protection. New accounts cannot inherit seeded default-practice access.
-- Actual GraphQL/React Native Web forms; private local mailbox links, including same-tab link handling. No external messages sent.
-- New-service database defaults are mcclinic. `pnpm db:rename` preserves existing database OID/data, refuses conflicting targets, and never drops or terminates connections. Existing credentials and Docker volume retained. No configured DATABASE_URL was available, so no existing local database was renamed/migrated.
+## Delivered / relevant files
+- Frontend: apps/clinical-app/src/features/onboarding/{contracts,gateway,browser,useOnboarding}.ts; public OnboardingPanel delegates to the hook/adapters. AccountSecurityPanel and public exports preserved.
+- Backend: apps/api/src/mvp-composition.ts constructs onboarding services; adapters/mvp-graphql.ts consumes injected services with backward-compatible existing callers.
+- [Completed task](../Tasks/Completed/TASK-032.md), [acceptance/review](../Acceptance/TASK-032-acceptance.md), [FIND-012](../Assessment/Findings/FIND-012.md).
+- Justification: Doc/Changes/Justification/TASK-032-onboarding-boundaries.md. New tests: tests/onboarding-boundaries.test.ts and tests/onboarding-injection.test.ts.
 
-## Verification / review
-- [TASK-025 evidence](../Acceptance/TASK-025-acceptance.md): 9 unit/API + 8 onboarding PostgreSQL/API + 14 existing MVP/SaaS PostgreSQL/API + 1 foundation database + 6 MVP/SaaS/onboarding browser + 2 foundation browser = 40 scenarios PASS.
-- Lint/AST boundaries, TypeScript, codegen drift and API/web builds PASS. Fresh/repeated migrations plus compiled API readiness PASS. Onboarding browser screenshot visually inspected. Project-review completed; no blocking development findings.
-- Initial sandbox listener failure was rerun with permission. Browser link/duplicate-key defects fixed without weakening assertions; complete rerun passed. Existing Image resizeMode deprecation warning remains nonblocking.
-- Node24.21.0/pnpm10.34.5 available at /private/tmp/ehr-runtime/node_modules/.bin; Docker PostgreSQL17.6-alpine and Playwright1.63 used. All database mutations for verification were in isolated containers.
+## Verification
+- pnpm check PASS: lint/boundaries, types, 18 unit/API scenarios, Prisma generation and API/web builds.
+- node tooling/check-codegen.mjs PASS without drift.
+- PostgreSQL regression suites: 23 PASS. Existing MVP/SaaS/onboarding browser: 7 PASS; foundation browser: 2 PASS. Total 50 scenarios.
+- Existing tests/assertions, schema, onboarding transactions and AccountSecurityPanel retained; code-removal review matches exact approved extraction scope. git diff --check PASS.
+- Initial socket sandbox failure passed after escalation; new test setup corrected to generated contracts without weakening assertions. Existing image deprecation warning remains.
+- Checks used shared working tree with unrelated appointment/consultation edits excluded from task scope. Runtime: /private/tmp/ehr-runtime/node_modules/.bin; disposable Docker PostgreSQL for database/browser tests. No real data or external mail.
 
-## Relevant records / unresolved questions
-- [Runbook](../Project/ONBOARDING_RUNBOOK.md), [assumptions](../Project/MVP_ASSUMPTIONS.md), [requirement](../Requirements/Foundation/REQ-FOUND-011.md), [completed task](../Tasks/Completed/TASK-025.md), [ADR-007](../Architecture/Decisions/ADR-007.md).
-- Canonical rationale: Doc/Changes/Justification/TASK-025-onboarding.md. Approved record retained as history. Original requirements/decisions and user edits preserved.
-- FIND-010 remains Open: public identity/licensing, production mail/outbox/recovery/key custody/abuse controls/support and payments. Philippine clinical/legal/privacy/retention/signature findings remain Open/nonblocking only for synthetic development. No automatic retention/account purge.
-
-## TASK-026 delivery / verification
-- [Deployment plan](../Project/DEPLOYMENT_PLAN.md) recommends measuring AWS Singapore, managed S3/CloudFront → ALB/ECS Fargate → private RDS `mcclinic`, and a Lightsail lower-cost alternative. Planning estimates: $87–94/month synthetic staging and $188–203/month small resilient pilot, with $105/$225 proposed ceilings. Prices/eligibility must be refreshed before spending.
-- Proposed [ADR-008](../Architecture/Decisions/ADR-008.md), [ADR-009](../Architecture/Decisions/ADR-009.md), TASK-027–031 and Open [FIND-011](../Assessment/Findings/FIND-011.md). TASK-024 stays Proposed and is required before production go-live only if paid subscriptions launch; simulated billing is sufficient for synthetic staging.
-- [TASK-026 acceptance](../Acceptance/TASK-026-acceptance.md): AC-01–04 planning PASS. Official Singapore price catalogs recalculated; ten AWS pricing/architecture links returned HTTP 200; document/ID inventory and diff checks passed. No application/cloud/ISP/restore test was run or claimed because this task changes documentation only.
-- Project-review found no blocking planning issue. Singapore region, private egress/staging access, budget/account/domain, RPO/RTO, production identity/mail/key operations and Philippine policy remain unresolved approval gates.
-
-## Onboarding usability follow-up
-- Owner reported the Account onboarding and recovery control appeared inactive. The disclosure opened below a short viewport without announcing its state. It now exposes collapsed/expanded state, scrolls to the form and displays a status message.
-- Added browser regression passed with all 7 MVP/SaaS/onboarding browser scenarios; lint and TypeScript passed. Project-review found no data, authorization, API or clinical behavior change. The initial accessibility assertion exposed a missing emitted web attribute; implementation fixed and unchanged assertion passed.
-- No development server was listening on expected ports 5173/5174 at final inspection. A previously loaded browser tab may therefore be stale; restart API/web and reload `/clinic` to receive this fix.
+## Remaining findings and context
+- FIND-012 stays Open for deeper onboarding-store orchestration and broader boundary enforcement; not part of this completed refactor.
+- Production Philippine clinical/privacy/legal/retention/signature findings and FIND-010/011 remain Open. Database name mcclinic; local/synthetic only. No automatic deletion/purge or live billing.
+- [Onboarding runbook](../Project/ONBOARDING_RUNBOOK.md), [README flows](../../README.md), [MVP assumptions](../Project/MVP_ASSUMPTIONS.md).
+- TASK-026 deployment planning is complete; [deployment plan](../Project/DEPLOYMENT_PLAN.md), proposed ADR-008/009 and TASK-027–031 remain the future deployment path. Earlier completed task records preserve full history.
 
 ## Exact next action
-Review proposed ADR-008/009 and approve TASK-027 if you want cloud-ready artifact/config implementation. TASK-028 requires separate region, AWS account and spending-ceiling approval after TASK-027; do not provision or deploy from TASK-026. Continue local onboarding UAT through ONBOARDING_RUNBOOK.md and preserve all owner changes.
+Review TASK-032 locally and request an explicit merge if desired. TASK-027 cloud artifact/config packaging is the next previously proposed implementation task and still requires approval. Preserve unrelated appointment/consultation edits; do not push, deploy or start deeper store restructuring from this handoff.

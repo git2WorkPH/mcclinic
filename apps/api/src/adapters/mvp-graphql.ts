@@ -1,6 +1,4 @@
-import {onboardingUseCases} from '../modules/onboarding/application/onboarding.js';
-import {onboardingStore} from '../modules/onboarding/infrastructure/store.js';
-import type {Delivery} from '../modules/onboarding/infrastructure/mailbox.js';
+import type { Delivery, MvpServices } from "../mvp-composition.js";
 import { validateTemplate } from "../modules/templates/application/template.js";
 import { simulatedSubscription } from "../modules/subscription/application/policy.js";
 import { practiceUseCases } from "../modules/practice/application/practices.js";
@@ -36,9 +34,8 @@ const revision = (d: DocumentRevision) => ({
   patientName: d.patientSnapshot.name,
   issuerName: d.issuerSnapshot.name,
 });
-export function installMvpGraphql(app: Express, database: Database, delivery?:Delivery) {
-  const services = composeMvp(database);
-  const onboarding=onboardingUseCases(onboardingStore(database,delivery));
+export function installMvpGraphql(app: Express, database: Database, delivery?:Delivery, services: MvpServices = composeMvp(database, delivery)) {
+  const { onboarding } = services;
   const practices = practiceUseCases(practiceServices(database), {
     validateTemplate,
     simulatedSubscription,

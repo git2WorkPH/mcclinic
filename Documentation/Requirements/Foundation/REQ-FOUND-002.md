@@ -50,3 +50,6 @@ Owner explicitly authorizes reversible defaults in [MVP assumptions](../../Proje
 
 ## MVP implementation evidence — 2026-09-11
 Current v0.2-MVP scope: implemented and verified under the owner exception; see [verification index](../../Acceptance/MVP-VERIFICATION.md) and linked completed tasks. Original v0.1 history and production findings remain unchanged. MVP completion is not production readiness.
+
+## Boundary refinement — 2026-09-13
+TASK-032 applies FR-01/02 and AC-01/02 to public onboarding presentation/transport/browser separation and backend onboarding composition. See [acceptance](../../Acceptance/TASK-032-acceptance.md). This is bounded evidence, not whole-codebase conformance; FIND-012 retains the deeper store and enforcement gaps. No change to approved behavior or production readiness.

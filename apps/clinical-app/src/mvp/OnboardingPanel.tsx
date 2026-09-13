@@ -1,70 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Text, View } from "react-native";
 import * as G from "@ehr/graphql-contract/operations";
 import type { Api } from "./client";
 import { Button, Card, Field, Feedback, styles, useAction } from "./ui";
-type Mode =
-  | "Register"
-  | "Verify email"
-  | "Recover password"
-  | "Accept invitation";
-function link() {
-  const values = new URLSearchParams(window.location.hash.slice(1));
-  return {
-    mode: (values.has("verify")
-      ? "Verify email"
-      : values.has("reset")
-        ? "Recover password"
-        : values.has("invite")
-          ? "Accept invitation"
-          : "Register") as Mode,
-    token:
-      values.get("verify") ?? values.get("reset") ?? values.get("invite") ?? "",
-  };
-}
+import { useOnboarding } from "../features/onboarding/useOnboarding";
+import { onboardingGateway } from "../features/onboarding/gateway";
+import { onboardingBrowser } from "../features/onboarding/browser";
+import type { Mode } from "../features/onboarding/contracts";
 export function OnboardingPanel({ request }: { request: Api }) {
-  const [initial] = useState(link);
-  const [open, setOpen] = useState(Boolean(initial.token)),
-    [mode, setMode] = useState<Mode>(initial.mode),
-    [email, setEmail] = useState(""),
-    [name, setName] = useState(""),
-    [password, setPassword] = useState(""),
-    [practiceName, setPracticeName] = useState(""),
-    [token, setToken] = useState(initial.token),
-    [code, setCode] = useState(""),
-    [message, setMessage] = useState("");
-  const action = useAction();
-  const togglePanel = () => {
-    const opening = !open;
-    setOpen(opening);
-    if (opening)
-      window.requestAnimationFrame(() =>
-        document
-          .getElementById("account-onboarding-panel")
-          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
-      );
-  };
-  useEffect(() => {
-    const consumeLink = () => {
-      const value = link();
-      if (!value.token) return;
-      setMode(value.mode);
-      setToken(value.token);
-      setOpen(true);
-      setMessage("");
-      history.replaceState(null, "", location.pathname + location.search);
-    };
-    consumeLink();
-    window.addEventListener("hashchange", consumeLink);
-    return () => window.removeEventListener("hashchange", consumeLink);
-  }, []);
-  const run = (fn: () => Promise<unknown>, success: string) => {
-    setMessage("");
-    void action.run(async () => {
-      await fn();
-      setMessage(success);
-    });
-  };
+  const { open, mode, setMode, email, setEmail, name, setName, password, setPassword, practiceName, setPracticeName, token, setToken, code, setCode, message, setMessage, action, togglePanel, actions } = useOnboarding(onboardingGateway(request), onboardingBrowser);
   return (
     <View style={[styles.body, { maxWidth: 650 }]}>
       <Button
@@ -153,13 +97,7 @@ export function OnboardingPanel({ request }: { request: Api }) {
             <Button
               disabled={action.busy}
               onPress={() =>
-                run(
-                  () =>
-                    request(G.RegisterAccountDocument, {
-                      input: { email, name, password, practiceName },
-                    }),
-                  "If eligible, a verification link is in the local mailbox. Verify before signing in.",
-                )
+                actions.register()
               }
             >
               Create account
@@ -170,10 +108,7 @@ export function OnboardingPanel({ request }: { request: Api }) {
               <Button
                 disabled={action.busy}
                 onPress={() =>
-                  run(
-                    () => request(G.VerifyAccountDocument, { token }),
-                    "Email verified. Sign in above, or accept your invitation if joining a practice.",
-                  )
+                  actions.verify()
                 }
               >
                 Verify account
@@ -182,10 +117,7 @@ export function OnboardingPanel({ request }: { request: Api }) {
                 secondary
                 disabled={action.busy}
                 onPress={() =>
-                  run(
-                    () => request(G.ResendVerificationDocument, { email }),
-                    "If eligible, a verification link is in the local mailbox.",
-                  )
+                  actions.resend()
                 }
               >
                 Resend verification
@@ -198,10 +130,7 @@ export function OnboardingPanel({ request }: { request: Api }) {
                 secondary
                 disabled={action.busy}
                 onPress={() =>
-                  run(
-                    () => request(G.RequestPasswordResetDocument, { email }),
-                    "If eligible, a reset link is in the local mailbox.",
-                  )
+                  actions.requestReset()
                 }
               >
                 Request reset link
@@ -209,15 +138,7 @@ export function OnboardingPanel({ request }: { request: Api }) {
               <Button
                 disabled={action.busy}
                 onPress={() =>
-                  run(
-                    () =>
-                      request(G.ResetAccountPasswordDocument, {
-                        token,
-                        password,
-                        code,
-                      }),
-                    "Password changed and sessions revoked. Sign in again.",
-                  )
+                  actions.reset()
                 }
               >
                 Reset password
@@ -233,15 +154,7 @@ export function OnboardingPanel({ request }: { request: Api }) {
               <Button
                 disabled={action.busy}
                 onPress={() =>
-                  run(
-                    () =>
-                      request(G.AcceptPracticeInvitationDocument, {
-                        token,
-                        password,
-                        code,
-                      }),
-                    "Invitation accepted. Sign in, then switch to the practice.",
-                  )
+                  actions.accept()
                 }
               >
                 Join practice

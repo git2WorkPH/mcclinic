@@ -1,3 +1,7 @@
+import { onboardingUseCases } from "./modules/onboarding/application/onboarding.js";
+import { onboardingStore } from "./modules/onboarding/infrastructure/store.js";
+import type { Delivery } from "./modules/onboarding/infrastructure/mailbox.js";
+export type { Delivery } from "./modules/onboarding/infrastructure/mailbox.js";
 import {
   persistence,
   type Database,
@@ -18,7 +22,7 @@ import { validateCertificate } from "./modules/medical-certificate/application/v
 import { authorize, type Actor } from "./application/context.js";
 import type { PrescriptionContent } from "./modules/prescription/domain/prescription.js";
 import type { CertificateContent } from "./modules/medical-certificate/domain/certificate.js";
-export function composeMvp(database: Database) {
+export function composeMvp(database: Database, delivery?: Delivery) {
   const db = persistence(database),
     clock = { now: () => new Date().toISOString() };
   const patients = patientUseCases(db, clock),
@@ -74,6 +78,7 @@ export function composeMvp(database: Database) {
     },
   });
   return {
+    onboarding: onboardingUseCases(onboardingStore(database, delivery)),
     identity: identityUseCases(localIdentity(database)),
     patients,
     consultations,
