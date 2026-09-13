@@ -1,0 +1,99 @@
+name: mcclinic-packaged
+x-api: &api
+  image: mcclinic-packaged:${IMAGE_TAG:-local}
+  build:
+    context: ../..
+    dockerfile: infrastructure/docker/Dockerfile.packaged
+    args:
+      SOURCE_REVISION: ${SOURCE_REVISION:?Set the source commit revision}
+  environment: &api-env
+    APP_ENV: local-container
+    MVP_SYNTHETIC_ONLY: "true"
+    PORT: "4000"
+    DB_HOST: postgres
+    POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    EHR_LOCAL_STATE_DIR: /var/lib/mcclinic
+    WEB_ORIGIN: http://127.0.0.1:${WEB_PORT:-8080}
+  secrets:
+    - db_password
+  volumes:
+    - onboarding_state:/var/lib/mcclinic
+  init: true
+  read_only: true
+  tmpfs:
+    - /tmp
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  stop_grace_period: 20s
+services:
+  postgres:
+    image: postgres:17.6-alpine
+    environment:
+      POSTGRES_DB: mcclinic
+      POSTGRES_USER: mcclinic
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U mcclinic -d mcclinic"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  migrate:
+    <<: *api
+    profiles: [tools]
+    command: [node, apps/api/dist/apps/api/src/packaged-command.js, migrate]
+    depends_on:
+      postgres: {condition: service_healthy}
+  seed:
+    <<: *api
+    profiles: [tools]
+    environment:
+      <<: *api-env
+      DEMO_PASSWORD_FILE: /run/secrets/demo_password
+    secrets: [db_password, demo_password]
+    command: [node, apps/api/dist/apps/api/src/packaged-command.js, seed]
+    depends_on:
+      postgres: {condition: service_healthy}
+  api:
+    <<: *api
+    depends_on:
+      postgres: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:4000/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  web:
+    image: mcclinic-packaged:${IMAGE_TAG:-local}
+    command: [node, apps/api/dist/apps/api/src/packaged-web-main.js]
+    environment:
+      APP_ENV: local-container
+      MVP_SYNTHETIC_ONLY: "true"
+      PORT: "8080"
+      API_ORIGIN: http://api:4000
+      WEB_ASSETS: /workspace/apps/clinical-app/dist
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8080}:8080"
+    depends_on:
+      api: {condition: service_healthy}
+    init: true
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    stop_grace_period: 20s
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8080/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+secrets:
+  db_password:
+    file: ../../.local/packaged/db-password
+  demo_password:
+    file: ../../.local/packaged/demo-password
+volumes:
+  database:
+  onboarding_state:

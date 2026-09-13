@@ -43,3 +43,5 @@ TASK-025 account onboarding is approved before TASK-024, which remains Proposed.
 
 ## Deployment planning — owner instruction 2026-09-13
 The owner approves TASK-026 planning under REQ-FOUND-012 before TASK-024. Produce costed deployment architecture, recovery/network/staging gates and bounded proposed follow-up tasks on `task/TASK-026-deployment-readiness` from `e53b208`. Planning does not authorize provisioning, deployment, push, purchases, external mail/payments, real data, offline synchronization or deletions. TASK-024 remains Proposed.
+## Local packaging — owner instruction 2026-09-13, completed 2026-09-14
+TASK-027 is authorized and locally completed with optional LocalStack. Use PACKAGED_RUNBOOK.md and ADR-010 for built-web/API Compose testing. Staging/production entry-point values remain blocked; ADR-008/009 cloud topology and TASK-028/029 require separate approval. Preserve original development entry points and user edits; do not push, merge, provision AWS or delete volumes. FIND-013/TASK-033 track unresolved scan/remediation work.

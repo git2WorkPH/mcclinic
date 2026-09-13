@@ -1,0 +1,5162 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "mcclinic",
+      "version": "b90be76-task027-working"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "@ardatan/relay-compiler",
+      "version": "13.0.2",
+      "bom-ref": "@ardatan/relay-compiler@13.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@babel/code-frame",
+      "version": "7.29.7",
+      "bom-ref": "@babel/code-frame@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/compat-data",
+      "version": "7.29.7",
+      "bom-ref": "@babel/compat-data@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/core",
+      "version": "7.29.7",
+      "bom-ref": "@babel/core@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/generator",
+      "version": "7.29.8",
+      "bom-ref": "@babel/generator@7.29.8"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-compilation-targets",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-compilation-targets@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-globals",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-globals@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-module-imports",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-module-imports@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-module-transforms",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-module-transforms@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-plugin-utils",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-plugin-utils@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-string-parser",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-string-parser@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-validator-identifier",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-validator-identifier@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helper-validator-option",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helper-validator-option@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/helpers",
+      "version": "7.29.7",
+      "bom-ref": "@babel/helpers@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/parser",
+      "version": "7.29.8",
+      "bom-ref": "@babel/parser@7.29.8"
+    },
+    {
+      "type": "library",
+      "name": "@babel/runtime",
+      "version": "7.29.7",
+      "bom-ref": "@babel/runtime@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/runtime",
+      "version": "8.0.0",
+      "bom-ref": "@babel/runtime@8.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@babel/template",
+      "version": "7.29.7",
+      "bom-ref": "@babel/template@7.29.7"
+    },
+    {
+      "type": "library",
+      "name": "@babel/traverse",
+      "version": "7.29.8",
+      "bom-ref": "@babel/traverse@7.29.8"
+    },
+    {
+      "type": "library",
+      "name": "@babel/types",
+      "version": "7.29.8",
+      "bom-ref": "@babel/types@7.29.8"
+    },
+    {
+      "type": "library",
+      "name": "@balena/dockerignore",
+      "version": "1.0.2",
+      "bom-ref": "@balena/dockerignore@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@electric-sql/pglite-socket",
+      "version": "0.1.3",
+      "bom-ref": "@electric-sql/pglite-socket@0.1.3"
+    },
+    {
+      "type": "library",
+      "name": "@electric-sql/pglite-tools",
+      "version": "0.3.3",
+      "bom-ref": "@electric-sql/pglite-tools@0.3.3"
+    },
+    {
+      "type": "library",
+      "name": "@electric-sql/pglite",
+      "version": "0.4.3",
+      "bom-ref": "@electric-sql/pglite@0.4.3"
+    },
+    {
+      "type": "library",
+      "name": "@envelop/core",
+      "version": "5.6.0",
+      "bom-ref": "@envelop/core@5.6.0"
+    },
+    {
+      "type": "library",
+      "name": "@envelop/instrumentation",
+      "version": "1.0.0",
+      "bom-ref": "@envelop/instrumentation@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@envelop/types",
+      "version": "5.2.1",
+      "bom-ref": "@envelop/types@5.2.1"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/aix-ppc64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/aix-ppc64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/android-arm",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/android-arm@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/android-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/android-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/android-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/android-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/darwin-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/darwin-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/darwin-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/darwin-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/freebsd-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/freebsd-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/freebsd-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/freebsd-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-arm",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-arm@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-ia32",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-ia32@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-loong64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-loong64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-mips64el",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-mips64el@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-ppc64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-ppc64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-riscv64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-riscv64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-s390x",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-s390x@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/linux-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/netbsd-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/netbsd-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/netbsd-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/netbsd-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/openbsd-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/openbsd-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/openbsd-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/openbsd-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/openharmony-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/openharmony-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/sunos-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/sunos-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/win32-arm64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/win32-arm64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/win32-ia32",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/win32-ia32@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/win32-x64",
+      "version": "0.28.2",
+      "bom-ref": "@esbuild/win32-x64@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "@fastify/busboy",
+      "version": "3.2.2",
+      "bom-ref": "@fastify/busboy@3.2.2"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/add",
+      "version": "7.1.0",
+      "bom-ref": "@graphql-codegen/add@7.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/cli",
+      "version": "7.4.0",
+      "bom-ref": "@graphql-codegen/cli@7.4.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/client-preset",
+      "version": "6.1.3",
+      "bom-ref": "@graphql-codegen/client-preset@6.1.3"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/core",
+      "version": "6.2.0",
+      "bom-ref": "@graphql-codegen/core@6.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/gql-tag-operations",
+      "version": "6.1.0",
+      "bom-ref": "@graphql-codegen/gql-tag-operations@6.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/plugin-helpers",
+      "version": "7.3.0",
+      "bom-ref": "@graphql-codegen/plugin-helpers@7.3.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/schema-ast",
+      "version": "6.1.0",
+      "bom-ref": "@graphql-codegen/schema-ast@6.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/typed-document-node",
+      "version": "7.1.0",
+      "bom-ref": "@graphql-codegen/typed-document-node@7.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/typescript-operations",
+      "version": "6.1.6",
+      "bom-ref": "@graphql-codegen/typescript-operations@6.1.6"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/typescript-resolvers",
+      "version": "6.1.0",
+      "bom-ref": "@graphql-codegen/typescript-resolvers@6.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/typescript",
+      "version": "6.1.0",
+      "bom-ref": "@graphql-codegen/typescript@6.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-codegen/visitor-plugin-common",
+      "version": "7.2.5",
+      "bom-ref": "@graphql-codegen/visitor-plugin-common@7.2.5"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-hive/signal",
+      "version": "2.0.0",
+      "bom-ref": "@graphql-hive/signal@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/apollo-engine-loader",
+      "version": "8.0.36",
+      "bom-ref": "@graphql-tools/apollo-engine-loader@8.0.36"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/batch-execute",
+      "version": "10.2.0",
+      "bom-ref": "@graphql-tools/batch-execute@10.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/code-file-loader",
+      "version": "8.1.39",
+      "bom-ref": "@graphql-tools/code-file-loader@8.1.39"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/delegate",
+      "version": "12.2.0",
+      "bom-ref": "@graphql-tools/delegate@12.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/documents",
+      "version": "1.0.2",
+      "bom-ref": "@graphql-tools/documents@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/executor-common",
+      "version": "1.1.0",
+      "bom-ref": "@graphql-tools/executor-common@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/executor-graphql-ws",
+      "version": "3.2.0",
+      "bom-ref": "@graphql-tools/executor-graphql-ws@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/executor-http",
+      "version": "3.4.0",
+      "bom-ref": "@graphql-tools/executor-http@3.4.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/executor-legacy-ws",
+      "version": "1.1.35",
+      "bom-ref": "@graphql-tools/executor-legacy-ws@1.1.35"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/executor",
+      "version": "2.0.1",
+      "bom-ref": "@graphql-tools/executor@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/git-loader",
+      "version": "8.0.42",
+      "bom-ref": "@graphql-tools/git-loader@8.0.42"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/github-loader",
+      "version": "9.1.8",
+      "bom-ref": "@graphql-tools/github-loader@9.1.8"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/graphql-file-loader",
+      "version": "8.1.20",
+      "bom-ref": "@graphql-tools/graphql-file-loader@8.1.20"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/graphql-tag-pluck",
+      "version": "8.3.37",
+      "bom-ref": "@graphql-tools/graphql-tag-pluck@8.3.37"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/import",
+      "version": "7.2.0",
+      "bom-ref": "@graphql-tools/import@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/json-file-loader",
+      "version": "8.0.34",
+      "bom-ref": "@graphql-tools/json-file-loader@8.0.34"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/load",
+      "version": "8.1.17",
+      "bom-ref": "@graphql-tools/load@8.1.17"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/merge",
+      "version": "9.2.4",
+      "bom-ref": "@graphql-tools/merge@9.2.4"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/optimize",
+      "version": "2.0.1",
+      "bom-ref": "@graphql-tools/optimize@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/relay-operation-optimizer",
+      "version": "7.1.10",
+      "bom-ref": "@graphql-tools/relay-operation-optimizer@7.1.10"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/schema",
+      "version": "10.1.1",
+      "bom-ref": "@graphql-tools/schema@10.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/url-loader",
+      "version": "9.1.9",
+      "bom-ref": "@graphql-tools/url-loader@9.1.9"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/utils",
+      "version": "11.2.2",
+      "bom-ref": "@graphql-tools/utils@11.2.2"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/utils",
+      "version": "12.0.1",
+      "bom-ref": "@graphql-tools/utils@12.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-tools/wrap",
+      "version": "11.2.0",
+      "bom-ref": "@graphql-tools/wrap@11.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-typed-document-node/core",
+      "version": "3.2.0",
+      "bom-ref": "@graphql-typed-document-node/core@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-yoga/logger",
+      "version": "2.0.1",
+      "bom-ref": "@graphql-yoga/logger@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-yoga/subscription",
+      "version": "5.0.5",
+      "bom-ref": "@graphql-yoga/subscription@5.0.5"
+    },
+    {
+      "type": "library",
+      "name": "@graphql-yoga/typed-event-target",
+      "version": "3.0.2",
+      "bom-ref": "@graphql-yoga/typed-event-target@3.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@grpc/grpc-js",
+      "version": "1.14.4",
+      "bom-ref": "@grpc/grpc-js@1.14.4"
+    },
+    {
+      "type": "library",
+      "name": "@grpc/proto-loader",
+      "version": "0.7.15",
+      "bom-ref": "@grpc/proto-loader@0.7.15"
+    },
+    {
+      "type": "library",
+      "name": "@grpc/proto-loader",
+      "version": "0.8.1",
+      "bom-ref": "@grpc/proto-loader@0.8.1"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/ansi",
+      "version": "2.0.8",
+      "bom-ref": "@inquirer/ansi@2.0.8"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/checkbox",
+      "version": "5.2.5",
+      "bom-ref": "@inquirer/checkbox@5.2.5"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/confirm",
+      "version": "6.3.2",
+      "bom-ref": "@inquirer/confirm@6.3.2"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/core",
+      "version": "12.0.3",
+      "bom-ref": "@inquirer/core@12.0.3"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/editor",
+      "version": "5.3.3",
+      "bom-ref": "@inquirer/editor@5.3.3"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/expand",
+      "version": "5.1.5",
+      "bom-ref": "@inquirer/expand@5.1.5"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/external-editor",
+      "version": "3.0.5",
+      "bom-ref": "@inquirer/external-editor@3.0.5"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/figures",
+      "version": "2.0.9",
+      "bom-ref": "@inquirer/figures@2.0.9"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/input",
+      "version": "5.1.6",
+      "bom-ref": "@inquirer/input@5.1.6"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/number",
+      "version": "4.2.3",
+      "bom-ref": "@inquirer/number@4.2.3"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/password",
+      "version": "5.2.2",
+      "bom-ref": "@inquirer/password@5.2.2"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/prompts",
+      "version": "8.7.2",
+      "bom-ref": "@inquirer/prompts@8.7.2"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/rawlist",
+      "version": "5.3.5",
+      "bom-ref": "@inquirer/rawlist@5.3.5"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/search",
+      "version": "4.3.3",
+      "bom-ref": "@inquirer/search@4.3.3"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/select",
+      "version": "5.2.5",
+      "bom-ref": "@inquirer/select@5.2.5"
+    },
+    {
+      "type": "library",
+      "name": "@inquirer/type",
+      "version": "4.1.1",
+      "bom-ref": "@inquirer/type@4.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@isaacs/cliui",
+      "version": "8.0.2",
+      "bom-ref": "@isaacs/cliui@8.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@isaacs/ttlcache",
+      "version": "1.4.1",
+      "bom-ref": "@isaacs/ttlcache@1.4.1"
+    },
+    {
+      "type": "library",
+      "name": "@jest/schemas",
+      "version": "29.6.3",
+      "bom-ref": "@jest/schemas@29.6.3"
+    },
+    {
+      "type": "library",
+      "name": "@jest/types",
+      "version": "29.6.3",
+      "bom-ref": "@jest/types@29.6.3"
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/gen-mapping",
+      "version": "0.3.13",
+      "bom-ref": "@jridgewell/gen-mapping@0.3.13"
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/remapping",
+      "version": "2.3.5",
+      "bom-ref": "@jridgewell/remapping@2.3.5"
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/resolve-uri",
+      "version": "3.1.2",
+      "bom-ref": "@jridgewell/resolve-uri@3.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/source-map",
+      "version": "0.3.11",
+      "bom-ref": "@jridgewell/source-map@0.3.11"
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/sourcemap-codec",
+      "version": "1.6.0",
+      "bom-ref": "@jridgewell/sourcemap-codec@1.6.0"
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/trace-mapping",
+      "version": "0.3.31",
+      "bom-ref": "@jridgewell/trace-mapping@0.3.31"
+    },
+    {
+      "type": "library",
+      "name": "@js-sdsl/ordered-map",
+      "version": "4.4.2",
+      "bom-ref": "@js-sdsl/ordered-map@4.4.2"
+    },
+    {
+      "type": "library",
+      "name": "@kwsites/file-exists",
+      "version": "1.1.1",
+      "bom-ref": "@kwsites/file-exists@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@nodelib/fs.scandir",
+      "version": "2.1.5",
+      "bom-ref": "@nodelib/fs.scandir@2.1.5"
+    },
+    {
+      "type": "library",
+      "name": "@nodelib/fs.stat",
+      "version": "2.0.5",
+      "bom-ref": "@nodelib/fs.stat@2.0.5"
+    },
+    {
+      "type": "library",
+      "name": "@nodelib/fs.walk",
+      "version": "1.2.8",
+      "bom-ref": "@nodelib/fs.walk@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@oxc-project/types",
+      "version": "0.149.0",
+      "bom-ref": "@oxc-project/types@0.149.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-android-arm-eabi",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-android-arm-eabi@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-android-arm64",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-android-arm64@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-darwin-arm64",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-darwin-arm64@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-darwin-x64",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-darwin-x64@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-freebsd-x64",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-freebsd-x64@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-arm-gnueabihf",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-arm-gnueabihf@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-arm-musleabihf",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-arm-musleabihf@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-arm64-gnu",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-arm64-gnu@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-arm64-musl",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-arm64-musl@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-ppc64-gnu",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-ppc64-gnu@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-riscv64-gnu",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-riscv64-gnu@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-riscv64-musl",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-riscv64-musl@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-s390x-gnu",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-s390x-gnu@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-x64-gnu",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-x64-gnu@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-linux-x64-musl",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-linux-x64-musl@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-openharmony-arm64",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-openharmony-arm64@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-win32-arm64-msvc",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-win32-arm64-msvc@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-win32-ia32-msvc",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-win32-ia32-msvc@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@oxlint/binding-win32-x64-msvc",
+      "version": "1.82.0",
+      "bom-ref": "@oxlint/binding-win32-x64-msvc@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "@pkgjs/parseargs",
+      "version": "0.11.0",
+      "bom-ref": "@pkgjs/parseargs@0.11.0"
+    },
+    {
+      "type": "library",
+      "name": "@playwright/test",
+      "version": "1.63.0",
+      "bom-ref": "@playwright/test@1.63.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/adapter-pg",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/adapter-pg@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/client-runtime-utils",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/client-runtime-utils@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/client",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/client@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/config",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/config@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/debug",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/debug@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/debug",
+      "version": "7.2.0",
+      "bom-ref": "@prisma/debug@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/dev",
+      "version": "0.24.17",
+      "bom-ref": "@prisma/dev@0.24.17"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/driver-adapter-utils",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/driver-adapter-utils@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/engines-version",
+      "version": "7.10.0-4.0edf323efd1d98336f3f0a68684b56f689b900d3",
+      "bom-ref": "@prisma/engines-version@7.10.0-4.0edf323efd1d98336f3f0a68684b56f689b900d3"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/engines",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/engines@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/fetch-engine",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/fetch-engine@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/get-platform",
+      "version": "7.10.0",
+      "bom-ref": "@prisma/get-platform@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/get-platform",
+      "version": "7.2.0",
+      "bom-ref": "@prisma/get-platform@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/query-plan-executor",
+      "version": "7.2.0",
+      "bom-ref": "@prisma/query-plan-executor@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/streams-local",
+      "version": "0.1.11",
+      "bom-ref": "@prisma/streams-local@0.1.11"
+    },
+    {
+      "type": "library",
+      "name": "@prisma/studio-core",
+      "version": "0.33.0",
+      "bom-ref": "@prisma/studio-core@0.33.0"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/aspromise",
+      "version": "1.1.2",
+      "bom-ref": "@protobufjs/aspromise@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/base64",
+      "version": "1.1.2",
+      "bom-ref": "@protobufjs/base64@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/codegen",
+      "version": "2.0.5",
+      "bom-ref": "@protobufjs/codegen@2.0.5"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/eventemitter",
+      "version": "1.1.1",
+      "bom-ref": "@protobufjs/eventemitter@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/fetch",
+      "version": "1.1.1",
+      "bom-ref": "@protobufjs/fetch@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/float",
+      "version": "1.0.2",
+      "bom-ref": "@protobufjs/float@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/path",
+      "version": "1.1.2",
+      "bom-ref": "@protobufjs/path@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/pool",
+      "version": "1.1.0",
+      "bom-ref": "@protobufjs/pool@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@protobufjs/utf8",
+      "version": "1.1.2",
+      "bom-ref": "@protobufjs/utf8@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/primitive",
+      "version": "1.1.3",
+      "bom-ref": "@radix-ui/primitive@1.1.3"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-compose-refs",
+      "version": "1.1.2",
+      "bom-ref": "@radix-ui/react-compose-refs@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-primitive",
+      "version": "2.1.3",
+      "bom-ref": "@radix-ui/react-primitive@2.1.3"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-slot",
+      "version": "1.2.3",
+      "bom-ref": "@radix-ui/react-slot@1.2.3"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-toggle",
+      "version": "1.1.10",
+      "bom-ref": "@radix-ui/react-toggle@1.1.10"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-use-controllable-state",
+      "version": "1.2.2",
+      "bom-ref": "@radix-ui/react-use-controllable-state@1.2.2"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-use-effect-event",
+      "version": "0.0.2",
+      "bom-ref": "@radix-ui/react-use-effect-event@0.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@radix-ui/react-use-layout-effect",
+      "version": "1.1.1",
+      "bom-ref": "@radix-ui/react-use-layout-effect@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/asset-utils",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/asset-utils@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/codegen",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/codegen@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/community-cli-plugin",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/community-cli-plugin@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/debugger-frontend",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/debugger-frontend@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/debugger-shell",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/debugger-shell@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/dev-middleware",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/dev-middleware@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/gradle-plugin",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/gradle-plugin@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/normalize-colors",
+      "version": "0.74.89",
+      "bom-ref": "@react-native/normalize-colors@0.74.89"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/normalize-colors",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/normalize-colors@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@react-native/virtualized-lists",
+      "version": "0.87.1",
+      "bom-ref": "@react-native/virtualized-lists@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "@repeaterjs/repeater",
+      "version": "3.1.0",
+      "bom-ref": "@repeaterjs/repeater@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-android-arm-eabi",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-android-arm-eabi@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-android-arm64",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-android-arm64@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-darwin-arm64",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-darwin-arm64@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-darwin-x64",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-darwin-x64@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-freebsd-x64",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-freebsd-x64@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-arm-gnueabihf",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-arm-gnueabihf@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-arm64-gnu",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-arm64-gnu@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-arm64-musl",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-arm64-musl@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-ppc64-gnu",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-ppc64-gnu@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-s390x-gnu",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-s390x-gnu@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-x64-gnu@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-linux-x64-musl",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-linux-x64-musl@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-openharmony-arm64",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-openharmony-arm64@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-win32-arm64-msvc",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-win32-arm64-msvc@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/binding-win32-x64-msvc",
+      "version": "1.2.8",
+      "bom-ref": "@rolldown/binding-win32-x64-msvc@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "@rolldown/pluginutils",
+      "version": "1.0.1",
+      "bom-ref": "@rolldown/pluginutils@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@sinclair/typebox",
+      "version": "0.27.12",
+      "bom-ref": "@sinclair/typebox@0.27.12"
+    },
+    {
+      "type": "library",
+      "name": "@standard-schema/spec",
+      "version": "1.1.0",
+      "bom-ref": "@standard-schema/spec@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@testcontainers/postgresql",
+      "version": "12.1.0",
+      "bom-ref": "@testcontainers/postgresql@12.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/body-parser",
+      "version": "1.19.6",
+      "bom-ref": "@types/body-parser@1.19.6"
+    },
+    {
+      "type": "library",
+      "name": "@types/chai",
+      "version": "5.2.3",
+      "bom-ref": "@types/chai@5.2.3"
+    },
+    {
+      "type": "library",
+      "name": "@types/connect",
+      "version": "3.4.38",
+      "bom-ref": "@types/connect@3.4.38"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-array",
+      "version": "3.0.3",
+      "bom-ref": "@types/d3-array@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-color",
+      "version": "3.1.0",
+      "bom-ref": "@types/d3-color@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-delaunay",
+      "version": "6.0.1",
+      "bom-ref": "@types/d3-delaunay@6.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-format",
+      "version": "3.0.1",
+      "bom-ref": "@types/d3-format@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-geo",
+      "version": "3.1.0",
+      "bom-ref": "@types/d3-geo@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-interpolate",
+      "version": "3.0.1",
+      "bom-ref": "@types/d3-interpolate@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-path",
+      "version": "3.1.1",
+      "bom-ref": "@types/d3-path@3.1.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-scale",
+      "version": "4.0.2",
+      "bom-ref": "@types/d3-scale@4.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-shape",
+      "version": "3.1.7",
+      "bom-ref": "@types/d3-shape@3.1.7"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-time-format",
+      "version": "2.1.0",
+      "bom-ref": "@types/d3-time-format@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/d3-time",
+      "version": "3.0.0",
+      "bom-ref": "@types/d3-time@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/deep-eql",
+      "version": "4.0.2",
+      "bom-ref": "@types/deep-eql@4.0.2"
+    },
+    {
+      "type": "library",
+      "name": "@types/docker-modem",
+      "version": "3.0.6",
+      "bom-ref": "@types/docker-modem@3.0.6"
+    },
+    {
+      "type": "library",
+      "name": "@types/dockerode",
+      "version": "4.0.1",
+      "bom-ref": "@types/dockerode@4.0.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/estree",
+      "version": "1.0.9",
+      "bom-ref": "@types/estree@1.0.9"
+    },
+    {
+      "type": "library",
+      "name": "@types/express-serve-static-core",
+      "version": "5.1.3",
+      "bom-ref": "@types/express-serve-static-core@5.1.3"
+    },
+    {
+      "type": "library",
+      "name": "@types/express",
+      "version": "5.0.6",
+      "bom-ref": "@types/express@5.0.6"
+    },
+    {
+      "type": "library",
+      "name": "@types/geojson",
+      "version": "7946.0.16",
+      "bom-ref": "@types/geojson@7946.0.16"
+    },
+    {
+      "type": "library",
+      "name": "@types/http-errors",
+      "version": "2.0.5",
+      "bom-ref": "@types/http-errors@2.0.5"
+    },
+    {
+      "type": "library",
+      "name": "@types/istanbul-lib-coverage",
+      "version": "2.0.6",
+      "bom-ref": "@types/istanbul-lib-coverage@2.0.6"
+    },
+    {
+      "type": "library",
+      "name": "@types/istanbul-lib-report",
+      "version": "3.0.3",
+      "bom-ref": "@types/istanbul-lib-report@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "@types/istanbul-reports",
+      "version": "3.0.4",
+      "bom-ref": "@types/istanbul-reports@3.0.4"
+    },
+    {
+      "type": "library",
+      "name": "@types/lodash",
+      "version": "4.17.25",
+      "bom-ref": "@types/lodash@4.17.25"
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "18.19.130",
+      "bom-ref": "@types/node@18.19.130"
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "22.20.2",
+      "bom-ref": "@types/node@22.20.2"
+    },
+    {
+      "type": "library",
+      "name": "@types/pg",
+      "version": "8.23.1",
+      "bom-ref": "@types/pg@8.23.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/qs",
+      "version": "6.15.1",
+      "bom-ref": "@types/qs@6.15.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/range-parser",
+      "version": "1.2.7",
+      "bom-ref": "@types/range-parser@1.2.7"
+    },
+    {
+      "type": "library",
+      "name": "@types/react-dom",
+      "version": "19.3.0",
+      "bom-ref": "@types/react-dom@19.3.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/react",
+      "version": "19.3.0",
+      "bom-ref": "@types/react@19.3.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/send",
+      "version": "1.2.1",
+      "bom-ref": "@types/send@1.2.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/serve-static",
+      "version": "2.2.0",
+      "bom-ref": "@types/serve-static@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "@types/ssh2-streams",
+      "version": "0.1.13",
+      "bom-ref": "@types/ssh2-streams@0.1.13"
+    },
+    {
+      "type": "library",
+      "name": "@types/ssh2",
+      "version": "0.5.52",
+      "bom-ref": "@types/ssh2@0.5.52"
+    },
+    {
+      "type": "library",
+      "name": "@types/ssh2",
+      "version": "1.15.6",
+      "bom-ref": "@types/ssh2@1.15.6"
+    },
+    {
+      "type": "library",
+      "name": "@types/ws",
+      "version": "8.18.1",
+      "bom-ref": "@types/ws@8.18.1"
+    },
+    {
+      "type": "library",
+      "name": "@types/yargs-parser",
+      "version": "21.0.3",
+      "bom-ref": "@types/yargs-parser@21.0.3"
+    },
+    {
+      "type": "library",
+      "name": "@types/yargs",
+      "version": "17.0.35",
+      "bom-ref": "@types/yargs@17.0.35"
+    },
+    {
+      "type": "library",
+      "name": "@visx/curve",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/curve@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/event",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/event@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/grid",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/grid@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/group",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/group@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/point",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/point@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/responsive",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/responsive@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/scale",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/scale@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/shape",
+      "version": "4.0.1-alpha.0",
+      "bom-ref": "@visx/shape@4.0.1-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@visx/vendor",
+      "version": "4.0.0-alpha.0",
+      "bom-ref": "@visx/vendor@4.0.0-alpha.0"
+    },
+    {
+      "type": "library",
+      "name": "@vitest/mocker",
+      "version": "5.0.0",
+      "bom-ref": "@vitest/mocker@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@vitest/spy",
+      "version": "5.0.0",
+      "bom-ref": "@vitest/spy@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "@whatwg-node/disposablestack",
+      "version": "0.0.6",
+      "bom-ref": "@whatwg-node/disposablestack@0.0.6"
+    },
+    {
+      "type": "library",
+      "name": "@whatwg-node/events",
+      "version": "0.1.2",
+      "bom-ref": "@whatwg-node/events@0.1.2"
+    },
+    {
+      "type": "library",
+      "name": "@whatwg-node/fetch",
+      "version": "0.10.13",
+      "bom-ref": "@whatwg-node/fetch@0.10.13"
+    },
+    {
+      "type": "library",
+      "name": "@whatwg-node/node-fetch",
+      "version": "0.8.6",
+      "bom-ref": "@whatwg-node/node-fetch@0.8.6"
+    },
+    {
+      "type": "library",
+      "name": "@whatwg-node/promise-helpers",
+      "version": "1.3.2",
+      "bom-ref": "@whatwg-node/promise-helpers@1.3.2"
+    },
+    {
+      "type": "library",
+      "name": "@whatwg-node/server",
+      "version": "0.11.0",
+      "bom-ref": "@whatwg-node/server@0.11.0"
+    },
+    {
+      "type": "library",
+      "name": "abort-controller",
+      "version": "3.0.0",
+      "bom-ref": "abort-controller@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "accepts",
+      "version": "2.0.0",
+      "bom-ref": "accepts@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "acorn",
+      "version": "8.18.0",
+      "bom-ref": "acorn@8.18.0"
+    },
+    {
+      "type": "library",
+      "name": "agent-base",
+      "version": "7.1.4",
+      "bom-ref": "agent-base@7.1.4"
+    },
+    {
+      "type": "library",
+      "name": "ajv",
+      "version": "8.20.0",
+      "bom-ref": "ajv@8.20.0"
+    },
+    {
+      "type": "library",
+      "name": "anser",
+      "version": "1.4.10",
+      "bom-ref": "anser@1.4.10"
+    },
+    {
+      "type": "library",
+      "name": "ansi-escapes",
+      "version": "7.3.0",
+      "bom-ref": "ansi-escapes@7.3.0"
+    },
+    {
+      "type": "library",
+      "name": "ansi-regex",
+      "version": "5.0.1",
+      "bom-ref": "ansi-regex@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "ansi-regex",
+      "version": "6.3.0",
+      "bom-ref": "ansi-regex@6.3.0"
+    },
+    {
+      "type": "library",
+      "name": "ansi-styles",
+      "version": "4.3.0",
+      "bom-ref": "ansi-styles@4.3.0"
+    },
+    {
+      "type": "library",
+      "name": "ansi-styles",
+      "version": "5.2.0",
+      "bom-ref": "ansi-styles@5.2.0"
+    },
+    {
+      "type": "library",
+      "name": "ansi-styles",
+      "version": "6.2.3",
+      "bom-ref": "ansi-styles@6.2.3"
+    },
+    {
+      "type": "library",
+      "name": "archiver-utils",
+      "version": "5.0.2",
+      "bom-ref": "archiver-utils@5.0.2"
+    },
+    {
+      "type": "library",
+      "name": "archiver",
+      "version": "7.0.1",
+      "bom-ref": "archiver@7.0.1"
+    },
+    {
+      "type": "library",
+      "name": "argparse",
+      "version": "2.0.1",
+      "bom-ref": "argparse@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "array-union",
+      "version": "2.1.0",
+      "bom-ref": "array-union@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "asap",
+      "version": "2.0.6",
+      "bom-ref": "asap@2.0.6"
+    },
+    {
+      "type": "library",
+      "name": "asn1",
+      "version": "0.2.6",
+      "bom-ref": "asn1@0.2.6"
+    },
+    {
+      "type": "library",
+      "name": "assertion-error",
+      "version": "2.0.1",
+      "bom-ref": "assertion-error@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "async-lock",
+      "version": "1.4.1",
+      "bom-ref": "async-lock@1.4.1"
+    },
+    {
+      "type": "library",
+      "name": "async",
+      "version": "3.2.6",
+      "bom-ref": "async@3.2.6"
+    },
+    {
+      "type": "library",
+      "name": "auto-bind",
+      "version": "5.0.1",
+      "bom-ref": "auto-bind@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "aws-ssl-profiles",
+      "version": "1.1.2",
+      "bom-ref": "aws-ssl-profiles@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "b4a",
+      "version": "1.8.1",
+      "bom-ref": "b4a@1.8.1"
+    },
+    {
+      "type": "library",
+      "name": "babel-plugin-syntax-hermes-parser",
+      "version": "0.36.1",
+      "bom-ref": "babel-plugin-syntax-hermes-parser@0.36.1"
+    },
+    {
+      "type": "library",
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "bom-ref": "balanced-match@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "balanced-match",
+      "version": "4.0.4",
+      "bom-ref": "balanced-match@4.0.4"
+    },
+    {
+      "type": "library",
+      "name": "bare-events",
+      "version": "2.9.2",
+      "bom-ref": "bare-events@2.9.2"
+    },
+    {
+      "type": "library",
+      "name": "bare-fs",
+      "version": "4.8.1",
+      "bom-ref": "bare-fs@4.8.1"
+    },
+    {
+      "type": "library",
+      "name": "bare-path",
+      "version": "3.1.2",
+      "bom-ref": "bare-path@3.1.2"
+    },
+    {
+      "type": "library",
+      "name": "bare-stream",
+      "version": "2.13.4",
+      "bom-ref": "bare-stream@2.13.4"
+    },
+    {
+      "type": "library",
+      "name": "bare-url",
+      "version": "2.5.4",
+      "bom-ref": "bare-url@2.5.4"
+    },
+    {
+      "type": "library",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "bom-ref": "base64-js@1.5.1"
+    },
+    {
+      "type": "library",
+      "name": "baseline-browser-mapping",
+      "version": "2.11.21",
+      "bom-ref": "baseline-browser-mapping@2.11.21"
+    },
+    {
+      "type": "library",
+      "name": "bcrypt-pbkdf",
+      "version": "1.0.2",
+      "bom-ref": "bcrypt-pbkdf@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "better-result",
+      "version": "2.10.0",
+      "bom-ref": "better-result@2.10.0"
+    },
+    {
+      "type": "library",
+      "name": "bl",
+      "version": "4.1.0",
+      "bom-ref": "bl@4.1.0"
+    },
+    {
+      "type": "library",
+      "name": "body-parser",
+      "version": "2.3.0",
+      "bom-ref": "body-parser@2.3.0"
+    },
+    {
+      "type": "library",
+      "name": "brace-expansion",
+      "version": "2.1.4",
+      "bom-ref": "brace-expansion@2.1.4"
+    },
+    {
+      "type": "library",
+      "name": "brace-expansion",
+      "version": "5.0.9",
+      "bom-ref": "brace-expansion@5.0.9"
+    },
+    {
+      "type": "library",
+      "name": "braces",
+      "version": "3.0.3",
+      "bom-ref": "braces@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "browserslist",
+      "version": "4.28.9",
+      "bom-ref": "browserslist@4.28.9"
+    },
+    {
+      "type": "library",
+      "name": "bser",
+      "version": "2.1.1",
+      "bom-ref": "bser@2.1.1"
+    },
+    {
+      "type": "library",
+      "name": "buffer-crc32",
+      "version": "1.0.0",
+      "bom-ref": "buffer-crc32@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "buffer-from",
+      "version": "1.1.2",
+      "bom-ref": "buffer-from@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "buffer",
+      "version": "5.7.1",
+      "bom-ref": "buffer@5.7.1"
+    },
+    {
+      "type": "library",
+      "name": "buffer",
+      "version": "6.0.3",
+      "bom-ref": "buffer@6.0.3"
+    },
+    {
+      "type": "library",
+      "name": "buildcheck",
+      "version": "0.0.7",
+      "bom-ref": "buildcheck@0.0.7"
+    },
+    {
+      "type": "library",
+      "name": "byline",
+      "version": "5.0.0",
+      "bom-ref": "byline@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "bytes",
+      "version": "3.1.2",
+      "bom-ref": "bytes@3.1.2"
+    },
+    {
+      "type": "library",
+      "name": "c12",
+      "version": "3.3.4",
+      "bom-ref": "c12@3.3.4"
+    },
+    {
+      "type": "library",
+      "name": "call-bind-apply-helpers",
+      "version": "1.0.2",
+      "bom-ref": "call-bind-apply-helpers@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "call-bound",
+      "version": "1.0.4",
+      "bom-ref": "call-bound@1.0.4"
+    },
+    {
+      "type": "library",
+      "name": "callsites",
+      "version": "3.1.0",
+      "bom-ref": "callsites@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "camelcase",
+      "version": "6.3.0",
+      "bom-ref": "camelcase@6.3.0"
+    },
+    {
+      "type": "library",
+      "name": "caniuse-lite",
+      "version": "1.0.30001810",
+      "bom-ref": "caniuse-lite@1.0.30001810"
+    },
+    {
+      "type": "library",
+      "name": "chai",
+      "version": "6.2.2",
+      "bom-ref": "chai@6.2.2"
+    },
+    {
+      "type": "library",
+      "name": "chalk",
+      "version": "4.1.2",
+      "bom-ref": "chalk@4.1.2"
+    },
+    {
+      "type": "library",
+      "name": "chalk",
+      "version": "5.6.2",
+      "bom-ref": "chalk@5.6.2"
+    },
+    {
+      "type": "library",
+      "name": "change-case-all",
+      "version": "2.1.0",
+      "bom-ref": "change-case-all@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "change-case",
+      "version": "5.4.4",
+      "bom-ref": "change-case@5.4.4"
+    },
+    {
+      "type": "library",
+      "name": "chardet",
+      "version": "2.2.0",
+      "bom-ref": "chardet@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "chokidar",
+      "version": "5.0.0",
+      "bom-ref": "chokidar@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "chownr",
+      "version": "1.1.4",
+      "bom-ref": "chownr@1.1.4"
+    },
+    {
+      "type": "library",
+      "name": "chrome-launcher",
+      "version": "0.15.2",
+      "bom-ref": "chrome-launcher@0.15.2"
+    },
+    {
+      "type": "library",
+      "name": "chromium-edge-launcher",
+      "version": "0.3.0",
+      "bom-ref": "chromium-edge-launcher@0.3.0"
+    },
+    {
+      "type": "library",
+      "name": "ci-info",
+      "version": "2.0.0",
+      "bom-ref": "ci-info@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "ci-info",
+      "version": "3.9.0",
+      "bom-ref": "ci-info@3.9.0"
+    },
+    {
+      "type": "library",
+      "name": "classnames",
+      "version": "2.5.1",
+      "bom-ref": "classnames@2.5.1"
+    },
+    {
+      "type": "library",
+      "name": "cli-cursor",
+      "version": "5.0.0",
+      "bom-ref": "cli-cursor@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "cli-truncate",
+      "version": "5.2.0",
+      "bom-ref": "cli-truncate@5.2.0"
+    },
+    {
+      "type": "library",
+      "name": "cli-width",
+      "version": "4.1.0",
+      "bom-ref": "cli-width@4.1.0"
+    },
+    {
+      "type": "library",
+      "name": "cliui",
+      "version": "8.0.1",
+      "bom-ref": "cliui@8.0.1"
+    },
+    {
+      "type": "library",
+      "name": "cliui",
+      "version": "9.0.1",
+      "bom-ref": "cliui@9.0.1"
+    },
+    {
+      "type": "library",
+      "name": "color-convert",
+      "version": "2.0.1",
+      "bom-ref": "color-convert@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "color-name",
+      "version": "1.1.4",
+      "bom-ref": "color-name@1.1.4"
+    },
+    {
+      "type": "library",
+      "name": "commander",
+      "version": "12.1.0",
+      "bom-ref": "commander@12.1.0"
+    },
+    {
+      "type": "library",
+      "name": "commander",
+      "version": "2.20.3",
+      "bom-ref": "commander@2.20.3"
+    },
+    {
+      "type": "library",
+      "name": "common-tags",
+      "version": "1.8.2",
+      "bom-ref": "common-tags@1.8.2"
+    },
+    {
+      "type": "library",
+      "name": "compress-commons",
+      "version": "6.0.2",
+      "bom-ref": "compress-commons@6.0.2"
+    },
+    {
+      "type": "library",
+      "name": "confbox",
+      "version": "0.2.4",
+      "bom-ref": "confbox@0.2.4"
+    },
+    {
+      "type": "library",
+      "name": "confbox",
+      "version": "0.3.1",
+      "bom-ref": "confbox@0.3.1"
+    },
+    {
+      "type": "library",
+      "name": "connect",
+      "version": "3.7.0",
+      "bom-ref": "connect@3.7.0"
+    },
+    {
+      "type": "library",
+      "name": "content-disposition",
+      "version": "1.1.0",
+      "bom-ref": "content-disposition@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "content-type",
+      "version": "1.0.5",
+      "bom-ref": "content-type@1.0.5"
+    },
+    {
+      "type": "library",
+      "name": "content-type",
+      "version": "2.1.0",
+      "bom-ref": "content-type@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "convert-source-map",
+      "version": "2.0.0",
+      "bom-ref": "convert-source-map@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "cookie-signature",
+      "version": "1.2.2",
+      "bom-ref": "cookie-signature@1.2.2"
+    },
+    {
+      "type": "library",
+      "name": "cookie",
+      "version": "0.7.2",
+      "bom-ref": "cookie@0.7.2"
+    },
+    {
+      "type": "library",
+      "name": "core-util-is",
+      "version": "1.0.3",
+      "bom-ref": "core-util-is@1.0.3"
+    },
+    {
+      "type": "library",
+      "name": "cosmiconfig",
+      "version": "8.3.6",
+      "bom-ref": "cosmiconfig@8.3.6"
+    },
+    {
+      "type": "library",
+      "name": "cosmiconfig",
+      "version": "9.0.2",
+      "bom-ref": "cosmiconfig@9.0.2"
+    },
+    {
+      "type": "library",
+      "name": "cpu-features",
+      "version": "0.0.10",
+      "bom-ref": "cpu-features@0.0.10"
+    },
+    {
+      "type": "library",
+      "name": "crc-32",
+      "version": "1.2.2",
+      "bom-ref": "crc-32@1.2.2"
+    },
+    {
+      "type": "library",
+      "name": "crc32-stream",
+      "version": "6.0.0",
+      "bom-ref": "crc32-stream@6.0.0"
+    },
+    {
+      "type": "library",
+      "name": "cross-fetch",
+      "version": "3.2.0",
+      "bom-ref": "cross-fetch@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "cross-inspect",
+      "version": "1.0.1",
+      "bom-ref": "cross-inspect@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "cross-spawn",
+      "version": "7.0.6",
+      "bom-ref": "cross-spawn@7.0.6"
+    },
+    {
+      "type": "library",
+      "name": "css-in-js-utils",
+      "version": "3.1.0",
+      "bom-ref": "css-in-js-utils@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "csstype",
+      "version": "3.2.3",
+      "bom-ref": "csstype@3.2.3"
+    },
+    {
+      "type": "library",
+      "name": "d3-array",
+      "version": "3.2.1",
+      "bom-ref": "d3-array@3.2.1"
+    },
+    {
+      "type": "library",
+      "name": "d3-array",
+      "version": "3.2.4",
+      "bom-ref": "d3-array@3.2.4"
+    },
+    {
+      "type": "library",
+      "name": "d3-color",
+      "version": "3.1.0",
+      "bom-ref": "d3-color@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "d3-delaunay",
+      "version": "6.0.2",
+      "bom-ref": "d3-delaunay@6.0.2"
+    },
+    {
+      "type": "library",
+      "name": "d3-format",
+      "version": "3.1.0",
+      "bom-ref": "d3-format@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "d3-geo",
+      "version": "3.1.0",
+      "bom-ref": "d3-geo@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "d3-interpolate",
+      "version": "3.0.1",
+      "bom-ref": "d3-interpolate@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "d3-path",
+      "version": "3.1.0",
+      "bom-ref": "d3-path@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "d3-scale",
+      "version": "4.0.2",
+      "bom-ref": "d3-scale@4.0.2"
+    },
+    {
+      "type": "library",
+      "name": "d3-shape",
+      "version": "3.2.0",
+      "bom-ref": "d3-shape@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "d3-time-format",
+      "version": "4.1.0",
+      "bom-ref": "d3-time-format@4.1.0"
+    },
+    {
+      "type": "library",
+      "name": "d3-time",
+      "version": "3.1.0",
+      "bom-ref": "d3-time@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "data-uri-to-buffer",
+      "version": "4.0.1",
+      "bom-ref": "data-uri-to-buffer@4.0.1"
+    },
+    {
+      "type": "library",
+      "name": "dataloader",
+      "version": "2.2.3",
+      "bom-ref": "dataloader@2.2.3"
+    },
+    {
+      "type": "library",
+      "name": "debounce",
+      "version": "3.0.0",
+      "bom-ref": "debounce@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "debug",
+      "version": "2.6.9",
+      "bom-ref": "debug@2.6.9"
+    },
+    {
+      "type": "library",
+      "name": "debug",
+      "version": "4.4.3",
+      "bom-ref": "debug@4.4.3"
+    },
+    {
+      "type": "library",
+      "name": "deepmerge-ts",
+      "version": "7.1.5",
+      "bom-ref": "deepmerge-ts@7.1.5"
+    },
+    {
+      "type": "library",
+      "name": "defu",
+      "version": "6.1.7",
+      "bom-ref": "defu@6.1.7"
+    },
+    {
+      "type": "library",
+      "name": "delaunator",
+      "version": "5.1.0",
+      "bom-ref": "delaunator@5.1.0"
+    },
+    {
+      "type": "library",
+      "name": "denque",
+      "version": "2.1.0",
+      "bom-ref": "denque@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "depd",
+      "version": "2.0.0",
+      "bom-ref": "depd@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "dependency-graph",
+      "version": "1.0.0",
+      "bom-ref": "dependency-graph@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "destr",
+      "version": "2.0.5",
+      "bom-ref": "destr@2.0.5"
+    },
+    {
+      "type": "library",
+      "name": "destroy",
+      "version": "1.2.0",
+      "bom-ref": "destroy@1.2.0"
+    },
+    {
+      "type": "library",
+      "name": "detect-indent",
+      "version": "7.0.2",
+      "bom-ref": "detect-indent@7.0.2"
+    },
+    {
+      "type": "library",
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "bom-ref": "detect-libc@2.1.2"
+    },
+    {
+      "type": "library",
+      "name": "dir-glob",
+      "version": "3.0.1",
+      "bom-ref": "dir-glob@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "docker-compose",
+      "version": "1.4.2",
+      "bom-ref": "docker-compose@1.4.2"
+    },
+    {
+      "type": "library",
+      "name": "docker-modem",
+      "version": "5.0.7",
+      "bom-ref": "docker-modem@5.0.7"
+    },
+    {
+      "type": "library",
+      "name": "dockerode",
+      "version": "5.0.1",
+      "bom-ref": "dockerode@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "dotenv",
+      "version": "17.4.2",
+      "bom-ref": "dotenv@17.4.2"
+    },
+    {
+      "type": "library",
+      "name": "dunder-proto",
+      "version": "1.0.1",
+      "bom-ref": "dunder-proto@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "eastasianwidth",
+      "version": "0.2.0",
+      "bom-ref": "eastasianwidth@0.2.0"
+    },
+    {
+      "type": "library",
+      "name": "ee-first",
+      "version": "1.1.1",
+      "bom-ref": "ee-first@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "effect",
+      "version": "3.20.0",
+      "bom-ref": "effect@3.20.0"
+    },
+    {
+      "type": "library",
+      "name": "electron-to-chromium",
+      "version": "1.5.426",
+      "bom-ref": "electron-to-chromium@1.5.426"
+    },
+    {
+      "type": "library",
+      "name": "elkjs",
+      "version": "0.11.1",
+      "bom-ref": "elkjs@0.11.1"
+    },
+    {
+      "type": "library",
+      "name": "emoji-regex",
+      "version": "10.6.0",
+      "bom-ref": "emoji-regex@10.6.0"
+    },
+    {
+      "type": "library",
+      "name": "emoji-regex",
+      "version": "8.0.0",
+      "bom-ref": "emoji-regex@8.0.0"
+    },
+    {
+      "type": "library",
+      "name": "emoji-regex",
+      "version": "9.2.2",
+      "bom-ref": "emoji-regex@9.2.2"
+    },
+    {
+      "type": "library",
+      "name": "empathic",
+      "version": "2.0.0",
+      "bom-ref": "empathic@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "encodeurl",
+      "version": "1.0.2",
+      "bom-ref": "encodeurl@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "encodeurl",
+      "version": "2.0.0",
+      "bom-ref": "encodeurl@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "end-of-stream",
+      "version": "1.4.5",
+      "bom-ref": "end-of-stream@1.4.5"
+    },
+    {
+      "type": "library",
+      "name": "env-paths",
+      "version": "2.2.1",
+      "bom-ref": "env-paths@2.2.1"
+    },
+    {
+      "type": "library",
+      "name": "env-paths",
+      "version": "3.0.0",
+      "bom-ref": "env-paths@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "environment",
+      "version": "1.1.0",
+      "bom-ref": "environment@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "error-ex",
+      "version": "1.3.4",
+      "bom-ref": "error-ex@1.3.4"
+    },
+    {
+      "type": "library",
+      "name": "error-stack-parser",
+      "version": "2.1.4",
+      "bom-ref": "error-stack-parser@2.1.4"
+    },
+    {
+      "type": "library",
+      "name": "es-define-property",
+      "version": "1.0.1",
+      "bom-ref": "es-define-property@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "es-errors",
+      "version": "1.3.0",
+      "bom-ref": "es-errors@1.3.0"
+    },
+    {
+      "type": "library",
+      "name": "es-module-lexer",
+      "version": "2.3.2",
+      "bom-ref": "es-module-lexer@2.3.2"
+    },
+    {
+      "type": "library",
+      "name": "es-object-atoms",
+      "version": "1.1.2",
+      "bom-ref": "es-object-atoms@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "esbuild",
+      "version": "0.28.2",
+      "bom-ref": "esbuild@0.28.2"
+    },
+    {
+      "type": "library",
+      "name": "escalade",
+      "version": "3.2.0",
+      "bom-ref": "escalade@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "escape-html",
+      "version": "1.0.3",
+      "bom-ref": "escape-html@1.0.3"
+    },
+    {
+      "type": "library",
+      "name": "escape-string-regexp",
+      "version": "4.0.0",
+      "bom-ref": "escape-string-regexp@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "estree-walker",
+      "version": "3.0.3",
+      "bom-ref": "estree-walker@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "etag",
+      "version": "1.8.1",
+      "bom-ref": "etag@1.8.1"
+    },
+    {
+      "type": "library",
+      "name": "event-target-shim",
+      "version": "5.0.1",
+      "bom-ref": "event-target-shim@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "eventemitter3",
+      "version": "5.0.4",
+      "bom-ref": "eventemitter3@5.0.4"
+    },
+    {
+      "type": "library",
+      "name": "events-universal",
+      "version": "1.0.1",
+      "bom-ref": "events-universal@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "events",
+      "version": "3.3.0",
+      "bom-ref": "events@3.3.0"
+    },
+    {
+      "type": "library",
+      "name": "expect-type",
+      "version": "1.4.0",
+      "bom-ref": "expect-type@1.4.0"
+    },
+    {
+      "type": "library",
+      "name": "exponential-backoff",
+      "version": "3.1.3",
+      "bom-ref": "exponential-backoff@3.1.3"
+    },
+    {
+      "type": "library",
+      "name": "express",
+      "version": "5.2.1",
+      "bom-ref": "express@5.2.1"
+    },
+    {
+      "type": "library",
+      "name": "exsolve",
+      "version": "1.1.1",
+      "bom-ref": "exsolve@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "fast-check",
+      "version": "3.23.2",
+      "bom-ref": "fast-check@3.23.2"
+    },
+    {
+      "type": "library",
+      "name": "fast-decode-uri-component",
+      "version": "1.0.1",
+      "bom-ref": "fast-decode-uri-component@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "fast-deep-equal",
+      "version": "3.1.3",
+      "bom-ref": "fast-deep-equal@3.1.3"
+    },
+    {
+      "type": "library",
+      "name": "fast-fifo",
+      "version": "1.3.2",
+      "bom-ref": "fast-fifo@1.3.2"
+    },
+    {
+      "type": "library",
+      "name": "fast-glob",
+      "version": "3.3.3",
+      "bom-ref": "fast-glob@3.3.3"
+    },
+    {
+      "type": "library",
+      "name": "fast-querystring",
+      "version": "1.1.2",
+      "bom-ref": "fast-querystring@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "fast-string-truncated-width",
+      "version": "3.0.3",
+      "bom-ref": "fast-string-truncated-width@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "fast-string-width",
+      "version": "3.0.2",
+      "bom-ref": "fast-string-width@3.0.2"
+    },
+    {
+      "type": "library",
+      "name": "fast-uri",
+      "version": "3.1.7",
+      "bom-ref": "fast-uri@3.1.7"
+    },
+    {
+      "type": "library",
+      "name": "fast-wrap-ansi",
+      "version": "0.2.2",
+      "bom-ref": "fast-wrap-ansi@0.2.2"
+    },
+    {
+      "type": "library",
+      "name": "fastq",
+      "version": "1.20.3",
+      "bom-ref": "fastq@1.20.3"
+    },
+    {
+      "type": "library",
+      "name": "fb-dotslash",
+      "version": "0.5.8",
+      "bom-ref": "fb-dotslash@0.5.8"
+    },
+    {
+      "type": "library",
+      "name": "fb-watchman",
+      "version": "2.0.2",
+      "bom-ref": "fb-watchman@2.0.2"
+    },
+    {
+      "type": "library",
+      "name": "fbjs-css-vars",
+      "version": "1.0.2",
+      "bom-ref": "fbjs-css-vars@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "fbjs",
+      "version": "3.0.5",
+      "bom-ref": "fbjs@3.0.5"
+    },
+    {
+      "type": "library",
+      "name": "fdir",
+      "version": "6.5.0",
+      "bom-ref": "fdir@6.5.0"
+    },
+    {
+      "type": "library",
+      "name": "fetch-blob",
+      "version": "3.2.0",
+      "bom-ref": "fetch-blob@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "fill-range",
+      "version": "7.1.1",
+      "bom-ref": "fill-range@7.1.1"
+    },
+    {
+      "type": "library",
+      "name": "finalhandler",
+      "version": "1.1.2",
+      "bom-ref": "finalhandler@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "finalhandler",
+      "version": "2.1.1",
+      "bom-ref": "finalhandler@2.1.1"
+    },
+    {
+      "type": "library",
+      "name": "find-my-way",
+      "version": "9.7.0",
+      "bom-ref": "find-my-way@9.7.0"
+    },
+    {
+      "type": "library",
+      "name": "flow-enums-runtime",
+      "version": "0.0.6",
+      "bom-ref": "flow-enums-runtime@0.0.6"
+    },
+    {
+      "type": "library",
+      "name": "foreground-child",
+      "version": "3.3.1",
+      "bom-ref": "foreground-child@3.3.1"
+    },
+    {
+      "type": "library",
+      "name": "formdata-polyfill",
+      "version": "4.0.10",
+      "bom-ref": "formdata-polyfill@4.0.10"
+    },
+    {
+      "type": "library",
+      "name": "forwarded",
+      "version": "0.2.0",
+      "bom-ref": "forwarded@0.2.0"
+    },
+    {
+      "type": "library",
+      "name": "fresh",
+      "version": "0.5.2",
+      "bom-ref": "fresh@0.5.2"
+    },
+    {
+      "type": "library",
+      "name": "fresh",
+      "version": "2.0.0",
+      "bom-ref": "fresh@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "fs-constants",
+      "version": "1.0.0",
+      "bom-ref": "fs-constants@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "fsevents",
+      "version": "2.3.3",
+      "bom-ref": "fsevents@2.3.3"
+    },
+    {
+      "type": "library",
+      "name": "function-bind",
+      "version": "1.1.2",
+      "bom-ref": "function-bind@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "generate-function",
+      "version": "2.3.1",
+      "bom-ref": "generate-function@2.3.1"
+    },
+    {
+      "type": "library",
+      "name": "gensync",
+      "version": "1.0.0-beta.2",
+      "bom-ref": "gensync@1.0.0-beta.2"
+    },
+    {
+      "type": "library",
+      "name": "get-caller-file",
+      "version": "2.0.5",
+      "bom-ref": "get-caller-file@2.0.5"
+    },
+    {
+      "type": "library",
+      "name": "get-east-asian-width",
+      "version": "1.6.0",
+      "bom-ref": "get-east-asian-width@1.6.0"
+    },
+    {
+      "type": "library",
+      "name": "get-intrinsic",
+      "version": "1.3.0",
+      "bom-ref": "get-intrinsic@1.3.0"
+    },
+    {
+      "type": "library",
+      "name": "get-port-please",
+      "version": "3.2.0",
+      "bom-ref": "get-port-please@3.2.0"
+    },
+    {
+      "type": "library",
+      "name": "get-port",
+      "version": "5.1.1",
+      "bom-ref": "get-port@5.1.1"
+    },
+    {
+      "type": "library",
+      "name": "get-proto",
+      "version": "1.0.1",
+      "bom-ref": "get-proto@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "giget",
+      "version": "3.3.1",
+      "bom-ref": "giget@3.3.1"
+    },
+    {
+      "type": "library",
+      "name": "glob-parent",
+      "version": "5.1.2",
+      "bom-ref": "glob-parent@5.1.2"
+    },
+    {
+      "type": "library",
+      "name": "glob",
+      "version": "10.5.0",
+      "bom-ref": "glob@10.5.0"
+    },
+    {
+      "type": "library",
+      "name": "globby",
+      "version": "11.1.0",
+      "bom-ref": "globby@11.1.0"
+    },
+    {
+      "type": "library",
+      "name": "gopd",
+      "version": "1.2.0",
+      "bom-ref": "gopd@1.2.0"
+    },
+    {
+      "type": "library",
+      "name": "graceful-fs",
+      "version": "4.2.11",
+      "bom-ref": "graceful-fs@4.2.11"
+    },
+    {
+      "type": "library",
+      "name": "grammex",
+      "version": "3.1.13",
+      "bom-ref": "grammex@3.1.13"
+    },
+    {
+      "type": "library",
+      "name": "graphmatch",
+      "version": "1.1.1",
+      "bom-ref": "graphmatch@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "graphql-config",
+      "version": "5.1.6",
+      "bom-ref": "graphql-config@5.1.6"
+    },
+    {
+      "type": "library",
+      "name": "graphql-tag",
+      "version": "2.12.7",
+      "bom-ref": "graphql-tag@2.12.7"
+    },
+    {
+      "type": "library",
+      "name": "graphql-ws",
+      "version": "6.2.1",
+      "bom-ref": "graphql-ws@6.2.1"
+    },
+    {
+      "type": "library",
+      "name": "graphql-yoga",
+      "version": "5.22.0",
+      "bom-ref": "graphql-yoga@5.22.0"
+    },
+    {
+      "type": "library",
+      "name": "graphql",
+      "version": "16.11.0",
+      "bom-ref": "graphql@16.11.0"
+    },
+    {
+      "type": "library",
+      "name": "has-flag",
+      "version": "4.0.0",
+      "bom-ref": "has-flag@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "has-symbols",
+      "version": "1.1.0",
+      "bom-ref": "has-symbols@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "hasown",
+      "version": "2.0.4",
+      "bom-ref": "hasown@2.0.4"
+    },
+    {
+      "type": "library",
+      "name": "hermes-compiler",
+      "version": "250829098.0.17",
+      "bom-ref": "hermes-compiler@250829098.0.17"
+    },
+    {
+      "type": "library",
+      "name": "hermes-estree",
+      "version": "0.36.1",
+      "bom-ref": "hermes-estree@0.36.1"
+    },
+    {
+      "type": "library",
+      "name": "hermes-parser",
+      "version": "0.36.1",
+      "bom-ref": "hermes-parser@0.36.1"
+    },
+    {
+      "type": "library",
+      "name": "http-errors",
+      "version": "2.0.1",
+      "bom-ref": "http-errors@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "https-proxy-agent",
+      "version": "7.0.6",
+      "bom-ref": "https-proxy-agent@7.0.6"
+    },
+    {
+      "type": "library",
+      "name": "hyphenate-style-name",
+      "version": "1.1.0",
+      "bom-ref": "hyphenate-style-name@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "iconv-lite",
+      "version": "0.7.3",
+      "bom-ref": "iconv-lite@0.7.3"
+    },
+    {
+      "type": "library",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "bom-ref": "ieee754@1.2.1"
+    },
+    {
+      "type": "library",
+      "name": "ignore",
+      "version": "5.3.2",
+      "bom-ref": "ignore@5.3.2"
+    },
+    {
+      "type": "library",
+      "name": "image-size",
+      "version": "1.2.1",
+      "bom-ref": "image-size@1.2.1"
+    },
+    {
+      "type": "library",
+      "name": "immutable",
+      "version": "5.1.9",
+      "bom-ref": "immutable@5.1.9"
+    },
+    {
+      "type": "library",
+      "name": "import-fresh",
+      "version": "3.3.1",
+      "bom-ref": "import-fresh@3.3.1"
+    },
+    {
+      "type": "library",
+      "name": "import-from",
+      "version": "4.0.0",
+      "bom-ref": "import-from@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "inherits",
+      "version": "2.0.4",
+      "bom-ref": "inherits@2.0.4"
+    },
+    {
+      "type": "library",
+      "name": "inline-style-prefixer",
+      "version": "7.0.1",
+      "bom-ref": "inline-style-prefixer@7.0.1"
+    },
+    {
+      "type": "library",
+      "name": "internmap",
+      "version": "2.0.3",
+      "bom-ref": "internmap@2.0.3"
+    },
+    {
+      "type": "library",
+      "name": "invariant",
+      "version": "2.2.4",
+      "bom-ref": "invariant@2.2.4"
+    },
+    {
+      "type": "library",
+      "name": "ipaddr.js",
+      "version": "1.9.1",
+      "bom-ref": "ipaddr.js@1.9.1"
+    },
+    {
+      "type": "library",
+      "name": "is-absolute",
+      "version": "1.0.0",
+      "bom-ref": "is-absolute@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "is-arrayish",
+      "version": "0.2.1",
+      "bom-ref": "is-arrayish@0.2.1"
+    },
+    {
+      "type": "library",
+      "name": "is-docker",
+      "version": "2.2.1",
+      "bom-ref": "is-docker@2.2.1"
+    },
+    {
+      "type": "library",
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "bom-ref": "is-extglob@2.1.1"
+    },
+    {
+      "type": "library",
+      "name": "is-fullwidth-code-point",
+      "version": "3.0.0",
+      "bom-ref": "is-fullwidth-code-point@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "is-fullwidth-code-point",
+      "version": "5.1.0",
+      "bom-ref": "is-fullwidth-code-point@5.1.0"
+    },
+    {
+      "type": "library",
+      "name": "is-glob",
+      "version": "4.0.3",
+      "bom-ref": "is-glob@4.0.3"
+    },
+    {
+      "type": "library",
+      "name": "is-number",
+      "version": "7.0.0",
+      "bom-ref": "is-number@7.0.0"
+    },
+    {
+      "type": "library",
+      "name": "is-promise",
+      "version": "4.0.0",
+      "bom-ref": "is-promise@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "is-property",
+      "version": "1.0.2",
+      "bom-ref": "is-property@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "is-relative",
+      "version": "1.0.0",
+      "bom-ref": "is-relative@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "is-stream",
+      "version": "2.0.1",
+      "bom-ref": "is-stream@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "is-unc-path",
+      "version": "1.0.0",
+      "bom-ref": "is-unc-path@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "is-unicode-supported",
+      "version": "2.1.0",
+      "bom-ref": "is-unicode-supported@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "is-windows",
+      "version": "1.0.2",
+      "bom-ref": "is-windows@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "is-wsl",
+      "version": "2.2.0",
+      "bom-ref": "is-wsl@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "isarray",
+      "version": "1.0.0",
+      "bom-ref": "isarray@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "isexe",
+      "version": "2.0.0",
+      "bom-ref": "isexe@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "isomorphic-ws",
+      "version": "5.0.0",
+      "bom-ref": "isomorphic-ws@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "isows",
+      "version": "1.0.7",
+      "bom-ref": "isows@1.0.7"
+    },
+    {
+      "type": "library",
+      "name": "jackspeak",
+      "version": "3.4.3",
+      "bom-ref": "jackspeak@3.4.3"
+    },
+    {
+      "type": "library",
+      "name": "jest-get-type",
+      "version": "29.6.3",
+      "bom-ref": "jest-get-type@29.6.3"
+    },
+    {
+      "type": "library",
+      "name": "jest-util",
+      "version": "29.7.0",
+      "bom-ref": "jest-util@29.7.0"
+    },
+    {
+      "type": "library",
+      "name": "jest-validate",
+      "version": "29.7.0",
+      "bom-ref": "jest-validate@29.7.0"
+    },
+    {
+      "type": "library",
+      "name": "jest-worker",
+      "version": "29.7.0",
+      "bom-ref": "jest-worker@29.7.0"
+    },
+    {
+      "type": "library",
+      "name": "jiti",
+      "version": "2.7.0",
+      "bom-ref": "jiti@2.7.0"
+    },
+    {
+      "type": "library",
+      "name": "js-tokens",
+      "version": "4.0.0",
+      "bom-ref": "js-tokens@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "js-yaml",
+      "version": "4.3.2",
+      "bom-ref": "js-yaml@4.3.2"
+    },
+    {
+      "type": "library",
+      "name": "jsc-safe-url",
+      "version": "0.2.4",
+      "bom-ref": "jsc-safe-url@0.2.4"
+    },
+    {
+      "type": "library",
+      "name": "jsesc",
+      "version": "3.1.0",
+      "bom-ref": "jsesc@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "json-parse-even-better-errors",
+      "version": "2.3.1",
+      "bom-ref": "json-parse-even-better-errors@2.3.1"
+    },
+    {
+      "type": "library",
+      "name": "json-schema-traverse",
+      "version": "1.0.0",
+      "bom-ref": "json-schema-traverse@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "json-to-pretty-yaml",
+      "version": "1.2.2",
+      "bom-ref": "json-to-pretty-yaml@1.2.2"
+    },
+    {
+      "type": "library",
+      "name": "json5",
+      "version": "2.2.3",
+      "bom-ref": "json5@2.2.3"
+    },
+    {
+      "type": "library",
+      "name": "lazystream",
+      "version": "1.0.1",
+      "bom-ref": "lazystream@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "leven",
+      "version": "3.1.0",
+      "bom-ref": "leven@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "lighthouse-logger",
+      "version": "1.4.2",
+      "bom-ref": "lighthouse-logger@1.4.2"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-android-arm64",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-android-arm64@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-darwin-arm64",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-darwin-arm64@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-darwin-x64",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-darwin-x64@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-freebsd-x64",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-freebsd-x64@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-linux-arm-gnueabihf",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-linux-arm-gnueabihf@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-linux-arm64-gnu",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-linux-arm64-gnu@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-linux-arm64-musl",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-linux-arm64-musl@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-linux-x64-gnu@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-linux-x64-musl",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-linux-x64-musl@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-win32-arm64-msvc",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-win32-arm64-msvc@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss-win32-x64-msvc",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss-win32-x64-msvc@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lightningcss",
+      "version": "1.33.0",
+      "bom-ref": "lightningcss@1.33.0"
+    },
+    {
+      "type": "library",
+      "name": "lines-and-columns",
+      "version": "1.2.4",
+      "bom-ref": "lines-and-columns@1.2.4"
+    },
+    {
+      "type": "library",
+      "name": "listr2",
+      "version": "10.2.2",
+      "bom-ref": "listr2@10.2.2"
+    },
+    {
+      "type": "library",
+      "name": "lodash.camelcase",
+      "version": "4.3.0",
+      "bom-ref": "lodash.camelcase@4.3.0"
+    },
+    {
+      "type": "library",
+      "name": "lodash.throttle",
+      "version": "4.1.1",
+      "bom-ref": "lodash.throttle@4.1.1"
+    },
+    {
+      "type": "library",
+      "name": "lodash",
+      "version": "4.18.1",
+      "bom-ref": "lodash@4.18.1"
+    },
+    {
+      "type": "library",
+      "name": "log-symbols",
+      "version": "7.0.1",
+      "bom-ref": "log-symbols@7.0.1"
+    },
+    {
+      "type": "library",
+      "name": "log-update",
+      "version": "6.1.0",
+      "bom-ref": "log-update@6.1.0"
+    },
+    {
+      "type": "library",
+      "name": "long",
+      "version": "5.3.2",
+      "bom-ref": "long@5.3.2"
+    },
+    {
+      "type": "library",
+      "name": "loose-envify",
+      "version": "1.4.0",
+      "bom-ref": "loose-envify@1.4.0"
+    },
+    {
+      "type": "library",
+      "name": "lru-cache",
+      "version": "10.4.3",
+      "bom-ref": "lru-cache@10.4.3"
+    },
+    {
+      "type": "library",
+      "name": "lru-cache",
+      "version": "5.1.1",
+      "bom-ref": "lru-cache@5.1.1"
+    },
+    {
+      "type": "library",
+      "name": "lru.min",
+      "version": "1.1.5",
+      "bom-ref": "lru.min@1.1.5"
+    },
+    {
+      "type": "library",
+      "name": "magic-string",
+      "version": "1.3.1",
+      "bom-ref": "magic-string@1.3.1"
+    },
+    {
+      "type": "library",
+      "name": "makeerror",
+      "version": "1.0.12",
+      "bom-ref": "makeerror@1.0.12"
+    },
+    {
+      "type": "library",
+      "name": "map-cache",
+      "version": "0.2.2",
+      "bom-ref": "map-cache@0.2.2"
+    },
+    {
+      "type": "library",
+      "name": "marky",
+      "version": "1.3.0",
+      "bom-ref": "marky@1.3.0"
+    },
+    {
+      "type": "library",
+      "name": "math-intrinsics",
+      "version": "1.1.0",
+      "bom-ref": "math-intrinsics@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "media-typer",
+      "version": "1.1.1",
+      "bom-ref": "media-typer@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "memoize-one",
+      "version": "5.2.1",
+      "bom-ref": "memoize-one@5.2.1"
+    },
+    {
+      "type": "library",
+      "name": "memoize-one",
+      "version": "6.0.0",
+      "bom-ref": "memoize-one@6.0.0"
+    },
+    {
+      "type": "library",
+      "name": "merge-descriptors",
+      "version": "2.0.0",
+      "bom-ref": "merge-descriptors@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "merge-stream",
+      "version": "2.0.0",
+      "bom-ref": "merge-stream@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "merge2",
+      "version": "1.4.1",
+      "bom-ref": "merge2@1.4.1"
+    },
+    {
+      "type": "library",
+      "name": "meros",
+      "version": "1.3.2",
+      "bom-ref": "meros@1.3.2"
+    },
+    {
+      "type": "library",
+      "name": "metro-babel-transformer",
+      "version": "0.87.0",
+      "bom-ref": "metro-babel-transformer@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-cache-key",
+      "version": "0.87.0",
+      "bom-ref": "metro-cache-key@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-cache",
+      "version": "0.87.0",
+      "bom-ref": "metro-cache@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-config",
+      "version": "0.87.0",
+      "bom-ref": "metro-config@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-core",
+      "version": "0.87.0",
+      "bom-ref": "metro-core@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-file-map",
+      "version": "0.87.0",
+      "bom-ref": "metro-file-map@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-minify-terser",
+      "version": "0.87.0",
+      "bom-ref": "metro-minify-terser@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-resolver",
+      "version": "0.87.0",
+      "bom-ref": "metro-resolver@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-runtime",
+      "version": "0.87.0",
+      "bom-ref": "metro-runtime@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-source-map",
+      "version": "0.87.0",
+      "bom-ref": "metro-source-map@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-symbolicate",
+      "version": "0.87.0",
+      "bom-ref": "metro-symbolicate@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-transform-plugins",
+      "version": "0.87.0",
+      "bom-ref": "metro-transform-plugins@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro-transform-worker",
+      "version": "0.87.0",
+      "bom-ref": "metro-transform-worker@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "metro",
+      "version": "0.87.0",
+      "bom-ref": "metro@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "micromatch",
+      "version": "4.0.8",
+      "bom-ref": "micromatch@4.0.8"
+    },
+    {
+      "type": "library",
+      "name": "mime-db",
+      "version": "1.54.0",
+      "bom-ref": "mime-db@1.54.0"
+    },
+    {
+      "type": "library",
+      "name": "mime-types",
+      "version": "3.0.2",
+      "bom-ref": "mime-types@3.0.2"
+    },
+    {
+      "type": "library",
+      "name": "mime",
+      "version": "1.6.0",
+      "bom-ref": "mime@1.6.0"
+    },
+    {
+      "type": "library",
+      "name": "mimic-function",
+      "version": "5.0.1",
+      "bom-ref": "mimic-function@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "minimatch",
+      "version": "10.2.6",
+      "bom-ref": "minimatch@10.2.6"
+    },
+    {
+      "type": "library",
+      "name": "minimatch",
+      "version": "5.1.9",
+      "bom-ref": "minimatch@5.1.9"
+    },
+    {
+      "type": "library",
+      "name": "minimatch",
+      "version": "9.0.9",
+      "bom-ref": "minimatch@9.0.9"
+    },
+    {
+      "type": "library",
+      "name": "minipass",
+      "version": "7.1.3",
+      "bom-ref": "minipass@7.1.3"
+    },
+    {
+      "type": "library",
+      "name": "mkdirp-classic",
+      "version": "0.5.3",
+      "bom-ref": "mkdirp-classic@0.5.3"
+    },
+    {
+      "type": "library",
+      "name": "mkdirp",
+      "version": "1.0.4",
+      "bom-ref": "mkdirp@1.0.4"
+    },
+    {
+      "type": "library",
+      "name": "mkdirp",
+      "version": "3.0.1",
+      "bom-ref": "mkdirp@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "ms",
+      "version": "2.0.0",
+      "bom-ref": "ms@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "ms",
+      "version": "2.1.3",
+      "bom-ref": "ms@2.1.3"
+    },
+    {
+      "type": "library",
+      "name": "mute-stream",
+      "version": "3.0.0",
+      "bom-ref": "mute-stream@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "mysql2",
+      "version": "3.15.3",
+      "bom-ref": "mysql2@3.15.3"
+    },
+    {
+      "type": "library",
+      "name": "named-placeholders",
+      "version": "1.1.6",
+      "bom-ref": "named-placeholders@1.1.6"
+    },
+    {
+      "type": "library",
+      "name": "nan",
+      "version": "2.28.0",
+      "bom-ref": "nan@2.28.0"
+    },
+    {
+      "type": "library",
+      "name": "nanoid",
+      "version": "3.3.18",
+      "bom-ref": "nanoid@3.3.18"
+    },
+    {
+      "type": "library",
+      "name": "negotiator",
+      "version": "1.1.0",
+      "bom-ref": "negotiator@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "node-domexception",
+      "version": "1.0.0",
+      "bom-ref": "node-domexception@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "node-fetch",
+      "version": "2.7.0",
+      "bom-ref": "node-fetch@2.7.0"
+    },
+    {
+      "type": "library",
+      "name": "node-fetch",
+      "version": "3.3.2",
+      "bom-ref": "node-fetch@3.3.2"
+    },
+    {
+      "type": "library",
+      "name": "node-int64",
+      "version": "0.4.0",
+      "bom-ref": "node-int64@0.4.0"
+    },
+    {
+      "type": "library",
+      "name": "node-releases",
+      "version": "2.0.55",
+      "bom-ref": "node-releases@2.0.55"
+    },
+    {
+      "type": "library",
+      "name": "normalize-path",
+      "version": "2.1.1",
+      "bom-ref": "normalize-path@2.1.1"
+    },
+    {
+      "type": "library",
+      "name": "normalize-path",
+      "version": "3.0.0",
+      "bom-ref": "normalize-path@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "nullthrows",
+      "version": "1.1.1",
+      "bom-ref": "nullthrows@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "ob1",
+      "version": "0.87.0",
+      "bom-ref": "ob1@0.87.0"
+    },
+    {
+      "type": "library",
+      "name": "object-assign",
+      "version": "4.1.1",
+      "bom-ref": "object-assign@4.1.1"
+    },
+    {
+      "type": "library",
+      "name": "object-inspect",
+      "version": "1.13.4",
+      "bom-ref": "object-inspect@1.13.4"
+    },
+    {
+      "type": "library",
+      "name": "obug",
+      "version": "2.2.1",
+      "bom-ref": "obug@2.2.1"
+    },
+    {
+      "type": "library",
+      "name": "ohash",
+      "version": "2.0.12",
+      "bom-ref": "ohash@2.0.12"
+    },
+    {
+      "type": "library",
+      "name": "on-finished",
+      "version": "2.3.0",
+      "bom-ref": "on-finished@2.3.0"
+    },
+    {
+      "type": "library",
+      "name": "on-finished",
+      "version": "2.4.1",
+      "bom-ref": "on-finished@2.4.1"
+    },
+    {
+      "type": "library",
+      "name": "once",
+      "version": "1.4.0",
+      "bom-ref": "once@1.4.0"
+    },
+    {
+      "type": "library",
+      "name": "onetime",
+      "version": "7.0.0",
+      "bom-ref": "onetime@7.0.0"
+    },
+    {
+      "type": "library",
+      "name": "open",
+      "version": "7.4.2",
+      "bom-ref": "open@7.4.2"
+    },
+    {
+      "type": "library",
+      "name": "oxlint",
+      "version": "1.82.0",
+      "bom-ref": "oxlint@1.82.0"
+    },
+    {
+      "type": "library",
+      "name": "p-limit",
+      "version": "3.1.0",
+      "bom-ref": "p-limit@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "package-json-from-dist",
+      "version": "1.0.1",
+      "bom-ref": "package-json-from-dist@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "parent-module",
+      "version": "1.0.1",
+      "bom-ref": "parent-module@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "parse-filepath",
+      "version": "1.0.2",
+      "bom-ref": "parse-filepath@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "parse-json",
+      "version": "5.2.0",
+      "bom-ref": "parse-json@5.2.0"
+    },
+    {
+      "type": "library",
+      "name": "parseurl",
+      "version": "1.3.3",
+      "bom-ref": "parseurl@1.3.3"
+    },
+    {
+      "type": "library",
+      "name": "path-key",
+      "version": "3.1.1",
+      "bom-ref": "path-key@3.1.1"
+    },
+    {
+      "type": "library",
+      "name": "path-root-regex",
+      "version": "0.1.2",
+      "bom-ref": "path-root-regex@0.1.2"
+    },
+    {
+      "type": "library",
+      "name": "path-root",
+      "version": "0.1.1",
+      "bom-ref": "path-root@0.1.1"
+    },
+    {
+      "type": "library",
+      "name": "path-scurry",
+      "version": "1.11.1",
+      "bom-ref": "path-scurry@1.11.1"
+    },
+    {
+      "type": "library",
+      "name": "path-to-regexp",
+      "version": "8.4.2",
+      "bom-ref": "path-to-regexp@8.4.2"
+    },
+    {
+      "type": "library",
+      "name": "path-type",
+      "version": "4.0.0",
+      "bom-ref": "path-type@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "pathe",
+      "version": "2.0.3",
+      "bom-ref": "pathe@2.0.3"
+    },
+    {
+      "type": "library",
+      "name": "perfect-debounce",
+      "version": "2.1.0",
+      "bom-ref": "perfect-debounce@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "pg-cloudflare",
+      "version": "1.4.0",
+      "bom-ref": "pg-cloudflare@1.4.0"
+    },
+    {
+      "type": "library",
+      "name": "pg-connection-string",
+      "version": "2.14.0",
+      "bom-ref": "pg-connection-string@2.14.0"
+    },
+    {
+      "type": "library",
+      "name": "pg-int8",
+      "version": "1.0.1",
+      "bom-ref": "pg-int8@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "pg-pool",
+      "version": "3.14.0",
+      "bom-ref": "pg-pool@3.14.0"
+    },
+    {
+      "type": "library",
+      "name": "pg-protocol",
+      "version": "1.16.0",
+      "bom-ref": "pg-protocol@1.16.0"
+    },
+    {
+      "type": "library",
+      "name": "pg-types",
+      "version": "2.2.0",
+      "bom-ref": "pg-types@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "pg",
+      "version": "8.23.0",
+      "bom-ref": "pg@8.23.0"
+    },
+    {
+      "type": "library",
+      "name": "pgpass",
+      "version": "1.0.5",
+      "bom-ref": "pgpass@1.0.5"
+    },
+    {
+      "type": "library",
+      "name": "picocolors",
+      "version": "1.1.1",
+      "bom-ref": "picocolors@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "picomatch",
+      "version": "2.3.2",
+      "bom-ref": "picomatch@2.3.2"
+    },
+    {
+      "type": "library",
+      "name": "picomatch",
+      "version": "4.0.7",
+      "bom-ref": "picomatch@4.0.7"
+    },
+    {
+      "type": "library",
+      "name": "pkg-types",
+      "version": "2.3.3",
+      "bom-ref": "pkg-types@2.3.3"
+    },
+    {
+      "type": "library",
+      "name": "playwright-core",
+      "version": "1.63.0",
+      "bom-ref": "playwright-core@1.63.0"
+    },
+    {
+      "type": "library",
+      "name": "playwright",
+      "version": "1.63.0",
+      "bom-ref": "playwright@1.63.0"
+    },
+    {
+      "type": "library",
+      "name": "postcss-value-parser",
+      "version": "4.2.0",
+      "bom-ref": "postcss-value-parser@4.2.0"
+    },
+    {
+      "type": "library",
+      "name": "postcss",
+      "version": "8.5.28",
+      "bom-ref": "postcss@8.5.28"
+    },
+    {
+      "type": "library",
+      "name": "postgres-array",
+      "version": "2.0.0",
+      "bom-ref": "postgres-array@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "postgres-array",
+      "version": "3.0.4",
+      "bom-ref": "postgres-array@3.0.4"
+    },
+    {
+      "type": "library",
+      "name": "postgres-bytea",
+      "version": "1.0.1",
+      "bom-ref": "postgres-bytea@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "postgres-date",
+      "version": "1.0.7",
+      "bom-ref": "postgres-date@1.0.7"
+    },
+    {
+      "type": "library",
+      "name": "postgres-interval",
+      "version": "1.2.0",
+      "bom-ref": "postgres-interval@1.2.0"
+    },
+    {
+      "type": "library",
+      "name": "postgres",
+      "version": "3.4.7",
+      "bom-ref": "postgres@3.4.7"
+    },
+    {
+      "type": "library",
+      "name": "pretty-format",
+      "version": "29.7.0",
+      "bom-ref": "pretty-format@29.7.0"
+    },
+    {
+      "type": "library",
+      "name": "prisma",
+      "version": "7.10.0",
+      "bom-ref": "prisma@7.10.0"
+    },
+    {
+      "type": "library",
+      "name": "process-nextick-args",
+      "version": "2.0.1",
+      "bom-ref": "process-nextick-args@2.0.1"
+    },
+    {
+      "type": "library",
+      "name": "process",
+      "version": "0.11.10",
+      "bom-ref": "process@0.11.10"
+    },
+    {
+      "type": "library",
+      "name": "promise",
+      "version": "7.3.1",
+      "bom-ref": "promise@7.3.1"
+    },
+    {
+      "type": "library",
+      "name": "promise",
+      "version": "8.3.0",
+      "bom-ref": "promise@8.3.0"
+    },
+    {
+      "type": "library",
+      "name": "proper-lockfile",
+      "version": "4.1.2",
+      "bom-ref": "proper-lockfile@4.1.2"
+    },
+    {
+      "type": "library",
+      "name": "properties-reader",
+      "version": "3.0.1",
+      "bom-ref": "properties-reader@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "protobufjs",
+      "version": "7.6.6",
+      "bom-ref": "protobufjs@7.6.6"
+    },
+    {
+      "type": "library",
+      "name": "proxy-addr",
+      "version": "2.0.7",
+      "bom-ref": "proxy-addr@2.0.7"
+    },
+    {
+      "type": "library",
+      "name": "pump",
+      "version": "3.0.4",
+      "bom-ref": "pump@3.0.4"
+    },
+    {
+      "type": "library",
+      "name": "pure-rand",
+      "version": "6.1.0",
+      "bom-ref": "pure-rand@6.1.0"
+    },
+    {
+      "type": "library",
+      "name": "qs",
+      "version": "6.16.0",
+      "bom-ref": "qs@6.16.0"
+    },
+    {
+      "type": "library",
+      "name": "queue-microtask",
+      "version": "1.2.3",
+      "bom-ref": "queue-microtask@1.2.3"
+    },
+    {
+      "type": "library",
+      "name": "queue",
+      "version": "6.0.2",
+      "bom-ref": "queue@6.0.2"
+    },
+    {
+      "type": "library",
+      "name": "range-parser",
+      "version": "1.2.1",
+      "bom-ref": "range-parser@1.2.1"
+    },
+    {
+      "type": "library",
+      "name": "range-parser",
+      "version": "1.3.0",
+      "bom-ref": "range-parser@1.3.0"
+    },
+    {
+      "type": "library",
+      "name": "raw-body",
+      "version": "3.0.2",
+      "bom-ref": "raw-body@3.0.2"
+    },
+    {
+      "type": "library",
+      "name": "rc9",
+      "version": "3.1.0",
+      "bom-ref": "rc9@3.1.0"
+    },
+    {
+      "type": "library",
+      "name": "react-devtools-core",
+      "version": "6.1.5",
+      "bom-ref": "react-devtools-core@6.1.5"
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "19.3.0",
+      "bom-ref": "react-dom@19.3.0"
+    },
+    {
+      "type": "library",
+      "name": "react-is",
+      "version": "18.3.1",
+      "bom-ref": "react-is@18.3.1"
+    },
+    {
+      "type": "library",
+      "name": "react-native-web",
+      "version": "0.21.2",
+      "bom-ref": "react-native-web@0.21.2"
+    },
+    {
+      "type": "library",
+      "name": "react-native",
+      "version": "0.87.1",
+      "bom-ref": "react-native@0.87.1"
+    },
+    {
+      "type": "library",
+      "name": "react-refresh",
+      "version": "0.14.2",
+      "bom-ref": "react-refresh@0.14.2"
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.3.0",
+      "bom-ref": "react@19.3.0"
+    },
+    {
+      "type": "library",
+      "name": "readable-stream",
+      "version": "2.3.8",
+      "bom-ref": "readable-stream@2.3.8"
+    },
+    {
+      "type": "library",
+      "name": "readable-stream",
+      "version": "3.6.2",
+      "bom-ref": "readable-stream@3.6.2"
+    },
+    {
+      "type": "library",
+      "name": "readable-stream",
+      "version": "4.7.0",
+      "bom-ref": "readable-stream@4.7.0"
+    },
+    {
+      "type": "library",
+      "name": "readdir-glob",
+      "version": "1.1.3",
+      "bom-ref": "readdir-glob@1.1.3"
+    },
+    {
+      "type": "library",
+      "name": "readdirp",
+      "version": "5.1.1",
+      "bom-ref": "readdirp@5.1.1"
+    },
+    {
+      "type": "library",
+      "name": "regenerator-runtime",
+      "version": "0.13.11",
+      "bom-ref": "regenerator-runtime@0.13.11"
+    },
+    {
+      "type": "library",
+      "name": "remeda",
+      "version": "2.33.4",
+      "bom-ref": "remeda@2.33.4"
+    },
+    {
+      "type": "library",
+      "name": "remedial",
+      "version": "1.0.8",
+      "bom-ref": "remedial@1.0.8"
+    },
+    {
+      "type": "library",
+      "name": "remove-trailing-separator",
+      "version": "1.1.0",
+      "bom-ref": "remove-trailing-separator@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "remove-trailing-spaces",
+      "version": "1.0.9",
+      "bom-ref": "remove-trailing-spaces@1.0.9"
+    },
+    {
+      "type": "library",
+      "name": "require-directory",
+      "version": "2.1.1",
+      "bom-ref": "require-directory@2.1.1"
+    },
+    {
+      "type": "library",
+      "name": "require-from-string",
+      "version": "2.0.2",
+      "bom-ref": "require-from-string@2.0.2"
+    },
+    {
+      "type": "library",
+      "name": "resolve-from",
+      "version": "4.0.0",
+      "bom-ref": "resolve-from@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "resolve-from",
+      "version": "5.0.0",
+      "bom-ref": "resolve-from@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "restore-cursor",
+      "version": "5.1.0",
+      "bom-ref": "restore-cursor@5.1.0"
+    },
+    {
+      "type": "library",
+      "name": "ret",
+      "version": "0.5.0",
+      "bom-ref": "ret@0.5.0"
+    },
+    {
+      "type": "library",
+      "name": "retry",
+      "version": "0.12.0",
+      "bom-ref": "retry@0.12.0"
+    },
+    {
+      "type": "library",
+      "name": "reusify",
+      "version": "1.1.0",
+      "bom-ref": "reusify@1.1.0"
+    },
+    {
+      "type": "library",
+      "name": "rfdc",
+      "version": "1.4.1",
+      "bom-ref": "rfdc@1.4.1"
+    },
+    {
+      "type": "library",
+      "name": "robust-predicates",
+      "version": "3.0.3",
+      "bom-ref": "robust-predicates@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "rolldown",
+      "version": "1.2.8",
+      "bom-ref": "rolldown@1.2.8"
+    },
+    {
+      "type": "library",
+      "name": "router",
+      "version": "2.2.0",
+      "bom-ref": "router@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "run-parallel",
+      "version": "1.2.0",
+      "bom-ref": "run-parallel@1.2.0"
+    },
+    {
+      "type": "library",
+      "name": "safe-buffer",
+      "version": "5.1.2",
+      "bom-ref": "safe-buffer@5.1.2"
+    },
+    {
+      "type": "library",
+      "name": "safe-buffer",
+      "version": "5.2.1",
+      "bom-ref": "safe-buffer@5.2.1"
+    },
+    {
+      "type": "library",
+      "name": "safe-regex2",
+      "version": "5.1.1",
+      "bom-ref": "safe-regex2@5.1.1"
+    },
+    {
+      "type": "library",
+      "name": "safer-buffer",
+      "version": "2.1.2",
+      "bom-ref": "safer-buffer@2.1.2"
+    },
+    {
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.27.0",
+      "bom-ref": "scheduler@0.27.0"
+    },
+    {
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.28.0",
+      "bom-ref": "scheduler@0.28.0"
+    },
+    {
+      "type": "library",
+      "name": "semver",
+      "version": "6.3.1",
+      "bom-ref": "semver@6.3.1"
+    },
+    {
+      "type": "library",
+      "name": "semver",
+      "version": "7.8.5",
+      "bom-ref": "semver@7.8.5"
+    },
+    {
+      "type": "library",
+      "name": "send",
+      "version": "0.19.2",
+      "bom-ref": "send@0.19.2"
+    },
+    {
+      "type": "library",
+      "name": "send",
+      "version": "1.2.1",
+      "bom-ref": "send@1.2.1"
+    },
+    {
+      "type": "library",
+      "name": "seq-queue",
+      "version": "0.0.5",
+      "bom-ref": "seq-queue@0.0.5"
+    },
+    {
+      "type": "library",
+      "name": "serialize-error",
+      "version": "2.1.0",
+      "bom-ref": "serialize-error@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "serve-static",
+      "version": "1.16.3",
+      "bom-ref": "serve-static@1.16.3"
+    },
+    {
+      "type": "library",
+      "name": "serve-static",
+      "version": "2.2.1",
+      "bom-ref": "serve-static@2.2.1"
+    },
+    {
+      "type": "library",
+      "name": "setimmediate",
+      "version": "1.0.5",
+      "bom-ref": "setimmediate@1.0.5"
+    },
+    {
+      "type": "library",
+      "name": "setprototypeof",
+      "version": "1.2.0",
+      "bom-ref": "setprototypeof@1.2.0"
+    },
+    {
+      "type": "library",
+      "name": "shebang-command",
+      "version": "2.0.0",
+      "bom-ref": "shebang-command@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "shebang-regex",
+      "version": "3.0.0",
+      "bom-ref": "shebang-regex@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "shell-quote",
+      "version": "1.10.0",
+      "bom-ref": "shell-quote@1.10.0"
+    },
+    {
+      "type": "library",
+      "name": "side-channel-list",
+      "version": "1.0.1",
+      "bom-ref": "side-channel-list@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "side-channel-map",
+      "version": "1.0.1",
+      "bom-ref": "side-channel-map@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "side-channel-weakmap",
+      "version": "1.0.2",
+      "bom-ref": "side-channel-weakmap@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "side-channel",
+      "version": "1.1.1",
+      "bom-ref": "side-channel@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "siginfo",
+      "version": "2.0.0",
+      "bom-ref": "siginfo@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "signal-exit",
+      "version": "3.0.7",
+      "bom-ref": "signal-exit@3.0.7"
+    },
+    {
+      "type": "library",
+      "name": "signal-exit",
+      "version": "4.1.0",
+      "bom-ref": "signal-exit@4.1.0"
+    },
+    {
+      "type": "library",
+      "name": "slash",
+      "version": "3.0.0",
+      "bom-ref": "slash@3.0.0"
+    },
+    {
+      "type": "library",
+      "name": "slice-ansi",
+      "version": "7.1.2",
+      "bom-ref": "slice-ansi@7.1.2"
+    },
+    {
+      "type": "library",
+      "name": "slice-ansi",
+      "version": "8.0.0",
+      "bom-ref": "slice-ansi@8.0.0"
+    },
+    {
+      "type": "library",
+      "name": "source-map-js",
+      "version": "1.2.1",
+      "bom-ref": "source-map-js@1.2.1"
+    },
+    {
+      "type": "library",
+      "name": "source-map-support",
+      "version": "0.5.21",
+      "bom-ref": "source-map-support@0.5.21"
+    },
+    {
+      "type": "library",
+      "name": "source-map",
+      "version": "0.5.7",
+      "bom-ref": "source-map@0.5.7"
+    },
+    {
+      "type": "library",
+      "name": "source-map",
+      "version": "0.6.1",
+      "bom-ref": "source-map@0.6.1"
+    },
+    {
+      "type": "library",
+      "name": "split-ca",
+      "version": "1.0.1",
+      "bom-ref": "split-ca@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "split2",
+      "version": "4.2.0",
+      "bom-ref": "split2@4.2.0"
+    },
+    {
+      "type": "library",
+      "name": "sponge-case",
+      "version": "2.0.3",
+      "bom-ref": "sponge-case@2.0.3"
+    },
+    {
+      "type": "library",
+      "name": "sqlstring",
+      "version": "2.3.3",
+      "bom-ref": "sqlstring@2.3.3"
+    },
+    {
+      "type": "library",
+      "name": "ssh-remote-port-forward",
+      "version": "1.0.4",
+      "bom-ref": "ssh-remote-port-forward@1.0.4"
+    },
+    {
+      "type": "library",
+      "name": "ssh2",
+      "version": "1.17.0",
+      "bom-ref": "ssh2@1.17.0"
+    },
+    {
+      "type": "library",
+      "name": "stackback",
+      "version": "0.0.2",
+      "bom-ref": "stackback@0.0.2"
+    },
+    {
+      "type": "library",
+      "name": "stackframe",
+      "version": "1.3.4",
+      "bom-ref": "stackframe@1.3.4"
+    },
+    {
+      "type": "library",
+      "name": "stacktrace-parser",
+      "version": "0.1.11",
+      "bom-ref": "stacktrace-parser@0.1.11"
+    },
+    {
+      "type": "library",
+      "name": "statuses",
+      "version": "1.5.0",
+      "bom-ref": "statuses@1.5.0"
+    },
+    {
+      "type": "library",
+      "name": "statuses",
+      "version": "2.0.2",
+      "bom-ref": "statuses@2.0.2"
+    },
+    {
+      "type": "library",
+      "name": "std-env",
+      "version": "3.10.0",
+      "bom-ref": "std-env@3.10.0"
+    },
+    {
+      "type": "library",
+      "name": "std-env",
+      "version": "4.2.0",
+      "bom-ref": "std-env@4.2.0"
+    },
+    {
+      "type": "library",
+      "name": "streamx",
+      "version": "2.28.1",
+      "bom-ref": "streamx@2.28.1"
+    },
+    {
+      "type": "library",
+      "name": "string_decoder",
+      "version": "1.1.1",
+      "bom-ref": "string_decoder@1.1.1"
+    },
+    {
+      "type": "library",
+      "name": "string_decoder",
+      "version": "1.3.0",
+      "bom-ref": "string_decoder@1.3.0"
+    },
+    {
+      "type": "library",
+      "name": "string-env-interpolation",
+      "version": "1.0.1",
+      "bom-ref": "string-env-interpolation@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "string-width-cjs",
+      "version": "4.2.3",
+      "bom-ref": "string-width-cjs@4.2.3"
+    },
+    {
+      "type": "library",
+      "name": "string-width",
+      "version": "4.2.3",
+      "bom-ref": "string-width@4.2.3"
+    },
+    {
+      "type": "library",
+      "name": "string-width",
+      "version": "5.1.2",
+      "bom-ref": "string-width@5.1.2"
+    },
+    {
+      "type": "library",
+      "name": "string-width",
+      "version": "7.2.0",
+      "bom-ref": "string-width@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "string-width",
+      "version": "8.2.2",
+      "bom-ref": "string-width@8.2.2"
+    },
+    {
+      "type": "library",
+      "name": "strip-ansi-cjs",
+      "version": "6.0.1",
+      "bom-ref": "strip-ansi-cjs@6.0.1"
+    },
+    {
+      "type": "library",
+      "name": "strip-ansi",
+      "version": "6.0.1",
+      "bom-ref": "strip-ansi@6.0.1"
+    },
+    {
+      "type": "library",
+      "name": "strip-ansi",
+      "version": "7.2.0",
+      "bom-ref": "strip-ansi@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "styleq",
+      "version": "0.1.3",
+      "bom-ref": "styleq@0.1.3"
+    },
+    {
+      "type": "library",
+      "name": "supports-color",
+      "version": "7.2.0",
+      "bom-ref": "supports-color@7.2.0"
+    },
+    {
+      "type": "library",
+      "name": "supports-color",
+      "version": "8.1.1",
+      "bom-ref": "supports-color@8.1.1"
+    },
+    {
+      "type": "library",
+      "name": "swap-case",
+      "version": "3.0.3",
+      "bom-ref": "swap-case@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "sync-fetch",
+      "version": "0.6.0",
+      "bom-ref": "sync-fetch@0.6.0"
+    },
+    {
+      "type": "library",
+      "name": "tar-fs",
+      "version": "2.1.5",
+      "bom-ref": "tar-fs@2.1.5"
+    },
+    {
+      "type": "library",
+      "name": "tar-fs",
+      "version": "3.1.3",
+      "bom-ref": "tar-fs@3.1.3"
+    },
+    {
+      "type": "library",
+      "name": "tar-stream",
+      "version": "2.2.0",
+      "bom-ref": "tar-stream@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "tar-stream",
+      "version": "3.2.1",
+      "bom-ref": "tar-stream@3.2.1"
+    },
+    {
+      "type": "library",
+      "name": "teex",
+      "version": "1.0.1",
+      "bom-ref": "teex@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "terser",
+      "version": "5.51.2",
+      "bom-ref": "terser@5.51.2"
+    },
+    {
+      "type": "library",
+      "name": "testcontainers",
+      "version": "12.1.0",
+      "bom-ref": "testcontainers@12.1.0"
+    },
+    {
+      "type": "library",
+      "name": "text-decoder",
+      "version": "1.2.7",
+      "bom-ref": "text-decoder@1.2.7"
+    },
+    {
+      "type": "library",
+      "name": "throat",
+      "version": "5.0.0",
+      "bom-ref": "throat@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "timeout-signal",
+      "version": "2.0.0",
+      "bom-ref": "timeout-signal@2.0.0"
+    },
+    {
+      "type": "library",
+      "name": "tinybench",
+      "version": "6.1.4",
+      "bom-ref": "tinybench@6.1.4"
+    },
+    {
+      "type": "library",
+      "name": "tinyexec",
+      "version": "1.3.0",
+      "bom-ref": "tinyexec@1.3.0"
+    },
+    {
+      "type": "library",
+      "name": "tinyglobby",
+      "version": "0.2.17",
+      "bom-ref": "tinyglobby@0.2.17"
+    },
+    {
+      "type": "library",
+      "name": "title-case",
+      "version": "3.0.3",
+      "bom-ref": "title-case@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "tmp",
+      "version": "0.2.7",
+      "bom-ref": "tmp@0.2.7"
+    },
+    {
+      "type": "library",
+      "name": "tmpl",
+      "version": "1.0.5",
+      "bom-ref": "tmpl@1.0.5"
+    },
+    {
+      "type": "library",
+      "name": "to-regex-range",
+      "version": "5.0.1",
+      "bom-ref": "to-regex-range@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "toidentifier",
+      "version": "1.0.1",
+      "bom-ref": "toidentifier@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "tr46",
+      "version": "0.0.3",
+      "bom-ref": "tr46@0.0.3"
+    },
+    {
+      "type": "library",
+      "name": "ts-log",
+      "version": "3.0.3",
+      "bom-ref": "ts-log@3.0.3"
+    },
+    {
+      "type": "library",
+      "name": "tslib",
+      "version": "2.8.1",
+      "bom-ref": "tslib@2.8.1"
+    },
+    {
+      "type": "library",
+      "name": "tsx",
+      "version": "4.23.13",
+      "bom-ref": "tsx@4.23.13"
+    },
+    {
+      "type": "library",
+      "name": "tweetnacl",
+      "version": "0.14.5",
+      "bom-ref": "tweetnacl@0.14.5"
+    },
+    {
+      "type": "library",
+      "name": "type-fest",
+      "version": "0.7.1",
+      "bom-ref": "type-fest@0.7.1"
+    },
+    {
+      "type": "library",
+      "name": "type-is",
+      "version": "2.1.0",
+      "bom-ref": "type-is@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "5.9.3",
+      "bom-ref": "typescript@5.9.3"
+    },
+    {
+      "type": "library",
+      "name": "ua-parser-js",
+      "version": "1.0.41",
+      "bom-ref": "ua-parser-js@1.0.41"
+    },
+    {
+      "type": "library",
+      "name": "unc-path-regex",
+      "version": "0.1.2",
+      "bom-ref": "unc-path-regex@0.1.2"
+    },
+    {
+      "type": "library",
+      "name": "undici-types",
+      "version": "5.26.5",
+      "bom-ref": "undici-types@5.26.5"
+    },
+    {
+      "type": "library",
+      "name": "undici-types",
+      "version": "6.21.0",
+      "bom-ref": "undici-types@6.21.0"
+    },
+    {
+      "type": "library",
+      "name": "undici",
+      "version": "8.10.2",
+      "bom-ref": "undici@8.10.2"
+    },
+    {
+      "type": "library",
+      "name": "unixify",
+      "version": "1.0.0",
+      "bom-ref": "unixify@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "unpipe",
+      "version": "1.0.0",
+      "bom-ref": "unpipe@1.0.0"
+    },
+    {
+      "type": "library",
+      "name": "update-browserslist-db",
+      "version": "1.3.2",
+      "bom-ref": "update-browserslist-db@1.3.2"
+    },
+    {
+      "type": "library",
+      "name": "urlpattern-polyfill",
+      "version": "10.1.0",
+      "bom-ref": "urlpattern-polyfill@10.1.0"
+    },
+    {
+      "type": "library",
+      "name": "util-deprecate",
+      "version": "1.0.2",
+      "bom-ref": "util-deprecate@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "utils-merge",
+      "version": "1.0.1",
+      "bom-ref": "utils-merge@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "valibot",
+      "version": "1.4.2",
+      "bom-ref": "valibot@1.4.2"
+    },
+    {
+      "type": "library",
+      "name": "vary",
+      "version": "1.1.2",
+      "bom-ref": "vary@1.1.2"
+    },
+    {
+      "type": "library",
+      "name": "vite",
+      "version": "8.3.0",
+      "bom-ref": "vite@8.3.0"
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "5.0.0",
+      "bom-ref": "vitest@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "vlq",
+      "version": "1.0.1",
+      "bom-ref": "vlq@1.0.1"
+    },
+    {
+      "type": "library",
+      "name": "walker",
+      "version": "1.0.8",
+      "bom-ref": "walker@1.0.8"
+    },
+    {
+      "type": "library",
+      "name": "web-streams-polyfill",
+      "version": "3.3.3",
+      "bom-ref": "web-streams-polyfill@3.3.3"
+    },
+    {
+      "type": "library",
+      "name": "webidl-conversions",
+      "version": "3.0.1",
+      "bom-ref": "webidl-conversions@3.0.1"
+    },
+    {
+      "type": "library",
+      "name": "whatwg-fetch",
+      "version": "3.6.20",
+      "bom-ref": "whatwg-fetch@3.6.20"
+    },
+    {
+      "type": "library",
+      "name": "whatwg-mimetype",
+      "version": "4.0.0",
+      "bom-ref": "whatwg-mimetype@4.0.0"
+    },
+    {
+      "type": "library",
+      "name": "whatwg-url",
+      "version": "5.0.0",
+      "bom-ref": "whatwg-url@5.0.0"
+    },
+    {
+      "type": "library",
+      "name": "which",
+      "version": "2.0.2",
+      "bom-ref": "which@2.0.2"
+    },
+    {
+      "type": "library",
+      "name": "why-is-node-running",
+      "version": "2.3.0",
+      "bom-ref": "why-is-node-running@2.3.0"
+    },
+    {
+      "type": "library",
+      "name": "wrap-ansi-cjs",
+      "version": "7.0.0",
+      "bom-ref": "wrap-ansi-cjs@7.0.0"
+    },
+    {
+      "type": "library",
+      "name": "wrap-ansi",
+      "version": "10.0.1",
+      "bom-ref": "wrap-ansi@10.0.1"
+    },
+    {
+      "type": "library",
+      "name": "wrap-ansi",
+      "version": "7.0.0",
+      "bom-ref": "wrap-ansi@7.0.0"
+    },
+    {
+      "type": "library",
+      "name": "wrap-ansi",
+      "version": "8.1.0",
+      "bom-ref": "wrap-ansi@8.1.0"
+    },
+    {
+      "type": "library",
+      "name": "wrap-ansi",
+      "version": "9.0.2",
+      "bom-ref": "wrap-ansi@9.0.2"
+    },
+    {
+      "type": "library",
+      "name": "wrappy",
+      "version": "1.0.2",
+      "bom-ref": "wrappy@1.0.2"
+    },
+    {
+      "type": "library",
+      "name": "ws",
+      "version": "7.5.13",
+      "bom-ref": "ws@7.5.13"
+    },
+    {
+      "type": "library",
+      "name": "ws",
+      "version": "8.21.3",
+      "bom-ref": "ws@8.21.3"
+    },
+    {
+      "type": "library",
+      "name": "xtend",
+      "version": "4.0.2",
+      "bom-ref": "xtend@4.0.2"
+    },
+    {
+      "type": "library",
+      "name": "y18n",
+      "version": "5.0.8",
+      "bom-ref": "y18n@5.0.8"
+    },
+    {
+      "type": "library",
+      "name": "yallist",
+      "version": "3.1.1",
+      "bom-ref": "yallist@3.1.1"
+    },
+    {
+      "type": "library",
+      "name": "yaml",
+      "version": "2.9.0",
+      "bom-ref": "yaml@2.9.0"
+    },
+    {
+      "type": "library",
+      "name": "yargs-parser",
+      "version": "21.1.1",
+      "bom-ref": "yargs-parser@21.1.1"
+    },
+    {
+      "type": "library",
+      "name": "yargs-parser",
+      "version": "22.0.0",
+      "bom-ref": "yargs-parser@22.0.0"
+    },
+    {
+      "type": "library",
+      "name": "yargs",
+      "version": "17.7.3",
+      "bom-ref": "yargs@17.7.3"
+    },
+    {
+      "type": "library",
+      "name": "yargs",
+      "version": "18.1.0",
+      "bom-ref": "yargs@18.1.0"
+    },
+    {
+      "type": "library",
+      "name": "yocto-queue",
+      "version": "0.1.0",
+      "bom-ref": "yocto-queue@0.1.0"
+    },
+    {
+      "type": "library",
+      "name": "yoctocolors",
+      "version": "2.2.0",
+      "bom-ref": "yoctocolors@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "zeptomatch",
+      "version": "2.1.0",
+      "bom-ref": "zeptomatch@2.1.0"
+    },
+    {
+      "type": "library",
+      "name": "zip-stream",
+      "version": "6.0.1",
+      "bom-ref": "zip-stream@6.0.1"
+    },
+    {
+      "type": "library",
+      "name": "zod",
+      "version": "4.6.1",
+      "bom-ref": "zod@4.6.1"
+    }
+  ]
+}

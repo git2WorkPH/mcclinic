@@ -1,0 +1,9 @@
+# Test-only override; use a distinct Compose project and fresh TEST_STATE.
+services:
+  api:
+    user: "${LOCAL_UID:?Set your non-root uid}:${LOCAL_GID:?Set your gid}"
+    volumes:
+      - ${TEST_STATE:?Set an absolute synthetic test state directory}:/var/lib/mcclinic
+secrets:
+  demo_password:
+    file: ../../.local/packaged/browser-password

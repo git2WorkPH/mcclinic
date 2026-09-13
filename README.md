@@ -111,3 +111,6 @@ flowchart TD
 - Subscriptions are simulated; creating a practice does not charge anyone. Use synthetic data only. Clinical previews and prints remain marked **DEMO — NOT FOR CLINICAL USE**.
 
 See the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) for startup, verification, invitations, MFA and recovery instructions, and the [SaaS runbook](Documentation/Project/SAAS_RUNBOOK.md) for practice workflows.
+## Packaged local testing
+
+TASK-027 adds a complete Docker Compose environment with a built frontend, non-root API and persistent PostgreSQL `mcclinic`. LocalStack is optional and not required. Follow the [packaged runbook](Documentation/Project/PACKAGED_RUNBOOK.md) for startup, synthetic login, mailbox, health checks, backups and verification. The default local address is http://127.0.0.1:8080/clinic. This remains synthetic development; public staging/production are not enabled.

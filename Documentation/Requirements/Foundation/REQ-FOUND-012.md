@@ -26,3 +26,6 @@ TASK-026 completed for planning; REQ-FOUND-010/011 and existing clinical integri
 - 2026-09-12: Drafted with TASK-026 proposal.
 - 2026-09-13: Owner explicitly approved implementing TASK-026 after onboarding and agreed TASK-024 should remain later. This approves AC-01–04 planning artifacts only; it does not approve infrastructure provisioning, deployment or production use.
 - 2026-09-13: AC-01–04 planning accepted by project review; see `Documentation/Acceptance/TASK-026-acceptance.md`. Production and cloud checks remain unrun by design.
+
+## Local packaging overlay — 2026-09-14
+Owner approved TASK-027 and requested optional LocalStack. AC-02–04 now have local implementation evidence under TASK-027: built non-root API/web, same-origin uncached clinical routing, explicit local configuration, persistent isolated mcclinic database/state, migrations, health/drain behavior and regression/artifact checks. Staging/production remain fail-closed until separate controls are approved; ADR-010 governs local packaging without accepting ADR-008/009 cloud topology. See ../../Acceptance/TASK-027-acceptance.md and Open FIND-013. No production security certification or cloud deployment approval inferred.

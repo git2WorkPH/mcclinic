@@ -1,42 +1,35 @@
 # Session memory
-Updated: 2026-09-13 (Australia/Sydney).
-Phase: synthetic development MVP/SaaS; TASK-032 onboarding boundary refactor complete. Production readiness pending.
-Active requirements: REQ-FOUND-002 v0.2-MVP and REQ-FOUND-011.
-Active task: TASK-032 completed. TASK-024 and TASK-027–031 remain Proposed.
-Current branch: master.
-Observed HEAD before this memory update: fd296b7 (client demo and clinical module formatting).
-Observed status before this memory update: clean after owner-approved fast-forward merge of all pending project changes, including TASK-032, four formatting-only files and the demo video/docs. No starter changes or deleted files. Ignored local captures/state remain outside Git. No push.
+Updated: 2026-09-14 (Australia/Sydney).
+Phase: local synthetic packaged MVP/SaaS COMPLETE; public staging/production pending.
+Active requirement: REQ-FOUND-012 local packaging overlay; ADR-010 accepted only for local scope.
+Active task: TASK-027 completed; TASK-028–031, TASK-024 and TASK-033 remain Proposed.
+Current branch: task/TASK-027-local-packaging.
+Observed HEAD before this memory update: b90be766afcc0439a49ad6f04fbe874155e030ec (master integration handoff).
+Observed status before this memory update: intended TASK-027 runtime/build/test/docs/SBOM/provenance pending commit. Six pre-existing user-edited files remain unstaged and excluded: apps/api/src/app.ts, main.ts, modules/patient/application/patients.ts, modules/patient/domain/patient.ts, modules/subscription/application/policy.ts and modules/templates/infrastructure/snapshot.ts. No starter deletions.
 
-## Reconciliation and approval
-- Started from master 6d3a749 (README flow commit); prior owner edits were no longer uncommitted. Initial pending files were the TASK-032 assessment records from this conversation.
-- Read-only remote search initially failed DNS in sandbox; permitted retry found no TASK-032 branch. Created this branch without stashing or discarding work.
-- Owner authorized assessment and bounded refactoring, then explicitly approved exact code extractions with “yes i approved”. Approval targets/history: [TASK-032](../Tasks/Approved/TASK-032.md). No broader deletion, merge, push or deployment authorized.
+## Authorization / reconciliation
+- Owner approved “implement task-027, lets keep localstack optional.” Approval and local acceptance overlay: [TASK-027 approval](../Tasks/Approved/TASK-027.md). LocalStack is not required or installed.
+- Read memory and actual master b90be76; remote TASK-027 search returned no branch after permitted DNS retry. Created current branch without stashing/discarding user changes.
+- No merge, push, AWS resources, public exposure, real patient data, external mail/billing or deletion authorized. Prior TASK-032/demo work remains merged on master.
 
 ## Delivered / relevant files
-- Frontend: apps/clinical-app/src/features/onboarding/{contracts,gateway,browser,useOnboarding}.ts; public OnboardingPanel delegates to the hook/adapters. AccountSecurityPanel and public exports preserved.
-- Backend: apps/api/src/mvp-composition.ts constructs onboarding services; adapters/mvp-graphql.ts consumes injected services with backward-compatible existing callers.
-- [Completed task](../Tasks/Completed/TASK-032.md), [acceptance/review](../Acceptance/TASK-032-acceptance.md), [FIND-012](../Assessment/Findings/FIND-012.md).
-- Justification: Doc/Changes/Justification/TASK-032-onboarding-boundaries.md. New tests: tests/onboarding-boundaries.test.ts and tests/onboarding-injection.test.ts.
+- New packaged API/web/migration entry points and runtime helpers under apps/api/src/; old startup paths and existing tests unchanged.
+- infrastructure/docker/Dockerfile.packaged, strict Dockerfile-specific ignore, compose.packaged.yaml and test override. Non-root API/web, only loopback web publication, separate persistent PostgreSQL mcclinic and local MFA/mailbox state.
+- tooling/init-packaged.mjs (preserves existing secrets), package-provenance.mjs, verify-packaged.mjs and playwright.packaged.config.ts.
+- [Runbook](../Project/PACKAGED_RUNBOOK.md), [completion](../Tasks/Completed/TASK-027.md), [acceptance/review](../Acceptance/TASK-027-acceptance.md), [ADR-010](../Architecture/Decisions/ADR-010.md).
+- Rationale: Doc/Changes/Justification/TASK-027-cloud-artifacts.md. Node SBOM/source provenance: Documentation/Acceptance/TASK-027-artifacts/.
 
-## Verification
-- pnpm check PASS: lint/boundaries, types, 18 unit/API scenarios, Prisma generation and API/web builds.
-- node tooling/check-codegen.mjs PASS without drift.
-- PostgreSQL regression suites: 23 PASS. Existing MVP/SaaS/onboarding browser: 7 PASS; foundation browser: 2 PASS. Total 50 scenarios.
-- Existing tests/assertions, schema, onboarding transactions and AccountSecurityPanel retained; code-removal review matches exact approved extraction scope. git diff --check PASS.
-- Initial socket sandbox failure passed after escalation; new test setup corrected to generated contracts without weakening assertions. Existing image deprecation warning remains.
-- Checks used shared working tree with unrelated appointment/consultation edits excluded from task scope. Runtime: /private/tmp/ehr-runtime/node_modules/.bin; disposable Docker PostgreSQL for database/browser tests. No real data or external mail.
+## Verification / running environment
+- pnpm check PASS: lint/boundaries, types, 21 unit/API/runtime tests and API/web builds. Codegen drift check PASS.
+- Existing PostgreSQL regressions 23 PASS; all seven existing clinical/SaaS/onboarding browser journeys PASS against built containers (no Vite); foundation browser two PASS. Total 53 scenarios.
+- Fresh/repeated migration, API restart persistence, non-root/private-input inspection, readiness 200→503 during DB stop→healthy after restart and in-flight shutdown drain verified. Recorded source hashes match working tree. Synthetic clinician login visually inspected.
+- Tests/build include the six user edits above but do not commit/review them as TASK-027 changes. Existing runtime tests/assertions and schema/migrations unchanged.
+- Local package is running at http://127.0.0.1:8080/clinic, Compose project mcclinic-packaged, IMAGE_TAG=task027. Synthetic users clinician/reception/admin; password is privately stored in ignored .local/packaged/demo-password. WEB_PORT=8080, SOURCE_REVISION=b90be76-task027-working for current operations. Follow runbook for subsequent builds/start/stop.
+- Image ID sha256:653be9a96fa4b836a64b6bdfcf4f28e1e3877095bc3849fce25e5ef360b9cb8e. Pinned runtime available at /private/tmp/ehr-runtime/node_modules/.bin. Test-only Compose project stopped; test/database/state volumes intentionally retained.
 
-## Remaining findings and context
-- FIND-012 stays Open for deeper onboarding-store orchestration and broader boundary enforcement; not part of this completed refactor.
-- Production Philippine clinical/privacy/legal/retention/signature findings and FIND-010/011 remain Open. Database name mcclinic; local/synthetic only. No automatic deletion/purge or live billing.
-- [Onboarding runbook](../Project/ONBOARDING_RUNBOOK.md), [README flows](../../README.md), [MVP assumptions](../Project/MVP_ASSUMPTIONS.md).
-- TASK-026 deployment planning is complete; [deployment plan](../Project/DEPLOYMENT_PLAN.md), proposed ADR-008/009 and TASK-027–031 remain the future deployment path. Earlier completed task records preserve full history.
+## Open findings / next action
+- FIND-013: dependency audit found four high/one moderate advisory (image-size, deepmerge-ts, mysql2); reachability unassessed. Docker Scout OS scan unavailable without Docker login. Node SBOM is not full OS scan coverage. TASK-033 proposes assessment/remediation. No dependencies removed/upgraded silently.
+- FIND-010/011/012 and Philippine clinical/privacy/legal/signature/retention findings remain Open. Staging/production configuration fails closed; ADR-008/009 cloud topology/recovery proposals remain Proposed. No automatic purge.
+- Exact next action: test the local package using PACKAGED_RUNBOOK.md, review TASK-027 for an explicit local merge, then assess TASK-033 advisories before public staging. Do not provision TASK-028 or enable production from this memory.
 
-## Exact next action
-Review TASK-027 cloud artifact/config packaging for approval; TASK-032 and the demo are now merged locally. Do not push, deploy or start deeper store restructuring from this handoff.
-
-## Client demonstration — 2026-09-13
-Owner requested a prospect demo video. Created Documentation/Demos/MCClinic-Client-Demo.mp4 and accompanying README: captioned 1:44 walkthrough of real local synthetic workflows. Separate disposable PostgreSQL used; no application changes. MP4 full-decode check passed and document/history frames visually inspected. Raw capture/script retained in .local/client-demo-v2/. Observed HEAD a344c97; these media/docs and this memory addition are uncommitted. Four unrelated appointment/consultation edits remain unstaged. Next: review the demo locally; no sending/publishing authorized.
-
-## Integration update — supersedes pending status above
-Owner requested “merge to master all the changes”. Committed remaining changes as fd296b7 and fast-forwarded master from 6d3a749, including a344c97. All four appointment/consultation files are structurally AST-equivalent to their prior versions. Existing 50-scenario verification included them; no behavior changed. Demo and documentation are now tracked. No starter deletion, merge conflict or uncommitted project change before this memory update. Raw media and local secrets remain ignored.
+Final reconciliation: initial final-image browser rerun failed history/MFA due to observed ~17-minute host/container clock skew. Clocks synchronized; unchanged seven journeys and restart passed on project mcclinic-package-test-1789335743408. Verifier now checks clock agreement before tests. A seventh unrelated formatting edit, tooling/verify-mvp-runtime.ts, remains unstaged/excluded. See acceptance evidence for failed-run history and Prisma warning.

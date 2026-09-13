@@ -1,0 +1,19 @@
+FROM node:24.21.0-bookworm-slim@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553
+RUN npm install --global pnpm@10.34.5
+WORKDIR /workspace
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.json prisma.config.ts codegen.ts ./
+COPY apps/api/package.json apps/api/tsconfig.build.json ./apps/api/
+COPY apps/api/src ./apps/api/src
+COPY apps/api/prisma ./apps/api/prisma
+COPY apps/clinical-app/package.json apps/clinical-app/index.html apps/clinical-app/vite.config.ts ./apps/clinical-app/
+COPY apps/clinical-app/src ./apps/clinical-app/src
+COPY packages/graphql-contract ./packages/graphql-contract
+COPY tooling/copy-api-schema.mjs tooling/package-provenance.mjs ./tooling/
+ARG SOURCE_REVISION=unversioned
+LABEL org.opencontainers.image.title="MCClinic synthetic local package" org.opencontainers.image.revision=$SOURCE_REVISION
+RUN pnpm install --frozen-lockfile && pnpm codegen && pnpm build && SOURCE_REVISION=$SOURCE_REVISION node tooling/package-provenance.mjs
+RUN mkdir -p /var/lib/mcclinic && chown node:node /var/lib/mcclinic
+ENV NODE_ENV=production
+USER node
+EXPOSE 4000 8080
+CMD ["node", "apps/api/dist/apps/api/src/packaged-main.js"]
