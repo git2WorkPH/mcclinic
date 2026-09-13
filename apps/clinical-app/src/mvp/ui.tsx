@@ -99,15 +99,19 @@ export function Button({
   onPress,
   disabled = false,
   secondary = false,
+  accessibilityState,
 }: {
   children: ReactNode;
   onPress: () => void;
   disabled?: boolean;
   secondary?: boolean;
+  accessibilityState?: { expanded?: boolean };
 }) {
   return (
     <Pressable
+      aria-expanded={accessibilityState?.expanded}
       accessibilityRole="button"
+      accessibilityState={accessibilityState}
       disabled={disabled}
       onPress={onPress}
       style={[
