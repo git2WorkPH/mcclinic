@@ -4,8 +4,8 @@ Phase: DEVELOPMENT deployment-readiness planning COMPLETE; synthetic staging imp
 Active requirement: REQ-FOUND-012 v0.1 planning accepted; production evidence pending.
 Active task: TASK-026 completed for planning. TASK-027–031 and TASK-024 remain Proposed.
 Current branch: task/TASK-026-deployment-readiness.
-Observed HEAD before this memory update: e53b208 (onboarding usability fix).
-Observed status before this memory update: intended TASK-026 requirements/task/plan/ADR/finding/acceptance/memory records pending local commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
+Latest completed task commit: `00bfd5f` (`docs: complete deployment readiness plan`).
+Observed status after the task commit: no TASK-026 changes pending. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
 
 ## Reconciliation / authorization
 - Memory reconciled against `e53b208` and unchanged owner working-tree edits. Live remote search found no TASK-026/deployment branch; local branch `task/TASK-026-deployment-readiness` was created without stashing or discarding changes.
