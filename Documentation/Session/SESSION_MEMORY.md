@@ -3,7 +3,9 @@ Updated: 2026-09-13 (Australia/Sydney).
 Phase: DEVELOPMENT deployment-readiness planning COMPLETE; synthetic staging implementation pending approval. Production readiness pending.
 Active requirement: REQ-FOUND-012 v0.1 planning accepted; production evidence pending.
 Active task: TASK-026 completed for planning. TASK-027–031 and TASK-024 remain Proposed.
-Current branch: task/TASK-026-deployment-readiness.
+Current branch: master.
+Observed HEAD before this memory update: f188b37 (starter preservation and local master integration).
+Owner approved local merge with starter preservation. Master fast-forwarded from a4fce11 through completed TASK-026 history; all 29 starter files match original master. Existing unstaged tracked edits verified byte-for-byte unchanged; untracked skills/config preserved. No push. Application tests were not rerun for this history integration; application tree matches the previously completed branch.
 Latest completed task commit: `00bfd5f` (`docs: complete deployment readiness plan`).
 Observed status after the task commit: no TASK-026 changes pending. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
 
