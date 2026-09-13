@@ -1,5 +1,5 @@
 # REQ-FOUND-012 — Deployment readiness and staged release
-Status: Draft v0.1, 2026-09-12. Proposal only; no cloud execution approved.
+Status: Approved v0.1 for planning only, 2026-09-13. No cloud execution approved.
 ## Objective / scope
 Produce a reviewable deployment plan for the Philippine SaaS audience, beginning with private synthetic staging and separating production release readiness. Preserve the modular monolith, desktop React Native Web, PostgreSQL database name mcclinic and existing functionality.
 ## Functional rules
@@ -20,4 +20,9 @@ Planning: source/code/config review and traceability only. Future implementation
 ## Unresolved questions
 Budget, launch scale/concurrency, target Philippine locations/ISPs, domain/account ownership, availability/recovery targets, mail/key management, operational owner and Philippine privacy/cross-border/clinical obligations. No legal compliance or data-location approval inferred. See FIND-010.
 ## Traceability
-TASK-026 Proposed; REQ-FOUND-010/011 and existing clinical integrity requirements remain in force. Future material decisions require ADRs.
+TASK-026 completed for planning; REQ-FOUND-010/011 and existing clinical integrity requirements remain in force. Proposed follow-ups TASK-027–031 require separate approval. Future material decisions require accepted ADRs.
+
+## Decision history
+- 2026-09-12: Drafted with TASK-026 proposal.
+- 2026-09-13: Owner explicitly approved implementing TASK-026 after onboarding and agreed TASK-024 should remain later. This approves AC-01–04 planning artifacts only; it does not approve infrastructure provisioning, deployment or production use.
+- 2026-09-13: AC-01–04 planning accepted by project review; see `Documentation/Acceptance/TASK-026-acceptance.md`. Production and cloud checks remain unrun by design.

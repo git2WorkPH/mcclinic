@@ -1,14 +1,15 @@
 # Session memory
 Updated: 2026-09-13 (Australia/Sydney).
-Phase: DEVELOPMENT onboarding v0.4 COMPLETE; deployment-planning proposal prepared. Production readiness pending.
-Active requirement: REQ-FOUND-012 Draft deployment readiness; REQ-FOUND-011 v0.4 completed.
-Active task: TASK-026 deployment readiness/planning Proposed only; TASK-025 completed. TASK-024 remains Proposed.
-Current branch: task/TASK-025-account-onboarding.
-Observed HEAD before this memory update: a6f969b0f75e53dba6a80c89f1f95cc6e56363c8 (deployment proposal).
-Observed status before this memory update: TASK-025 onboarding-control usability fix/tests/rationale/acceptance and this memory update pending local commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
+Phase: DEVELOPMENT deployment-readiness planning COMPLETE; synthetic staging implementation pending approval. Production readiness pending.
+Active requirement: REQ-FOUND-012 v0.1 planning accepted; production evidence pending.
+Active task: TASK-026 completed for planning. TASK-027–031 and TASK-024 remain Proposed.
+Current branch: task/TASK-026-deployment-readiness.
+Observed HEAD before this memory update: e53b208 (onboarding usability fix).
+Observed status before this memory update: intended TASK-026 requirements/task/plan/ADR/finding/acceptance/memory records pending local commit. Pre-existing owner changes in MVP_RUNBOOK.md, patient domain/use cases, certificate validation, practice services/scope and PracticeSettings.tsx remain unstaged and excluded. Untracked Prisma skills, .claude/, .windsurf/ and skills-lock.json also remain excluded. No starter deletions present.
 
 ## Reconciliation / authorization
-- Memory reconciled against onboarding completion commit c777754 and unchanged owner working-tree edits. Deployment request authorizes a proposal only; no implementation branch created.
+- Memory reconciled against `e53b208` and unchanged owner working-tree edits. Live remote search found no TASK-026/deployment branch; local branch `task/TASK-026-deployment-readiness` was created without stashing or discarding changes.
+- Owner explicitly approved implementing TASK-026 and agreed TASK-024 follows deployment readiness. This authorizes planning artifacts only; no cloud provisioning, spending, deployment, push, real data, external mail/payment, offline synchronization or deletion.
 - Owner explicitly requested account onboarding before TASK-024 and canonical database name mcclinic. Approval recorded in TASK-025; ADR-007 records reversible local defaults. No deployment, push, live mail/payments, real records or deletion authorized.
 
 ## Implemented
@@ -28,9 +29,11 @@ Observed status before this memory update: TASK-025 onboarding-control usability
 - Canonical rationale: Doc/Changes/Justification/TASK-025-onboarding.md. Approved record retained as history. Original requirements/decisions and user edits preserved.
 - FIND-010 remains Open: public identity/licensing, production mail/outbox/recovery/key custody/abuse controls/support and payments. Philippine clinical/legal/privacy/retention/signature findings remain Open/nonblocking only for synthetic development. No automatic retention/account purge.
 
-## Deployment proposal verification
-- Read governance/assessment/architecture skills and inspected loopback runtime, local Compose, dev proxy and onboarding evidence. Checked current AWS primary sources for infrastructure/Free Tier. No application changes or new runtime tests; previous test results above are historical TASK-025 evidence.
-- New files: Requirements/Foundation/REQ-FOUND-012.md and Tasks/Proposed/TASK-026.md. AWS Singapore is an evaluation candidate, not an approved region; budget, ISP measurements and production policies remain undecided.
+## TASK-026 delivery / verification
+- [Deployment plan](../Project/DEPLOYMENT_PLAN.md) recommends measuring AWS Singapore, managed S3/CloudFront → ALB/ECS Fargate → private RDS `mcclinic`, and a Lightsail lower-cost alternative. Planning estimates: $87–94/month synthetic staging and $188–203/month small resilient pilot, with $105/$225 proposed ceilings. Prices/eligibility must be refreshed before spending.
+- Proposed [ADR-008](../Architecture/Decisions/ADR-008.md), [ADR-009](../Architecture/Decisions/ADR-009.md), TASK-027–031 and Open [FIND-011](../Assessment/Findings/FIND-011.md). TASK-024 stays Proposed and is required before production go-live only if paid subscriptions launch; simulated billing is sufficient for synthetic staging.
+- [TASK-026 acceptance](../Acceptance/TASK-026-acceptance.md): AC-01–04 planning PASS. Official Singapore price catalogs recalculated; ten AWS pricing/architecture links returned HTTP 200; document/ID inventory and diff checks passed. No application/cloud/ISP/restore test was run or claimed because this task changes documentation only.
+- Project-review found no blocking planning issue. Singapore region, private egress/staging access, budget/account/domain, RPO/RTO, production identity/mail/key operations and Philippine policy remain unresolved approval gates.
 
 ## Onboarding usability follow-up
 - Owner reported the Account onboarding and recovery control appeared inactive. The disclosure opened below a short viewport without announcing its state. It now exposes collapsed/expanded state, scrolls to the form and displays a status message.
@@ -38,4 +41,4 @@ Observed status before this memory update: TASK-025 onboarding-control usability
 - No development server was listening on expected ports 5173/5174 at final inspection. A previously loaded browser tab may therefore be stale; restart API/web and reload `/clinic` to receive this fix.
 
 ## Exact next action
-Restart the API and web processes from the current branch, open `http://127.0.0.1:5173/clinic`, hard reload once and verify the onboarding control reveals the form. Then review TASK-026 for approval. No paid resources or deployment are authorized. Follow ONBOARDING_RUNBOOK.md for mcclinic migration/UAT; do not start TASK-024 without separate approval.
+Review proposed ADR-008/009 and approve TASK-027 if you want cloud-ready artifact/config implementation. TASK-028 requires separate region, AWS account and spending-ceiling approval after TASK-027; do not provision or deploy from TASK-026. Continue local onboarding UAT through ONBOARDING_RUNBOOK.md and preserve all owner changes.

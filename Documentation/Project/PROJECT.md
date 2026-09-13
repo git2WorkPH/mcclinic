@@ -543,3 +543,6 @@ TASK-020–023 complete for synthetic multi-practice SaaS v0.3. See [SaaS runboo
 
 ## Account onboarding development baseline — 2026-09-12
 The active baseline extends completed SaaS v0.3 with owner-approved TASK-025 account onboarding before Proposed TASK-024. Canonical PostgreSQL database name: **mcclinic**; historical ehr_mvp/ehr_dev database examples describe earlier states. Existing credentials and Docker volume remain unchanged. Use ONBOARDING_RUNBOOK.md for safe rename and local account flows. This is synthetic local development, not production readiness. Original profile/requirements history above is retained.
+
+## Deployment planning baseline — 2026-09-13
+TASK-026 is completed for planning only. `Documentation/Project/DEPLOYMENT_PLAN.md` recommends measuring AWS Singapore for access-controlled synthetic staging and records cost, recovery, connectivity, security and production gates. ADR-008/009 and TASK-027–031 remain Proposed. No cloud infrastructure, spend, deployment or production approval exists; TASK-024 remains separately Proposed and precedes production go-live if paid subscriptions launch.
