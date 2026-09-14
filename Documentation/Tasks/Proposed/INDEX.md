@@ -41,3 +41,7 @@ The initialization status and first-approval recommendation above are historical
 | [TASK-040](TASK-040.md) | Selected provider feasibility/contract assessment | Provider/direction selection         |
 
 Owner asked for requirements only. No blanket implementation approval is implied. Each future implementation needs explicit task approval and Doc/Changes/Justification/ record.
+
+## Owner priority decision — 2026-09-14
+
+Optional modules are future nice-to-have backlog, not near-term work. Preserve these proposals and open findings; no implementation approval. Owner instruction: “lets keep that as future and a nice to have for now”.

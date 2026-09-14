@@ -2,11 +2,11 @@
 
 Updated: 2026-09-14 (Australia/Sydney).
 Phase: synthetic local SaaS/package complete; public staging/production gated.
-Active requirements: Draft REQ-PROD-002, REQ-FOUND-013/014, REQ-FEAT-016–018 optional modules.
+Active requirement: REQ-FOUND-012 / FIND-013 runtime hardening; optional modules are future nice-to-have backlog.
 Active task: none approved for this planning scope. TASK-033 completed locally; TASK-035–040 are Proposed. TASK-024 and TASK-028–031 remain Proposed.
 Current branch: task/TASK-033-dependency-remediation.
-Observed HEAD before this memory update: 649fab846712c855fac2aa6b799f7024877a607c (TASK-033 locally complete; not merged/pushed).
-Observed status before this memory update: clean before this documentation-only assessment; intended requirements/assessment/findings/proposals/index/scope/memory edits pending commit. No source/schema changes.
+Observed HEAD before this memory update: d4a47f09714cae4e7f7156bad0319e060670f2d1 (optional module requirements recorded locally).
+Observed status before this memory update: clean; only owner-priority documentation and memory updates pending commit.
 
 ## Authorization and Git reconciliation
 
@@ -36,7 +36,7 @@ Observed status before this memory update: clean before this documentation-only 
 
 - FIND-013 remains Open: image-size and remaining OS/global npm/pnpm findings block public readiness; local-only reachability decisions do not accept production risk. TASK-035 is not approved.
 - Philippine clinical/legal/privacy/signature/retention findings remain Open and nonblocking only for synthetic development. No purge.
-- Exact next action: review OPTIONAL-MODULES assessment and six Draft requirements; choose managed activation and the first diagnostic stage (report/manual versus provider-connected). No feature task is approved by this planning request. TASK-033 merge/push and security follow-up remain separate.
+- Exact next action: obtain approval for TASK-035 runtime image separation/hardening. TASK-033 merge/push remains separately pending. Do not implement optional modules; TASK-036–040 are future nice-to-have backlog per owner decision.
 
 ## Optional module requirements — 2026-09-14
 
@@ -44,3 +44,5 @@ Observed status before this memory update: clean before this documentation-only 
 - [Assessment](../Assessment/OPTIONAL-MODULES.md) explains relative effort and proposed sequence. Six new Draft requirements linked in Requirements/INDEX.md. Proposed ADR-011 describes managed per-practice activation, not arbitrary executable plugins.
 - FIND-014–016 retain commercial/activation, lab/vendor/clinical and imaging/media/viewer questions. TASK-036–040 Proposed only; each future implementation needs approval/justification. Prior scope/requirements preserved with additive notes.
 - Verified record fields, ID uniqueness, references, formatting and Git whitespace; no application tests rerun for documentation-only work. No implementation, deployment, billing, data or permission changes.
+
+Owner priority update 2026-09-14: optional-module requirements retained as Draft, tasks Proposed with future/nice-to-have priority. No implementation started. Documentation-only verification: formatting and Git whitespace checks.

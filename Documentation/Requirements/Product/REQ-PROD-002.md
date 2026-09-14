@@ -48,3 +48,7 @@ FIND-014: bundles versus paid add-ons, who can manage modules, preview/trial/sea
 ## Traceability
 
 TASK-036; REQ-FOUND-013 and REQ-FEAT-016. Architecture proposal ADR-011; assessment Documentation/Assessment/OPTIONAL-MODULES.md. Preserve existing requirements and production findings.
+
+## Owner priority decision — 2026-09-14
+
+Optional modules are future nice-to-have backlog, not near-term work. Preserve these proposals and open findings; no implementation approval. Owner instruction: “lets keep that as future and a nice to have for now”.

@@ -36,3 +36,7 @@ Existing TASK-020–023 foundation; ADR-011 review.
 Registry/activation ADR-011 required before implementation.
 
 Governance: synthetic development only unless separately approved. Requirements remain Draft. Before future implementation create Doc/Changes/Justification/TASK-036-<description>.md and explicit approval evidence. No deletion of files, tests, fields, APIs or behavior authorized.
+
+## Owner priority decision — 2026-09-14
+
+Optional modules are future nice-to-have backlog, not near-term work. Preserve these proposals and open findings; no implementation approval. Owner instruction: “lets keep that as future and a nice to have for now”.

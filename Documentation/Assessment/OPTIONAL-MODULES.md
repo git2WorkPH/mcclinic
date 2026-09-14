@@ -43,3 +43,7 @@ Owner decisions are FIND-014 (commercial/activation), FIND-015 (lab depth/provid
 
 Draft requirements: REQ-PROD-002, REQ-FOUND-013/014, REQ-FEAT-016–018. Proposed tasks: TASK-036–040. Proposed ADR-011. No records promoted to Approved by this assessment.
 Documentation review checks IDs, requirement/task/ADR mappings, objective/scope/rules/acceptance/auth/data/audit/tests/questions fields and consistency with existing module and lab boundaries. No application tests, dependency upgrades, schema migration or feature implementation performed. Local formatting and Git whitespace checks apply only to these documentation changes.
+
+## Owner priority decision — 2026-09-14
+
+Optional modules are future nice-to-have backlog, not near-term work. Preserve these proposals and open findings; no implementation approval. Owner instruction: “lets keep that as future and a nice to have for now”.
