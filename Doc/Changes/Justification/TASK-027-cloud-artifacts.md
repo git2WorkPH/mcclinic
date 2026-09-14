@@ -1,4 +1,5 @@
 # TASK-027 — Packaging justification
+
 Owner approved local implementation with optional LocalStack, 2026-09-13. REQ-FOUND-012 AC-02–04 local packaging overlay; approved task and ADR-010 define scope.
 
 Problem: existing Dockerfile starts the foundation API, web relies on Vite, Compose provides only the development database, and the unrestricted Docker context could include local mailbox/MFA keys. A repeatable local complete-app package is needed before cloud deployment.

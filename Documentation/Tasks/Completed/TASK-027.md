@@ -1,4 +1,5 @@
 # TASK-027 — Package immutable application artifacts
+
 Status: Completed for local synthetic packaging, 2026-09-14.
 Requirements: REQ-FOUND-012 local packaging overlay, AC-02–04. ADR-010 accepted for this scope; ADR-008/009 remain Proposed.
 

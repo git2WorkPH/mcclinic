@@ -1,10 +1,16 @@
 export type Mode =
-  | "Register"
-  | "Verify email"
-  | "Recover password"
-  | "Accept invitation";
-export interface Registration { email: string; name: string; password: string; practiceName: string }
-export interface Credentials { token: string; password: string; code: string }
+  'Register' | 'Verify email' | 'Recover password' | 'Accept invitation';
+export interface Registration {
+  email: string;
+  name: string;
+  password: string;
+  practiceName: string;
+}
+export interface Credentials {
+  token: string;
+  password: string;
+  code: string;
+}
 export interface OnboardingGateway {
   register(input: Registration): Promise<unknown>;
   verify(token: string): Promise<unknown>;

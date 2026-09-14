@@ -13,3 +13,7 @@ Project-review: no application behavior or authorization changes; changes stay w
 ## Clean-source verification — 2026-09-14
 
 Owner explicitly authorized discarding the seven previously excluded edits. Restored exactly those paths to HEAD; no other changes removed. Reran pnpm check successfully on committed source: 26 tests, lint/boundaries, types and API/web builds. Prior shared-working-tree limitation is superseded for this run. Running packaged Docker image was not rebuilt.
+
+## Hosted formatting correction — 2026-09-14
+
+Run 34797099817 passed lint but failed changed-file formatting because the first push also included older TASK-027/032 commits. Corrected formatting of eligible text files in 6d3a749..c7c5a38 without changing the gate, content or assertions. The concurrent local TASK-033 dependency graph passed pnpm check (28 tests and builds); hosted verification must separately prove the committed TASK-034 graph.

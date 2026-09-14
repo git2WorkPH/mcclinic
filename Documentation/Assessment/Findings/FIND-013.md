@@ -1,7 +1,9 @@
 # FIND-013 — Packaged dependency scan and release hardening gaps
+
 Status: Open, 2026-09-14. TASK-027 / REQ-FOUND-012.
 
 `pnpm audit --json` on the existing frozen dependency graph returned four high and one moderate advisory (no critical), 2026-09-13:
+
 - image-size: GHSA-w3rx-r6r6-pgpr and GHSA-5p2g-fcmc-qvqq, high, image parser denial of service.
 - deepmerge-ts: GHSA-ggr8-5vv4-36mx, high, recursive-graph stack exhaustion.
 - mysql2: GHSA-3f6p-5ww8-9rcr, high, authentication downgrade; GHSA-rgwj-5xj2-c3m3, moderate, decompression denial of service.

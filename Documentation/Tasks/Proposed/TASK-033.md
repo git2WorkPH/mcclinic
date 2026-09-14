@@ -1,4 +1,5 @@
 # TASK-033 — Assess and remediate packaged dependency advisories
+
 Status: Proposed, 2026-09-14. Not approved for implementation.
 Requirements: REQ-FOUND-012 security/release verification; FIND-013.
 

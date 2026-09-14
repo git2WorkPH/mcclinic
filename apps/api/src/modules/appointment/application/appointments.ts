@@ -3,20 +3,20 @@ import {
   requireValue,
   AppError,
   type Actor,
-} from "../../../application/context.js";
-import type { Persistence, Runtime } from "../../../application/ports.js";
-import type { AppointmentInput } from "../domain/appointment.js";
+} from '../../../application/context.js';
+import type { Persistence, Runtime } from '../../../application/ports.js';
+import type { AppointmentInput } from '../domain/appointment.js';
 export function validateSchedule(input: AppointmentInput) {
   const duration = Date.parse(input.endsAt) - Date.parse(input.startsAt);
   if (!Number.isFinite(duration) || duration < 300000 || duration > 28800000)
     throw new AppError(
-      "VALIDATION",
-      "Appointment duration must be 5 minutes to 8 hours.",
+      'VALIDATION',
+      'Appointment duration must be 5 minutes to 8 hours.',
     );
   try {
-    new Intl.DateTimeFormat("en", { timeZone: input.timeZone });
+    new Intl.DateTimeFormat('en', { timeZone: input.timeZone });
   } catch {
-    throw new AppError("VALIDATION", "Choose a valid timezone.");
+    throw new AppError('VALIDATION', 'Choose a valid timezone.');
   }
 }
 export function appointmentUseCases(db: Persistence, clock: Runtime) {
@@ -30,21 +30,21 @@ export function appointmentUseCases(db: Persistence, clock: Runtime) {
         patientId?: string;
       },
     ) {
-      const a = authorize(actor, "schedule");
-      return db.read(a, "appointment.list", "schedule", (u) =>
+      const a = authorize(actor, 'schedule');
+      return db.read(a, 'appointment.list', 'schedule', (u) =>
         u.appointments.list(filter),
       );
     },
     history(actor: Actor | null, id: string) {
-      const a = authorize(actor, "schedule");
-      return db.read(a, "appointment.history", id, (u) =>
+      const a = authorize(actor, 'schedule');
+      return db.read(a, 'appointment.history', id, (u) =>
         u.appointments.history(id),
       );
     },
     create(actor: Actor | null, key: string, input: AppointmentInput) {
-      const a = authorize(actor, "schedule");
+      const a = authorize(actor, 'schedule');
       validateSchedule(input);
-      return db.write(a, key, input, "appointment.create", async (u) => {
+      return db.write(a, key, input, 'appointment.create', async (u) => {
         requireValue(await u.references.patient(input.patientId));
         requireValue(await u.references.clinician(input.providerId));
         return u.appointments.create(input, a.id);
@@ -59,18 +59,18 @@ export function appointmentUseCases(db: Persistence, clock: Runtime) {
       endsAt: string,
       timeZone: string,
     ) {
-      const a = authorize(actor, "schedule");
+      const a = authorize(actor, 'schedule');
       return db.write(
         a,
         key,
         { id, expected, startsAt, endsAt, timeZone },
-        "appointment.reschedule",
+        'appointment.reschedule',
         async (u) => {
           const current = requireValue(await u.appointments.get(id));
-          if (current.state !== "BOOKED")
+          if (current.state !== 'BOOKED')
             throw new AppError(
-              "VALIDATION",
-              "Only booked appointments may be rescheduled.",
+              'VALIDATION',
+              'Only booked appointments may be rescheduled.',
             );
           validateSchedule({ ...current, startsAt, endsAt, timeZone });
           return u.appointments.change(
@@ -89,25 +89,25 @@ export function appointmentUseCases(db: Persistence, clock: Runtime) {
       expected: number,
       reason: string,
     ) {
-      const a = authorize(actor, "schedule");
+      const a = authorize(actor, 'schedule');
       if (!reason.trim())
-        throw new AppError("VALIDATION", "Cancellation reason is required.");
+        throw new AppError('VALIDATION', 'Cancellation reason is required.');
       return db.write(
         a,
         key,
         { id, expected, reason },
-        "appointment.cancel",
+        'appointment.cancel',
         async (u) => {
           const current = requireValue(await u.appointments.get(id));
-          if (current.state !== "BOOKED")
+          if (current.state !== 'BOOKED')
             throw new AppError(
-              "VALIDATION",
-              "Only booked appointments may be cancelled.",
+              'VALIDATION',
+              'Only booked appointments may be cancelled.',
             );
           return u.appointments.change(
             id,
             expected,
-            { state: "CANCELLED", cancellationReason: reason },
+            { state: 'CANCELLED', cancellationReason: reason },
             a.id,
           );
         },
@@ -120,30 +120,30 @@ export function appointmentUseCases(db: Persistence, clock: Runtime) {
       expected: number,
       patientId: string,
     ) {
-      const a = authorize(actor, "schedule");
+      const a = authorize(actor, 'schedule');
       return db.write(
         a,
         key,
         { id, expected, patientId },
-        "appointment.check-in",
+        'appointment.check-in',
         async (u) => {
           const current = requireValue(await u.appointments.get(id));
           if (current.patientId !== patientId)
             throw new AppError(
-              "VALIDATION",
-              "Confirm the correct patient before check-in.",
+              'VALIDATION',
+              'Confirm the correct patient before check-in.',
             );
-          if (current.state === "CHECKED_IN") return current;
-          if (current.state !== "BOOKED")
+          if (current.state === 'CHECKED_IN') return current;
+          if (current.state !== 'BOOKED')
             throw new AppError(
-              "VALIDATION",
-              "Only booked appointments can be checked in.",
+              'VALIDATION',
+              'Only booked appointments can be checked in.',
             );
           return u.appointments.change(
             id,
             expected,
             {
-              state: "CHECKED_IN",
+              state: 'CHECKED_IN',
               checkedInAt: clock.now(),
               checkedInBy: a.id,
             },

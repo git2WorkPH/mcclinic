@@ -1,4 +1,5 @@
 # TASK-032 — Separate onboarding presentation and composition
+
 Status: Completed, 2026-09-13. REQ-FOUND-002 v0.2-MVP FR-01/02 and REQ-FOUND-011.
 
 Scope, owner task approval and exact relocation authorization are preserved in [the approval record](../Approved/TASK-032.md). All AC-01–04 passed; see [acceptance and project review](../../Acceptance/TASK-032-acceptance.md).

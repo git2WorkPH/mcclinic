@@ -1,4 +1,5 @@
 # TASK-027 — Package immutable application artifacts
+
 Status: Completed for local synthetic packaging, 2026-09-14. Approval history retained; canonical completion ../Completed/TASK-027.md. Base b90be76; branch task/TASK-027-local-packaging.
 Requirements: REQ-FOUND-012 AC-02–04, local packaging overlay below. Historical proposal retained at ../Proposed/TASK-027.md.
 
