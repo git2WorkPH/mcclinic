@@ -1,0 +1,8 @@
+# FIND-016 — Imaging depth, media infrastructure and clinical viewing purpose
+
+Status: Open, 2026-09-14. REQ-FEAT-018, REQ-FOUND-014.
+Evidence: no diagnostic object archive, DICOM/PACS adapter, study index, diagnostic viewer or echo measurements found in current module/schema inventory. Existing HTML clinical documents and PNG/JPEG branding are not diagnostic media infrastructure.
+Decisions needed: simple X-ray/echo report attachments or direct device/PACS integration; selected vendor/archive and conformance statement; still images versus echo cine loops and structured reports; supported media/transfer syntaxes; intended non-diagnostic versus diagnostic viewing; specialist report fields/sign-off; storage quotas, file/study limits, recovery and bandwidth targets based on actual clinic connections.
+DICOMweb is a candidate standard for web imaging exchange, not proof of compatibility or a complete viewer. Background: [DICOM committee educational overview of DICOMweb](https://www.dicomstandard.org/docs/librariesprovider2/dicomdocuments/wp-cotent/uploads/2018/10/day1_s12-solomon-dicomweb.pdf?sfvrsn=23babc87_2) (2018 educational material, not a selected conformance/version specification). Provider documentation and testing remain necessary.
+Proposed staging: report/reference-first synthetic workflow with explicit non-diagnostic preview, private media access and metadata-first loading. No AI interpretation or calculated clinical measurements. No real data, legal validity or retention policy inferred.
+Next: review stage and provider choice, TASK-039/040. Preserve existing security gates before any public diagnostic data.

@@ -243,5 +243,10 @@ A technology being mentioned in this scope does not authorize unrelated capabili
 Removal of an existing capability, behavior, test, API field, persisted field, or supported workflow requires explicit approval and a change-justification record.
 
 ## Initialization interpretation — 2026-09-10
+
 All listed initial capabilities are captured in Draft requirements in `../Requirements/INDEX.md`; detailed rules are proposed for review, not implementation approval. The developer baseline additionally includes Node.js, React Native Web where appropriate, GraphQL Yoga, GraphQL Code Generator, Zod, Docker Compose, Vitest, Testcontainers and Playwright where appropriate.
 Shared packages contain demonstrated cross-consumer contracts/primitives; feature business rules remain feature-owned. Laboratory scope is an architecture boundary only, with no request workflow, protocol, provider or integration implementation approved. Legal, privacy, retention, role grants and clinical-document content remain findings. No Jira is used.
+
+## Optional modules planning — owner request 2026-09-14
+
+Owner requests requirements for subscribed practices to add laboratory, X-ray, 2D echo and other future features. This authorizes requirements/assessment only, not promotion of prior diagnostic exclusions to implementation scope. REQ-PROD-002, REQ-FOUND-013/014 and REQ-FEAT-016–018 are Draft. ADR-011 and TASK-036–040 are Proposed. Preserve all earlier decisions; detailed clinical/vendor/legal and pricing findings remain open. See ../Assessment/OPTIONAL-MODULES.md.
