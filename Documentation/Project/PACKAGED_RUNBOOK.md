@@ -77,3 +77,22 @@ The image contains `/workspace/artifacts/sbom.cdx.json` and `provenance.json`. T
 Current [acceptance evidence](../Acceptance/TASK-027-acceptance.md) and [FIND-013](../Assessment/Findings/FIND-013.md) document dependency advisories and the Docker Scout login limitation. Production OS scanning, dependency remediation, smaller runtime images, separate runtime/migration DB privileges, cloud ingress/TLS and protected delivery remain release gates. Do not expose this package publicly.
 
 Clock prerequisite: keep the host and Docker Desktop VM clocks synchronized, especially after sleep. The verifier rejects clock skew beyond one second before browser tests because MFA and clinical timestamps depend on accurate time. Synchronize/restart Docker Desktop as appropriate, then rerun; do not disable MFA checks.
+
+## TASK-033 patched package and repeatable scanning
+
+Current local handoff uses `IMAGE_TAG=task033`, `SOURCE_REVISION=c7c5a38-task033-working`, and `WEB_PORT=8080`. The earlier task027 image is retained. Database and local state volumes are shared across those local image revisions; no migration was changed by TASK-033. For subsequent builds label the actual checked-out revision and record any working-tree changes.
+
+Trivy 0.74.0 was downloaded from the [official release](https://github.com/aquasecurity/trivy/releases/tag/v0.74.0), verified against its published SHA-256 checksums, and run locally. On this workstation the temporary executable is `/private/tmp/task033-trivy/trivy`; install/verify the correct official binary on another machine. Do not reuse an unverified download.
+
+```sh
+mkdir -p .local/security
+pnpm audit --json > .local/security/npm-audit.json
+docker save mcclinic-packaged:task033 -o .local/security/image.tar
+/private/tmp/task033-trivy/trivy image \
+  --input .local/security/image.tar \
+  --cache-dir .local/security/trivy-cache \
+  --scanners vuln --format json \
+  --output .local/security/image-scan.json
+```
+
+`pnpm audit` currently exits nonzero for the two known image-size advisories. Read and retain the reports; do not add a mute to make them green. Image scanning does not upload the image and needs no Docker socket inside a scanner container. Scan command completion does not mean there are no vulnerabilities. TASK-033 acceptance records the findings and public-release blockers. Runtime separation is proposed under TASK-035; LocalStack remains optional.

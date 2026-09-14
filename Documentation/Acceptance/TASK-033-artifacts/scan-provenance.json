@@ -1,0 +1,27 @@
+{
+  "scanner": "Trivy 0.74.0",
+  "binarySha256": "0ed07c205ca9ecc1065dc57b9f9f77adc79393bb469d9d1de9ec90c8c94ffc2f",
+  "releaseArchiveSha256": "1caada5e0e2091909357c7525d3aa76f4b660b13821bc143b190c7483e31cc11",
+  "image": "sha256:108efb98c2a139de6a598370a527ff4a991ef6453fe5b7aedf5ea3cd606157f2",
+  "reports": {
+    "npm-before.json": "3a1d9849e66f8c885fedd8ca32152258d2ec176cde91e031a303348d0feb22f6",
+    "provenance.json": "9d97518460a333742d276d18ca1ca73d164f55d95170b7abbeb0ea174037a63a",
+    "trivy-before.json": "5a0ffbcd56207f43910342c3ba820493aa444e7c00368ec405a805cce39047bd",
+    "trivy-after.json": "3ae317817f257a174650b255a5f0cc8cd70e7bfced03808b2db549d565ed2bc4",
+    "npm-after.json": "55fbe93824b83912ae93e464e6263c7b2cde265902430102c556e034945aac7b",
+    "node-sbom.cdx.json": "e1e437fd7db7800c904dc536fb40da6bbc000f1b51a5a0f2a2d68b526f5c682c",
+    "trivy-db.json": "ad1b82ae5f7913f64cc9b9b4ffe1d1bcdb319bd7cc78f55605cc19bc3cac7792"
+  },
+  "commands": [
+    "pnpm audit --json",
+    "docker save mcclinic-packaged:task033 -o image.tar",
+    "trivy image --input image.tar --scanners vuln --format json --output trivy-after.json"
+  ],
+  "scope": "Local arm64 package; report includes Debian and globally bundled Node tools; pnpm audit and package-generated SBOM cover the application workspace. Counts are package/advisory occurrences, not distinct reachable vulnerabilities.",
+  "buildInputs": {
+    "infrastructure/docker/Dockerfile.packaged": "3f809739e059800e336cded44617808d80b1004e3f002348516023a482f5c300",
+    "pnpm-workspace.yaml": "b275462ff2188daf896fcafe0b57e3326a7b3dc09a5c7e75ca0228a41b32d2f5",
+    "pnpm-lock.yaml": "21985d16027df0c189a43abb2868a437d7556ecdf6bc84d626ea98bd2a190945",
+    "package.json": "1fa2d599597b0ba8a6168869abd67169d809bc0768bc9e897a6eb427d92fc625"
+  }
+}

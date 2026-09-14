@@ -3,3 +3,8 @@ packages:
   - packages/*
 onlyBuiltDependencies:
   - esbuild
+
+# TASK-033: narrow upstream security overrides, verified against Prisma workflows.
+overrides:
+  '@prisma/config>deepmerge-ts': 8.0.2
+  'prisma>mysql2': 3.23.1

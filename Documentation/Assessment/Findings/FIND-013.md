@@ -13,3 +13,7 @@ These are dependency inventory findings, not proof that the application's runtim
 Docker Scout image scan could not run because a Docker login is required. OS vulnerability coverage is UNVERIFIED. The CycloneDX inventory covers Node packages only. Image includes build tooling; runtime minimization and production privilege separation remain future work.
 
 Local synthetic packaging can be evaluated with these findings Open. Production/public staging requires scan coverage, reachability assessment and remediation/explicit accountable risk decisions. Proposed TASK-033 records a bounded follow-up; no live exposure authorized.
+
+## TASK-033 follow-up — 2026-09-14
+
+Status remains **Open**. Three original npm advisories remediated by scoped Prisma overrides; two image-size advisories remain without a published patched release. Trivy OS/global-tool scan coverage now obtained, replacing the earlier UNVERIFIED gap. PCRE fixed; remaining OS/global-tool reports are not accepted for public exposure. Source-path analysis supports only current synthetic loopback use. Complete counts, limitations, commands and before/after reports: ../../Acceptance/TASK-033-acceptance.md. Proposed TASK-035 addresses runtime separation/hardening. No scanner mute or false production-readiness resolution.
