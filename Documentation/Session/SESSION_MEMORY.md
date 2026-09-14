@@ -4,9 +4,9 @@ Updated: 2026-09-14 (Australia/Sydney).
 Phase: synthetic local SaaS/package complete; public staging/production gated.
 Active requirement: REQ-FOUND-012 / FIND-013 runtime hardening; optional modules are future nice-to-have backlog.
 Active task: none approved for this planning scope. TASK-033 completed locally; TASK-035–040 are Proposed. TASK-024 and TASK-028–031 remain Proposed.
-Current branch: task/TASK-033-dependency-remediation.
-Observed HEAD before this memory update: d4a47f09714cae4e7f7156bad0319e060670f2d1 (optional module requirements recorded locally).
-Observed status before this memory update: clean; only owner-priority documentation and memory updates pending commit.
+Current branch: master.
+Observed HEAD before this memory update: 1de4c85898671576abbff965db80650df514c527 (also origin/master; TASK-033 and backlog documentation integrated).
+Observed status before this memory update: clean; integration evidence and memory update pending local commit.
 
 ## Authorization and Git reconciliation
 
@@ -36,7 +36,7 @@ Observed status before this memory update: clean; only owner-priority documentat
 
 - FIND-013 remains Open: image-size and remaining OS/global npm/pnpm findings block public readiness; local-only reachability decisions do not accept production risk. TASK-035 is not approved.
 - Philippine clinical/legal/privacy/signature/retention findings remain Open and nonblocking only for synthetic development. No purge.
-- Exact next action: obtain approval for TASK-035 runtime image separation/hardening. TASK-033 merge/push remains separately pending. Do not implement optional modules; TASK-036–040 are future nice-to-have backlog per owner decision.
+- Exact next action: await explicit TASK-035 implementation approval. TASK-033 is integrated and hosted verification passed. TASK-036–040 remain future nice-to-have backlog; do not implement them.
 
 ## Optional module requirements — 2026-09-14
 
@@ -46,3 +46,7 @@ Observed status before this memory update: clean; only owner-priority documentat
 - Verified record fields, ID uniqueness, references, formatting and Git whitespace; no application tests rerun for documentation-only work. No implementation, deployment, billing, data or permission changes.
 
 Owner priority update 2026-09-14: optional-module requirements retained as Draft, tasks Proposed with future/nice-to-have priority. No implementation started. Documentation-only verification: formatting and Git whitespace checks.
+
+## TASK-033 integration reconciliation
+
+At continuation, actual Git already showed master and origin/master at 1de4c85, with a clean working tree. No redundant merge/push performed. GitHub run 34805481810 completed successfully for that exact HEAD: https://github.com/git2WorkPH/mcclinic/actions/runs/34805481810 . This supersedes earlier unmerged/unpushed statements and adds hosted verification for TASK-033. Formatting/whitespace inspection passed; no source changes or redundant full local regression run. TASK-035 remains Proposed and unimplemented.

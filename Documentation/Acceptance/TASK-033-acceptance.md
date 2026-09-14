@@ -41,3 +41,7 @@ The final image is approximately 1.11 GB and intentionally still includes worksp
 ## Review decision
 
 Project-review: scoped overrides, pinned OS fixes, complete before/after evidence and local reachability decisions satisfy the bounded TASK-033 assessment. No clinical permissions, schema, APIs, tests or supported behavior removed. Findings remain visible; no live deployment/payment/data or production risk acceptance. FIND-013 remains Open for image-size and remaining OS/global-tool exposure. TASK-035 is Proposed, not approved. TASK-033 is locally complete; its final merge/push remains a separate action.
+
+## Integration evidence
+
+Continuation inspection found both master and origin/master already at 1de4c85898671576abbff965db80650df514c527, containing TASK-033 and documentation-only future backlog decisions. [GitHub run 34805481810](https://github.com/git2WorkPH/mcclinic/actions/runs/34805481810) completed successfully for this HEAD. This supersedes the earlier local-only/unpushed status; no duplicate merge performed. Existing scan findings remain open and TASK-035 remains Proposed.
