@@ -5,8 +5,8 @@ Phase: local synthetic packaged MVP/SaaS COMPLETE; public staging/production pen
 Active requirement: REQ-FOUND-001 CI formatting overlay; TASK-027 packaging remains complete.
 Active task: TASK-034 completed locally; TASK-028–031, TASK-024 and TASK-033 remain Proposed.
 Current branch: task/TASK-034-ci-formatting.
-Observed HEAD before this memory update: fe84b36d6d00dcd5819c553c3435e0fcaf2c274f (master merge/cleanup record).
-Observed status before this memory update: seven pre-existing user edits remain unstaged (six API files listed in TASK-027 acceptance plus tooling/verify-mvp-runtime.ts); TASK-034 CI/config/dependency/tests/docs and memory pending commit. No tracked deletions.
+Observed HEAD before this memory update: 2f52fbe9cdfcdb4696164fee392b956d30ee1075 (TASK-034 CI formatting).
+Observed status before this memory update: clean after owner-authorized discard of exactly seven unstaged edits; this memory/acceptance update pending commit.
 
 ## Authorization / reconciliation
 
@@ -42,3 +42,7 @@ Final reconciliation: initial final-image browser rerun failed history/MFA due t
 ## TASK-034 handoff
 
 Owner asked to add lint/format to GitHub flow. Explicit lint and changed-file read-only Prettier steps retain all existing checks. New branch created after remote search found no TASK-034 branch. Scope/approval: Tasks/Approved/TASK-034.md; rationale: Doc/Changes/Justification/TASK-034-ci-formatting.md; evidence: Acceptance/TASK-034-acceptance.md. Five new formatter tests plus existing tests = 26 passed; pnpm check/build and codegen passed after allowing local socket tests. Seven user edits remain unstaged, no push/merge. Exact next action for this change: review TASK-034 and authorize merge/push as desired; GitHub-hosted execution is pending push.
+
+## Owner-authorized discard — 2026-09-14
+
+Owner instructed “drop all the seven unstaged”. Restored exactly apps/api/src/app.ts, apps/api/src/main.ts, modules/patient/application/patients.ts, modules/patient/domain/patient.ts, modules/subscription/application/policy.ts, modules/templates/infrastructure/snapshot.ts (module paths under apps/api/src), and tooling/verify-mvp-runtime.ts to HEAD. Earlier statements about preserving these edits are historical and superseded. No other files discarded. Clean-source pnpm check passed: 26 tests, lint/boundaries, types, API/web builds. Existing running container still reflects its prior working-tree build and has not been rebuilt. Exact next action: merge TASK-034 to master with owner approval; push only if authorized to run GitHub CI, then approve TASK-033 dependency assessment before public staging.

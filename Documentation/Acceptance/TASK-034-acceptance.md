@@ -9,3 +9,7 @@ Base: fe84b36d6d00dcd5819c553c3435e0fcaf2c274f. Branch: task/TASK-034-ci-formatt
 - Formatter follows the pinned Prettier API and documented ignore behavior: https://prettier.io/docs/api and https://prettier.io/docs/cli . This adopts formatting on changed files; it does not certify existing legacy formatting.
 
 Project-review: no application behavior or authorization changes; changes stay within CI approval and TASK-034 justification. Generated contracts, lockfile, starter and acceptance artifact bytes excluded appropriately. CI receives base values via environment and Git is invoked without shell interpolation. Local tests cover success and failure paths. No tracked source/test deletion. No GitHub run claimed: branch has not been pushed. No database/browser rerun required for formatter-only changes; existing workflow retains those checks. Dependency advisories under FIND-013 remain open and unrelated.
+
+## Clean-source verification — 2026-09-14
+
+Owner explicitly authorized discarding the seven previously excluded edits. Restored exactly those paths to HEAD; no other changes removed. Reran pnpm check successfully on committed source: 26 tests, lint/boundaries, types and API/web builds. Prior shared-working-tree limitation is superseded for this run. Running packaged Docker image was not rebuilt.
