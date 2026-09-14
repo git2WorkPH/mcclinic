@@ -22,7 +22,10 @@
     "test:mvp:web": "tsx tooling/run-mvp-browser.ts",
     "db:rename": "tsx tooling/rename-database.ts",
     "dev:mailbox": "tsx tooling/read-local-mail.ts",
-    "test:onboarding": "vitest run tests/onboarding.integration.test.ts"
+    "test:onboarding": "vitest run tests/onboarding.integration.test.ts",
+    "format": "prettier --write",
+    "format:check": "prettier --check",
+    "format:changed": "node tooling/check-format.mjs"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "7.4.0",
@@ -41,6 +44,7 @@
     "graphql": "16.11.0",
     "oxlint": "1.82.0",
     "pg": "8.23.0",
+    "prettier": "3.9.6",
     "prisma": "7.10.0",
     "tsx": "4.23.13",
     "typescript": "5.9.3",

@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 24.21.0
@@ -14,6 +16,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: node tooling/check-codegen.mjs
       - run: pnpm db:generate
+      - name: Lint and architecture boundaries
+        run: pnpm lint
+      - name: Check changed-file formatting
+        run: pnpm format:changed
+        env:
+          FORMAT_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          FORMAT_DEFAULT_REF: origin/${{ github.event.repository.default_branch }}
       - run: pnpm check
       - run: pnpm test:integration
       - run: pnpm exec playwright install --with-deps chromium

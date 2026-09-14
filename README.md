@@ -5,6 +5,7 @@
 Repository-local governance, six focused skills, EHR architecture, and concise committed session memory. This package contains documentation and templates; it does not include an application, approved implementation tasks, or live integrations.
 
 ## Install
+
 1. Extract the ZIP. Copy the contents of `ehr-codex-project-starter/` into the target repository root, including hidden `.agents/`.
 2. For an existing project, inspect and merge existing documents first. Do not blindly overwrite project history, approvals, or memory. Inventory overlapping Continuity/EHR skills and route each responsibility to the six skills in AGENTS.md. This package includes no competing legacy skills. Deleting existing legacy files requires explicit deletion approval; prepare the exact list for that approval and update obsolete references during the authorized consolidation.
 3. Preserve the empty documentation directories. ZIP directory entries retain them on extraction. Each empty directory also contains `.gitkeep` so Git retains the structure; removal of those files follows the deletion rule.
@@ -12,6 +13,7 @@ Repository-local governance, six focused skills, EHR architecture, and concise c
 5. Track and commit the kit and session memory in the project. Draft tasks and obtain explicit approval before application implementation.
 
 ## Ownership and workflow
+
 AGENTS.md routes to one owner per concern: governance, assessment, development, review, session memory, and EHR architecture. No Jira or external task system is required. Use templates from `Documentation/Templates/`; every record is repository-local.
 
 Requirements → assessment/findings → proposed task → explicit approval → approved task → existing branch search/reuse → task justification → implementation/test classification → verification/review → completed task and committed session memory.
@@ -19,9 +21,11 @@ Requirements → assessment/findings → proposed task → explicit approval →
 Every implementation change is covered by `Documentation/Changes/Justification/<TASK-ID>-<description>.md`. There is no separate legacy documentation tree. Task approval does not implicitly approve deletions. The governance skill owns the complete deletion and approval rules; development owns KEEP/ADD/UPDATE/SPLIT/REMOVE test decisions.
 
 ## Start prompt
+
 > Initialize this EHR repository using AGENTS.md and the six project-local skills. Read session memory first and validate it against Git. Establish project settings, draft Product/Foundation/Feature requirements from SCOPE.md, assess the repository, and propose bounded tasks with acceptance criteria. Do not implement application features until the proposed task has explicit approval. Update and commit concise repository-local session memory with the exact next action.
 
 ## Package map
+
 - `AGENTS.md`, `README.md`: entry point and installation.
 - `.agents/skills/`: six skills with distinct ownership.
 - `Documentation/Project/`: project profile, scope, glossary.
@@ -35,10 +39,12 @@ Every implementation change is covered by `Documentation/Changes/Justification/<
 - `Documentation/Templates/`: requirement, finding, task, ADR, acceptance, change-justification, and session-memory templates.
 
 ## Installed project — 2026-09-10
+
 The kit is now installed at repository root. Begin with [session memory](Documentation/Session/SESSION_MEMORY.md), validate Git, then follow [AGENTS.md](AGENTS.md).
 The nested starter is preserved unchanged as source material. Root overrides govern conflicts. All implementation justifications use `Doc/Changes/Justification/`; Jira is not used. See [requirements](Documentation/Requirements/INDEX.md), [tasks](Documentation/Tasks/Proposed/INDEX.md), and [assessment](Documentation/Assessment/INITIAL_ASSESSMENT.md).
 
 ## Development foundation
+
 The approved TASK-001 workspace is implemented. See [local development](Documentation/Project/DEVELOPMENT.md) for pinned runtime, install, API/web startup and verification commands. This is a non-clinical shell; no patient workflow or prescribing capability is implemented. Remaining approved work is tracked in [decisions needed](Documentation/Assessment/DECISIONS-NEEDED.md).
 
 ## Current MVP account and practice flows
@@ -111,6 +117,17 @@ flowchart TD
 - Subscriptions are simulated; creating a practice does not charge anyone. Use synthetic data only. Clinical previews and prints remain marked **DEMO — NOT FOR CLINICAL USE**.
 
 See the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) for startup, verification, invitations, MFA and recovery instructions, and the [SaaS runbook](Documentation/Project/SAAS_RUNBOOK.md) for practice workflows.
+
 ## Packaged local testing
 
 TASK-027 adds a complete Docker Compose environment with a built frontend, non-root API and persistent PostgreSQL `mcclinic`. LocalStack is optional and not required. Follow the [packaged runbook](Documentation/Project/PACKAGED_RUNBOOK.md) for startup, synthetic login, mailbox, health checks, backups and verification. The default local address is http://127.0.0.1:8080/clinic. This remains synthetic development; public staging/production are not enabled.
+
+## Lint and formatting
+
+GitHub Verify runs an explicit `pnpm lint` step and checks changed supported files with pinned Prettier. Existing `pnpm check` and regression steps remain. Formatting is adopted when files change; unchanged legacy files are not mass-reformatted. CI reports errors and never writes fixes.
+
+- Check specific files: `pnpm format:check path/to/file.ts`
+- Format specific files: `pnpm format path/to/file.ts`
+- Check committed changes against a base: `FORMAT_BASE=$(git rev-parse master) pnpm format:changed`
+
+The changed-file check uses the merge base of the PR base/push predecessor and HEAD. For a new branch push, it uses the remote default branch; when that is HEAD, it checks the previous commit. A repository with no parent/base must supply an existing base commit. Missing base history fails rather than silently skipping checks. Fetch full history locally when needed. This command checks committed file selection against working-tree content; use a clean checkout to reproduce CI exactly. Generated contracts, lockfile, starter history and exported artifact evidence are excluded. Avoid passing `.` to the write command unless you intend to format all supported files.

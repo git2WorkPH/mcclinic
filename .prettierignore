@@ -1,0 +1,9 @@
+# Generated contracts and dependency metadata have their own generators.
+pnpm-lock.yaml
+**/generated/**
+**/*.generated.*
+# Preserve historical kit and acceptance artifact bytes.
+ehr-codex-project-starter/**
+Documentation/Acceptance/**/*artifacts/**
+# Binary demo artifacts are not source formatting inputs.
+Documentation/Demos/**
