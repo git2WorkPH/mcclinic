@@ -1,0 +1,30 @@
+{
+  "project": "mcclinic-recovery-test-1789368443183",
+  "source": "mcclinic-package-test-1789368304130",
+  "tables": {
+    "AccountRate": "17|34c35981909e6ea0d5a887c85459c556",
+    "AccountToken": "5|b8c65cfca49afce57a5b1e7eb45ee667",
+    "Appointment": "1|5a83b5e61b18b2429c1d1f4763a67432",
+    "AppointmentChange": "3|dda194f7ef241900f428721e4ead8fbd",
+    "AuditEvent": "168|ae6979ede36e973ca6ccd2f755dddd85",
+    "ClinicalDocument": "2|66bce4a968d5b9d81e9cb483d103d6ba",
+    "CommandReceipt": "16|b5c2b1b36cf6e18a753d4010c6b45dbf",
+    "Consultation": "1|5e7c26ee88ae2c54b38689a699ce556b",
+    "DocumentRevision": "4|2b70712e32b3204cb3d64069e43ed54c",
+    "DocumentTemplate": "1|d5469236a3bc1ab4cf6145ab1555e512",
+    "Membership": "8|d60d9bb95631755d00c5f0f2399e273b",
+    "NoteRevision": "2|39bc7ca07fa1cca157cb211274157aa4",
+    "Patient": "1|db17d81a7c66aad8572984576c4f3a97",
+    "Practice": "5|fd4988e49be031ef3f75bd1d073e87dd",
+    "PracticeSubscription": "4|9c4b698692242c17e4afed164692682f",
+    "SecurityFactor": "1|90d7b9aa9fda43905701490cdf8871b6",
+    "Session": "9|13fa755578d75a814bd58c24ca9cd3aa",
+    "TemplateRevision": "1|c7cb57d480c1a04e76d5233badf2acad",
+    "User": "6|b6d2cb0d4f73e0d6d80708353d9a1c55",
+    "_prisma_migrations": "3|6d891b4acb6b8fa4fd94c4ad1e82dc96"
+  },
+  "mfaAccounts": 1,
+  "restore": true,
+  "rollback": true,
+  "rollForward": true
+}

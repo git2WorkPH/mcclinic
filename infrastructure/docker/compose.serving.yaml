@@ -1,0 +1,27 @@
+# Additive override: retain original local package and migration/seed commands.
+services:
+  migrate:
+    image: mcclinic-migration:${IMAGE_TAG:-local}
+    build:
+      dockerfile: infrastructure/docker/Dockerfile.serving
+      target: migration
+  seed:
+    image: mcclinic-migration:${IMAGE_TAG:-local}
+    build:
+      dockerfile: infrastructure/docker/Dockerfile.serving
+      target: migration
+  api:
+    image: mcclinic-api:${IMAGE_TAG:-local}
+    build:
+      dockerfile: infrastructure/docker/Dockerfile.serving
+      target: api
+    command: [/workspace/serving/api.mjs]
+  web:
+    image: mcclinic-web:${IMAGE_TAG:-local}
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.serving
+      target: web
+      args:
+        SOURCE_REVISION: ${SOURCE_REVISION:?Set the source revision}
+    command: [/workspace/serving/web.mjs]

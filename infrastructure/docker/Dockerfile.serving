@@ -1,0 +1,48 @@
+FROM node:24.21.0-bookworm-slim@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553 AS migration
+RUN apt-get update && apt-get install -y --no-install-recommends libpcre2-8-0=10.42-1+deb12u1 openssl=3.0.20-1~deb12u2
+RUN npm install --global pnpm@10.34.5
+WORKDIR /workspace
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.json prisma.config.ts codegen.ts ./
+COPY apps/api/package.json apps/api/tsconfig.build.json ./apps/api/
+COPY apps/api/src ./apps/api/src
+COPY apps/api/prisma ./apps/api/prisma
+COPY apps/clinical-app/package.json apps/clinical-app/index.html apps/clinical-app/vite.config.ts ./apps/clinical-app/
+COPY apps/clinical-app/src ./apps/clinical-app/src
+COPY packages/graphql-contract ./packages/graphql-contract
+COPY tooling/copy-api-schema.mjs tooling/package-provenance.mjs tooling/build-serving.mjs ./tooling/
+ARG SOURCE_REVISION=unversioned
+LABEL org.opencontainers.image.title="MCClinic synthetic local package" org.opencontainers.image.revision=$SOURCE_REVISION
+RUN pnpm install --frozen-lockfile && pnpm codegen && pnpm build && SOURCE_REVISION=$SOURCE_REVISION node tooling/package-provenance.mjs
+RUN mkdir -p /var/lib/mcclinic && chown node:node /var/lib/mcclinic
+ENV NODE_ENV=production
+USER node
+EXPOSE 4000 8080
+CMD ["node", "apps/api/dist/apps/api/src/packaged-main.js"]
+
+FROM migration AS build-serving
+USER root
+RUN SOURCE_REVISION=$SOURCE_REVISION node tooling/build-serving.mjs
+
+FROM gcr.io/distroless/cc-debian12:nonroot@sha256:9dac0a79194e45a7da0158a9c6da57b217585af0786db3845d1f0ec1a0dd182f AS serving-base
+COPY --from=migration /usr/local/bin/node /usr/local/bin/node
+COPY --from=migration --chown=1000:1000 /var/lib/mcclinic /var/lib/mcclinic
+WORKDIR /workspace
+ENV NODE_ENV=production
+USER 1000:1000
+ENTRYPOINT ["/usr/local/bin/node"]
+
+FROM serving-base AS api
+COPY --from=build-serving /workspace/serving/api.mjs /workspace/serving/api.mjs
+COPY --from=build-serving /workspace/serving/api.sbom.cdx.json /workspace/artifacts/sbom.cdx.json
+COPY --from=build-serving /workspace/serving/api.build.json /workspace/artifacts/build.json
+COPY --from=migration /workspace/apps/api/dist/packages/graphql-contract /workspace/apps/api/dist/packages/graphql-contract
+EXPOSE 4000
+CMD ["/workspace/serving/api.mjs"]
+
+FROM serving-base AS web
+COPY --from=build-serving /workspace/serving/web.mjs /workspace/serving/web.mjs
+COPY --from=build-serving /workspace/serving/web.sbom.cdx.json /workspace/artifacts/sbom.cdx.json
+COPY --from=build-serving /workspace/serving/web.build.json /workspace/artifacts/build.json
+COPY --from=migration /workspace/apps/clinical-app/dist /workspace/apps/clinical-app/dist
+EXPOSE 8080
+CMD ["/workspace/serving/web.mjs"]

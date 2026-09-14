@@ -30,6 +30,9 @@ const args = [
   'mcclinic-package-test-' + Date.now(),
   '-f',
   'infrastructure/docker/compose.packaged.yaml',
+  ...(process.env.SERVING_IMAGES === 'true'
+    ? ['-f', 'infrastructure/docker/compose.serving.yaml']
+    : []),
   '-f',
   'infrastructure/docker/compose.packaged-test.yaml',
 ];

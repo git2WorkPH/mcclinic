@@ -11,3 +11,6 @@ coverage/
 apps/api/src/infrastructure/prisma/generated/
 
 .local/
+
+# TASK-035 generated serving bundles
+serving/
