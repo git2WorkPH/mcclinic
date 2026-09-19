@@ -1,0 +1,67 @@
+
+> clinic-ehr@ check /Users/cervantes/Documents/ChatGPT/MCClinc
+> pnpm lint && pnpm typecheck && pnpm test && pnpm build
+
+
+> clinic-ehr@ lint /Users/cervantes/Documents/ChatGPT/MCClinc
+> oxlint apps packages tooling tests codegen.ts playwright.config.ts vitest.config.ts && node tooling/check-boundaries.mjs
+
+Inner-layer dependency boundaries passed
+
+> clinic-ehr@ typecheck /Users/cervantes/Documents/ChatGPT/MCClinc
+> tsc --noEmit
+
+
+> clinic-ehr@ test /Users/cervantes/Documents/ChatGPT/MCClinc
+> vitest run --exclude "**/*.integration.test.ts"
+
+
+ RUN  v5.0.0 /Users/cervantes/Documents/ChatGPT/MCClinc
+
+
+ Test Files  9 passed (9)
+      Tests  30 passed (30)
+   Start at  06:02:07
+   Duration  3.35s (tests 75%, import 13%, transform 11%)
+
+
+> clinic-ehr@ build /Users/cervantes/Documents/ChatGPT/MCClinc
+> pnpm db:generate && pnpm --filter @ehr/api build && pnpm --filter @ehr/clinical-app build
+
+
+> clinic-ehr@ db:generate /Users/cervantes/Documents/ChatGPT/MCClinc
+> prisma generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from apps/api/prisma/schema.prisma.
+┌─────────────────────────────────────────────────────────┐
+│  Update available 7.10.0 -> 8.0.0-rc.15                 │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+
+✔ Generated Prisma Client (7.10.0) to ./apps/api/src/infrastructure/prisma/generated in 76ms
+
+
+> @ehr/api@ build /Users/cervantes/Documents/ChatGPT/MCClinc/apps/api
+> tsc -p tsconfig.build.json && node ../../tooling/copy-api-schema.mjs
+
+
+> @ehr/clinical-app@ build /Users/cervantes/Documents/ChatGPT/MCClinc/apps/clinical-app
+> vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 399 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.31 kB │ gzip:   0.23 kB
+dist/assets/index-C-iVZmBM.js  445.96 kB │ gzip: 123.08 kB
+
+✓ built in 91ms

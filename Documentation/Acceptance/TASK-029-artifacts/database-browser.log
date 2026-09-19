@@ -1,0 +1,8 @@
+
+ RUN  v5.0.0 /Users/cervantes/Documents/ChatGPT/MCClinc
+
+
+ Test Files  5 passed (5)
+      Tests  30 passed (30)
+   Start at  05:56:20
+   Duration  9.82s (tests 86%, import 11%, transform 3%)

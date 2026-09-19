@@ -10,6 +10,7 @@
     "start:mvp": "node dist/apps/api/src/mvp-main.js"
   },
   "dependencies": {
+    "@aws-sdk/client-kms": "3.1132.0",
     "@ehr/graphql-contract": "workspace:*",
     "@prisma/adapter-pg": "7.10.0",
     "@prisma/client": "7.10.0",

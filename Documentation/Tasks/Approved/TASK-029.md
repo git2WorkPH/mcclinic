@@ -25,3 +25,7 @@ Onboarding/identity application ports and adapters, outbox persistence, secrets 
 ## Sequence authorization — 2026-09-14
 
 Owner: “ok i agree with the recommended sequence. Use the project-development skill and Continuity Kit workflow to implement it in sequence”. Approved sequence: TASK-035 → TASK-029/028 → TASK-030 → TASK-031. Owner further chose “Prepare locally; no AWS spending yet”. Local code, IaC and synthetic verification are authorized; deployed verification and production go/no-go cannot be claimed from local evidence. No real data, external activation, cloud apply or deletion authorized. Historical proposal retained; this record governs the approved local preparation scope.
+
+## Local preparation checkpoint — 2026-09-20
+
+Encrypted transactional outbox, allowlisted idempotent sink/retry, retained key versions, gated KMS unwrap adapter, cookie mode and threat/recovery policy implemented and locally verified. See `Documentation/Acceptance/TASK-029-acceptance.md`. Task remains Approved for the full scope: actual AWS/KMS IAM/restore, transactional provider/domain/bounce activation and operational custody evidence remain unverified. This does not prevent authorized local TASK-028 preparation. The sequence reuses task/TASK-035-release-readiness with separate justifications/evidence and commits; no merge/push authorized.

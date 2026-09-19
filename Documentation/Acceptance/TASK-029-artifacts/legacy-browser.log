@@ -1,0 +1,24 @@
+
+> clinic-ehr@ test:mvp:web /Users/cervantes/Documents/ChatGPT/MCClinc
+> tsx tooling/run-mvp-browser.ts
+
+
+  VITE v8.3.0  ready in 84 ms
+
+  ➜  Local:   http://127.0.0.1:5174/
+
+Running 7 tests using 1 worker
+
+(node:15135) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/mvp-web/journey.spec.ts:5:1 › reception and clinician complete persistent patient, clinical, print and scheduling workflows (3.4s)
+  ✓  2 tests/mvp-web/journey.spec.ts:30:1 › administrator sees audit metadata and has no clinical tabs (526ms)
+  ✓  3 tests/mvp-web/onboarding.spec.ts:8:1 › onboarding control visibly opens the account options (243ms)
+  ✓  4 tests/mvp-web/onboarding.spec.ts:11:1 › doctor registration, verification, invitation acceptance and practice permissions work in the browser (1.2s)
+  ✓  5 tests/mvp-web/onboarding.spec.ts:12:1 › authenticator enrollment, recovery-code login and password recovery are real web workflows (1.8s)
+  ✓  6 tests/mvp-web/printing.spec.ts:5:1 › long demo documents retain final content and print across A4 pages (108ms)
+5:57:17 AM [vite] (client) [console.warn] Image: style.resizeMode is deprecated. Please use props.resizeMode.
+5:57:18 AM [vite] (client) [console.warn] Image: style.resizeMode is deprecated. Please use props.resizeMode.
+  ✓  7 tests/mvp-web/saas.spec.ts:2:1 › administrator creates a practice, customizes branding/templates, switches and simulates subscription recovery (1.6s)
+
+  7 passed (9.4s)

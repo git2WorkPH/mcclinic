@@ -239,3 +239,17 @@ model AccountRate {
  key String @id
  count Int @default(1)
 }
+
+// Durable identity delivery; no automatic purge or clinical access through this queue.
+model IdentityOutbox {
+  id String @id @default(uuid()) @db.Uuid
+  payloadCipher String
+  createdAt DateTime @default(now())
+  availableAt DateTime @default(now())
+  leaseUntil DateTime?
+  leaseId String? @db.Uuid
+  attempts Int @default(0)
+  deliveredAt DateTime?
+  exhaustedAt DateTime?
+  @@index([deliveredAt, exhaustedAt, availableAt])
+}

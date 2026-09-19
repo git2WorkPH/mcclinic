@@ -51,3 +51,7 @@ Owner authorizes TASK-025 before TASK-024. Local synthetic registration/verifica
 # Packaged local runtime — owner-approved TASK-027, 2026-09-14
 
 The synthetic MVP can additionally run as separate built-web and API containers with an isolated persistent PostgreSQL mcclinic instance. Only web publishes a loopback host port; existing local startup remains supported. New secrets are generated only if absent, local mailbox/MFA state survives restart, and migration/seed commands are explicit. LocalStack is optional future AWS adapter testing and is not required or installed. Public staging/production values fail closed pending separate approval and secret/delivery controls. FIND-013 security advisories remain unresolved; local packaging completion does not establish production readiness. See PACKAGED_RUNBOOK.md and ADR-010.
+
+## Release preparation defaults — owner-approved sequence, verified locally 2026-09-20
+
+TASK-035 and TASK-029 local work retains synthetic-only scope. Owner explicitly chose “Prepare locally; no AWS spending yet”. No AWS apply, external identity mail, live billing or real data is authorized. Runtime separation and opt-in durable delivery/cookie/key-version controls are local implementation progress, not production policy resolution. See IDENTITY_READINESS.md and TASK-029 acceptance for modes, tests and remaining live-provider gates. TASK-028 is prepared locally next; TASK-030 deployed evidence and TASK-031 launch acceptance cannot be inferred from local tests.

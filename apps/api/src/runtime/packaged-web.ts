@@ -54,6 +54,8 @@ export function packagedWeb(assets: string, upstream: string) {
           res.statusCode = upstreamResponse.statusCode ?? 502;
           const contentType = upstreamResponse.headers['content-type'];
           if (contentType) res.setHeader('Content-Type', contentType);
+          const cookies = upstreamResponse.headers['set-cookie'];
+          if (cookies) res.setHeader('Set-Cookie', cookies);
           upstreamResponse.pipe(res);
         },
       );

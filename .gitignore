@@ -14,3 +14,6 @@ apps/api/src/infrastructure/prisma/generated/
 
 # TASK-035 generated serving bundles
 serving/
+
+# Local package-manager cache; not project source
+.pnpm-store/

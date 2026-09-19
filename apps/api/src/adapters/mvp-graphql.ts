@@ -1,3 +1,5 @@
+import { sessionCookiePolicy, cookieSessionMarker } from './session-cookie.js';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Delivery, MvpServices } from '../mvp-composition.js';
 import { validateTemplate } from '../modules/templates/application/template.js';
 import { simulatedSubscription } from '../modules/subscription/application/policy.js';
@@ -23,6 +25,7 @@ interface Context {
   actor: Actor | null;
   token: string;
   clientKey: string;
+  setSession?: (token: string) => void;
 }
 const doc = (d: ClinicalDocument) => ({
   ...d,
@@ -39,7 +42,12 @@ export function installMvpGraphql(
   database: Database,
   delivery?: Delivery,
   services: MvpServices = composeMvp(database, delivery),
+  options: { cookieOrigin?: string } = {},
 ) {
+  const cookie = options.cookieOrigin
+    ? sessionCookiePolicy(options.cookieOrigin)
+    : null;
+  if (cookie) app.use('/mvp/graphql', cookie.guard);
   const { onboarding } = services;
   const practices = practiceUseCases(practiceServices(database), {
     validateTemplate,
@@ -391,13 +399,19 @@ export function installMvpGraphql(
               .string()
               .max(64)
               .parse(a.code ?? ''),
+            Boolean(cookie),
           );
           attempts.delete(limitKey);
+          if (c.setSession) {
+            c.setSession(result.token);
+            return { ...result, token: cookieSessionMarker };
+          }
           return result;
         }),
       logout: (_p, _a, c) =>
         safe(c, 'session.logout', async () => {
           await services.identity.logout(c.token);
+          c.setSession?.('');
           return true;
         }),
       registerPatient: (_p, a, c) =>
@@ -572,16 +586,25 @@ export function installMvpGraphql(
       ),
       'utf8',
     );
-  const yoga = createYoga({
-    schema: createSchema({ typeDefs: schemaText, resolvers }),
+  const yoga = createYoga<
+    { req: IncomingMessage; res: ServerResponse },
+    Context
+  >({
+    schema: createSchema<
+      Context & { req: IncomingMessage; res: ServerResponse }
+    >({ typeDefs: schemaText, resolvers }),
     graphqlEndpoint: '/mvp/graphql',
     graphiql: false,
     logging: false,
     cors: false,
     maskedErrors: true,
-    context: async ({ request }): Promise<Context> => {
+    context: async ({ request, res }): Promise<Context> => {
       const header = request.headers.get('authorization') ?? '';
-      const token = header.startsWith('Bearer ') ? header.slice(7) : '';
+      const token = cookie
+        ? cookie.token(request.headers.get('cookie'))
+        : header.startsWith('Bearer ')
+          ? header.slice(7)
+          : '';
       return {
         token,
         actor: await practices.actor(
@@ -589,10 +612,15 @@ export function installMvpGraphql(
           request.headers.get('x-practice-id'),
         ),
         clientKey: 'local',
+        ...(cookie
+          ? { setSession: (value: string) => cookie.set(res, value) }
+          : {}),
       };
     },
   });
-  app.use('/mvp/graphql', yoga);
+  app.use('/mvp/graphql', async (req, res) => {
+    await yoga(req, res, { req, res });
+  });
   app.get('/health/ready', async (_req, res) => {
     try {
       await database.$queryRaw`SELECT 1`;

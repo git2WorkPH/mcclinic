@@ -1,12 +1,12 @@
 # Session memory
 
-Updated: 2026-09-14 (Australia/Sydney).
+Updated: 2026-09-20 (Australia/Sydney).
 Phase: approved release-readiness sequence; synthetic local preparation only.
 Active requirement: REQ-FOUND-012 and REQ-FOUND-011.
-Active task: TASK-035 completed locally; next TASK-029, then TASK-028, TASK-030 and TASK-031.
+Active task: TASK-029 local preparation verified, full scope still Approved pending AWS/provider evidence. Next: TASK-028 local preparation, then TASK-030/031.
 Current branch: task/TASK-035-release-readiness.
-Observed HEAD before this memory update: 0523a7e (master; docs confirm TASK-033 hosted verification).
-Observed status before this memory update: TASK-035 implementation/evidence and sequence approvals pending commit; separate infrastructure/docker/compose.yaml username edit preserved/excluded.
+Observed HEAD before this memory update: 26bdb0bf5e7f32069743b053100c1f2ba543373d (TASK-035 local commit).
+Observed status before this memory update: TASK-029 implementation uncommitted after usage-limit interruption; unrelated infrastructure/docker/compose.yaml and tooling/read-local-mail.ts edits preserved/excluded. Untracked .pnpm-store is generated tooling cache.
 
 ## Scope and reconciliation
 
@@ -26,4 +26,7 @@ Observed status before this memory update: TASK-035 implementation/evidence and 
 
 - FIND-013 remains Open for public risk acceptance. Philippine clinical/privacy/legal/signature/retention findings remain Open and nonblocking only for synthetic development.
 - Actual AWS validation/spending, provider activation and production go/no-go remain gated; local preparation is authorized.
-- Exact next action: implement approved TASK-029 after its justification and architecture decision, preserving existing onboarding/session tests; prepare TASK-028 locally afterward. Read only those linked records and affected code.
+- Exact next action: prepare TASK-028 infrastructure locally from its approved record and ADR-008/009; no AWS apply/spending. TASK-029 acceptance and IDENTITY_READINESS.md index completed local controls and remaining provider/KMS gates.
+- TASK-029: encrypted transactional outbox with allowlisted sink/retry, optional versioned keys/gated KMS unwrap, opt-in exact-origin HttpOnly cookie sessions, persistent identity budget via application port. Existing modes preserved. Local tests exercise enrolled-account key rotation/restore and real built-client HTTPS login/reload/logout. Rationale: Doc/Changes/Justification/TASK-029-identity-delivery.md; ADR-013; acceptance: Documentation/Acceptance/TASK-029-acceptance.md.
+- Verification: pnpm check passed (30 tests/lint/types/build), 30 database/HTTPS scenarios, seven unchanged browser journeys, codegen drift and formatting. Earlier check-in/browser failure did not recur; no assertions weakened. Review follow-up keeps login limits behind identity ports. Logs retained in acceptance artifacts; pinned tooling restored to ignored .local/runtime after temporary files expired.
+- Existing serving images predate TASK-029; build and scan new images before later rollout. Actual KMS/IAM, production mail and deployed recovery not verified. No production finding closed.
