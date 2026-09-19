@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: MCClinic synthetic tester edge policy PREPARATION ONLY - no distribution or activation
+Parameters:
+  TesterCidrs:
+    Type: CommaDelimitedList
+    AllowedPattern: '([0-9]{1,3}\.){3}[0-9]{1,3}/(2[4-9]|3[0-2])'
+    Description: Explicit approved tester IPv4 CIDRs. No default; no public allow-all.
+Rules:
+  CloudFrontRegion:
+    Assertions:
+      - Assert: !Equals [!Ref 'AWS::Region', us-east-1]
+        AssertDescription: CloudFront-scope WAF resources require us-east-1
+Resources:
+  Testers:
+    Type: AWS::WAFv2::IPSet
+    Properties:
+      Scope: CLOUDFRONT
+      IPAddressVersion: IPV4
+      Addresses: !Ref TesterCidrs
+  WebAcl:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Scope: CLOUDFRONT
+      DefaultAction: { Block: {} }
+      VisibilityConfig:
+        {
+          CloudWatchMetricsEnabled: true,
+          MetricName: SyntheticEdge,
+          SampledRequestsEnabled: false,
+        }
+      Rules:
+        - Name: RateLimit
+          Priority: 0
+          Action: { Block: {} }
+          Statement:
+            { RateBasedStatement: { Limit: 2000, AggregateKeyType: IP } }
+          VisibilityConfig:
+            {
+              CloudWatchMetricsEnabled: true,
+              MetricName: SyntheticRate,
+              SampledRequestsEnabled: false,
+            }
+        - Name: ApprovedTesters
+          Priority: 1
+          Action: { Allow: {} }
+          Statement: { IPSetReferenceStatement: { Arn: !GetAtt Testers.Arn } }
+          VisibilityConfig:
+            {
+              CloudWatchMetricsEnabled: true,
+              MetricName: SyntheticTesters,
+              SampledRequestsEnabled: false,
+            }
+Outputs:
+  WebAclArn: { Value: !GetAtt WebAcl.Arn }

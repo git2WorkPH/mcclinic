@@ -1,0 +1,10 @@
+test_budget_requires_owner_input_and_sends_no_email_subscriptions (__main__.StagingPolicy.test_budget_requires_owner_input_and_sends_no_email_subscriptions) ... ok
+test_edge_denies_unlisted_visitors_and_avoids_request_payload_sampling (__main__.StagingPolicy.test_edge_denies_unlisted_visitors_and_avoids_request_payload_sampling) ... ok
+test_network_cannot_expose_runtime_or_database (__main__.StagingPolicy.test_network_cannot_expose_runtime_or_database) ... ok
+test_private_encrypted_database_and_retained_storage (__main__.StagingPolicy.test_private_encrypted_database_and_retained_storage) ... ok
+test_runtime_cannot_read_master_secret_or_manage_keys (__main__.StagingPolicy.test_runtime_cannot_read_master_secret_or_manage_keys) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.012s
+
+OK

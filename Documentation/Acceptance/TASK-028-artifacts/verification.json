@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-20",
+  "validator": "cfn-lint 1.57.0",
+  "awsCalls": false,
+  "templates": [
+    {
+      "file": "staging-foundation.yaml",
+      "region": "ap-southeast-1",
+      "exitCode": 0,
+      "sha256": "c93846c99b69706c0b61035d4005f32f7f2c4e789a0787f3588d58fc41c92a3f",
+      "output": ""
+    },
+    {
+      "file": "staging-edge-access.yaml",
+      "region": "us-east-1",
+      "exitCode": 0,
+      "sha256": "7fc20466c78bbff1c4367e1e38052bfc5cdf820fb1b44f366a77df12b1d13a12",
+      "output": ""
+    }
+  ]
+}

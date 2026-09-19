@@ -25,3 +25,7 @@ Documentation/evidence and possibly separately approved remediation tasks. KEEP 
 ## Sequence authorization — 2026-09-14
 
 Owner: “ok i agree with the recommended sequence. Use the project-development skill and Continuity Kit workflow to implement it in sequence”. Approved sequence: TASK-035 → TASK-029/028 → TASK-030 → TASK-031. Owner further chose “Prepare locally; no AWS spending yet”. Local code, IaC and synthetic verification are authorized; deployed verification and production go/no-go cannot be claimed from local evidence. No real data, external activation, cloud apply or deletion authorized. Historical proposal retained; this record governs the approved local preparation scope.
+
+## Initial decision package — 2026-09-20
+
+`Documentation/Project/FIRST_RELEASE_READINESS.md` recommends NO-GO for public/real-patient release with explicit missing owners/evidence and a re-entry sequence. See `Documentation/Acceptance/TASK-031-acceptance.md`. Full task remains Approved / In progress; no production findings or risks are accepted. No launch authorized.

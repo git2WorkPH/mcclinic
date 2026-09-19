@@ -1,0 +1,401 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: MCClinic synthetic staging foundation PREPARATION ONLY - no apply authorization
+Parameters:
+  MonthlyBudgetUsd:
+    Type: Number
+    MinValue: 1
+    Description: Owner-approved monthly ceiling; no default or free-tier assumption
+  S3PrefixListId:
+    Type: String
+    AllowedPattern: 'pl-[0-9a-f]+'
+    Description: Verified Singapore S3 managed prefix list for image-layer endpoint egress
+  RuntimeDatabaseSecretKeyArn:
+    Type: String
+    AllowedPattern: 'arn:aws:kms:ap-southeast-1:[0-9]{12}:key/.+'
+    Description: Customer key protecting the separate runtime credential secret
+  RuntimeDatabaseSecretArn:
+    Type: String
+    AllowedPattern: 'arn:aws:secretsmanager:ap-southeast-1:[0-9]{12}:secret:.+'
+    Description: Future least-privilege runtime database secret, never the RDS master secret
+Rules:
+  SingaporeOnly:
+    Assertions:
+      - Assert: !Equals [!Ref 'AWS::Region', ap-southeast-1]
+        AssertDescription: This candidate foundation is Singapore only
+Resources:
+  Network:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.80.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags: [{ Key: environment, Value: synthetic-staging }]
+  PrivateA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Network
+      CidrBlock: 10.80.10.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      MapPublicIpOnLaunch: false
+  PrivateB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Network
+      CidrBlock: 10.80.11.0/24
+      AvailabilityZone: !Select [1, !GetAZs '']
+      MapPublicIpOnLaunch: false
+  PrivateRoutes:
+    Type: AWS::EC2::RouteTable
+    Properties: { VpcId: !Ref Network }
+  RouteA:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { RouteTableId: !Ref PrivateRoutes, SubnetId: !Ref PrivateA }
+  RouteB:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { RouteTableId: !Ref PrivateRoutes, SubnetId: !Ref PrivateB }
+  RuntimeGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: No inbound traffic until separately reviewed ALB integration
+      VpcId: !Ref Network
+      SecurityGroupEgress:
+        - { IpProtocol: tcp, FromPort: 443, ToPort: 443, CidrIp: 10.80.0.0/16 }
+        - {
+            IpProtocol: tcp,
+            FromPort: 443,
+            ToPort: 443,
+            DestinationPrefixListId: !Ref S3PrefixListId,
+          }
+        - {
+            IpProtocol: tcp,
+            FromPort: 5432,
+            ToPort: 5432,
+            CidrIp: 10.80.0.0/16,
+          }
+  DatabaseGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: PostgreSQL from runtime group only
+      VpcId: !Ref Network
+      SecurityGroupIngress:
+        - {
+            IpProtocol: tcp,
+            FromPort: 5432,
+            ToPort: 5432,
+            SourceSecurityGroupId: !Ref RuntimeGroup,
+          }
+      SecurityGroupEgress:
+        - {
+            IpProtocol: tcp,
+            FromPort: 65535,
+            ToPort: 65535,
+            CidrIp: 127.0.0.1/32,
+          }
+  EndpointGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Private service endpoints from runtime group only
+      VpcId: !Ref Network
+      SecurityGroupIngress:
+        - {
+            IpProtocol: tcp,
+            FromPort: 443,
+            ToPort: 443,
+            SourceSecurityGroupId: !Ref RuntimeGroup,
+          }
+      SecurityGroupEgress:
+        - {
+            IpProtocol: tcp,
+            FromPort: 65535,
+            ToPort: 65535,
+            CidrIp: 127.0.0.1/32,
+          }
+  EcrApiEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Network
+      VpcEndpointType: Interface
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.ecr.api'
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateA, !Ref PrivateB]
+      SecurityGroupIds: [!Ref EndpointGroup]
+  EcrDockerEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Network
+      VpcEndpointType: Interface
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.ecr.dkr'
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateA, !Ref PrivateB]
+      SecurityGroupIds: [!Ref EndpointGroup]
+  LogsEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Network
+      VpcEndpointType: Interface
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.logs'
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateA, !Ref PrivateB]
+      SecurityGroupIds: [!Ref EndpointGroup]
+  SecretsEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Network
+      VpcEndpointType: Interface
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.secretsmanager'
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateA, !Ref PrivateB]
+      SecurityGroupIds: [!Ref EndpointGroup]
+  KmsEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Network
+      VpcEndpointType: Interface
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.kms'
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateA, !Ref PrivateB]
+      SecurityGroupIds: [!Ref EndpointGroup]
+  S3Endpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Network
+      VpcEndpointType: Gateway
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
+      RouteTableIds: [!Ref PrivateRoutes]
+  StorageKey:
+    Type: AWS::KMS::Key
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              { AWS: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:root' }
+            Action: 'kms:*'
+            Resource: '*'
+  IdentityKey:
+    Type: AWS::KMS::Key
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              { AWS: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:root' }
+            Action: 'kms:*'
+            Resource: '*'
+  DatabaseSubnets:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Private synthetic database subnets
+      SubnetIds: [!Ref PrivateA, !Ref PrivateB]
+  DatabaseParameters:
+    Type: AWS::RDS::DBParameterGroup
+    Properties:
+      Description: Require TLS for PostgreSQL
+      Family: postgres17
+      Parameters: { rds.force_ssl: '1' }
+  Database:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Engine: postgres
+      EngineVersion: '17.6'
+      DBInstanceClass: db.t4g.micro
+      DBName: mcclinic
+      MasterUsername: mcclinic_owner
+      ManageMasterUserPassword: true
+      MasterUserSecret: { KmsKeyId: !GetAtt StorageKey.Arn }
+      DBSubnetGroupName: !Ref DatabaseSubnets
+      DBParameterGroupName: !Ref DatabaseParameters
+      VPCSecurityGroups: [!Ref DatabaseGroup]
+      PubliclyAccessible: false
+      StorageEncrypted: true
+      KmsKeyId: !GetAtt StorageKey.Arn
+      AllocatedStorage: '20'
+      MaxAllocatedStorage: 40
+      StorageType: gp3
+      MultiAZ: false
+      BackupRetentionPeriod: 7
+      DeleteAutomatedBackups: false
+      DeletionProtection: true
+      CopyTagsToSnapshot: true
+      EnableCloudwatchLogsExports: [postgresql]
+  Registry:
+    Type: AWS::ECR::Repository
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      ImageTagMutability: IMMUTABLE
+      ImageScanningConfiguration: { ScanOnPush: true }
+      EncryptionConfiguration:
+        { EncryptionType: KMS, KmsKey: !GetAtt StorageKey.Arn }
+  WebAssets:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls: { Rules: [{ ObjectOwnership: BucketOwnerEnforced }] }
+      BucketEncryption:
+        {
+          ServerSideEncryptionConfiguration:
+            [{ ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 } }],
+        }
+      VersioningConfiguration: { Status: Enabled }
+  WebAssetsPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebAssets
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource: [!GetAtt WebAssets.Arn, !Sub '${WebAssets.Arn}/*']
+            Condition: { Bool: { aws:SecureTransport: 'false' } }
+  ApiLogs:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties: {}
+  Cluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterSettings: [{ Name: containerInsights, Value: enabled }]
+  RuntimeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          [
+            {
+              Effect: Allow,
+              Principal: { Service: ecs-tasks.amazonaws.com },
+              Action: 'sts:AssumeRole',
+            },
+          ]
+      Policies:
+        - PolicyName: IdentityUnwrapOnly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 'kms:Decrypt'
+                Resource: !GetAtt IdentityKey.Arn
+                Condition:
+                  StringEquals:
+                    kms:EncryptionContext:application: mcclinic-identity
+                    kms:EncryptionContext:environment: synthetic-staging
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          [
+            {
+              Effect: Allow,
+              Principal: { Service: ecs-tasks.amazonaws.com },
+              Action: 'sts:AssumeRole',
+            },
+          ]
+      Policies:
+        - PolicyName: PullLogAndRuntimeSecret
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - {
+                  Effect: Allow,
+                  Action: 'ecr:GetAuthorizationToken',
+                  Resource: '*',
+                }
+              - Effect: Allow
+                Action:
+                  [
+                    'ecr:BatchGetImage',
+                    'ecr:GetDownloadUrlForLayer',
+                    'ecr:BatchCheckLayerAvailability',
+                  ]
+                Resource: !GetAtt Registry.Arn
+              - Effect: Allow
+                Action: ['logs:CreateLogStream', 'logs:PutLogEvents']
+                Resource: !GetAtt ApiLogs.Arn
+              - {
+                  Effect: Allow,
+                  Action: 'secretsmanager:GetSecretValue',
+                  Resource: !Ref RuntimeDatabaseSecretArn,
+                }
+              - Effect: Allow
+                Action: 'kms:Decrypt'
+                Resource: !Ref RuntimeDatabaseSecretKeyArn
+                Condition:
+                  StringEquals:
+                    kms:ViaService: secretsmanager.ap-southeast-1.amazonaws.com
+                    kms:EncryptionContext:SecretARN: !Ref RuntimeDatabaseSecretArn
+  CostAlerts:
+    Type: AWS::SNS::Topic
+  CostAlertsPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics: [!Ref CostAlerts]
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: budgets.amazonaws.com }
+            Action: 'sns:Publish'
+            Resource: !Ref CostAlerts
+            Condition:
+              { StringEquals: { aws:SourceAccount: !Ref 'AWS::AccountId' } }
+  Budget:
+    Type: AWS::Budgets::Budget
+    DependsOn: CostAlertsPolicy
+    Properties:
+      Budget:
+        BudgetType: COST
+        TimeUnit: MONTHLY
+        BudgetLimit: { Amount: !Ref MonthlyBudgetUsd, Unit: USD }
+      NotificationsWithSubscribers:
+        - Notification:
+            {
+              NotificationType: ACTUAL,
+              ComparisonOperator: GREATER_THAN,
+              ThresholdType: PERCENTAGE,
+              Threshold: 50,
+            }
+          Subscribers: [{ SubscriptionType: SNS, Address: !Ref CostAlerts }]
+        - Notification:
+            {
+              NotificationType: ACTUAL,
+              ComparisonOperator: GREATER_THAN,
+              ThresholdType: PERCENTAGE,
+              Threshold: 80,
+            }
+          Subscribers: [{ SubscriptionType: SNS, Address: !Ref CostAlerts }]
+        - Notification:
+            {
+              NotificationType: ACTUAL,
+              ComparisonOperator: GREATER_THAN,
+              ThresholdType: PERCENTAGE,
+              Threshold: 100,
+            }
+          Subscribers: [{ SubscriptionType: SNS, Address: !Ref CostAlerts }]
+Outputs:
+  DatabaseHost: { Value: !GetAtt Database.Endpoint.Address }
+  WebAssetsBucket: { Value: !Ref WebAssets }
+  ImageRepository: { Value: !GetAtt Registry.RepositoryUri }
+  AlertTopic: { Value: !Ref CostAlerts }

@@ -46,3 +46,7 @@ TASK-026 completed for planning; REQ-FOUND-010/011 and existing clinical integri
 ## Local packaging overlay — 2026-09-14
 
 Owner approved TASK-027 and requested optional LocalStack. AC-02–04 now have local implementation evidence under TASK-027: built non-root API/web, same-origin uncached clinical routing, explicit local configuration, persistent isolated mcclinic database/state, migrations, health/drain behavior and regression/artifact checks. Staging/production remain fail-closed until separate controls are approved; ADR-010 governs local packaging without accepting ADR-008/009 cloud topology. See ../../Acceptance/TASK-027-acceptance.md and Open FIND-013. No production security certification or cloud deployment approval inferred.
+
+## Local release-preparation overlay — 2026-09-20
+
+Owner approved TASK-035 → TASK-029/028 → TASK-030 → TASK-031, explicitly limiting AWS work to local preparation with no spending. AC-02/04 now have identity, offline infrastructure-policy and interrupted-response evidence in the respective acceptance records. TASK-028 application staging integration and all deployed criteria remain incomplete; no local passing test resolves FIND-011/013 or production findings. FIRST_RELEASE_READINESS.md records NO-GO and exact missing evidence/owners. Existing cost estimates, proposed recovery targets and ADR-008/009 are preserved and require revalidation before approval.
