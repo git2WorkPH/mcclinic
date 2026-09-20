@@ -1,0 +1,6 @@
+{
+  "node": "v24.21.0",
+  "architecture": "arm64",
+  "engineSha256": "cdc70069d4164ff0b8487c59d41786a050dd732bc4423bf672936add869a190f",
+  "opensslPackage": "Package: libssl3\nStatus: install ok installed\nPriority: optional\nSection: libs\nInstalled-Size: 5986\nMaintainer: Debian OpenSSL Team <pkg-openssl-devel@alioth-lists.debian.net>\nArchitecture: arm64\nMulti-Arch: same\nSource: openssl\nVersion: 3.0.20-1~deb12u2\nDepends: libc6 (>= 2.34)\nDescription: Secure Sockets Layer toolkit - shared libraries\n This package is part of the OpenSSL project's implementation of the SSL\n and TLS cryptographic protocols for secure communication over the\n Internet.\n .\n It provides the libssl and libcrypto shared libraries.\nHomepage: https://www.openssl.org/\n"
+}

@@ -1,0 +1,85 @@
+[
+    {
+        "Id": "sha256:eb16dc5d634ea17eeabcc4987a5974793a43b6b8e5082abf7cc69a975ebb122e",
+        "RepoTags": [
+            "mcclinic-migration:focused-task028"
+        ],
+        "RepoDigests": [
+            "mcclinic-migration@sha256:eb16dc5d634ea17eeabcc4987a5974793a43b6b8e5082abf7cc69a975ebb122e"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-20T22:29:44.515707342Z",
+        "Config": {
+            "User": "1000:1000",
+            "Env": [
+                "PATH=/usr/local/bin:/usr/bin:/bin",
+                "SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt",
+                "NODE_ENV=production",
+                "STAGING_PRISMA_DIRECT=true"
+            ],
+            "Cmd": [
+                "/usr/local/bin/node",
+                "apps/api/dist/apps/api/src/staging-command.js",
+                "migrate"
+            ],
+            "WorkingDir": "/workspace",
+            "ArgsEscaped": true
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 130064529,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:6fc9269a8b4d61cdd276e80d170e4caa1566efc1b9f42442fdad4f69836b3c4f",
+                "sha256:8fa10c0194df9b7c054c90dbe482585f768a54428fc90a5b78a0066a123b1bba",
+                "sha256:35b5ba6e08cdd034b8d1920f9c7203e5d66f258e1915f164a01de0af14f34710",
+                "sha256:114dde0fefebbca13165d0da9c500a66190e497a82a53dcaabc3172d630be1e9",
+                "sha256:4d049f83d9cf21d1f5cc0e11deaf36df02790d0e60c1a3829538fb4b61685368",
+                "sha256:af5aa97ebe6ce1604747ec1e21af7136ded391bcabe4acef882e718a87c86bcc",
+                "sha256:6f1cdceb6a3146f0ccb986521156bef8a422cdbb0863396f7f751f575ba308f4",
+                "sha256:bd3cdfae1d3fdd83a2231d608969b38b82349777c2fff9a7c12d54f8ac5c9b38",
+                "sha256:4cde6b0bb6f50a5f255eef7b2a42162c661cf776b803225dcac9a659e396bb6b",
+                "sha256:ad51d0769d16ba578106a177987dfe3d2e02c1668c852b795b2f6b024068242a",
+                "sha256:6e7fbcf090d09b73a4aa85f9dce690d0ace73877c150b7c56955487b6e7a822a",
+                "sha256:5904c32f457c96a16c8c68f5ccdf518c8138cd9e5971de9ce6d564fc481af222",
+                "sha256:47c52937fd04016f9880e3d72d9c5b7960fbc4c66ba8693e796b13b49995b025",
+                "sha256:1e6622795d1f1c9991333a6100c460c93ca62a1ce32350c2d37218810b74c2bc",
+                "sha256:245157cfc41938f49650c19f98d79fd96cc5646b405ee1a9e70cbff7e09bbf3b",
+                "sha256:e84030d2f270ad9f354ce22a18f1e7bf4fbdf5918672c0b6c0b2354685ecf83c",
+                "sha256:cda8aa10c7ef0d43b43ad68385fba7dbbc647745fb39e4c2755ef6427f36f714",
+                "sha256:15058730e91461eb98dcaccce2d8214c7cb89f227e5f3f48accb17767eedc9bb",
+                "sha256:2b58502d35362bb53df752c99e3ae94d7c80999d427f065c5cd76ef02491c266",
+                "sha256:2c9a7128aa813f6e3da7a72efbd4e048773abb35a4787877c4d979cbc3c73905",
+                "sha256:8f4a5177931c0a93a6e5152b3798eca021ed32ed3cc4f03faae3b1ee39f2fe93",
+                "sha256:ca094015a75bc3d67d7763ff3f894ddfab7af46683c353a3361b780f2fafccc7",
+                "sha256:195414a0d47d6c4c7c7a6c5f8ede74f50f66c6aa2ed7e5d79ca1fe823180a635",
+                "sha256:01ccc1755b2983e1cfa09d142425196392ee8763d7e82d60a32b980e5e647acd",
+                "sha256:e463f3d99d499d7d0413057e26d00d3a47904e6ad876f9d7d44a0603e45250a4",
+                "sha256:4a8012f4a7914ac9217105113cf6ab781e803d9b88d59a7ede4c3531e16aad6a",
+                "sha256:930e8defd51d790e5626a02a2c2e1f83aa845f42f7515c1e024f6af17392f157",
+                "sha256:6a554872a6134c0c27d12f44adec63afc07766da90f294d0eb407334eabeced4",
+                "sha256:31ca9571ada81931478c79ece188c9057ceb52fb7732504dd2976f82e90ef0af",
+                "sha256:9667c38e5460927135a439e967e9c4554085c8cf9d2de9054cf304ea9b855801",
+                "sha256:e5cf85995c38061c239f790ebedb543c9790f140dc90688944d1933b5905a2b6",
+                "sha256:c320e1dca527fb65b69dc466eb5568136fd132c5e5ba0183ad0c24fc513bac1a"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-20T22:29:44.55709155Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:eb16dc5d634ea17eeabcc4987a5974793a43b6b8e5082abf7cc69a975ebb122e",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "69vznoweq9770kdp4is3o8v90",
+                    "CreatedAt": "2026-09-20T22:29:44.571680592Z"
+                }
+            ]
+        }
+    }
+]

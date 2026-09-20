@@ -27,6 +27,7 @@
 !tooling/copy-api-schema.mjs
 !tooling/package-provenance.mjs
 !tooling/build-serving.mjs
+!tooling/package-migration.mjs
 **/node_modules
 **/dist
 **/generated

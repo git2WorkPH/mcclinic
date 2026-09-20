@@ -1,0 +1,169 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0c0f2-926c-7b00-b9f5-ed6da120c769",
+  "CreatedAt": "2026-09-21T08:31:57.804722+10:00",
+  "ArtifactName": ".local/task028-migration/command.sbom.cdx.json",
+  "ArtifactType": "cyclonedx",
+  "Results": [
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg",
+      "Packages": [
+        {
+          "ID": "pg@8.23.0",
+          "Name": "pg",
+          "Identifier": {
+            "PURL": "pkg:npm/pg@8.23.0",
+            "UID": "dc785448ee179978",
+            "BOMRef": "pg@8.23.0"
+          },
+          "Version": "8.23.0"
+        },
+        {
+          "ID": "pg-cloudflare@1.4.0",
+          "Name": "pg-cloudflare",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-cloudflare@1.4.0",
+            "UID": "7a1f2dbabd281755",
+            "BOMRef": "pg-cloudflare@1.4.0"
+          },
+          "Version": "1.4.0"
+        },
+        {
+          "ID": "pg-connection-string@2.14.0",
+          "Name": "pg-connection-string",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-connection-string@2.14.0",
+            "UID": "d3f32bf6df2a4d3c",
+            "BOMRef": "pg-connection-string@2.14.0"
+          },
+          "Version": "2.14.0"
+        },
+        {
+          "ID": "pg-int8@1.0.1",
+          "Name": "pg-int8",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-int8@1.0.1",
+            "UID": "2e5670ca6cde63c4",
+            "BOMRef": "pg-int8@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "pg-pool@3.14.0",
+          "Name": "pg-pool",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-pool@3.14.0",
+            "UID": "3a9894940888d94",
+            "BOMRef": "pg-pool@3.14.0"
+          },
+          "Version": "3.14.0"
+        },
+        {
+          "ID": "pg-protocol@1.16.0",
+          "Name": "pg-protocol",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-protocol@1.16.0",
+            "UID": "d03c1d362c5cd109",
+            "BOMRef": "pg-protocol@1.16.0"
+          },
+          "Version": "1.16.0"
+        },
+        {
+          "ID": "pg-types@2.2.0",
+          "Name": "pg-types",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-types@2.2.0",
+            "UID": "1e6d04120450211f",
+            "BOMRef": "pg-types@2.2.0"
+          },
+          "Version": "2.2.0"
+        },
+        {
+          "ID": "pgpass@1.0.5",
+          "Name": "pgpass",
+          "Identifier": {
+            "PURL": "pkg:npm/pgpass@1.0.5",
+            "UID": "2eaed699cf9c78b9",
+            "BOMRef": "pgpass@1.0.5"
+          },
+          "Version": "1.0.5"
+        },
+        {
+          "ID": "postgres-array@2.0.0",
+          "Name": "postgres-array",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-array@2.0.0",
+            "UID": "f6878e3e6e21eba2",
+            "BOMRef": "postgres-array@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "postgres-bytea@1.0.1",
+          "Name": "postgres-bytea",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-bytea@1.0.1",
+            "UID": "4b6dfe28603deec1",
+            "BOMRef": "postgres-bytea@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "postgres-date@1.0.7",
+          "Name": "postgres-date",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-date@1.0.7",
+            "UID": "1e6e7db1911fc98e",
+            "BOMRef": "postgres-date@1.0.7"
+          },
+          "Version": "1.0.7"
+        },
+        {
+          "ID": "postgres-interval@1.2.0",
+          "Name": "postgres-interval",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-interval@1.2.0",
+            "UID": "7914a5b1371a1bd4",
+            "BOMRef": "postgres-interval@1.2.0"
+          },
+          "Version": "1.2.0"
+        },
+        {
+          "ID": "split2@4.2.0",
+          "Name": "split2",
+          "Identifier": {
+            "PURL": "pkg:npm/split2@4.2.0",
+            "UID": "cc82e2f7bb14cce2",
+            "BOMRef": "split2@4.2.0"
+          },
+          "Version": "4.2.0"
+        },
+        {
+          "ID": "xtend@4.0.2",
+          "Name": "xtend",
+          "Identifier": {
+            "PURL": "pkg:npm/xtend@4.0.2",
+            "UID": "a90163dfa5a7fdd4",
+            "BOMRef": "xtend@4.0.2"
+          },
+          "Version": "4.0.2"
+        },
+        {
+          "ID": "zod@4.6.1",
+          "Name": "zod",
+          "Identifier": {
+            "PURL": "pkg:npm/zod@4.6.1",
+            "UID": "d448a0227b18267a",
+            "BOMRef": "zod@4.6.1"
+          },
+          "Version": "4.6.1"
+        }
+      ]
+    }
+  ]
+}

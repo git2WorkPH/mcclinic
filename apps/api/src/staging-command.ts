@@ -3,6 +3,7 @@ import { spawn } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { stagingPrismaUrl } from './runtime/staging-prisma.js';
 import { stagingConfig } from './runtime/staging-config.js';
 import {
   prepareStagingRoles,
@@ -60,20 +61,33 @@ async function run() {
         'ca.pem',
       );
       writeFileSync(caPath, config.database.ssl.ca, { mode: 0o600 });
-      const url = new URL(`postgresql://${config.database.host}:5432/mcclinic`);
-      url.username = migrationSecret.username;
-      url.password = migrationSecret.password;
-      url.searchParams.set('sslmode', 'verify-full');
-      url.searchParams.set('sslrootcert', caPath);
+      const databaseUrl = stagingPrismaUrl(
+        config.database.host,
+        migrationSecret.username,
+        migrationSecret.password,
+        caPath,
+      );
       await new Promise<void>((resolve, reject) => {
-        const child = spawn('pnpm', ['db:migrate'], {
-          stdio: 'ignore',
-          env: {
-            PATH: process.env.PATH,
-            NODE_ENV: 'production',
-            DATABASE_URL: url.href,
+        const direct = process.env.STAGING_PRISMA_DIRECT === 'true';
+        const child = spawn(
+          direct ? process.execPath : 'pnpm',
+          direct
+            ? ['node_modules/prisma/build/index.js', 'migrate', 'deploy']
+            : ['db:migrate'],
+          {
+            stdio: 'ignore',
+            env: {
+              PATH: process.env.PATH,
+              NODE_ENV: 'production',
+              CHECKPOINT_DISABLE: '1',
+              ...(direct
+                ? { PRISMA_SCHEMA_ENGINE_BINARY: '/workspace/schema-engine' }
+                : {}),
+              PRISMA_HIDE_UPDATE_MESSAGE: 'true',
+              DATABASE_URL: databaseUrl,
+            },
           },
-        });
+        );
         child.once('error', reject);
         child.once('exit', (code) =>
           code === 0 ? resolve() : reject(new Error('Migration failed.')),

@@ -11,6 +11,7 @@ for (const [name, entry] of Object.entries({
   web: 'packaged-web-main',
   staging: 'staging-main',
   mailbox: 'staging-mailbox-command',
+  'migration-command': 'staging-command',
 })) {
   const result = await build({
     entryPoints: [`apps/api/dist/apps/api/src/${entry}.js`],

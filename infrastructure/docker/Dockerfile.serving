@@ -9,7 +9,7 @@ COPY apps/api/prisma ./apps/api/prisma
 COPY apps/clinical-app/package.json apps/clinical-app/index.html apps/clinical-app/vite.config.ts ./apps/clinical-app/
 COPY apps/clinical-app/src ./apps/clinical-app/src
 COPY packages/graphql-contract ./packages/graphql-contract
-COPY tooling/copy-api-schema.mjs tooling/package-provenance.mjs tooling/build-serving.mjs ./tooling/
+COPY tooling/copy-api-schema.mjs tooling/package-provenance.mjs tooling/build-serving.mjs tooling/package-migration.mjs ./tooling/
 ARG SOURCE_REVISION=unversioned
 LABEL org.opencontainers.image.title="MCClinic synthetic local package" org.opencontainers.image.revision=$SOURCE_REVISION
 RUN pnpm install --frozen-lockfile && pnpm codegen && pnpm build && SOURCE_REVISION=$SOURCE_REVISION node tooling/package-provenance.mjs
@@ -60,3 +60,27 @@ COPY --from=build-serving /workspace/serving/mailbox.mjs /workspace/serving/mail
 COPY --from=build-serving /workspace/serving/mailbox.sbom.cdx.json /workspace/artifacts/sbom.cdx.json
 COPY --from=build-serving /workspace/serving/mailbox.build.json /workspace/artifacts/build.json
 CMD ["/workspace/serving/mailbox.mjs"]
+
+# Additive candidate: preserve the original full migration stage and entry point.
+FROM build-serving AS migration-libraries
+USER root
+COPY --from=serving-base /etc/passwd /native/passwd
+RUN printf 'mcclinic:x:1000:1000:Synthetic migration operator:/tmp/mcclinic-operator:/sbin/nologin\n' >> /native/passwd
+RUN SOURCE_REVISION=$SOURCE_REVISION node tooling/package-migration.mjs
+RUN mkdir -p /native/lib /native/status.d && cp /usr/lib/*-linux-gnu/libssl.so.3 /usr/lib/*-linux-gnu/libcrypto.so.3 /native/lib/ && dpkg-query -s libssl3 > /native/status.d/libssl3
+
+FROM serving-base AS migration-hardened
+COPY --from=migration-libraries /workspace/migration-runtime/node_modules /workspace/node_modules
+COPY --from=migration-libraries /workspace/migration-runtime/schema-engine /workspace/schema-engine
+COPY --from=migration-libraries /workspace/migration-runtime/sbom.cdx.json /workspace/artifacts/prisma.sbom.cdx.json
+COPY --from=build-serving /workspace/serving/migration-command.mjs /workspace/apps/api/dist/apps/api/src/staging-command.js
+COPY --from=build-serving /workspace/serving/migration-command.sbom.cdx.json /workspace/artifacts/command.sbom.cdx.json
+COPY --from=build-serving /workspace/serving/migration-command.build.json /workspace/artifacts/build.json
+COPY --from=migration /workspace/apps/api/prisma /workspace/apps/api/prisma
+COPY --from=migration /workspace/prisma.config.ts /workspace/package.json /workspace/
+COPY --from=migration-libraries /native/lib/ /usr/lib/
+COPY --from=migration-libraries /native/status.d/ /var/lib/dpkg/status.d/
+COPY --from=migration-libraries /native/passwd /etc/passwd
+ENV STAGING_PRISMA_DIRECT=true PATH=/usr/local/bin:/usr/bin:/bin
+ENTRYPOINT []
+CMD ["/usr/local/bin/node", "apps/api/dist/apps/api/src/staging-command.js", "migrate"]

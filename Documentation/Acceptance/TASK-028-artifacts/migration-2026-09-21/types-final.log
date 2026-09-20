@@ -1,0 +1,4 @@
+
+> clinic-ehr@ typecheck /Users/cervantes/Documents/ChatGPT/MCClinc
+> tsc --noEmit
+

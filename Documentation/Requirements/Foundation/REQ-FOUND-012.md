@@ -54,3 +54,7 @@ Owner approved TASK-035 → TASK-029/028 → TASK-030 → TASK-031, explicitly l
 ## TASK-028 integration evidence — 2026-09-20
 
 AC-02–04 local preparation now includes a separate synthetic staging runtime, reviewed bootstrap/migration roles, TLS/origin/cookie controls, private sealed synthetic mailbox retrieval, complementary application/job IaC and release/rollback runbook (ADR-015). Local evidence is indexed in TASK-028 acceptance. This does not change original AC-01 cost/approval obligations or substitute for deployed acceptance. Current serving images have refreshed scans; migration/tooling image findings remain Open under FIND-013. Production policies and owner approvals are unchanged.
+
+## Native migration evidence — 2026-09-21
+
+AC-03/04 local artifact verification now includes the additive migration-hardened image, original migration checksums, repeatability, verified native TLS certificate/hostname denials and runtime privilege restrictions. This extends local release evidence only; original cost, owner authorization and deployed acceptance requirements remain unchanged. See TASK-028 acceptance and Open FIND-013 for artifact-specific scan coverage and limitations.

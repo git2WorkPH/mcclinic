@@ -1,0 +1,10 @@
+{
+  "apps/api/src/staging-command.ts": "eea4acdabc811d9f1741fc2657986b2330ad7d5752515ce06155e3f77c10176f",
+  "apps/api/src/runtime/staging-prisma.ts": "7ff037a57626166782ab6392f868b53edfdad61d98722b52f9f472cb6f594dc1",
+  "tooling/build-serving.mjs": "0a05e6e83de9ce30a28702f2328c067898e4abd54a15b0304192f62aa5e62e55",
+  "tooling/package-migration.mjs": "e872ae649a93259620b348a8735ed7bc10fc7a23964d351284df16280bbf8719",
+  "infrastructure/docker/Dockerfile.serving": "f3093600245a16432647410d7a4d8d2ab0daf626b3e2ed7eac79d7149257f556",
+  "infrastructure/docker/Dockerfile.serving.dockerignore": "3c39d2ee20ae144573172ada6b3ad721441a876f98a1a4ea63f4e708d76a7bcf",
+  "tests/staging-migration-image.integration.test.ts": "436375a383972799228f9cbd94ac1708273532a124e6d78dc8b46822b0dd21d0",
+  "pnpm-lock.yaml": "aa0e37ce3430304ca0ff0bb3053197bbaacf7e73ad18cc0177c8405df29a0f01"
+}

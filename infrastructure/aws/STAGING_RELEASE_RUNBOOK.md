@@ -28,7 +28,7 @@ Separate secrets:
 - Runtime JSON `{username: mcclinic_runtime, password: ...}` and migrator JSON `{username: mcclinic_migrator, password: ...}`; independent random passwords of at least 24 characters, exact supplied KMS key ARNs. RDS owner `mcclinic_owner` uses its managed master secret. Never copy it to the runtime secret.
 - Origin secret: raw random base64url string of 43–128 characters, shared by the CloudFront origin header, ALB rule and server. It is not an end-user credential. Authorized infrastructure readers can see resolved origin header configuration; protect these operator permissions. Rotate through a reviewed coordinated release; changing a Secrets Manager value alone does not refresh CloudFormation dynamic references or running ECS tasks.
 - Wrapped identity envelope: format in IDENTITY_READINESS.md, each version wrapped with the exact identity KMS ARN and encryption context. Keep old wrapped versions. No plaintext key env/file in staging. `EnableNetworkCustody=true` is configuration, never approval by itself.
-- Public RDS CA PEM bundle from the official RDS trust store, validated and dated. Server verifies certificate chain and hostname. Supply it explicitly; no `sslmode=require`, trust-all or URL override. Plan certificate/key rotation and test it before AWS acceptance.
+- Public RDS CA PEM bundle from the official RDS trust store, validated and dated. Server verifies certificate chain and hostname. Supply it explicitly; no bare `sslmode=require`, trust-all or runtime URL override. The native Prisma CLI requires `sslmode=require` together with `sslaccept=strict` and an explicit `sslcert` CA path; this is separately tested from node-postgres. Plan certificate/key rotation and test it before AWS acceptance.
 
 ## Later ordered operation, only after separate approval
 
@@ -52,3 +52,16 @@ Restore RDS and identity keys/mailbox to separate protected targets. Verify all 
 ## References
 
 [CloudFront cache policy behavior](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html), [EFS access points and ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html). These describe technical configuration, not Philippine legal or clinical compliance.
+
+## Locally verified migration candidate — 2026-09-21
+
+The original full `migration` image remains available but has unresolved high/critical findings and is not accepted for remote jobs. Build the additive candidate for local evaluation (Docker running, Node24.21.0/pnpm10.34.5 installed):
+
+```sh
+docker build --target migration-hardened --build-arg SOURCE_REVISION="$(git rev-parse HEAD)" -f infrastructure/docker/Dockerfile.serving -t mcclinic-migration:local-review .
+MIGRATION_TEST_IMAGE=mcclinic-migration:local-review pnpm exec vitest run tests/staging-migration-image.integration.test.ts tests/staging-roles.integration.test.ts tests/staging-tls.integration.test.ts
+```
+
+A working-tree build must also retain its diff/source hashes; the revision label alone does not prove clean source. Tests use fresh synthetic mcclinic databases, read-only job containers and temporary writable /tmp; they do not touch the existing local clinic. Native tests verify strict CA/hostname rejection, special-character credentials, unchanged migration checksums and repeatability, runtime write/audit permissions and denied destructive/history/schema operations. No registry push, AWS API or email is involved.
+
+Scan the exact image and both `/workspace/artifacts/prisma.sbom.cdx.json` and `/workspace/artifacts/command.sbom.cdx.json`. Retain `/workspace/artifacts/build.json`, native-engine hash, OpenSSL metadata, source manifest and complete reports. Candidate evidence: Documentation/Acceptance/TASK-028-artifacts/migration-2026-09-21/. The candidate has the same operator command path and UID1000 as current job definitions; no infrastructure activation is included. Only bootstrap/migrate/status behavior is verified; do not substitute it for general development tooling or the existing local Compose seed workflow. Select an immutable, freshly verified candidate digest only after separate publication/job approval. Remaining cost, operator and actual RDS/network/cloud gates above still apply.

@@ -59,3 +59,7 @@ TASK-035 and TASK-029 local work retains synthetic-only scope. Owner explicitly 
 ## Synthetic staging preparation — TASK-028 continuation, 2026-09-20
 
 ADR-015 adds a separate HTTPS/cookie-only staging composition root without relaxing local packaged guards. Explicit verified DB CA; migration/runtime database roles; retained private encrypted EFS synthetic sink; sealed read-only operator retrieval. App stack defaults to zero tasks, no KMS network activation and zero shared caching. Parameters do not constitute authorization. All work is locally prepared only; no cloud account action or external message. Migration image findings, account-specific IAM/KMS/RDS/EFS verification, updated cost/anomaly/operator alert decisions and deployed TASK-029/030 evidence remain release blockers. See infrastructure/aws/STAGING_RELEASE_RUNBOOK.md and TASK-028 acceptance. No automatic record deletion or retention purge.
+
+## TASK-028 migration candidate — 2026-09-21
+
+Use the separately built `migration-hardened` target as the locally verified candidate for a later reviewed synthetic staging database job. It preserves the existing job command/UID1000 and original migrations, with frozen Prisma CLI/native engine, verified native TLS and no package installer/shell. This default does not activate or publish it, change local Compose, or remove the original full migration image. All images need current revision/scan evidence before later release. Existing production findings, AWS authorization, budget and operational gates remain open.

@@ -1,0 +1,1329 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0c0f2-922c-7da8-a8d6-702dfeef5611",
+  "CreatedAt": "2026-09-21T08:31:57.740897+10:00",
+  "ArtifactName": ".local/task028-migration/prisma.sbom.cdx.json",
+  "ArtifactType": "cyclonedx",
+  "Results": [
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg",
+      "Packages": [
+        {
+          "ID": "@electric-sql/pglite@0.4.3",
+          "Name": "@electric-sql/pglite",
+          "Identifier": {
+            "PURL": "pkg:npm/%40electric-sql/pglite@0.4.3",
+            "UID": "59068bef34bf4951",
+            "BOMRef": "2356a4940444"
+          },
+          "Version": "0.4.3"
+        },
+        {
+          "ID": "@electric-sql/pglite-socket@0.1.3",
+          "Name": "@electric-sql/pglite-socket",
+          "Identifier": {
+            "PURL": "pkg:npm/%40electric-sql/pglite-socket@0.1.3",
+            "UID": "8426fc33fe744443",
+            "BOMRef": "b4f085c03073"
+          },
+          "Version": "0.1.3"
+        },
+        {
+          "ID": "@electric-sql/pglite-tools@0.3.3",
+          "Name": "@electric-sql/pglite-tools",
+          "Identifier": {
+            "PURL": "pkg:npm/%40electric-sql/pglite-tools@0.3.3",
+            "UID": "6a5897ecd07e0abf",
+            "BOMRef": "282582ffad4b"
+          },
+          "Version": "0.3.3"
+        },
+        {
+          "ID": "@prisma/config@7.10.0",
+          "Name": "@prisma/config",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/config@7.10.0",
+            "UID": "c805b210dc5afe47",
+            "BOMRef": "a0fc1f47b0b9"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/debug@7.10.0",
+          "Name": "@prisma/debug",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/debug@7.10.0",
+            "UID": "2ad5e6b379c01ac5",
+            "BOMRef": "b5c8bc4487f7"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/debug@7.2.0",
+          "Name": "@prisma/debug",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/debug@7.2.0",
+            "UID": "ce2ba1af17a1021d",
+            "BOMRef": "09c9120fcb91"
+          },
+          "Version": "7.2.0"
+        },
+        {
+          "ID": "@prisma/dev@0.24.17",
+          "Name": "@prisma/dev",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/dev@0.24.17",
+            "UID": "f6384d656c024001",
+            "BOMRef": "44a29774a2df"
+          },
+          "Version": "0.24.17"
+        },
+        {
+          "ID": "@prisma/engines@7.10.0",
+          "Name": "@prisma/engines",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/engines@7.10.0",
+            "UID": "b415344756a287db",
+            "BOMRef": "ff353dadcc35"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/engines-version@7.10.0-4.0edf323efd1d98336f3f0a68684b56f689b900d3",
+          "Name": "@prisma/engines-version",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/engines-version@7.10.0-4.0edf323efd1d98336f3f0a68684b56f689b900d3",
+            "UID": "511845fc77e24121",
+            "BOMRef": "185ecc77cb28"
+          },
+          "Version": "7.10.0-4.0edf323efd1d98336f3f0a68684b56f689b900d3"
+        },
+        {
+          "ID": "@prisma/fetch-engine@7.10.0",
+          "Name": "@prisma/fetch-engine",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/fetch-engine@7.10.0",
+            "UID": "6d1636376c5f443c",
+            "BOMRef": "2134dd755032"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/get-platform@7.10.0",
+          "Name": "@prisma/get-platform",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/get-platform@7.10.0",
+            "UID": "70372dfaa772263f",
+            "BOMRef": "0597849bb306"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/get-platform@7.2.0",
+          "Name": "@prisma/get-platform",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/get-platform@7.2.0",
+            "UID": "c12512d10270c32f",
+            "BOMRef": "046437922019"
+          },
+          "Version": "7.2.0"
+        },
+        {
+          "ID": "@prisma/query-plan-executor@7.2.0",
+          "Name": "@prisma/query-plan-executor",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/query-plan-executor@7.2.0",
+            "UID": "12148a0fabaa5294",
+            "BOMRef": "dcc5a44cb047"
+          },
+          "Version": "7.2.0"
+        },
+        {
+          "ID": "@prisma/streams-local@0.1.11",
+          "Name": "@prisma/streams-local",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/streams-local@0.1.11",
+            "UID": "750b1930165a47e1",
+            "BOMRef": "312f4ac718c8"
+          },
+          "Version": "0.1.11"
+        },
+        {
+          "ID": "@prisma/studio-core@0.33.0",
+          "Name": "@prisma/studio-core",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/studio-core@0.33.0",
+            "UID": "85ff63d59040a066",
+            "BOMRef": "3babf8f26e30"
+          },
+          "Version": "0.33.0"
+        },
+        {
+          "ID": "@radix-ui/primitive@1.1.3",
+          "Name": "@radix-ui/primitive",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/primitive@1.1.3",
+            "UID": "5184535bfeba5b0f",
+            "BOMRef": "72566418e76c"
+          },
+          "Version": "1.1.3"
+        },
+        {
+          "ID": "@radix-ui/react-compose-refs@1.1.2",
+          "Name": "@radix-ui/react-compose-refs",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-compose-refs@1.1.2",
+            "UID": "ca51612f2704de77",
+            "BOMRef": "bd2991d3d3f6"
+          },
+          "Version": "1.1.2"
+        },
+        {
+          "ID": "@radix-ui/react-primitive@2.1.3",
+          "Name": "@radix-ui/react-primitive",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-primitive@2.1.3",
+            "UID": "a58ab6deb1363675",
+            "BOMRef": "224abf927905"
+          },
+          "Version": "2.1.3"
+        },
+        {
+          "ID": "@radix-ui/react-slot@1.2.3",
+          "Name": "@radix-ui/react-slot",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-slot@1.2.3",
+            "UID": "feddf218a0f21a0a",
+            "BOMRef": "7d8a9b117cf1"
+          },
+          "Version": "1.2.3"
+        },
+        {
+          "ID": "@radix-ui/react-toggle@1.1.10",
+          "Name": "@radix-ui/react-toggle",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-toggle@1.1.10",
+            "UID": "1a3eacbfde7f1383",
+            "BOMRef": "18fc0bc53d14"
+          },
+          "Version": "1.1.10"
+        },
+        {
+          "ID": "@radix-ui/react-use-controllable-state@1.2.2",
+          "Name": "@radix-ui/react-use-controllable-state",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-use-controllable-state@1.2.2",
+            "UID": "4e39b6eb712a59a7",
+            "BOMRef": "9ad6201e4e00"
+          },
+          "Version": "1.2.2"
+        },
+        {
+          "ID": "@radix-ui/react-use-effect-event@0.0.2",
+          "Name": "@radix-ui/react-use-effect-event",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-use-effect-event@0.0.2",
+            "UID": "a58a4498ae904bd9",
+            "BOMRef": "aedd7052d2be"
+          },
+          "Version": "0.0.2"
+        },
+        {
+          "ID": "@radix-ui/react-use-layout-effect@1.1.1",
+          "Name": "@radix-ui/react-use-layout-effect",
+          "Identifier": {
+            "PURL": "pkg:npm/%40radix-ui/react-use-layout-effect@1.1.1",
+            "UID": "e39b0851d5cd91ac",
+            "BOMRef": "d9afc1318def"
+          },
+          "Version": "1.1.1"
+        },
+        {
+          "ID": "@standard-schema/spec@1.1.0",
+          "Name": "@standard-schema/spec",
+          "Identifier": {
+            "PURL": "pkg:npm/%40standard-schema/spec@1.1.0",
+            "UID": "e8dcb2a764b60d6c",
+            "BOMRef": "2494ae5698c6"
+          },
+          "Version": "1.1.0"
+        },
+        {
+          "ID": "@types/d3-array@3.0.3",
+          "Name": "@types/d3-array",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-array@3.0.3",
+            "UID": "5c200afc58216e9a",
+            "BOMRef": "f77da9ab315a"
+          },
+          "Version": "3.0.3"
+        },
+        {
+          "ID": "@types/d3-color@3.1.0",
+          "Name": "@types/d3-color",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-color@3.1.0",
+            "UID": "f073d3e54956d14c",
+            "BOMRef": "79e4199ad517"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "@types/d3-delaunay@6.0.1",
+          "Name": "@types/d3-delaunay",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-delaunay@6.0.1",
+            "UID": "4c923a80bfe7635d",
+            "BOMRef": "49332536c911"
+          },
+          "Version": "6.0.1"
+        },
+        {
+          "ID": "@types/d3-format@3.0.1",
+          "Name": "@types/d3-format",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-format@3.0.1",
+            "UID": "c34f622be99f90a1",
+            "BOMRef": "45a00759c328"
+          },
+          "Version": "3.0.1"
+        },
+        {
+          "ID": "@types/d3-geo@3.1.0",
+          "Name": "@types/d3-geo",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-geo@3.1.0",
+            "UID": "d36a4dd0ba37edef",
+            "BOMRef": "38a4551b2a7c"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "@types/d3-interpolate@3.0.1",
+          "Name": "@types/d3-interpolate",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-interpolate@3.0.1",
+            "UID": "36b8f991fe65c039",
+            "BOMRef": "8e544bb5d557"
+          },
+          "Version": "3.0.1"
+        },
+        {
+          "ID": "@types/d3-path@3.1.1",
+          "Name": "@types/d3-path",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-path@3.1.1",
+            "UID": "d2fe09310fcd2247",
+            "BOMRef": "29bbfad62f50"
+          },
+          "Version": "3.1.1"
+        },
+        {
+          "ID": "@types/d3-scale@4.0.2",
+          "Name": "@types/d3-scale",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-scale@4.0.2",
+            "UID": "9a3adef0120bbefe",
+            "BOMRef": "9a5d9c23087a"
+          },
+          "Version": "4.0.2"
+        },
+        {
+          "ID": "@types/d3-shape@3.1.7",
+          "Name": "@types/d3-shape",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-shape@3.1.7",
+            "UID": "cafb50c246c67d2a",
+            "BOMRef": "cb629edf5b5f"
+          },
+          "Version": "3.1.7"
+        },
+        {
+          "ID": "@types/d3-time@3.0.0",
+          "Name": "@types/d3-time",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-time@3.0.0",
+            "UID": "1b010e0dfcf49b04",
+            "BOMRef": "565c798aa9e3"
+          },
+          "Version": "3.0.0"
+        },
+        {
+          "ID": "@types/d3-time-format@2.1.0",
+          "Name": "@types/d3-time-format",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/d3-time-format@2.1.0",
+            "UID": "b537faae86078249",
+            "BOMRef": "16e75dae8121"
+          },
+          "Version": "2.1.0"
+        },
+        {
+          "ID": "@types/geojson@7946.0.16",
+          "Name": "@types/geojson",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/geojson@7946.0.16",
+            "UID": "f64154b121aa0c2c",
+            "BOMRef": "7da07b9ba9ac"
+          },
+          "Version": "7946.0.16"
+        },
+        {
+          "ID": "@types/lodash@4.17.25",
+          "Name": "@types/lodash",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/lodash@4.17.25",
+            "UID": "875ee6676063e117",
+            "BOMRef": "766c83448f51"
+          },
+          "Version": "4.17.25"
+        },
+        {
+          "ID": "@types/react@19.3.0",
+          "Name": "@types/react",
+          "Identifier": {
+            "PURL": "pkg:npm/%40types/react@19.3.0",
+            "UID": "b7defb1b3a40d357",
+            "BOMRef": "98a10057b3f3"
+          },
+          "Version": "19.3.0"
+        },
+        {
+          "ID": "@visx/curve@4.0.1-alpha.0",
+          "Name": "@visx/curve",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/curve@4.0.1-alpha.0",
+            "UID": "55950227d1c51452",
+            "BOMRef": "bcbd6e5fcad2"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/event@4.0.1-alpha.0",
+          "Name": "@visx/event",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/event@4.0.1-alpha.0",
+            "UID": "b6df009ca1edbd43",
+            "BOMRef": "fd92a02eb86e"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/grid@4.0.1-alpha.0",
+          "Name": "@visx/grid",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/grid@4.0.1-alpha.0",
+            "UID": "79eb5af659b259",
+            "BOMRef": "a01946dce143"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/group@4.0.1-alpha.0",
+          "Name": "@visx/group",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/group@4.0.1-alpha.0",
+            "UID": "c6e5a0a8b72e6a1",
+            "BOMRef": "3337995753cb"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/point@4.0.1-alpha.0",
+          "Name": "@visx/point",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/point@4.0.1-alpha.0",
+            "UID": "55b25b76ae39bd68",
+            "BOMRef": "8eace6756fc1"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/responsive@4.0.1-alpha.0",
+          "Name": "@visx/responsive",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/responsive@4.0.1-alpha.0",
+            "UID": "f98639af6dad74c1",
+            "BOMRef": "a53dd76ce7e4"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/scale@4.0.1-alpha.0",
+          "Name": "@visx/scale",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/scale@4.0.1-alpha.0",
+            "UID": "807a0f61c465acfd",
+            "BOMRef": "cbccfc6d6b9c"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/shape@4.0.1-alpha.0",
+          "Name": "@visx/shape",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/shape@4.0.1-alpha.0",
+            "UID": "7c0f0df6a38dcba0",
+            "BOMRef": "67212d88f28d"
+          },
+          "Version": "4.0.1-alpha.0"
+        },
+        {
+          "ID": "@visx/vendor@4.0.0-alpha.0",
+          "Name": "@visx/vendor",
+          "Identifier": {
+            "PURL": "pkg:npm/%40visx/vendor@4.0.0-alpha.0",
+            "UID": "200feef966aaa37d",
+            "BOMRef": "400778b1b058"
+          },
+          "Version": "4.0.0-alpha.0"
+        },
+        {
+          "ID": "ajv@8.20.0",
+          "Name": "ajv",
+          "Identifier": {
+            "PURL": "pkg:npm/ajv@8.20.0",
+            "UID": "1f0b768c4361e25e",
+            "BOMRef": "56e4c2faa921"
+          },
+          "Version": "8.20.0"
+        },
+        {
+          "ID": "aws-ssl-profiles@1.1.2",
+          "Name": "aws-ssl-profiles",
+          "Identifier": {
+            "PURL": "pkg:npm/aws-ssl-profiles@1.1.2",
+            "UID": "d156fada718c1517",
+            "BOMRef": "99267762e4bb"
+          },
+          "Version": "1.1.2"
+        },
+        {
+          "ID": "better-result@2.10.0",
+          "Name": "better-result",
+          "Identifier": {
+            "PURL": "pkg:npm/better-result@2.10.0",
+            "UID": "fa45275de782fe1b",
+            "BOMRef": "ad06b5de5133"
+          },
+          "Version": "2.10.0"
+        },
+        {
+          "ID": "c12@3.3.4",
+          "Name": "c12",
+          "Identifier": {
+            "PURL": "pkg:npm/c12@3.3.4",
+            "UID": "1fbb037cce9b124f",
+            "BOMRef": "e19fa0e32ff5"
+          },
+          "Version": "3.3.4"
+        },
+        {
+          "ID": "chokidar@5.0.0",
+          "Name": "chokidar",
+          "Identifier": {
+            "PURL": "pkg:npm/chokidar@5.0.0",
+            "UID": "bf62cebc5beaa764",
+            "BOMRef": "97047d8c983e"
+          },
+          "Version": "5.0.0"
+        },
+        {
+          "ID": "classnames@2.5.1",
+          "Name": "classnames",
+          "Identifier": {
+            "PURL": "pkg:npm/classnames@2.5.1",
+            "UID": "5c679611af49ca72",
+            "BOMRef": "6ca7db0c7a9a"
+          },
+          "Version": "2.5.1"
+        },
+        {
+          "ID": "confbox@0.2.4",
+          "Name": "confbox",
+          "Identifier": {
+            "PURL": "pkg:npm/confbox@0.2.4",
+            "UID": "98f1e450b5d277e3",
+            "BOMRef": "5c7df46c3744"
+          },
+          "Version": "0.2.4"
+        },
+        {
+          "ID": "confbox@0.3.1",
+          "Name": "confbox",
+          "Identifier": {
+            "PURL": "pkg:npm/confbox@0.3.1",
+            "UID": "6d0f37eb58d09291",
+            "BOMRef": "747bb4b25781"
+          },
+          "Version": "0.3.1"
+        },
+        {
+          "ID": "cross-spawn@7.0.6",
+          "Name": "cross-spawn",
+          "Identifier": {
+            "PURL": "pkg:npm/cross-spawn@7.0.6",
+            "UID": "6047c1f65d6327e9",
+            "BOMRef": "65a2889d90db"
+          },
+          "Version": "7.0.6"
+        },
+        {
+          "ID": "csstype@3.2.3",
+          "Name": "csstype",
+          "Identifier": {
+            "PURL": "pkg:npm/csstype@3.2.3",
+            "UID": "627ea5b1d0b6ca31",
+            "BOMRef": "a3367e8f2671"
+          },
+          "Version": "3.2.3"
+        },
+        {
+          "ID": "d3-array@3.2.1",
+          "Name": "d3-array",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-array@3.2.1",
+            "UID": "4bf2a15801783ce5",
+            "BOMRef": "0f755c13dfc1"
+          },
+          "Version": "3.2.1"
+        },
+        {
+          "ID": "d3-array@3.2.4",
+          "Name": "d3-array",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-array@3.2.4",
+            "UID": "4219486cd8491d79",
+            "BOMRef": "809e9c744bcb"
+          },
+          "Version": "3.2.4"
+        },
+        {
+          "ID": "d3-color@3.1.0",
+          "Name": "d3-color",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-color@3.1.0",
+            "UID": "77771293157b5d95",
+            "BOMRef": "8438425ebdcf"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "d3-delaunay@6.0.2",
+          "Name": "d3-delaunay",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-delaunay@6.0.2",
+            "UID": "659e0ad60466e2e7",
+            "BOMRef": "406255cea721"
+          },
+          "Version": "6.0.2"
+        },
+        {
+          "ID": "d3-format@3.1.0",
+          "Name": "d3-format",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-format@3.1.0",
+            "UID": "647a439e82e87675",
+            "BOMRef": "1365cc0492af"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "d3-geo@3.1.0",
+          "Name": "d3-geo",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-geo@3.1.0",
+            "UID": "d446bf5df0cf0418",
+            "BOMRef": "fb40b9c1f2ba"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "d3-interpolate@3.0.1",
+          "Name": "d3-interpolate",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-interpolate@3.0.1",
+            "UID": "11c58dc550f35d67",
+            "BOMRef": "b3af951301e7"
+          },
+          "Version": "3.0.1"
+        },
+        {
+          "ID": "d3-path@3.1.0",
+          "Name": "d3-path",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-path@3.1.0",
+            "UID": "5f6a47e232f4b53d",
+            "BOMRef": "4125325d02cc"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "d3-scale@4.0.2",
+          "Name": "d3-scale",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-scale@4.0.2",
+            "UID": "258e345aadab08d6",
+            "BOMRef": "81d8d2708a62"
+          },
+          "Version": "4.0.2"
+        },
+        {
+          "ID": "d3-shape@3.2.0",
+          "Name": "d3-shape",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-shape@3.2.0",
+            "UID": "b57a30df2dec8d7c",
+            "BOMRef": "ee6d44bb56cc"
+          },
+          "Version": "3.2.0"
+        },
+        {
+          "ID": "d3-time@3.1.0",
+          "Name": "d3-time",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-time@3.1.0",
+            "UID": "7a4e9dcbfd530f6c",
+            "BOMRef": "9496646c5a49"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "d3-time-format@4.1.0",
+          "Name": "d3-time-format",
+          "Identifier": {
+            "PURL": "pkg:npm/d3-time-format@4.1.0",
+            "UID": "9576aa7355911ce9",
+            "BOMRef": "c69bcd513118"
+          },
+          "Version": "4.1.0"
+        },
+        {
+          "ID": "deepmerge-ts@8.0.2",
+          "Name": "deepmerge-ts",
+          "Identifier": {
+            "PURL": "pkg:npm/deepmerge-ts@8.0.2",
+            "UID": "21e37d2a6712a068",
+            "BOMRef": "4cf5f0229083"
+          },
+          "Version": "8.0.2"
+        },
+        {
+          "ID": "defu@6.1.7",
+          "Name": "defu",
+          "Identifier": {
+            "PURL": "pkg:npm/defu@6.1.7",
+            "UID": "ea88084abbbacb",
+            "BOMRef": "809105f5cdf1"
+          },
+          "Version": "6.1.7"
+        },
+        {
+          "ID": "delaunator@5.1.0",
+          "Name": "delaunator",
+          "Identifier": {
+            "PURL": "pkg:npm/delaunator@5.1.0",
+            "UID": "e7762f81c924ffd6",
+            "BOMRef": "dc84642082b1"
+          },
+          "Version": "5.1.0"
+        },
+        {
+          "ID": "denque@2.1.0",
+          "Name": "denque",
+          "Identifier": {
+            "PURL": "pkg:npm/denque@2.1.0",
+            "UID": "83bedbebea4c91ac",
+            "BOMRef": "ec6ea8d2e482"
+          },
+          "Version": "2.1.0"
+        },
+        {
+          "ID": "destr@2.0.5",
+          "Name": "destr",
+          "Identifier": {
+            "PURL": "pkg:npm/destr@2.0.5",
+            "UID": "9f5ead52dfc25b5",
+            "BOMRef": "b82f0e79b06f"
+          },
+          "Version": "2.0.5"
+        },
+        {
+          "ID": "dotenv@17.4.2",
+          "Name": "dotenv",
+          "Identifier": {
+            "PURL": "pkg:npm/dotenv@17.4.2",
+            "UID": "ef9a586b9ae01b5d",
+            "BOMRef": "ce73009cd888"
+          },
+          "Version": "17.4.2"
+        },
+        {
+          "ID": "effect@3.20.0",
+          "Name": "effect",
+          "Identifier": {
+            "PURL": "pkg:npm/effect@3.20.0",
+            "UID": "3fcaf4b978a0390",
+            "BOMRef": "d6311bb9cbed"
+          },
+          "Version": "3.20.0"
+        },
+        {
+          "ID": "elkjs@0.11.1",
+          "Name": "elkjs",
+          "Identifier": {
+            "PURL": "pkg:npm/elkjs@0.11.1",
+            "UID": "139468a12eaab453",
+            "BOMRef": "9854ed3e4706"
+          },
+          "Version": "0.11.1"
+        },
+        {
+          "ID": "empathic@2.0.0",
+          "Name": "empathic",
+          "Identifier": {
+            "PURL": "pkg:npm/empathic@2.0.0",
+            "UID": "9542ced299fa0e6f",
+            "BOMRef": "d35431687a19"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "env-paths@3.0.0",
+          "Name": "env-paths",
+          "Identifier": {
+            "PURL": "pkg:npm/env-paths@3.0.0",
+            "UID": "d9d74f2276026acf",
+            "BOMRef": "ce4025446451"
+          },
+          "Version": "3.0.0"
+        },
+        {
+          "ID": "exsolve@1.1.1",
+          "Name": "exsolve",
+          "Identifier": {
+            "PURL": "pkg:npm/exsolve@1.1.1",
+            "UID": "20137638cb38e067",
+            "BOMRef": "f1a11f270921"
+          },
+          "Version": "1.1.1"
+        },
+        {
+          "ID": "fast-check@3.23.2",
+          "Name": "fast-check",
+          "Identifier": {
+            "PURL": "pkg:npm/fast-check@3.23.2",
+            "UID": "48005193037d4f97",
+            "BOMRef": "5740f5a4de35"
+          },
+          "Version": "3.23.2"
+        },
+        {
+          "ID": "fast-decode-uri-component@1.0.1",
+          "Name": "fast-decode-uri-component",
+          "Identifier": {
+            "PURL": "pkg:npm/fast-decode-uri-component@1.0.1",
+            "UID": "6fd393d5dad727ee",
+            "BOMRef": "885ba68d7af9"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "fast-deep-equal@3.1.3",
+          "Name": "fast-deep-equal",
+          "Identifier": {
+            "PURL": "pkg:npm/fast-deep-equal@3.1.3",
+            "UID": "f1f3a8f1cfccebb2",
+            "BOMRef": "62cf367be13d"
+          },
+          "Version": "3.1.3"
+        },
+        {
+          "ID": "fast-querystring@1.1.2",
+          "Name": "fast-querystring",
+          "Identifier": {
+            "PURL": "pkg:npm/fast-querystring@1.1.2",
+            "UID": "38fd8b910c0f7649",
+            "BOMRef": "7d44456251b1"
+          },
+          "Version": "1.1.2"
+        },
+        {
+          "ID": "fast-uri@3.1.7",
+          "Name": "fast-uri",
+          "Identifier": {
+            "PURL": "pkg:npm/fast-uri@3.1.7",
+            "UID": "8933bcaf7d50f0cc",
+            "BOMRef": "c05cc15e51f5"
+          },
+          "Version": "3.1.7"
+        },
+        {
+          "ID": "find-my-way@9.7.0",
+          "Name": "find-my-way",
+          "Identifier": {
+            "PURL": "pkg:npm/find-my-way@9.7.0",
+            "UID": "3e3ac45d02d92698",
+            "BOMRef": "c945d3d024a8"
+          },
+          "Version": "9.7.0"
+        },
+        {
+          "ID": "foreground-child@3.3.1",
+          "Name": "foreground-child",
+          "Identifier": {
+            "PURL": "pkg:npm/foreground-child@3.3.1",
+            "UID": "11b8a3c735dbbbee",
+            "BOMRef": "6ec5508f9c45"
+          },
+          "Version": "3.3.1"
+        },
+        {
+          "ID": "generate-function@2.3.1",
+          "Name": "generate-function",
+          "Identifier": {
+            "PURL": "pkg:npm/generate-function@2.3.1",
+            "UID": "ada0cfe59cdbd6dc",
+            "BOMRef": "4f4384b1b6cc"
+          },
+          "Version": "2.3.1"
+        },
+        {
+          "ID": "get-port-please@3.2.0",
+          "Name": "get-port-please",
+          "Identifier": {
+            "PURL": "pkg:npm/get-port-please@3.2.0",
+            "UID": "e997aff8085c7cca",
+            "BOMRef": "57b4bd356c6e"
+          },
+          "Version": "3.2.0"
+        },
+        {
+          "ID": "giget@3.3.1",
+          "Name": "giget",
+          "Identifier": {
+            "PURL": "pkg:npm/giget@3.3.1",
+            "UID": "d91a049c5c24f826",
+            "BOMRef": "c2cc6b5d048b"
+          },
+          "Version": "3.3.1"
+        },
+        {
+          "ID": "graceful-fs@4.2.11",
+          "Name": "graceful-fs",
+          "Identifier": {
+            "PURL": "pkg:npm/graceful-fs@4.2.11",
+            "UID": "f6329909b43ce9f3",
+            "BOMRef": "ed104af66014"
+          },
+          "Version": "4.2.11"
+        },
+        {
+          "ID": "grammex@3.1.13",
+          "Name": "grammex",
+          "Identifier": {
+            "PURL": "pkg:npm/grammex@3.1.13",
+            "UID": "f29cba246b1f17f8",
+            "BOMRef": "26ca32de012f"
+          },
+          "Version": "3.1.13"
+        },
+        {
+          "ID": "graphmatch@1.1.1",
+          "Name": "graphmatch",
+          "Identifier": {
+            "PURL": "pkg:npm/graphmatch@1.1.1",
+            "UID": "b51bc09a967c7743",
+            "BOMRef": "89651e1b4d08"
+          },
+          "Version": "1.1.1"
+        },
+        {
+          "ID": "iconv-lite@0.7.3",
+          "Name": "iconv-lite",
+          "Identifier": {
+            "PURL": "pkg:npm/iconv-lite@0.7.3",
+            "UID": "7a61bbbcdddfd200",
+            "BOMRef": "4ead9975eb6b"
+          },
+          "Version": "0.7.3"
+        },
+        {
+          "ID": "internmap@2.0.3",
+          "Name": "internmap",
+          "Identifier": {
+            "PURL": "pkg:npm/internmap@2.0.3",
+            "UID": "ecf61560eadb863d",
+            "BOMRef": "9a7aa19cd0dc"
+          },
+          "Version": "2.0.3"
+        },
+        {
+          "ID": "is-property@1.0.2",
+          "Name": "is-property",
+          "Identifier": {
+            "PURL": "pkg:npm/is-property@1.0.2",
+            "UID": "7bb69adb451c96c0",
+            "BOMRef": "de389fe4e8db"
+          },
+          "Version": "1.0.2"
+        },
+        {
+          "ID": "isexe@2.0.0",
+          "Name": "isexe",
+          "Identifier": {
+            "PURL": "pkg:npm/isexe@2.0.0",
+            "UID": "d2d582cd8414d037",
+            "BOMRef": "eee88f6e6414"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "jiti@2.7.0",
+          "Name": "jiti",
+          "Identifier": {
+            "PURL": "pkg:npm/jiti@2.7.0",
+            "UID": "bad8b409f9641489",
+            "BOMRef": "16be1f1a8bdb"
+          },
+          "Version": "2.7.0"
+        },
+        {
+          "ID": "json-schema-traverse@1.0.0",
+          "Name": "json-schema-traverse",
+          "Identifier": {
+            "PURL": "pkg:npm/json-schema-traverse@1.0.0",
+            "UID": "537c073a1e2c5aee",
+            "BOMRef": "c5425062220a"
+          },
+          "Version": "1.0.0"
+        },
+        {
+          "ID": "lodash@4.18.1",
+          "Name": "lodash",
+          "Identifier": {
+            "PURL": "pkg:npm/lodash@4.18.1",
+            "UID": "d2573192c423ced4",
+            "BOMRef": "f1171bc8abd3"
+          },
+          "Version": "4.18.1"
+        },
+        {
+          "ID": "long@5.3.2",
+          "Name": "long",
+          "Identifier": {
+            "PURL": "pkg:npm/long@5.3.2",
+            "UID": "fd33c1acaf692dd2",
+            "BOMRef": "06c83a0c00d5"
+          },
+          "Version": "5.3.2"
+        },
+        {
+          "ID": "lru.min@1.1.5",
+          "Name": "lru.min",
+          "Identifier": {
+            "PURL": "pkg:npm/lru.min@1.1.5",
+            "UID": "163a3928aa46f60a",
+            "BOMRef": "10d0ca385140"
+          },
+          "Version": "1.1.5"
+        },
+        {
+          "ID": "mysql2@3.23.1",
+          "Name": "mysql2",
+          "Identifier": {
+            "PURL": "pkg:npm/mysql2@3.23.1",
+            "UID": "48d2a2a610da7edd",
+            "BOMRef": "c03cf80bb8ca"
+          },
+          "Version": "3.23.1"
+        },
+        {
+          "ID": "named-placeholders@1.1.6",
+          "Name": "named-placeholders",
+          "Identifier": {
+            "PURL": "pkg:npm/named-placeholders@1.1.6",
+            "UID": "3a154eca753c744c",
+            "BOMRef": "cf31143bba65"
+          },
+          "Version": "1.1.6"
+        },
+        {
+          "ID": "ohash@2.0.12",
+          "Name": "ohash",
+          "Identifier": {
+            "PURL": "pkg:npm/ohash@2.0.12",
+            "UID": "f86b6f7e6e82f83d",
+            "BOMRef": "0ab0a5832f30"
+          },
+          "Version": "2.0.12"
+        },
+        {
+          "ID": "path-key@3.1.1",
+          "Name": "path-key",
+          "Identifier": {
+            "PURL": "pkg:npm/path-key@3.1.1",
+            "UID": "fb014da563340c93",
+            "BOMRef": "c4bc2dccfc70"
+          },
+          "Version": "3.1.1"
+        },
+        {
+          "ID": "pathe@2.0.3",
+          "Name": "pathe",
+          "Identifier": {
+            "PURL": "pkg:npm/pathe@2.0.3",
+            "UID": "11a69c1173e8dca1",
+            "BOMRef": "f2169b80ca24"
+          },
+          "Version": "2.0.3"
+        },
+        {
+          "ID": "perfect-debounce@2.1.0",
+          "Name": "perfect-debounce",
+          "Identifier": {
+            "PURL": "pkg:npm/perfect-debounce@2.1.0",
+            "UID": "96306b0adbf0bd99",
+            "BOMRef": "e1040b819d3e"
+          },
+          "Version": "2.1.0"
+        },
+        {
+          "ID": "pkg-types@2.3.3",
+          "Name": "pkg-types",
+          "Identifier": {
+            "PURL": "pkg:npm/pkg-types@2.3.3",
+            "UID": "d6b0675b17f09a67",
+            "BOMRef": "0372bbef3dab"
+          },
+          "Version": "2.3.3"
+        },
+        {
+          "ID": "postgres@3.4.7",
+          "Name": "postgres",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres@3.4.7",
+            "UID": "c71633dbc53961c6",
+            "BOMRef": "2043959edd71"
+          },
+          "Version": "3.4.7"
+        },
+        {
+          "ID": "prisma@7.10.0",
+          "Name": "prisma",
+          "Identifier": {
+            "PURL": "pkg:npm/prisma@7.10.0",
+            "UID": "39e310e3554ee733",
+            "BOMRef": "d6383410f547"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "proper-lockfile@4.1.2",
+          "Name": "proper-lockfile",
+          "Identifier": {
+            "PURL": "pkg:npm/proper-lockfile@4.1.2",
+            "UID": "a6426e5cde79a3fb",
+            "BOMRef": "3a20dc575571"
+          },
+          "Version": "4.1.2"
+        },
+        {
+          "ID": "pure-rand@6.1.0",
+          "Name": "pure-rand",
+          "Identifier": {
+            "PURL": "pkg:npm/pure-rand@6.1.0",
+            "UID": "f4a73596bf16635d",
+            "BOMRef": "4dffc4d1c5b1"
+          },
+          "Version": "6.1.0"
+        },
+        {
+          "ID": "rc9@3.1.0",
+          "Name": "rc9",
+          "Identifier": {
+            "PURL": "pkg:npm/rc9@3.1.0",
+            "UID": "9606f87a28ae4991",
+            "BOMRef": "86344dccbf63"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "readdirp@5.1.1",
+          "Name": "readdirp",
+          "Identifier": {
+            "PURL": "pkg:npm/readdirp@5.1.1",
+            "UID": "ef139b314d98e7d2",
+            "BOMRef": "d9aa623609e2"
+          },
+          "Version": "5.1.1"
+        },
+        {
+          "ID": "remeda@2.33.4",
+          "Name": "remeda",
+          "Identifier": {
+            "PURL": "pkg:npm/remeda@2.33.4",
+            "UID": "37433424fc1980e2",
+            "BOMRef": "bc4cec9cad26"
+          },
+          "Version": "2.33.4"
+        },
+        {
+          "ID": "require-from-string@2.0.2",
+          "Name": "require-from-string",
+          "Identifier": {
+            "PURL": "pkg:npm/require-from-string@2.0.2",
+            "UID": "7d4ada9cc08fd5a0",
+            "BOMRef": "b3898c10076e"
+          },
+          "Version": "2.0.2"
+        },
+        {
+          "ID": "ret@0.5.0",
+          "Name": "ret",
+          "Identifier": {
+            "PURL": "pkg:npm/ret@0.5.0",
+            "UID": "2a28c74ff5066fc4",
+            "BOMRef": "b3c06a06d911"
+          },
+          "Version": "0.5.0"
+        },
+        {
+          "ID": "retry@0.12.0",
+          "Name": "retry",
+          "Identifier": {
+            "PURL": "pkg:npm/retry@0.12.0",
+            "UID": "8d17f97c213a1f61",
+            "BOMRef": "ba3d12d10167"
+          },
+          "Version": "0.12.0"
+        },
+        {
+          "ID": "robust-predicates@3.0.3",
+          "Name": "robust-predicates",
+          "Identifier": {
+            "PURL": "pkg:npm/robust-predicates@3.0.3",
+            "UID": "7663561d00a3dcc4",
+            "BOMRef": "d8319dd846df"
+          },
+          "Version": "3.0.3"
+        },
+        {
+          "ID": "safe-regex2@5.1.1",
+          "Name": "safe-regex2",
+          "Identifier": {
+            "PURL": "pkg:npm/safe-regex2@5.1.1",
+            "UID": "29abecf287f25574",
+            "BOMRef": "8c0f4e8b1dbb"
+          },
+          "Version": "5.1.1"
+        },
+        {
+          "ID": "safer-buffer@2.1.2",
+          "Name": "safer-buffer",
+          "Identifier": {
+            "PURL": "pkg:npm/safer-buffer@2.1.2",
+            "UID": "7be7295b7a625315",
+            "BOMRef": "81ec127c63bb"
+          },
+          "Version": "2.1.2"
+        },
+        {
+          "ID": "shebang-command@2.0.0",
+          "Name": "shebang-command",
+          "Identifier": {
+            "PURL": "pkg:npm/shebang-command@2.0.0",
+            "UID": "459b412275e71cd8",
+            "BOMRef": "48f279e182eb"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "shebang-regex@3.0.0",
+          "Name": "shebang-regex",
+          "Identifier": {
+            "PURL": "pkg:npm/shebang-regex@3.0.0",
+            "UID": "9968466eacc67be7",
+            "BOMRef": "4c44d1df1f51"
+          },
+          "Version": "3.0.0"
+        },
+        {
+          "ID": "signal-exit@3.0.7",
+          "Name": "signal-exit",
+          "Identifier": {
+            "PURL": "pkg:npm/signal-exit@3.0.7",
+            "UID": "14d8628e304a965d",
+            "BOMRef": "d96dbeb1ea7f"
+          },
+          "Version": "3.0.7"
+        },
+        {
+          "ID": "signal-exit@4.1.0",
+          "Name": "signal-exit",
+          "Identifier": {
+            "PURL": "pkg:npm/signal-exit@4.1.0",
+            "UID": "2448a28c64e72fe0",
+            "BOMRef": "e9751e92409a"
+          },
+          "Version": "4.1.0"
+        },
+        {
+          "ID": "sql-escaper@1.5.2",
+          "Name": "sql-escaper",
+          "Identifier": {
+            "PURL": "pkg:npm/sql-escaper@1.5.2",
+            "UID": "95b679e929436942",
+            "BOMRef": "5569cffecfdf"
+          },
+          "Version": "1.5.2"
+        },
+        {
+          "ID": "std-env@3.10.0",
+          "Name": "std-env",
+          "Identifier": {
+            "PURL": "pkg:npm/std-env@3.10.0",
+            "UID": "5d3bf7cb7ee9061a",
+            "BOMRef": "9ee3e61c560f"
+          },
+          "Version": "3.10.0"
+        },
+        {
+          "ID": "valibot@1.4.2",
+          "Name": "valibot",
+          "Identifier": {
+            "PURL": "pkg:npm/valibot@1.4.2",
+            "UID": "6af897dafd7cf40",
+            "BOMRef": "3e746ce5f235"
+          },
+          "Version": "1.4.2"
+        },
+        {
+          "ID": "which@2.0.2",
+          "Name": "which",
+          "Identifier": {
+            "PURL": "pkg:npm/which@2.0.2",
+            "UID": "6e8b64a6e3005f4",
+            "BOMRef": "f7e270b44a19"
+          },
+          "Version": "2.0.2"
+        },
+        {
+          "ID": "zeptomatch@2.1.0",
+          "Name": "zeptomatch",
+          "Identifier": {
+            "PURL": "pkg:npm/zeptomatch@2.1.0",
+            "UID": "5c4e42fa877acaf2",
+            "BOMRef": "84c6f3a0720b"
+          },
+          "Version": "2.1.0"
+        }
+      ]
+    }
+  ]
+}

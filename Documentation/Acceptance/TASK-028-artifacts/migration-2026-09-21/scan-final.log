@@ -1,0 +1,8 @@
+2026-09-21T08:30:48+10:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-09-21T08:30:52+10:00	WARN	Third-party SBOM may lead to inaccurate vulnerability detection
+2026-09-21T08:30:52+10:00	WARN	Recommend using Trivy to generate SBOMs
+2026-09-21T08:30:52+10:00	INFO	Detected OS	family="debian" version="12.15"
+2026-09-21T08:30:52+10:00	INFO	[debian] Detecting vulnerabilities...	os_version="12" pkg_num=11
+2026-09-21T08:30:52+10:00	INFO	Number of language-specific files	num=1
+2026-09-21T08:30:52+10:00	INFO	[node-pkg] Detecting vulnerabilities...
+2026-09-21T08:30:52+10:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.74/guide/scanner/vulnerability#severity-selection for details.

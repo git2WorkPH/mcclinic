@@ -33,3 +33,7 @@ Two schema-validated foundation/edge policy templates and five offline security 
 ## Application integration checkpoint — 2026-09-20
 
 The owner-approved local continuation is implemented and verified on task/TASK-028-staging-integration from b2cfacf. See ../../Acceptance/TASK-028-integration-notes.md for the scope checkpoint and ../../Acceptance/TASK-028-acceptance.md for tests/review. Status remains Approved / In progress; account cost/operator monitoring, migration-image findings and all deployed criteria remain unresolved. No AWS spending, push, merge or production activation authorized.
+
+## Migration-image checkpoint — 2026-09-21
+
+Continued under owner “merge all the branches to remote master and continue with the next task” / “continue”. The previously completed integration was merged/pushed at 3cf00e7; this follow-up remains local. Additive hardened migration image now passes actual TLS database bootstrap/migrate/idempotency/permission and native certificate-denial checks, with zero reported high/critical findings in this exact candidate. Original image and findings preserved. See TASK-028 acceptance and ADR-015 extension. Full task remains Approved / In progress: cost/anomaly/operator-monitoring preparation and all actual AWS criteria are still outstanding. No spending/apply/remote-job permission inferred.

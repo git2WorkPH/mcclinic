@@ -1,0 +1,130 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.serving
+#1 transferring dockerfile: 6.20kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for gcr.io/distroless/cc-debian12:nonroot@sha256:9dac0a79194e45a7da0158a9c6da57b217585af0786db3845d1f0ec1a0dd182f
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-bookworm-slim@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553
+#3 DONE 0.0s
+
+#4 [serving-base 1/4] FROM gcr.io/distroless/cc-debian12:nonroot@sha256:9dac0a79194e45a7da0158a9c6da57b217585af0786db3845d1f0ec1a0dd182f
+#4 resolve gcr.io/distroless/cc-debian12:nonroot@sha256:9dac0a79194e45a7da0158a9c6da57b217585af0786db3845d1f0ec1a0dd182f done
+#4 DONE 0.0s
+
+#5 [migration  1/14] FROM docker.io/library/node:24.21.0-bookworm-slim@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553
+#5 resolve docker.io/library/node:24.21.0-bookworm-slim@sha256:2fe369e969550cde8e867afc3fe370b260140cab4a23d467074295b42163d553 done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 9.98kB 0.0s done
+#6 DONE 0.0s
+
+#7 [serving-base 2/4] COPY --from=migration /usr/local/bin/node /usr/local/bin/node
+#7 CACHED
+
+#8 [serving-base 3/4] COPY --from=migration --chown=1000:1000 /var/lib/mcclinic /var/lib/mcclinic
+#8 CACHED
+
+#9 [migration 13/14] RUN pnpm install --frozen-lockfile && pnpm codegen && pnpm build && SOURCE_REVISION=3cf00e7-migration-candidate node tooling/package-provenance.mjs
+#9 CACHED
+
+#10 [migration  7/14] COPY apps/api/src ./apps/api/src
+#10 CACHED
+
+#11 [migration 14/14] RUN mkdir -p /var/lib/mcclinic && chown node:node /var/lib/mcclinic
+#11 CACHED
+
+#12 [migration 10/14] COPY apps/clinical-app/src ./apps/clinical-app/src
+#12 CACHED
+
+#13 [migration 11/14] COPY packages/graphql-contract ./packages/graphql-contract
+#13 CACHED
+
+#14 [migration 12/14] COPY tooling/copy-api-schema.mjs tooling/package-provenance.mjs tooling/build-serving.mjs tooling/package-migration.mjs ./tooling/
+#14 CACHED
+
+#15 [migration  4/14] WORKDIR /workspace
+#15 CACHED
+
+#16 [migration  6/14] COPY apps/api/package.json apps/api/tsconfig.build.json ./apps/api/
+#16 CACHED
+
+#17 [migration  5/14] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc tsconfig.json prisma.config.ts codegen.ts ./
+#17 CACHED
+
+#18 [migration  3/14] RUN npm install --global pnpm@10.34.5
+#18 CACHED
+
+#19 [migration  8/14] COPY apps/api/prisma ./apps/api/prisma
+#19 CACHED
+
+#20 [migration  9/14] COPY apps/clinical-app/package.json apps/clinical-app/index.html apps/clinical-app/vite.config.ts ./apps/clinical-app/
+#20 CACHED
+
+#21 [migration  2/14] RUN apt-get update && apt-get install -y --no-install-recommends libpcre2-8-0=10.42-1+deb12u1 openssl=3.0.20-1~deb12u2
+#21 CACHED
+
+#22 [serving-base 4/4] WORKDIR /workspace
+#22 CACHED
+
+#23 [build-serving 1/1] RUN SOURCE_REVISION=3cf00e7-migration-candidate node tooling/build-serving.mjs
+#23 CACHED
+
+#24 [migration-libraries 1/4] COPY --from=serving-base /etc/passwd /native/passwd
+#24 DONE 0.0s
+
+#25 [migration-libraries 2/4] RUN printf 'mcclinic:x:1000:1000:Synthetic migration operator:/tmp/mcclinic-operator:/sbin/nologin\n' >> /native/passwd
+#25 DONE 0.1s
+
+#26 [migration-libraries 3/4] RUN SOURCE_REVISION=3cf00e7-migration-candidate node tooling/package-migration.mjs
+#26 2.543 Prepared frozen Prisma closure: 131 packages.
+#26 DONE 2.6s
+
+#27 [migration-libraries 4/4] RUN mkdir -p /native/lib /native/status.d && cp /usr/lib/*-linux-gnu/libssl.so.3 /usr/lib/*-linux-gnu/libcrypto.so.3 /native/lib/ && dpkg-query -s libssl3 > /native/status.d/libssl3
+#27 DONE 0.2s
+
+#28 [migration-hardened  5/11] COPY --from=build-serving /workspace/serving/migration-command.sbom.cdx.json /workspace/artifacts/command.sbom.cdx.json
+#28 CACHED
+
+#29 [migration-hardened  9/11] COPY --from=migration-libraries /native/lib/ /usr/lib/
+#29 CACHED
+
+#30 [migration-hardened  8/11] COPY --from=migration /workspace/prisma.config.ts /workspace/package.json /workspace/
+#30 CACHED
+
+#31 [migration-hardened  1/11] COPY --from=migration-libraries /workspace/migration-runtime/node_modules /workspace/node_modules
+#31 CACHED
+
+#32 [migration-hardened  2/11] COPY --from=migration-libraries /workspace/migration-runtime/schema-engine /workspace/schema-engine
+#32 CACHED
+
+#33 [migration-hardened  6/11] COPY --from=build-serving /workspace/serving/migration-command.build.json /workspace/artifacts/build.json
+#33 CACHED
+
+#34 [migration-hardened  7/11] COPY --from=migration /workspace/apps/api/prisma /workspace/apps/api/prisma
+#34 CACHED
+
+#35 [migration-hardened  4/11] COPY --from=build-serving /workspace/serving/migration-command.mjs /workspace/apps/api/dist/apps/api/src/staging-command.js
+#35 CACHED
+
+#36 [migration-hardened  3/11] COPY --from=migration-libraries /workspace/migration-runtime/sbom.cdx.json /workspace/artifacts/prisma.sbom.cdx.json
+#36 CACHED
+
+#37 [migration-hardened 10/11] COPY --from=migration-libraries /native/status.d/ /var/lib/dpkg/status.d/
+#37 CACHED
+
+#38 [migration-hardened 11/11] COPY --from=migration-libraries /native/passwd /etc/passwd
+#38 DONE 0.0s
+
+#39 exporting to image
+#39 exporting layers 0.0s done
+#39 exporting manifest sha256:efe5e39eca1f0602e69ad755ae75589efbc52ee58f730d4a2117d7187f7de323 done
+#39 exporting config sha256:9f61e4a6709bcf26af207e96082dcd67a66cbd3cde9a9728f089846c18bf83f1 done
+#39 exporting attestation manifest sha256:45c5903ddb9f3266876b35cd9f92e899016ae7addca12078fbd1ae9b101b57bb done
+#39 exporting manifest list sha256:eb16dc5d634ea17eeabcc4987a5974793a43b6b8e5082abf7cc69a975ebb122e done
+#39 naming to docker.io/library/mcclinic-migration:focused-task028 done
+#39 unpacking to docker.io/library/mcclinic-migration:focused-task028 0.0s done
+#39 DONE 0.1s
