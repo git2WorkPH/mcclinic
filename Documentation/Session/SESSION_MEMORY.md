@@ -4,13 +4,13 @@ Updated: 2026-09-20 (Australia/Sydney).
 Phase: synthetic development; release preparation, NO-GO for public/real-patient release.
 Active requirement: REQ-FOUND-012 / REQ-FOUND-011.
 Active task: TASK-028 local integration still in progress; TASK-029 local controls verified. TASK-030/031 have local rehearsal/decision checkpoints only.
-Current branch: task/TASK-035-release-readiness.
-Observed HEAD before this memory update: d6ac8a183ac8f7372003a7ba63655f31fa576743 (TASK-029 local implementation).
-Observed status before this memory update: TASK-028 foundation, TASK-030 local network rehearsal and TASK-031 NO-GO package pending commit. Unrelated infrastructure/docker/compose.yaml and tooling/read-local-mail.ts edits preserved/excluded.
+Current branch: master.
+Observed HEAD before this memory update: 8b4df0e1713c9a42f192fc1532f0d91758a6b4f3 (verified release-readiness branch fast-forwarded into master).
+Observed status before this memory update: two unchanged uncommitted edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts; merge bookkeeping update pending.
 
 ## Authority and reconciliation
 
-- Owner approved the release sequence and explicitly chose “Prepare locally; no AWS spending yet”. No apply, account provisioning, external mail/payment, real data, push or merge performed/authorized here. No deletion approval added.
+- Owner approved the release sequence and explicitly chose “Prepare locally; no AWS spending yet”. No apply, account provisioning, external mail/payment, real data or push performed/authorized here. The subsequent local merge is explicitly approved below. No deletion approval added.
 - Memory was stale after usage-limit interruption: actual HEAD was 26bdb0b, with TASK-029 changes uncommitted. Reconciled source/tests and restored expired temporary tooling to ignored .local/runtime. TASK-029 is now committed as d6ac8a1.
 - TASK-035 completed locally at 26bdb0b. Full TASK-028/029/030/031 remain Approved until their remaining acceptance evidence exists. TASK-024 deferred; optional TASK-036–040 future nice-to-have only.
 
@@ -29,3 +29,10 @@ Observed status before this memory update: TASK-028 foundation, TASK-030 local n
 - Then obtain scoped account/domain/tester/budget/operator approvals for concrete reviewed changes; current standing instruction remains no AWS spending. Run deployed TASK-029/030 evidence before reconsidering TASK-031 NO-GO.
 - FIND-013 and Philippine clinical/privacy/legal/signature/retention findings remain Open. Actual KMS/IAM/provider, RDS PITR, target-ISP metrics and production owners are unverified/unassigned. No purge.
 - Existing local clinic/image was not switched in this continuation. Verify running containers before future action. Synthetic credentials remain ignored under .local; never copy them into records. New test databases isolated from that clinic.
+
+## Local master integration — owner request “merge all to master”
+
+- Owner explicitly approved the local merge and then requested continuation after a usage-limit interruption. Master fast-forwarded from 0523a7e to 8b4df0e, incorporating 26bdb0b, d6ac8a1 and 8b4df0e without conflicts. Task branch retained; no push or branch deletion.
+- First attempt switched branches but automatic approval review blocked the merge because of the usage limit. Retry after continuation succeeded.
+- Verified ancestry and exact committed-tree integration. Both uncommitted edits have the same combined diff SHA-256 before/after: c717836a243d8d6c76afcf557cbea8d231473ac67c67b50ab32b4581e76791d6. They are not included in these commits.
+- No source changes or new test runs for this fast-forward; prior acceptance evidence remains applicable to the identical committed source. Session memory refreshed and whitespace checked. Next work remains TASK-028 local integration, with no AWS spending.
