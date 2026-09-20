@@ -4,15 +4,15 @@ Updated: 2026-09-21 (Australia/Sydney).
 Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
 Active requirement: REQ-FOUND-012 / REQ-FOUND-011.
 Active task: TASK-028, Approved / In progress; local migration-hardening checkpoint verified.
-Current branch: task/TASK-028-staging-integration.
-Observed HEAD before this memory update: 3cf00e728e168b43652f8f5a1dac595907258bb7.
-Observed status before this memory update: intended migration source/test/evidence/docs uncommitted; two unrelated edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts remain excluded.
+Current branch: master.
+Observed HEAD before this memory update: 80233f9e48629f205d9a1c78e1fb8cf35160ef78.
+Observed status before this memory update: verified migration checkpoint committed and fast-forwarded to master; memory handoff updated; two unrelated edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts remain unstaged/excluded.
 
 ## Authority / Git reconciliation
 
 - Read memory first; branch/HEAD/status matched the prior handoff. Reused the existing task branch; no new branch needed.
-- Owner requested “merge all the branches to remote master and continue with the next task”, then “continue”. All prior branches integrated/pushed to remote master at 3cf00e7; histories retained. [Merge evidence](../Acceptance/MASTER-INTEGRATION-2026-09-20.md) records identical-tree/ancestry proof. This continuation is local only. Hosted CI remains unverified: gh unauthenticated.
-- Owner's “Prepare locally; no AWS spending yet” remains binding. No apply, publication, remote jobs, external mail, real data or deletion. No subsequent push performed. TASK-035 Completed; TASK-028/029/030/031 still Approved with outstanding acceptance. TASK-024 deferred; TASK-036–040 future nice-to-have.
+- Owner requested “merge all the branches to remote master and continue with the next task”, then “continue”. All prior branches integrated/pushed to remote master at 3cf00e7; histories retained. [Merge evidence](../Acceptance/MASTER-INTEGRATION-2026-09-20.md) records identical-tree/ancestry proof. The owner subsequently requests these changes on master and refers to pushing remote master; merge/push of this checkpoint is now authorized. Hosted CI remains unverified: gh unauthenticated.
+- Owner's “Prepare locally; no AWS spending yet” remains binding. No apply, publication, remote jobs, external mail, real data or deletion. Master fast-forwarded to 80233f9; push this checkpoint and its memory handoff, then verify the remote ref. This does not authorize deployment. TASK-035 Completed; TASK-028/029/030/031 still Approved with outstanding acceptance. TASK-024 deferred; TASK-036–040 future nice-to-have.
 
 ## Delivered / source of truth
 
@@ -35,3 +35,7 @@ Observed status before this memory update: intended migration source/test/eviden
 Continue TASK-028 with bounded local cost/anomaly and operator monitoring preparation; update justification before code and preserve current infrastructure/history. Prepare a concrete account/domain/budget/operator review package before asking for cloud authorization. No AWS spending yet.
 
 FIND-013 remains Open: original full image still has high/critical findings; new candidate's lower-severity findings remain. Refresh scans of all reviewed images before publication/exposure or scanner DB changes. Account/domain/budget/tester/operator approval, actual RDS/IAM/KMS/EFS/CloudFront/alerts, drift/PITR/key/sink recovery and target-ISP/load evidence remain missing. Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge. Session memory is an index, not approval or ground truth.
+
+## MVP master handoff — 2026-09-21
+
+Owner: “i want these changes to be in master branch. can you confirm that what we are pushing to master remote are the mvp?” Fetched origin; only 80233f9 was ahead of origin/master (3cf00e7). Fast-forward merge preserves the same verified implementation. Master contains the development SaaS MVP plus local release-preparation/hardening; it is not a production release. No real data, live payments, cloud deployment or spending authorized. Unrelated two-file diff remains excluded. Verify final remote master equals the handoff commit after push; then resume the next local TASK-028 action above.
