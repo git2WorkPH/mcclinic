@@ -4,9 +4,9 @@ Updated: 2026-09-20 (Australia/Sydney).
 Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
 Active requirement: REQ-FOUND-012 / REQ-FOUND-011.
 Active task: TASK-028; local application integration verified, full task Approved/In progress.
-Current branch: task/TASK-028-staging-integration.
-Observed HEAD before this memory update: b2cfacf8765b7b848d1183190dc9544882226d48 (docs: record release-readiness integration into master).
-Observed status before this memory update: intended TASK-028 runtime/IaC/tests/docs/evidence additions uncommitted; two unrelated edits preserved in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts.
+Current branch: master.
+Observed HEAD before this memory update: 48a2bd2131649d264eac1190205894f3d483fb4b (all existing branch histories integrated).
+Observed status before this memory update: two unrelated unstaged edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts; merge/memory documentation pending.
 
 ## Authority / reconciliation
 
@@ -35,3 +35,7 @@ Observed status before this memory update: intended TASK-028 runtime/IaC/tests/d
 - Continue TASK-028 locally: prepare the remaining cost/anomaly and operator monitoring review, and assess/remediate migration-image FIND-013 before requesting provisioning approval. Refresh scans by 2026-09-21 or before exposure changes.
 - No account/domain/budget/tester/operator approval yet. Actual RDS role behavior, KMS/IAM/EFS/CloudFront, alert/anomaly delivery, provider custody, drift/PITR/key/sink recovery and target-ISP/load remain unverified. Do not claim deployed completion.
 - After the local package is reviewable, obtain narrowly scoped cloud authorization, then run TASK-029/030 deployed evidence before revisiting TASK-031. All Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge.
+
+## Owner-authorized remote integration
+
+- Owner now explicitly requests all branches merged to remote master and continued local release work. [Merge evidence](../Acceptance/MASTER-INTEGRATION-2026-09-20.md) records exact identical-tree/ancestry proof; branches retained. Push authorized for this checkpoint; verify origin before resuming. No AWS spending/deployment permission added.
