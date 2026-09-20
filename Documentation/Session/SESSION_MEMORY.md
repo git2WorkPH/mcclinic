@@ -1,38 +1,37 @@
 # Session memory
 
 Updated: 2026-09-20 (Australia/Sydney).
-Phase: synthetic development; release preparation, NO-GO for public/real-patient release.
+Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
 Active requirement: REQ-FOUND-012 / REQ-FOUND-011.
-Active task: TASK-028 local integration still in progress; TASK-029 local controls verified. TASK-030/031 have local rehearsal/decision checkpoints only.
-Current branch: master.
-Observed HEAD before this memory update: 8b4df0e1713c9a42f192fc1532f0d91758a6b4f3 (verified release-readiness branch fast-forwarded into master).
-Observed status before this memory update: two unchanged uncommitted edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts; merge bookkeeping update pending.
+Active task: TASK-028; local application integration verified, full task Approved/In progress.
+Current branch: task/TASK-028-staging-integration.
+Observed HEAD before this memory update: b2cfacf8765b7b848d1183190dc9544882226d48 (docs: record release-readiness integration into master).
+Observed status before this memory update: intended TASK-028 runtime/IaC/tests/docs/evidence additions uncommitted; two unrelated edits preserved in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts.
 
-## Authority and reconciliation
+## Authority / reconciliation
 
-- Owner approved the release sequence and explicitly chose “Prepare locally; no AWS spending yet”. No apply, account provisioning, external mail/payment, real data or push performed/authorized here. The subsequent local merge is explicitly approved below. No deletion approval added.
-- Memory was stale after usage-limit interruption: actual HEAD was 26bdb0b, with TASK-029 changes uncommitted. Reconciled source/tests and restored expired temporary tooling to ignored .local/runtime. TASK-029 is now committed as d6ac8a1.
-- TASK-035 completed locally at 26bdb0b. Full TASK-028/029/030/031 remain Approved until their remaining acceptance evidence exists. TASK-024 deferred; optional TASK-036–040 future nice-to-have only.
+- Read memory first and compared Git branch/HEAD/status. Previous master handoff is superseded by the task branch created from b2cfacf after exact remote/worktree/branch inspection; no matching remote task branch. Prior release branch retained.
+- Owner approved the release sequence, chose “Prepare locally; no AWS spending yet”, then “ok continue” / “continue”. Local implementation and commits only; no new push, merge, apply, AWS account action, external messages, real data or deletion authorized.
+- TASK-035 locally Completed; TASK-028/029/030/031 remain Approved pending outstanding acceptance. TASK-024 deferred; optional TASK-036–040 remain future nice-to-have.
 
-## Delivered and verification
+## Delivered / source-of-truth links
 
-- [TASK-029 acceptance](../Acceptance/TASK-029-acceptance.md): encrypted transactional outbox/retry/audit, synthetic sink, retained/versioned keys and gated KMS adapter, optional exact-origin cookie sessions. Real enrolled MFA key-file restore and built-client HTTPS login/reload/logout verified. Original modes/contracts preserved. [Identity runbook](../Project/IDENTITY_READINESS.md), ADR-013, per-task justification.
-- TASK-029: pnpm check PASS (30 tests/lint/types/build), 30 database/HTTPS scenarios, seven unchanged browser journeys, codegen drift/formatting. Identity-port review follow-up passed; logs tracked. Earlier check-in stall did not recur; no assertion removed/weakened.
-- [TASK-028 checkpoint](../Acceptance/TASK-028-acceptance.md): two CloudFormation templates, offline schema validation and five security policy tests PASS. infrastructure/aws/README.md lists missing ingress/cache/runtime/migration/operational integration and required account/domain/budget inputs. ADR-014 records provisional private endpoints and cost reassessment. No deployment.
-- [TASK-030 checkpoint](../Acceptance/TASK-030-acceptance.md): built browser/PostgreSQL lost-response retry PASS with retained inputs, same key and exactly one patient/audit. [Protocol](../Project/STAGING_VERIFICATION.md) separates local evidence from unrun RDS/KMS/ISP/alert drills.
-- [TASK-031 review](../Acceptance/TASK-031-acceptance.md): [NO-GO package](../Project/FIRST_RELEASE_READINESS.md) records missing evidence/owners without resolving findings or accepting risks.
-- Latest lint/type checks for the new network test and template schema/policy checks passed. No application changes after TASK-029 except the added TASK-030 test.
+- [TASK-028 acceptance](../Acceptance/TASK-028-acceptance.md), [canonical task](../Tasks/Approved/TASK-028.md), [ADR-015](../Architecture/Decisions/ADR-015.md), [justification](../../Doc/Changes/Justification/TASK-028-aws-staging.md).
+- Separate synthetic staging entry point, exact-origin cookie/origin guards, verified DB TLS, migration/runtime roles and explicit jobs, private durable sink and sealed read-only operator retrieval. Original local entry points/schema/tests unchanged.
+- Complementary ALB/CloudFront/ECS/EFS/application and database-job templates; private task network, zero cache TTL, retained storage, OAC, alarm definitions. Defaults: zero tasks, custody disabled. Even applying these defaults would cost money and is unauthorized.
+- [AWS preparation index](../../infrastructure/aws/README.md), [release runbook](../../infrastructure/aws/STAGING_RELEASE_RUNBOOK.md), [MVP defaults](../Project/MVP_ASSUMPTIONS.md), [release NO-GO](../Project/FIRST_RELEASE_READINESS.md). Original requirements/decisions preserved; no new clinical requirement or finding resolved.
 
-## Open gates and exact next action
+## Verification
 
-- Complete remaining TASK-028 local ingress/TLS/CloudFront zero-cache routing, staging runtime/task/migration/DB-role/sink and operational wiring. Build/scan new serving images after TASK-029; previous image evidence applies only to its exact versions. Do this before any AWS approval request.
-- Then obtain scoped account/domain/tester/budget/operator approvals for concrete reviewed changes; current standing instruction remains no AWS spending. Run deployed TASK-029/030 evidence before reconsidering TASK-031 NO-GO.
-- FIND-013 and Philippine clinical/privacy/legal/signature/retention findings remain Open. Actual KMS/IAM/provider, RDS PITR, target-ISP metrics and production owners are unverified/unassigned. No purge.
-- Existing local clinic/image was not switched in this continuation. Verify running containers before future action. Synthetic credentials remain ignored under .local; never copy them into records. New test databases isolated from that clinic.
+- pnpm check PASS: lint/boundaries/types, 34 unit/API tests, generated DB client and API/web builds. Final lint/types and codegen drift PASS.
+- Eight database/TLS/browser integration files PASS (33 scenarios); final packaged images seven browser journeys + persisted restart PASS; two foundation browser journeys PASS. New sealed-message CLI recovery/wrong-key/path/file-preservation checks PASS.
+- Four CloudFormation templates schema-valid; ten offline policy checks PASS. Actual AWS behavior unrun.
+- Five ARM64 images built; exact identities/full reports/SBOMs/logs/hashes in [TASK-028 artifacts](../Acceptance/TASK-028-artifacts/integration-2026-09-20/). API/web/staging/mailbox: 16 low/15 medium, zero high/critical; bundle inventories none. Migration: 60 high/4 critical, FIND-013 Open; no waiver or remote execution acceptance.
+- Local clinic remains mcclinic-packaged task033 at localhost:8080; not switched. Isolated test services stopped and state/volumes retained. .local runtime/tools/secrets remain ignored.
+- Unrelated two-file diff SHA256 remains c717836a243d8d6c76afcf557cbea8d231473ac67c67b50ab32b4581e76791d6. Exclude these from task commits.
 
-## Local master integration — owner request “merge all to master”
+## Open gates / exact next action
 
-- Owner explicitly approved the local merge and then requested continuation after a usage-limit interruption. Master fast-forwarded from 0523a7e to 8b4df0e, incorporating 26bdb0b, d6ac8a1 and 8b4df0e without conflicts. Task branch retained; no push or branch deletion.
-- First attempt switched branches but automatic approval review blocked the merge because of the usage limit. Retry after continuation succeeded.
-- Verified ancestry and exact committed-tree integration. Both uncommitted edits have the same combined diff SHA-256 before/after: c717836a243d8d6c76afcf557cbea8d231473ac67c67b50ab32b4581e76791d6. They are not included in these commits.
-- No source changes or new test runs for this fast-forward; prior acceptance evidence remains applicable to the identical committed source. Session memory refreshed and whitespace checked. Next work remains TASK-028 local integration, with no AWS spending.
+- Continue TASK-028 locally: prepare the remaining cost/anomaly and operator monitoring review, and assess/remediate migration-image FIND-013 before requesting provisioning approval. Refresh scans by 2026-09-21 or before exposure changes.
+- No account/domain/budget/tester/operator approval yet. Actual RDS role behavior, KMS/IAM/EFS/CloudFront, alert/anomaly delivery, provider custody, drift/PITR/key/sink recovery and target-ISP/load remain unverified. Do not claim deployed completion.
+- After the local package is reviewable, obtain narrowly scoped cloud authorization, then run TASK-029/030 deployed evidence before revisiting TASK-031. All Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge.

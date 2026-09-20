@@ -50,3 +50,7 @@ Owner approved TASK-027 and requested optional LocalStack. AC-02–04 now have l
 ## Local release-preparation overlay — 2026-09-20
 
 Owner approved TASK-035 → TASK-029/028 → TASK-030 → TASK-031, explicitly limiting AWS work to local preparation with no spending. AC-02/04 now have identity, offline infrastructure-policy and interrupted-response evidence in the respective acceptance records. TASK-028 application staging integration and all deployed criteria remain incomplete; no local passing test resolves FIND-011/013 or production findings. FIRST_RELEASE_READINESS.md records NO-GO and exact missing evidence/owners. Existing cost estimates, proposed recovery targets and ADR-008/009 are preserved and require revalidation before approval.
+
+## TASK-028 integration evidence — 2026-09-20
+
+AC-02–04 local preparation now includes a separate synthetic staging runtime, reviewed bootstrap/migration roles, TLS/origin/cookie controls, private sealed synthetic mailbox retrieval, complementary application/job IaC and release/rollback runbook (ADR-015). Local evidence is indexed in TASK-028 acceptance. This does not change original AC-01 cost/approval obligations or substitute for deployed acceptance. Current serving images have refreshed scans; migration/tooling image findings remain Open under FIND-013. Production policies and owner approvals are unchanged.

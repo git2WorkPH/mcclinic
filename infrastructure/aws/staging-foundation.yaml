@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: MCClinic synthetic staging foundation PREPARATION ONLY - no apply authorization
 Parameters:
+  WebDistributionArn:
+    Type: String
+    Default: ''
+    AllowedPattern: '(^$|arn:aws:cloudfront::[0-9]{12}:distribution/[A-Z0-9]+)'
+    Description: Add only after reviewing the application stack distribution; empty grants no object access
   MonthlyBudgetUsd:
     Type: Number
     MinValue: 1
@@ -22,6 +27,8 @@ Rules:
     Assertions:
       - Assert: !Equals [!Ref 'AWS::Region', ap-southeast-1]
         AssertDescription: This candidate foundation is Singapore only
+Conditions:
+  HasWebDistribution: !Not [!Equals [!Ref WebDistributionArn, '']]
 Resources:
   Network:
     Type: AWS::EC2::VPC
@@ -266,6 +273,15 @@ Resources:
             Action: 's3:*'
             Resource: [!GetAtt WebAssets.Arn, !Sub '${WebAssets.Arn}/*']
             Condition: { Bool: { aws:SecureTransport: 'false' } }
+          - !If
+            - HasWebDistribution
+            - Effect: Allow
+              Principal: { Service: cloudfront.amazonaws.com }
+              Action: 's3:GetObject'
+              Resource: !Sub '${WebAssets.Arn}/*'
+              Condition:
+                { StringEquals: { AWS:SourceArn: !Ref WebDistributionArn } }
+            - !Ref AWS::NoValue
   ApiLogs:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
@@ -361,6 +377,29 @@ Resources:
             Resource: !Ref CostAlerts
             Condition:
               { StringEquals: { aws:SourceAccount: !Ref 'AWS::AccountId' } }
+          - Effect: Allow
+            Principal: { Service: cloudwatch.amazonaws.com }
+            Action: sns:Publish
+            Resource: !Ref CostAlerts
+            Condition:
+              StringEquals: { aws:SourceAccount: !Ref AWS::AccountId }
+              ArnLike:
+                {
+                  aws:SourceArn: !Sub 'arn:aws:cloudwatch:ap-southeast-1:${AWS::AccountId}:alarm:*',
+                }
+  DatabaseStorageAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      Namespace: AWS/RDS
+      MetricName: FreeStorageSpace
+      Dimensions: [{ Name: DBInstanceIdentifier, Value: !Ref Database }]
+      Statistic: Minimum
+      Period: 300
+      EvaluationPeriods: 2
+      Threshold: 5368709120
+      ComparisonOperator: LessThanThreshold
+      TreatMissingData: breaching
+      AlarmActions: [!Ref CostAlerts]
   Budget:
     Type: AWS::Budgets::Budget
     DependsOn: CostAlertsPolicy
@@ -395,7 +434,19 @@ Resources:
             }
           Subscribers: [{ SubscriptionType: SNS, Address: !Ref CostAlerts }]
 Outputs:
+  VpcId: { Value: !Ref Network }
+  PrivateSubnetA: { Value: !Ref PrivateA }
+  PrivateSubnetB: { Value: !Ref PrivateB }
+  RuntimeSecurityGroup: { Value: !Ref RuntimeGroup }
+  RuntimeRoleName: { Value: !Ref RuntimeRole }
+  RuntimeRoleArn: { Value: !GetAtt RuntimeRole.Arn }
+  ExecutionRoleName: { Value: !Ref ExecutionRole }
+  ExecutionRoleArn: { Value: !GetAtt ExecutionRole.Arn }
+  ClusterName: { Value: !Ref Cluster }
+  ApiLogGroup: { Value: !Ref ApiLogs }
+  StorageKeyArn: { Value: !GetAtt StorageKey.Arn }
   DatabaseHost: { Value: !GetAtt Database.Endpoint.Address }
   WebAssetsBucket: { Value: !Ref WebAssets }
   ImageRepository: { Value: !GetAtt Registry.RepositoryUri }
+  ImageRepositoryArn: { Value: !GetAtt Registry.Arn }
   AlertTopic: { Value: !Ref CostAlerts }

@@ -1,0 +1,29 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0be4c-b4f7-7a7f-9ff6-e0edbd37fd5e",
+  "CreatedAt": "2026-09-20T20:11:33.239689+10:00",
+  "ArtifactName": ".local/task028-verification/mailbox-sbom.cdx.json",
+  "ArtifactType": "cyclonedx",
+  "Results": [
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg",
+      "Packages": [
+        {
+          "ID": "zod@4.6.1",
+          "Name": "zod",
+          "Identifier": {
+            "PURL": "pkg:npm/zod@4.6.1",
+            "UID": "d448a0227b18267a",
+            "BOMRef": "zod@4.6.1"
+          },
+          "Version": "4.6.1"
+        }
+      ]
+    }
+  ]
+}

@@ -46,3 +46,17 @@ COPY --from=build-serving /workspace/serving/web.build.json /workspace/artifacts
 COPY --from=migration /workspace/apps/clinical-app/dist /workspace/apps/clinical-app/dist
 EXPOSE 8080
 CMD ["/workspace/serving/web.mjs"]
+
+FROM serving-base AS staging
+COPY --from=build-serving /workspace/serving/staging.mjs /workspace/serving/staging.mjs
+COPY --from=build-serving /workspace/serving/staging.sbom.cdx.json /workspace/artifacts/sbom.cdx.json
+COPY --from=build-serving /workspace/serving/staging.build.json /workspace/artifacts/build.json
+COPY --from=migration /workspace/apps/api/dist/packages/graphql-contract /workspace/apps/api/dist/packages/graphql-contract
+EXPOSE 4000
+CMD ["/workspace/serving/staging.mjs"]
+
+FROM serving-base AS mailbox
+COPY --from=build-serving /workspace/serving/mailbox.mjs /workspace/serving/mailbox.mjs
+COPY --from=build-serving /workspace/serving/mailbox.sbom.cdx.json /workspace/artifacts/sbom.cdx.json
+COPY --from=build-serving /workspace/serving/mailbox.build.json /workspace/artifacts/build.json
+CMD ["/workspace/serving/mailbox.mjs"]

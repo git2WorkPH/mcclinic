@@ -1,0 +1,266 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Explicit synthetic database jobs - definitions only, never automatically run
+Parameters:
+  MigrationImage:
+    {
+      Type: String,
+      AllowedPattern: '[0-9]{12}\.dkr\.ecr\.ap-southeast-1\.amazonaws\.com/.+@sha256:[a-f0-9]{64}',
+    }
+  RegistryArn: { Type: String }
+  ApiLogGroup: { Type: String }
+  DatabaseHost: { Type: String }
+  DatabaseCaPem: { Type: String, MinLength: 100 }
+  RuntimeSecretArn: { Type: String }
+  MigratorSecretArn: { Type: String }
+  AdminSecretArn: { Type: String }
+  RuntimeSecretKeyArn: { Type: String }
+  MigratorSecretKeyArn: { Type: String }
+  AdminSecretKeyArn: { Type: String }
+  WebDomain: { Type: String }
+Rules:
+  SingaporeOnly:
+    Assertions:
+      - Assert: !Equals [!Ref AWS::Region, ap-southeast-1]
+        AssertDescription: Database jobs are Singapore only
+Resources:
+  JobRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          [
+            {
+              Effect: Allow,
+              Principal: { Service: ecs-tasks.amazonaws.com },
+              Action: sts:AssumeRole,
+              Condition:
+                {
+                  StringEquals: { aws:SourceAccount: !Ref AWS::AccountId },
+                  ArnLike:
+                    {
+                      aws:SourceArn: !Sub 'arn:aws:ecs:ap-southeast-1:${AWS::AccountId}:*',
+                    },
+                },
+            },
+          ]
+  MigrationExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          [
+            {
+              Effect: Allow,
+              Principal: { Service: ecs-tasks.amazonaws.com },
+              Action: sts:AssumeRole,
+              Condition:
+                {
+                  StringEquals: { aws:SourceAccount: !Ref AWS::AccountId },
+                  ArnLike:
+                    {
+                      aws:SourceArn: !Sub 'arn:aws:ecs:ap-southeast-1:${AWS::AccountId}:*',
+                    },
+                },
+            },
+          ]
+      Policies:
+        - PolicyName: migration-image-and-limited-secrets
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - {
+                  Effect: Allow,
+                  Action: 'ecr:GetAuthorizationToken',
+                  Resource: '*',
+                }
+              - {
+                  Effect: Allow,
+                  Action:
+                    [
+                      'ecr:BatchCheckLayerAvailability',
+                      'ecr:GetDownloadUrlForLayer',
+                      'ecr:BatchGetImage',
+                    ],
+                  Resource: !Ref RegistryArn,
+                }
+              - {
+                  Effect: Allow,
+                  Action: ['logs:CreateLogStream', 'logs:PutLogEvents'],
+                  Resource: !Sub 'arn:aws:logs:ap-southeast-1:${AWS::AccountId}:log-group:${ApiLogGroup}:*',
+                }
+              - {
+                  Effect: Allow,
+                  Action: 'secretsmanager:GetSecretValue',
+                  Resource: [!Ref RuntimeSecretArn, !Ref MigratorSecretArn],
+                }
+              - Effect: Allow
+                Action: kms:Decrypt
+                Resource: [!Ref RuntimeSecretKeyArn, !Ref MigratorSecretKeyArn]
+                Condition:
+                  StringEquals:
+                    kms:ViaService: secretsmanager.ap-southeast-1.amazonaws.com
+                    kms:EncryptionContext:SecretARN:
+                      [!Ref RuntimeSecretArn, !Ref MigratorSecretArn]
+  BootstrapExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          [
+            {
+              Effect: Allow,
+              Principal: { Service: ecs-tasks.amazonaws.com },
+              Action: sts:AssumeRole,
+              Condition:
+                {
+                  StringEquals: { aws:SourceAccount: !Ref AWS::AccountId },
+                  ArnLike:
+                    {
+                      aws:SourceArn: !Sub 'arn:aws:ecs:ap-southeast-1:${AWS::AccountId}:*',
+                    },
+                },
+            },
+          ]
+      Policies:
+        - PolicyName: bootstrap-image-and-owner-secret
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - {
+                  Effect: Allow,
+                  Action: 'ecr:GetAuthorizationToken',
+                  Resource: '*',
+                }
+              - {
+                  Effect: Allow,
+                  Action:
+                    [
+                      'ecr:BatchCheckLayerAvailability',
+                      'ecr:GetDownloadUrlForLayer',
+                      'ecr:BatchGetImage',
+                    ],
+                  Resource: !Ref RegistryArn,
+                }
+              - {
+                  Effect: Allow,
+                  Action: ['logs:CreateLogStream', 'logs:PutLogEvents'],
+                  Resource: !Sub 'arn:aws:logs:ap-southeast-1:${AWS::AccountId}:log-group:${ApiLogGroup}:*',
+                }
+              - {
+                  Effect: Allow,
+                  Action: 'secretsmanager:GetSecretValue',
+                  Resource:
+                    [
+                      !Ref RuntimeSecretArn,
+                      !Ref MigratorSecretArn,
+                      !Ref AdminSecretArn,
+                    ],
+                }
+              - Effect: Allow
+                Action: kms:Decrypt
+                Resource:
+                  [
+                    !Ref RuntimeSecretKeyArn,
+                    !Ref MigratorSecretKeyArn,
+                    !Ref AdminSecretKeyArn,
+                  ]
+                Condition:
+                  StringEquals:
+                    kms:ViaService: secretsmanager.ap-southeast-1.amazonaws.com
+                    kms:EncryptionContext:SecretARN:
+                      [
+                        !Ref RuntimeSecretArn,
+                        !Ref MigratorSecretArn,
+                        !Ref AdminSecretArn,
+                      ]
+  MigrationJob:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      RequiresCompatibilities: [FARGATE]
+      NetworkMode: awsvpc
+      Cpu: '256'
+      Memory: '1024'
+      RuntimePlatform: { CpuArchitecture: ARM64, OperatingSystemFamily: LINUX }
+      TaskRoleArn: !GetAtt JobRole.Arn
+      ExecutionRoleArn: !GetAtt MigrationExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: migrate
+          Image: !Ref MigrationImage
+          User: '1000:1000'
+          Essential: true
+          Command:
+            [node, apps/api/dist/apps/api/src/staging-command.js, migrate]
+          LinuxParameters: { Capabilities: { Drop: [ALL] } }
+          Environment:
+            - { Name: APP_ENV, Value: synthetic-staging }
+            - { Name: MVP_SYNTHETIC_ONLY, Value: 'true' }
+            - { Name: STAGING_OPERATOR_JOB, Value: explicit-synthetic-job }
+            - { Name: WEB_ORIGIN, Value: !Sub 'https://${WebDomain}' }
+            - { Name: DB_HOST, Value: !Ref DatabaseHost }
+            - { Name: DB_CA_PEM, Value: !Ref DatabaseCaPem }
+            - { Name: EHR_LOCAL_STATE_DIR, Value: /tmp/synthetic-job }
+            - { Name: IDENTITY_SYNTHETIC_DOMAINS, Value: example.test }
+            - {
+                Name: STAGING_ORIGIN_SECRET,
+                Value: database-job-no-http-listener-no-origin-access,
+              }
+          Secrets:
+            - { Name: DB_RUNTIME_SECRET, ValueFrom: !Ref RuntimeSecretArn }
+            - { Name: DB_MIGRATOR_SECRET, ValueFrom: !Ref MigratorSecretArn }
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              {
+                awslogs-group: !Ref ApiLogGroup,
+                awslogs-region: !Ref AWS::Region,
+                awslogs-stream-prefix: staging-migrate,
+              }
+  BootstrapJob:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      RequiresCompatibilities: [FARGATE]
+      NetworkMode: awsvpc
+      Cpu: '256'
+      Memory: '512'
+      RuntimePlatform: { CpuArchitecture: ARM64, OperatingSystemFamily: LINUX }
+      TaskRoleArn: !GetAtt JobRole.Arn
+      ExecutionRoleArn: !GetAtt BootstrapExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: bootstrap
+          Image: !Ref MigrationImage
+          User: '1000:1000'
+          Essential: true
+          Command:
+            [node, apps/api/dist/apps/api/src/staging-command.js, bootstrap]
+          LinuxParameters: { Capabilities: { Drop: [ALL] } }
+          Environment:
+            - { Name: APP_ENV, Value: synthetic-staging }
+            - { Name: MVP_SYNTHETIC_ONLY, Value: 'true' }
+            - { Name: STAGING_OPERATOR_JOB, Value: explicit-synthetic-job }
+            - { Name: WEB_ORIGIN, Value: !Sub 'https://${WebDomain}' }
+            - { Name: DB_HOST, Value: !Ref DatabaseHost }
+            - { Name: DB_CA_PEM, Value: !Ref DatabaseCaPem }
+            - { Name: EHR_LOCAL_STATE_DIR, Value: /tmp/synthetic-job }
+            - { Name: IDENTITY_SYNTHETIC_DOMAINS, Value: example.test }
+            - {
+                Name: STAGING_ORIGIN_SECRET,
+                Value: database-job-no-http-listener-no-origin-access,
+              }
+          Secrets:
+            - { Name: DB_RUNTIME_SECRET, ValueFrom: !Ref RuntimeSecretArn }
+            - { Name: DB_MIGRATOR_SECRET, ValueFrom: !Ref MigratorSecretArn }
+            - { Name: DB_ADMIN_SECRET, ValueFrom: !Ref AdminSecretArn }
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              {
+                awslogs-group: !Ref ApiLogGroup,
+                awslogs-region: !Ref AWS::Region,
+                awslogs-stream-prefix: staging-bootstrap,
+              }
+Outputs:
+  MigrationTaskDefinition: { Value: !Ref MigrationJob }
+  BootstrapTaskDefinition: { Value: !Ref BootstrapJob }

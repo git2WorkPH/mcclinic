@@ -29,3 +29,7 @@ Owner: “ok i agree with the recommended sequence. Use the project-development 
 ## Local foundation checkpoint — 2026-09-20
 
 Two schema-validated foundation/edge policy templates and five offline security tests are prepared; see `Documentation/Acceptance/TASK-028-acceptance.md` and `infrastructure/aws/README.md`. This is not a complete app deployment: ingress/cache controls, staging runtime/task/migration wiring and operational integration remain local follow-up work. No spending or apply. Full task remains Approved / In progress; no deployed criterion passed. ADR-014 records private-endpoint cost reassessment. TASK-030 may prepare independent local rehearsals, but its deployed dependency is not met.
+
+## Application integration checkpoint — 2026-09-20
+
+The owner-approved local continuation is implemented and verified on task/TASK-028-staging-integration from b2cfacf. See ../../Acceptance/TASK-028-integration-notes.md for the scope checkpoint and ../../Acceptance/TASK-028-acceptance.md for tests/review. Status remains Approved / In progress; account cost/operator monitoring, migration-image findings and all deployed criteria remain unresolved. No AWS spending, push, merge or production activation authorized.

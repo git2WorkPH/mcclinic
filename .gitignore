@@ -17,3 +17,6 @@ serving/
 
 # Local package-manager cache; not project source
 .pnpm-store/
+
+# Offline CloudFormation validator Python bytecode (not project source).
+infrastructure/aws/__pycache__/

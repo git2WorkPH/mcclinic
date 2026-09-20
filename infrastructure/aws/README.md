@@ -25,3 +25,23 @@ Remaining local work: add and verify ALB/TLS/CloudFront origin authentication an
 Recovery/deletion: no stack delete, volume delete, lifecycle purge, key disable/scheduling deletion or database replacement is authorized. Review any future change set for replacement; retained resources can still incur charges. Restore into a separate target and verify data/key integrity before switching traffic. Seven days of proposed automated PITR coverage is not clinical record retention; obtain operational acceptance before provisioning backup expiry behavior.
 
 Sources used for schema review: [RDS CloudFormation resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-rds-dbinstance.html), [CloudFront cache policy](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudfront-cachepolicy.html), [CloudFront-scope WAF](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-wafv2-webacl.html). No cloud behavior or Philippine regulatory compliance is certified by these documents.
+
+## Integration continuation — 2026-09-20 (supersedes the missing-implementation list above)
+
+The historical foundation checkpoint above is retained. The following local implementation is now present; **no template has been applied**:
+
+- `staging-application.yaml` consumes foundation outputs and the edge WAF ARN. It adds public ALB subnets (private task/database routes stay private), TLS and CloudFront-only ingress, a secret checked by both ALB and API, private S3 OAC, exact app-shell routing, zero cache TTL for every behavior and error, HTTPS cookie forwarding, retained encrypted EFS with IAM/UID1000 access, immutable image task definitions, rollback circuit breaker and health/error alarm definitions. All static assets also use no-store initially; this conservative default can be optimized separately for content-hashed assets. The service defaults to zero tasks and KMS network activation defaults false. Applying even this zero-task stack would still incur charges; **zero tasks is not a spending safeguard**.
+- `staging-database-jobs.yaml` defines separate bootstrap and migration tasks, never schedules them. Only bootstrap execution can retrieve the owner secret. The application role cannot retrieve owner/migrator secrets. Job task role has no AWS permissions; its execution role retrieves the narrowly identified secrets and image. Jobs run privately using the foundation runtime security group. Root filesystem is writable for Prisma temporary files in these non-serving jobs; they expose no HTTP port.
+- `apps/api/src/staging-main.ts` is a separate synthetic-only runtime; existing packaged/local entry points still reject staging. It requires an exact HTTPS origin, explicit synthetic recipient domains, an origin credential, verified PostgreSQL CA and limited credentials, and a context-bound KMS envelope. It uses cookie sessions exclusively. No raw startup/provider errors or credentials enter logs.
+- `staging-command.ts bootstrap` creates missing roles only, verifies existing role privileges, prepares the extension and schema grants. It does not rotate existing passwords. `migrate` holds a database advisory lock, runs existing Prisma migrations as the migration owner, then grants an explicit reviewed table list. New/unexpected tables or owners fail closed. Runtime can SELECT/INSERT/UPDATE mutable records, SELECT/INSERT immutable history; it cannot delete/truncate, change persistent schema or assume the migration role. No automatic seed or retention job.
+- `STAGING_RELEASE_RUNBOOK.md` gives ordered release/rollback review and missing operational evidence. No apply script or credentials are committed.
+
+Additional offline validation:
+
+```sh
+.local/aws-tools/bin/cfn-lint infrastructure/aws/staging-application.yaml infrastructure/aws/staging-database-jobs.yaml --regions ap-southeast-1
+.local/aws-tools/bin/python infrastructure/aws/test_staging_application.py
+pnpm exec vitest run tests/staging-runtime.test.ts tests/staging-roles.integration.test.ts tests/staging-tls.integration.test.ts
+```
+
+The last command uses local PostgreSQL containers and a locally generated test TLS certificate; it does not use AWS. Neither successful schema validation nor local database tests verify RDS-specific role restrictions, EFS policies, CloudFront/ALB behavior or actual KMS permissions. All deployed TASK-028/029/030 acceptance remains pending.

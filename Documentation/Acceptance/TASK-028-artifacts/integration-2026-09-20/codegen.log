@@ -1,0 +1,24 @@
+
+> clinic-ehr@ codegen /Users/cervantes/Documents/ChatGPT/MCClinc
+> graphql-codegen --config codegen.ts
+
+❯ Parse Configuration
+✔ Parse Configuration
+❯ Generate outputs
+❯ Generate to packages/graphql-contract/src/server.generated.ts
+❯ Generate to packages/graphql-contract/src/operations.generated.ts
+❯ Load GraphQL schemas
+❯ Load GraphQL schemas
+✔ Load GraphQL schemas
+✔ Load GraphQL schemas
+❯ Load GraphQL documents
+❯ Load GraphQL documents
+✔ Load GraphQL documents
+✔ Load GraphQL documents
+❯ Generate
+❯ Generate
+✔ Generate
+✔ Generate
+✔ Generate to packages/graphql-contract/src/server.generated.ts
+✔ Generate to packages/graphql-contract/src/operations.generated.ts
+✔ Generate outputs

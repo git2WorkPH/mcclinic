@@ -1,0 +1,21 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "mcclinic-mailbox",
+      "version": "b2cfacf-task028-working"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "zod",
+      "version": "4.6.1",
+      "bom-ref": "zod@4.6.1",
+      "purl": "pkg:npm/zod@4.6.1"
+    }
+  ]
+}

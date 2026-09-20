@@ -1,0 +1,1 @@
+No configuration, no network: exit 1 with generic startup failure, as required.

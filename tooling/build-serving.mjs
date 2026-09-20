@@ -9,6 +9,8 @@ mkdirSync('serving', { recursive: true });
 for (const [name, entry] of Object.entries({
   api: 'packaged-main',
   web: 'packaged-web-main',
+  staging: 'staging-main',
+  mailbox: 'staging-mailbox-command',
 })) {
   const result = await build({
     entryPoints: [`apps/api/dist/apps/api/src/${entry}.js`],

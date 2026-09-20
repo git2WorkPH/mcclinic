@@ -28,3 +28,9 @@ The approved sequence has advanced: TASK-035 hardened serving-image variants are
 No source, test, schema, key, backup or supported behavior may be deleted to pass this gate. A failed test is not removal approval. No automatic retention purge is introduced.
 
 Evidence indexes: TASK-035/TASK-029/TASK-028/TASK-030 acceptance records; IDENTITY_READINESS.md; infrastructure/aws/README.md; STAGING_VERIFICATION.md. Local commits are not a remote release; no new push, merge or deployment is authorized by this document.
+
+## Local staging integration checkpoint — 2026-09-20
+
+The earlier missing application-stack statement is superseded by TASK-028's locally verified staging runtime, application/database-job templates, private sealed mailbox retrieval and release runbook (ADR-015). No cloud apply or actual provider evidence exists. Current API/web/staging/mailbox images each have zero high/critical scan findings, with 16 low/15 medium OS occurrences; bundled dependency inventories have none. The separately built migration/tooling image still has 60 high/4 critical occurrences and remains an unresolved FIND-013 release gate. No finding is waived based on a non-serving role.
+
+Next local work is remaining cost/anomaly/operator-monitoring preparation and migration-image remediation/assessment. Do not ask to apply an incomplete release package. After this, obtain scoped account/domain/tester/budget/operator authorization, then run actual TASK-029/030 verification. Public/real-patient decision remains NO-GO.

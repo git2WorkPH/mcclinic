@@ -1,0 +1,130 @@
+ Volume mcclinic-package-test-1789882680321_database Creating 
+ Network mcclinic-package-test-1789882680321_default Creating 
+ Volume mcclinic-package-test-1789882680321_database Creating 
+ Network mcclinic-package-test-1789882680321_default Creating 
+ Volume mcclinic-package-test-1789882680321_database Created 
+ Volume mcclinic-package-test-1789882680321_database Created 
+ Network mcclinic-package-test-1789882680321_default Created 
+ Network mcclinic-package-test-1789882680321_default Created 
+ Container mcclinic-package-test-1789882680321-postgres-1 Creating 
+ Container mcclinic-package-test-1789882680321-postgres-1 Created 
+ Container mcclinic-package-test-1789882680321-postgres-1 Starting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Started 
+ Container mcclinic-package-test-1789882680321-postgres-1 Running 
+ Volume mcclinic-package-test-1789882680321_onboarding_state Creating 
+ Volume mcclinic-package-test-1789882680321_onboarding_state Creating 
+ Volume mcclinic-package-test-1789882680321_onboarding_state Created 
+ Volume mcclinic-package-test-1789882680321_onboarding_state Created 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+ Container mcclinic-package-test-1789882680321-migrate-run-d6f7f21c745e Creating 
+ Container mcclinic-package-test-1789882680321-migrate-run-d6f7f21c745e Created 
+
+> clinic-ehr@ db:migrate /workspace
+> prisma migrate deploy
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from apps/api/prisma/schema.prisma.
+Datasource "db": PostgreSQL database "mcclinic", schema "public" at "postgres:5432"
+
+4 migrations found in prisma/migrations
+
+Applying migration `202609110001_mvp`
+Applying migration `202609110002_saas`
+Applying migration `202609120001_onboarding`
+Applying migration `202609140001_identity_outbox`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 202609110001_mvp/
+    └─ migration.sql
+  └─ 202609110002_saas/
+    └─ migration.sql
+  └─ 202609120001_onboarding/
+    └─ migration.sql
+  └─ 202609140001_identity_outbox/
+    └─ migration.sql
+
+All migrations have been successfully applied.
+ Container mcclinic-package-test-1789882680321-postgres-1 Running 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+ Container mcclinic-package-test-1789882680321-migrate-run-4c0d52364a46 Creating 
+ Container mcclinic-package-test-1789882680321-migrate-run-4c0d52364a46 Created 
+
+> clinic-ehr@ db:migrate /workspace
+> prisma migrate deploy
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from apps/api/prisma/schema.prisma.
+Datasource "db": PostgreSQL database "mcclinic", schema "public" at "postgres:5432"
+
+4 migrations found in prisma/migrations
+
+
+No pending migrations to apply.
+ Container mcclinic-package-test-1789882680321-postgres-1 Running 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+ Container mcclinic-package-test-1789882680321-seed-run-5f462de7088d Creating 
+ Container mcclinic-package-test-1789882680321-seed-run-5f462de7088d Created 
+ Container mcclinic-package-test-1789882680321-postgres-1 Running 
+ Container mcclinic-package-test-1789882680321-api-1 Creating 
+ Container mcclinic-package-test-1789882680321-api-1 Created 
+ Container mcclinic-package-test-1789882680321-web-1 Creating 
+ Container mcclinic-package-test-1789882680321-web-1 Created 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+ Container mcclinic-package-test-1789882680321-api-1 Starting 
+ Container mcclinic-package-test-1789882680321-api-1 Started 
+ Container mcclinic-package-test-1789882680321-api-1 Waiting 
+ Container mcclinic-package-test-1789882680321-api-1 Healthy 
+ Container mcclinic-package-test-1789882680321-web-1 Starting 
+ Container mcclinic-package-test-1789882680321-web-1 Started 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-api-1 Waiting 
+ Container mcclinic-package-test-1789882680321-web-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+ Container mcclinic-package-test-1789882680321-api-1 Healthy 
+ Container mcclinic-package-test-1789882680321-web-1 Healthy 
+Host/container clock preflight passed.
+
+Running 7 tests using 1 worker
+
+(node:28684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/mvp-web/journey.spec.ts:5:1 › reception and clinician complete persistent patient, clinical, print and scheduling workflows (3.3s)
+  ✓  2 tests/mvp-web/journey.spec.ts:30:1 › administrator sees audit metadata and has no clinical tabs (446ms)
+  ✓  3 tests/mvp-web/onboarding.spec.ts:8:1 › onboarding control visibly opens the account options (185ms)
+  ✓  4 tests/mvp-web/onboarding.spec.ts:11:1 › doctor registration, verification, invitation acceptance and practice permissions work in the browser (1.2s)
+  ✓  5 tests/mvp-web/onboarding.spec.ts:12:1 › authenticator enrollment, recovery-code login and password recovery are real web workflows (1.6s)
+  ✓  6 tests/mvp-web/printing.spec.ts:5:1 › long demo documents retain final content and print across A4 pages (124ms)
+  ✓  7 tests/mvp-web/saas.spec.ts:2:1 › administrator creates a practice, customizes branding/templates, switches and simulates subscription recovery (1.5s)
+
+  7 passed (9.0s)
+ Container mcclinic-package-test-1789882680321-api-1 Restarting 
+ Container mcclinic-package-test-1789882680321-api-1 Started 
+ Container mcclinic-package-test-1789882680321-postgres-1 Running 
+ Container mcclinic-package-test-1789882680321-api-1 Running 
+ Container mcclinic-package-test-1789882680321-web-1 Running 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+ Container mcclinic-package-test-1789882680321-api-1 Waiting 
+ Container mcclinic-package-test-1789882680321-api-1 Healthy 
+ Container mcclinic-package-test-1789882680321-web-1 Waiting 
+ Container mcclinic-package-test-1789882680321-postgres-1 Waiting 
+ Container mcclinic-package-test-1789882680321-api-1 Waiting 
+ Container mcclinic-package-test-1789882680321-api-1 Healthy 
+ Container mcclinic-package-test-1789882680321-web-1 Healthy 
+ Container mcclinic-package-test-1789882680321-postgres-1 Healthy 
+Packaged browser workflows and persistent restart passed. State retained at /Users/cervantes/Documents/ChatGPT/MCClinc/.local/packaged/browser-state-StP3jA
+ Container mcclinic-package-test-1789882680321-web-1 Stopping 
+ Container mcclinic-package-test-1789882680321-web-1 Stopped 
+ Container mcclinic-package-test-1789882680321-api-1 Stopping 
+ Container mcclinic-package-test-1789882680321-api-1 Stopped 
+ Container mcclinic-package-test-1789882680321-postgres-1 Stopping 
+ Container mcclinic-package-test-1789882680321-postgres-1 Stopped 
+Stopped test services; volumes and synthetic state retained. Project: mcclinic-package-test-1789882680321

@@ -1,0 +1,1359 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0be4c-b45b-74af-9695-2283505fd2c0",
+  "CreatedAt": "2026-09-20T20:11:33.083308+10:00",
+  "ArtifactName": ".local/task028-verification/staging-sbom.cdx.json",
+  "ArtifactType": "cyclonedx",
+  "Results": [
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg",
+      "Packages": [
+        {
+          "ID": "@aws-sdk/client-kms@3.1132.0",
+          "Name": "@aws-sdk/client-kms",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/client-kms@3.1132.0",
+            "UID": "dd57a48b4e7e4d63",
+            "BOMRef": "@aws-sdk/client-kms@3.1132.0"
+          },
+          "Version": "3.1132.0"
+        },
+        {
+          "ID": "@aws-sdk/core@3.978.0",
+          "Name": "@aws-sdk/core",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/core@3.978.0",
+            "UID": "76f8d7ea262b0bd3",
+            "BOMRef": "@aws-sdk/core@3.978.0"
+          },
+          "Version": "3.978.0"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-env@3.972.71",
+          "Name": "@aws-sdk/credential-provider-env",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-env@3.972.71",
+            "UID": "219ebb700757c1b5",
+            "BOMRef": "@aws-sdk/credential-provider-env@3.972.71"
+          },
+          "Version": "3.972.71"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-http@3.972.73",
+          "Name": "@aws-sdk/credential-provider-http",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-http@3.972.73",
+            "UID": "c8ef19d7f15da9b6",
+            "BOMRef": "@aws-sdk/credential-provider-http@3.972.73"
+          },
+          "Version": "3.972.73"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-ini@3.973.16",
+          "Name": "@aws-sdk/credential-provider-ini",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-ini@3.973.16",
+            "UID": "ef821b2c76029967",
+            "BOMRef": "@aws-sdk/credential-provider-ini@3.973.16"
+          },
+          "Version": "3.973.16"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-login@3.972.78",
+          "Name": "@aws-sdk/credential-provider-login",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-login@3.972.78",
+            "UID": "53e35fec2154ae84",
+            "BOMRef": "@aws-sdk/credential-provider-login@3.972.78"
+          },
+          "Version": "3.972.78"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-node@3.972.83",
+          "Name": "@aws-sdk/credential-provider-node",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-node@3.972.83",
+            "UID": "e7c6496a33f056c3",
+            "BOMRef": "@aws-sdk/credential-provider-node@3.972.83"
+          },
+          "Version": "3.972.83"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-process@3.972.71",
+          "Name": "@aws-sdk/credential-provider-process",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-process@3.972.71",
+            "UID": "828a30ad30060f94",
+            "BOMRef": "@aws-sdk/credential-provider-process@3.972.71"
+          },
+          "Version": "3.972.71"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-sso@3.973.15",
+          "Name": "@aws-sdk/credential-provider-sso",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-sso@3.973.15",
+            "UID": "6a02333d18ede628",
+            "BOMRef": "@aws-sdk/credential-provider-sso@3.973.15"
+          },
+          "Version": "3.973.15"
+        },
+        {
+          "ID": "@aws-sdk/credential-provider-web-identity@3.972.77",
+          "Name": "@aws-sdk/credential-provider-web-identity",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/credential-provider-web-identity@3.972.77",
+            "UID": "608c6287c1e5a4fc",
+            "BOMRef": "@aws-sdk/credential-provider-web-identity@3.972.77"
+          },
+          "Version": "3.972.77"
+        },
+        {
+          "ID": "@aws-sdk/nested-clients@3.997.45",
+          "Name": "@aws-sdk/nested-clients",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/nested-clients@3.997.45",
+            "UID": "5992066f39e4724",
+            "BOMRef": "@aws-sdk/nested-clients@3.997.45"
+          },
+          "Version": "3.997.45"
+        },
+        {
+          "ID": "@aws-sdk/signature-v4-multi-region@3.996.46",
+          "Name": "@aws-sdk/signature-v4-multi-region",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/signature-v4-multi-region@3.996.46",
+            "UID": "51ac481aa51885de",
+            "BOMRef": "@aws-sdk/signature-v4-multi-region@3.996.46"
+          },
+          "Version": "3.996.46"
+        },
+        {
+          "ID": "@aws-sdk/token-providers@3.1129.0",
+          "Name": "@aws-sdk/token-providers",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/token-providers@3.1129.0",
+            "UID": "f649fa88470a628f",
+            "BOMRef": "@aws-sdk/token-providers@3.1129.0"
+          },
+          "Version": "3.1129.0"
+        },
+        {
+          "ID": "@aws-sdk/xml-builder@3.972.40",
+          "Name": "@aws-sdk/xml-builder",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws-sdk/xml-builder@3.972.40",
+            "UID": "a2964ecd1b544cee",
+            "BOMRef": "@aws-sdk/xml-builder@3.972.40"
+          },
+          "Version": "3.972.40"
+        },
+        {
+          "ID": "@aws/lambda-invoke-store@0.3.0",
+          "Name": "@aws/lambda-invoke-store",
+          "Identifier": {
+            "PURL": "pkg:npm/%40aws/lambda-invoke-store@0.3.0",
+            "UID": "371b91666555945c",
+            "BOMRef": "@aws/lambda-invoke-store@0.3.0"
+          },
+          "Version": "0.3.0"
+        },
+        {
+          "ID": "@envelop/core@5.6.0",
+          "Name": "@envelop/core",
+          "Identifier": {
+            "PURL": "pkg:npm/%40envelop/core@5.6.0",
+            "UID": "ce2adf4efbe1af42",
+            "BOMRef": "@envelop/core@5.6.0"
+          },
+          "Version": "5.6.0"
+        },
+        {
+          "ID": "@envelop/instrumentation@1.0.0",
+          "Name": "@envelop/instrumentation",
+          "Identifier": {
+            "PURL": "pkg:npm/%40envelop/instrumentation@1.0.0",
+            "UID": "4e205b3cde08475c",
+            "BOMRef": "@envelop/instrumentation@1.0.0"
+          },
+          "Version": "1.0.0"
+        },
+        {
+          "ID": "@envelop/types@5.2.1",
+          "Name": "@envelop/types",
+          "Identifier": {
+            "PURL": "pkg:npm/%40envelop/types@5.2.1",
+            "UID": "da7c8523d951079",
+            "BOMRef": "@envelop/types@5.2.1"
+          },
+          "Version": "5.2.1"
+        },
+        {
+          "ID": "@fastify/busboy@3.2.2",
+          "Name": "@fastify/busboy",
+          "Identifier": {
+            "PURL": "pkg:npm/%40fastify/busboy@3.2.2",
+            "UID": "dda89eae6a387f82",
+            "BOMRef": "@fastify/busboy@3.2.2"
+          },
+          "Version": "3.2.2"
+        },
+        {
+          "ID": "@graphql-tools/executor@2.0.1",
+          "Name": "@graphql-tools/executor",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-tools/executor@2.0.1",
+            "UID": "b5045242207d71a3",
+            "BOMRef": "@graphql-tools/executor@2.0.1"
+          },
+          "Version": "2.0.1"
+        },
+        {
+          "ID": "@graphql-tools/merge@9.2.4",
+          "Name": "@graphql-tools/merge",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-tools/merge@9.2.4",
+            "UID": "2f6c944619c56ec9",
+            "BOMRef": "@graphql-tools/merge@9.2.4"
+          },
+          "Version": "9.2.4"
+        },
+        {
+          "ID": "@graphql-tools/schema@10.1.1",
+          "Name": "@graphql-tools/schema",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-tools/schema@10.1.1",
+            "UID": "96649c8e588c3549",
+            "BOMRef": "@graphql-tools/schema@10.1.1"
+          },
+          "Version": "10.1.1"
+        },
+        {
+          "ID": "@graphql-tools/utils@11.2.2",
+          "Name": "@graphql-tools/utils",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-tools/utils@11.2.2",
+            "UID": "9d85fe382f129a8c",
+            "BOMRef": "@graphql-tools/utils@11.2.2"
+          },
+          "Version": "11.2.2"
+        },
+        {
+          "ID": "@graphql-tools/utils@12.0.1",
+          "Name": "@graphql-tools/utils",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-tools/utils@12.0.1",
+            "UID": "52a2c5c24ae162e0",
+            "BOMRef": "@graphql-tools/utils@12.0.1"
+          },
+          "Version": "12.0.1"
+        },
+        {
+          "ID": "@graphql-yoga/logger@2.0.1",
+          "Name": "@graphql-yoga/logger",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-yoga/logger@2.0.1",
+            "UID": "a38a034c58e8d5af",
+            "BOMRef": "@graphql-yoga/logger@2.0.1"
+          },
+          "Version": "2.0.1"
+        },
+        {
+          "ID": "@graphql-yoga/subscription@5.0.5",
+          "Name": "@graphql-yoga/subscription",
+          "Identifier": {
+            "PURL": "pkg:npm/%40graphql-yoga/subscription@5.0.5",
+            "UID": "d47ed3587b397b09",
+            "BOMRef": "@graphql-yoga/subscription@5.0.5"
+          },
+          "Version": "5.0.5"
+        },
+        {
+          "ID": "@prisma/adapter-pg@7.10.0",
+          "Name": "@prisma/adapter-pg",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/adapter-pg@7.10.0",
+            "UID": "2c8e6773d12e78fc",
+            "BOMRef": "@prisma/adapter-pg@7.10.0"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/client@7.10.0",
+          "Name": "@prisma/client",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/client@7.10.0",
+            "UID": "c5898629ff5f96d7",
+            "BOMRef": "@prisma/client@7.10.0"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/client-runtime-utils@7.10.0",
+          "Name": "@prisma/client-runtime-utils",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/client-runtime-utils@7.10.0",
+            "UID": "b19819c2c2e0a247",
+            "BOMRef": "@prisma/client-runtime-utils@7.10.0"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/debug@7.10.0",
+          "Name": "@prisma/debug",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/debug@7.10.0",
+            "UID": "94ab333a0eabfde",
+            "BOMRef": "@prisma/debug@7.10.0"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@prisma/driver-adapter-utils@7.10.0",
+          "Name": "@prisma/driver-adapter-utils",
+          "Identifier": {
+            "PURL": "pkg:npm/%40prisma/driver-adapter-utils@7.10.0",
+            "UID": "9684b2346f3c8eb",
+            "BOMRef": "@prisma/driver-adapter-utils@7.10.0"
+          },
+          "Version": "7.10.0"
+        },
+        {
+          "ID": "@repeaterjs/repeater@3.1.0",
+          "Name": "@repeaterjs/repeater",
+          "Identifier": {
+            "PURL": "pkg:npm/%40repeaterjs/repeater@3.1.0",
+            "UID": "16e13c4d80281d3f",
+            "BOMRef": "@repeaterjs/repeater@3.1.0"
+          },
+          "Version": "3.1.0"
+        },
+        {
+          "ID": "@smithy/core@3.34.1",
+          "Name": "@smithy/core",
+          "Identifier": {
+            "PURL": "pkg:npm/%40smithy/core@3.34.1",
+            "UID": "bf48ddc6f4484c07",
+            "BOMRef": "@smithy/core@3.34.1"
+          },
+          "Version": "3.34.1"
+        },
+        {
+          "ID": "@smithy/credential-provider-imds@4.5.2",
+          "Name": "@smithy/credential-provider-imds",
+          "Identifier": {
+            "PURL": "pkg:npm/%40smithy/credential-provider-imds@4.5.2",
+            "UID": "b28bc76615350af8",
+            "BOMRef": "@smithy/credential-provider-imds@4.5.2"
+          },
+          "Version": "4.5.2"
+        },
+        {
+          "ID": "@smithy/node-http-handler@4.12.1",
+          "Name": "@smithy/node-http-handler",
+          "Identifier": {
+            "PURL": "pkg:npm/%40smithy/node-http-handler@4.12.1",
+            "UID": "4a386a6815e17a54",
+            "BOMRef": "@smithy/node-http-handler@4.12.1"
+          },
+          "Version": "4.12.1"
+        },
+        {
+          "ID": "@smithy/signature-v4@5.7.3",
+          "Name": "@smithy/signature-v4",
+          "Identifier": {
+            "PURL": "pkg:npm/%40smithy/signature-v4@5.7.3",
+            "UID": "d6d23f06957f086b",
+            "BOMRef": "@smithy/signature-v4@5.7.3"
+          },
+          "Version": "5.7.3"
+        },
+        {
+          "ID": "@smithy/types@4.18.0",
+          "Name": "@smithy/types",
+          "Identifier": {
+            "PURL": "pkg:npm/%40smithy/types@4.18.0",
+            "UID": "89b8f0a2b8a39c08",
+            "BOMRef": "@smithy/types@4.18.0"
+          },
+          "Version": "4.18.0"
+        },
+        {
+          "ID": "@whatwg-node/disposablestack@0.0.6",
+          "Name": "@whatwg-node/disposablestack",
+          "Identifier": {
+            "PURL": "pkg:npm/%40whatwg-node/disposablestack@0.0.6",
+            "UID": "ff87569dec2979ab",
+            "BOMRef": "@whatwg-node/disposablestack@0.0.6"
+          },
+          "Version": "0.0.6"
+        },
+        {
+          "ID": "@whatwg-node/events@0.1.2",
+          "Name": "@whatwg-node/events",
+          "Identifier": {
+            "PURL": "pkg:npm/%40whatwg-node/events@0.1.2",
+            "UID": "3cff779d9bfc2355",
+            "BOMRef": "@whatwg-node/events@0.1.2"
+          },
+          "Version": "0.1.2"
+        },
+        {
+          "ID": "@whatwg-node/fetch@0.10.13",
+          "Name": "@whatwg-node/fetch",
+          "Identifier": {
+            "PURL": "pkg:npm/%40whatwg-node/fetch@0.10.13",
+            "UID": "a60af432c612204f",
+            "BOMRef": "@whatwg-node/fetch@0.10.13"
+          },
+          "Version": "0.10.13"
+        },
+        {
+          "ID": "@whatwg-node/node-fetch@0.8.6",
+          "Name": "@whatwg-node/node-fetch",
+          "Identifier": {
+            "PURL": "pkg:npm/%40whatwg-node/node-fetch@0.8.6",
+            "UID": "5969f80a1b04bddb",
+            "BOMRef": "@whatwg-node/node-fetch@0.8.6"
+          },
+          "Version": "0.8.6"
+        },
+        {
+          "ID": "@whatwg-node/promise-helpers@1.3.2",
+          "Name": "@whatwg-node/promise-helpers",
+          "Identifier": {
+            "PURL": "pkg:npm/%40whatwg-node/promise-helpers@1.3.2",
+            "UID": "cfeab5d68b500ae2",
+            "BOMRef": "@whatwg-node/promise-helpers@1.3.2"
+          },
+          "Version": "1.3.2"
+        },
+        {
+          "ID": "@whatwg-node/server@0.11.0",
+          "Name": "@whatwg-node/server",
+          "Identifier": {
+            "PURL": "pkg:npm/%40whatwg-node/server@0.11.0",
+            "UID": "c40c9d78d1520b12",
+            "BOMRef": "@whatwg-node/server@0.11.0"
+          },
+          "Version": "0.11.0"
+        },
+        {
+          "ID": "accepts@2.0.0",
+          "Name": "accepts",
+          "Identifier": {
+            "PURL": "pkg:npm/accepts@2.0.0",
+            "UID": "b18c944919cd68e3",
+            "BOMRef": "accepts@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "body-parser@2.3.0",
+          "Name": "body-parser",
+          "Identifier": {
+            "PURL": "pkg:npm/body-parser@2.3.0",
+            "UID": "a881c41d5fdb64d",
+            "BOMRef": "body-parser@2.3.0"
+          },
+          "Version": "2.3.0"
+        },
+        {
+          "ID": "bowser@2.14.1",
+          "Name": "bowser",
+          "Identifier": {
+            "PURL": "pkg:npm/bowser@2.14.1",
+            "UID": "a2e98ffd9f857d32",
+            "BOMRef": "bowser@2.14.1"
+          },
+          "Version": "2.14.1"
+        },
+        {
+          "ID": "bytes@3.1.2",
+          "Name": "bytes",
+          "Identifier": {
+            "PURL": "pkg:npm/bytes@3.1.2",
+            "UID": "9496f4710bb83d19",
+            "BOMRef": "bytes@3.1.2"
+          },
+          "Version": "3.1.2"
+        },
+        {
+          "ID": "call-bind-apply-helpers@1.0.2",
+          "Name": "call-bind-apply-helpers",
+          "Identifier": {
+            "PURL": "pkg:npm/call-bind-apply-helpers@1.0.2",
+            "UID": "6837000fa886975f",
+            "BOMRef": "call-bind-apply-helpers@1.0.2"
+          },
+          "Version": "1.0.2"
+        },
+        {
+          "ID": "call-bound@1.0.4",
+          "Name": "call-bound",
+          "Identifier": {
+            "PURL": "pkg:npm/call-bound@1.0.4",
+            "UID": "c063d387dea2b2c8",
+            "BOMRef": "call-bound@1.0.4"
+          },
+          "Version": "1.0.4"
+        },
+        {
+          "ID": "content-disposition@1.1.0",
+          "Name": "content-disposition",
+          "Identifier": {
+            "PURL": "pkg:npm/content-disposition@1.1.0",
+            "UID": "f4ffdcd24eff539a",
+            "BOMRef": "content-disposition@1.1.0"
+          },
+          "Version": "1.1.0"
+        },
+        {
+          "ID": "content-type@1.0.5",
+          "Name": "content-type",
+          "Identifier": {
+            "PURL": "pkg:npm/content-type@1.0.5",
+            "UID": "d628bbda421f8486",
+            "BOMRef": "content-type@1.0.5"
+          },
+          "Version": "1.0.5"
+        },
+        {
+          "ID": "content-type@2.1.0",
+          "Name": "content-type",
+          "Identifier": {
+            "PURL": "pkg:npm/content-type@2.1.0",
+            "UID": "25fc43fa854d2ec9",
+            "BOMRef": "content-type@2.1.0"
+          },
+          "Version": "2.1.0"
+        },
+        {
+          "ID": "cookie@0.7.2",
+          "Name": "cookie",
+          "Identifier": {
+            "PURL": "pkg:npm/cookie@0.7.2",
+            "UID": "7ad9cbffe4a7916d",
+            "BOMRef": "cookie@0.7.2"
+          },
+          "Version": "0.7.2"
+        },
+        {
+          "ID": "cookie-signature@1.2.2",
+          "Name": "cookie-signature",
+          "Identifier": {
+            "PURL": "pkg:npm/cookie-signature@1.2.2",
+            "UID": "f58fcca0a25ceb45",
+            "BOMRef": "cookie-signature@1.2.2"
+          },
+          "Version": "1.2.2"
+        },
+        {
+          "ID": "cross-inspect@1.0.1",
+          "Name": "cross-inspect",
+          "Identifier": {
+            "PURL": "pkg:npm/cross-inspect@1.0.1",
+            "UID": "5dd51c340379fc76",
+            "BOMRef": "cross-inspect@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "debug@4.4.3",
+          "Name": "debug",
+          "Identifier": {
+            "PURL": "pkg:npm/debug@4.4.3",
+            "UID": "82dd1592c247c5ee",
+            "BOMRef": "debug@4.4.3"
+          },
+          "Version": "4.4.3"
+        },
+        {
+          "ID": "depd@2.0.0",
+          "Name": "depd",
+          "Identifier": {
+            "PURL": "pkg:npm/depd@2.0.0",
+            "UID": "af352df651748ff",
+            "BOMRef": "depd@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "dunder-proto@1.0.1",
+          "Name": "dunder-proto",
+          "Identifier": {
+            "PURL": "pkg:npm/dunder-proto@1.0.1",
+            "UID": "7d5e1cd2e35c127c",
+            "BOMRef": "dunder-proto@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "ee-first@1.1.1",
+          "Name": "ee-first",
+          "Identifier": {
+            "PURL": "pkg:npm/ee-first@1.1.1",
+            "UID": "54afc3bc72af28c",
+            "BOMRef": "ee-first@1.1.1"
+          },
+          "Version": "1.1.1"
+        },
+        {
+          "ID": "encodeurl@2.0.0",
+          "Name": "encodeurl",
+          "Identifier": {
+            "PURL": "pkg:npm/encodeurl@2.0.0",
+            "UID": "7bf13bfba2e2e5a1",
+            "BOMRef": "encodeurl@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "es-define-property@1.0.1",
+          "Name": "es-define-property",
+          "Identifier": {
+            "PURL": "pkg:npm/es-define-property@1.0.1",
+            "UID": "f1b887421d727f85",
+            "BOMRef": "es-define-property@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "es-errors@1.3.0",
+          "Name": "es-errors",
+          "Identifier": {
+            "PURL": "pkg:npm/es-errors@1.3.0",
+            "UID": "68ea15544a76b30c",
+            "BOMRef": "es-errors@1.3.0"
+          },
+          "Version": "1.3.0"
+        },
+        {
+          "ID": "es-object-atoms@1.1.2",
+          "Name": "es-object-atoms",
+          "Identifier": {
+            "PURL": "pkg:npm/es-object-atoms@1.1.2",
+            "UID": "40cd7ac1fe6f766f",
+            "BOMRef": "es-object-atoms@1.1.2"
+          },
+          "Version": "1.1.2"
+        },
+        {
+          "ID": "escape-html@1.0.3",
+          "Name": "escape-html",
+          "Identifier": {
+            "PURL": "pkg:npm/escape-html@1.0.3",
+            "UID": "1ab0f2b0e46867b6",
+            "BOMRef": "escape-html@1.0.3"
+          },
+          "Version": "1.0.3"
+        },
+        {
+          "ID": "etag@1.8.1",
+          "Name": "etag",
+          "Identifier": {
+            "PURL": "pkg:npm/etag@1.8.1",
+            "UID": "9700d821e5d5116e",
+            "BOMRef": "etag@1.8.1"
+          },
+          "Version": "1.8.1"
+        },
+        {
+          "ID": "express@5.2.1",
+          "Name": "express",
+          "Identifier": {
+            "PURL": "pkg:npm/express@5.2.1",
+            "UID": "4cdd9db6314d425f",
+            "BOMRef": "express@5.2.1"
+          },
+          "Version": "5.2.1"
+        },
+        {
+          "ID": "finalhandler@2.1.1",
+          "Name": "finalhandler",
+          "Identifier": {
+            "PURL": "pkg:npm/finalhandler@2.1.1",
+            "UID": "673862c1eb1128f0",
+            "BOMRef": "finalhandler@2.1.1"
+          },
+          "Version": "2.1.1"
+        },
+        {
+          "ID": "forwarded@0.2.0",
+          "Name": "forwarded",
+          "Identifier": {
+            "PURL": "pkg:npm/forwarded@0.2.0",
+            "UID": "d0c436c6fcb58d08",
+            "BOMRef": "forwarded@0.2.0"
+          },
+          "Version": "0.2.0"
+        },
+        {
+          "ID": "fresh@2.0.0",
+          "Name": "fresh",
+          "Identifier": {
+            "PURL": "pkg:npm/fresh@2.0.0",
+            "UID": "2bcf19a99a351aeb",
+            "BOMRef": "fresh@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "function-bind@1.1.2",
+          "Name": "function-bind",
+          "Identifier": {
+            "PURL": "pkg:npm/function-bind@1.1.2",
+            "UID": "18b288a331acff2a",
+            "BOMRef": "function-bind@1.1.2"
+          },
+          "Version": "1.1.2"
+        },
+        {
+          "ID": "get-intrinsic@1.3.0",
+          "Name": "get-intrinsic",
+          "Identifier": {
+            "PURL": "pkg:npm/get-intrinsic@1.3.0",
+            "UID": "817ab0a2f6df4880",
+            "BOMRef": "get-intrinsic@1.3.0"
+          },
+          "Version": "1.3.0"
+        },
+        {
+          "ID": "get-proto@1.0.1",
+          "Name": "get-proto",
+          "Identifier": {
+            "PURL": "pkg:npm/get-proto@1.0.1",
+            "UID": "68c98d8a76812ba4",
+            "BOMRef": "get-proto@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "gopd@1.2.0",
+          "Name": "gopd",
+          "Identifier": {
+            "PURL": "pkg:npm/gopd@1.2.0",
+            "UID": "601a77e71dda69f8",
+            "BOMRef": "gopd@1.2.0"
+          },
+          "Version": "1.2.0"
+        },
+        {
+          "ID": "graphql@16.11.0",
+          "Name": "graphql",
+          "Identifier": {
+            "PURL": "pkg:npm/graphql@16.11.0",
+            "UID": "6c80fff87f07337b",
+            "BOMRef": "graphql@16.11.0"
+          },
+          "Version": "16.11.0"
+        },
+        {
+          "ID": "graphql-yoga@5.22.0",
+          "Name": "graphql-yoga",
+          "Identifier": {
+            "PURL": "pkg:npm/graphql-yoga@5.22.0",
+            "UID": "6e9531ea49f284fd",
+            "BOMRef": "graphql-yoga@5.22.0"
+          },
+          "Version": "5.22.0"
+        },
+        {
+          "ID": "has-flag@4.0.0",
+          "Name": "has-flag",
+          "Identifier": {
+            "PURL": "pkg:npm/has-flag@4.0.0",
+            "UID": "3d97155c1b45107c",
+            "BOMRef": "has-flag@4.0.0"
+          },
+          "Version": "4.0.0"
+        },
+        {
+          "ID": "has-symbols@1.1.0",
+          "Name": "has-symbols",
+          "Identifier": {
+            "PURL": "pkg:npm/has-symbols@1.1.0",
+            "UID": "d3f5e461fb29d886",
+            "BOMRef": "has-symbols@1.1.0"
+          },
+          "Version": "1.1.0"
+        },
+        {
+          "ID": "hasown@2.0.4",
+          "Name": "hasown",
+          "Identifier": {
+            "PURL": "pkg:npm/hasown@2.0.4",
+            "UID": "bb1794e5ca20bdf4",
+            "BOMRef": "hasown@2.0.4"
+          },
+          "Version": "2.0.4"
+        },
+        {
+          "ID": "http-errors@2.0.1",
+          "Name": "http-errors",
+          "Identifier": {
+            "PURL": "pkg:npm/http-errors@2.0.1",
+            "UID": "3f345c20e1638c53",
+            "BOMRef": "http-errors@2.0.1"
+          },
+          "Version": "2.0.1"
+        },
+        {
+          "ID": "iconv-lite@0.7.3",
+          "Name": "iconv-lite",
+          "Identifier": {
+            "PURL": "pkg:npm/iconv-lite@0.7.3",
+            "UID": "f1df80012700f993",
+            "BOMRef": "iconv-lite@0.7.3"
+          },
+          "Version": "0.7.3"
+        },
+        {
+          "ID": "inherits@2.0.4",
+          "Name": "inherits",
+          "Identifier": {
+            "PURL": "pkg:npm/inherits@2.0.4",
+            "UID": "485f1f5c249e0a59",
+            "BOMRef": "inherits@2.0.4"
+          },
+          "Version": "2.0.4"
+        },
+        {
+          "ID": "ipaddr.js@1.9.1",
+          "Name": "ipaddr.js",
+          "Identifier": {
+            "PURL": "pkg:npm/ipaddr.js@1.9.1",
+            "UID": "6a368237f52eb982",
+            "BOMRef": "ipaddr.js@1.9.1"
+          },
+          "Version": "1.9.1"
+        },
+        {
+          "ID": "is-promise@4.0.0",
+          "Name": "is-promise",
+          "Identifier": {
+            "PURL": "pkg:npm/is-promise@4.0.0",
+            "UID": "8b4c4f6e72d0f185",
+            "BOMRef": "is-promise@4.0.0"
+          },
+          "Version": "4.0.0"
+        },
+        {
+          "ID": "lru-cache@10.4.3",
+          "Name": "lru-cache",
+          "Identifier": {
+            "PURL": "pkg:npm/lru-cache@10.4.3",
+            "UID": "b957929271d5502b",
+            "BOMRef": "lru-cache@10.4.3"
+          },
+          "Version": "10.4.3"
+        },
+        {
+          "ID": "math-intrinsics@1.1.0",
+          "Name": "math-intrinsics",
+          "Identifier": {
+            "PURL": "pkg:npm/math-intrinsics@1.1.0",
+            "UID": "48d509b53f0a4569",
+            "BOMRef": "math-intrinsics@1.1.0"
+          },
+          "Version": "1.1.0"
+        },
+        {
+          "ID": "media-typer@1.1.1",
+          "Name": "media-typer",
+          "Identifier": {
+            "PURL": "pkg:npm/media-typer@1.1.1",
+            "UID": "6c711a473e14e7e7",
+            "BOMRef": "media-typer@1.1.1"
+          },
+          "Version": "1.1.1"
+        },
+        {
+          "ID": "merge-descriptors@2.0.0",
+          "Name": "merge-descriptors",
+          "Identifier": {
+            "PURL": "pkg:npm/merge-descriptors@2.0.0",
+            "UID": "55458c3592efcda0",
+            "BOMRef": "merge-descriptors@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "mime-db@1.54.0",
+          "Name": "mime-db",
+          "Identifier": {
+            "PURL": "pkg:npm/mime-db@1.54.0",
+            "UID": "6f2223cc95223eee",
+            "BOMRef": "mime-db@1.54.0"
+          },
+          "Version": "1.54.0"
+        },
+        {
+          "ID": "mime-types@3.0.2",
+          "Name": "mime-types",
+          "Identifier": {
+            "PURL": "pkg:npm/mime-types@3.0.2",
+            "UID": "a1dde3c77df98082",
+            "BOMRef": "mime-types@3.0.2"
+          },
+          "Version": "3.0.2"
+        },
+        {
+          "ID": "ms@2.1.3",
+          "Name": "ms",
+          "Identifier": {
+            "PURL": "pkg:npm/ms@2.1.3",
+            "UID": "164e26c9a75eb236",
+            "BOMRef": "ms@2.1.3"
+          },
+          "Version": "2.1.3"
+        },
+        {
+          "ID": "negotiator@1.1.0",
+          "Name": "negotiator",
+          "Identifier": {
+            "PURL": "pkg:npm/negotiator@1.1.0",
+            "UID": "38021c2c410b88ec",
+            "BOMRef": "negotiator@1.1.0"
+          },
+          "Version": "1.1.0"
+        },
+        {
+          "ID": "object-inspect@1.13.4",
+          "Name": "object-inspect",
+          "Identifier": {
+            "PURL": "pkg:npm/object-inspect@1.13.4",
+            "UID": "69d2cecb54666e51",
+            "BOMRef": "object-inspect@1.13.4"
+          },
+          "Version": "1.13.4"
+        },
+        {
+          "ID": "on-finished@2.4.1",
+          "Name": "on-finished",
+          "Identifier": {
+            "PURL": "pkg:npm/on-finished@2.4.1",
+            "UID": "7cfe177fc3d995e4",
+            "BOMRef": "on-finished@2.4.1"
+          },
+          "Version": "2.4.1"
+        },
+        {
+          "ID": "once@1.4.0",
+          "Name": "once",
+          "Identifier": {
+            "PURL": "pkg:npm/once@1.4.0",
+            "UID": "8437ac5a92c64bd2",
+            "BOMRef": "once@1.4.0"
+          },
+          "Version": "1.4.0"
+        },
+        {
+          "ID": "parseurl@1.3.3",
+          "Name": "parseurl",
+          "Identifier": {
+            "PURL": "pkg:npm/parseurl@1.3.3",
+            "UID": "66fd5381747ec771",
+            "BOMRef": "parseurl@1.3.3"
+          },
+          "Version": "1.3.3"
+        },
+        {
+          "ID": "path-to-regexp@8.4.2",
+          "Name": "path-to-regexp",
+          "Identifier": {
+            "PURL": "pkg:npm/path-to-regexp@8.4.2",
+            "UID": "411d6ba0bc1e6322",
+            "BOMRef": "path-to-regexp@8.4.2"
+          },
+          "Version": "8.4.2"
+        },
+        {
+          "ID": "pg@8.23.0",
+          "Name": "pg",
+          "Identifier": {
+            "PURL": "pkg:npm/pg@8.23.0",
+            "UID": "dc785448ee179978",
+            "BOMRef": "pg@8.23.0"
+          },
+          "Version": "8.23.0"
+        },
+        {
+          "ID": "pg-cloudflare@1.4.0",
+          "Name": "pg-cloudflare",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-cloudflare@1.4.0",
+            "UID": "7a1f2dbabd281755",
+            "BOMRef": "pg-cloudflare@1.4.0"
+          },
+          "Version": "1.4.0"
+        },
+        {
+          "ID": "pg-connection-string@2.14.0",
+          "Name": "pg-connection-string",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-connection-string@2.14.0",
+            "UID": "d3f32bf6df2a4d3c",
+            "BOMRef": "pg-connection-string@2.14.0"
+          },
+          "Version": "2.14.0"
+        },
+        {
+          "ID": "pg-int8@1.0.1",
+          "Name": "pg-int8",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-int8@1.0.1",
+            "UID": "2e5670ca6cde63c4",
+            "BOMRef": "pg-int8@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "pg-pool@3.14.0",
+          "Name": "pg-pool",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-pool@3.14.0",
+            "UID": "3a9894940888d94",
+            "BOMRef": "pg-pool@3.14.0"
+          },
+          "Version": "3.14.0"
+        },
+        {
+          "ID": "pg-protocol@1.16.0",
+          "Name": "pg-protocol",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-protocol@1.16.0",
+            "UID": "d03c1d362c5cd109",
+            "BOMRef": "pg-protocol@1.16.0"
+          },
+          "Version": "1.16.0"
+        },
+        {
+          "ID": "pg-types@2.2.0",
+          "Name": "pg-types",
+          "Identifier": {
+            "PURL": "pkg:npm/pg-types@2.2.0",
+            "UID": "1e6d04120450211f",
+            "BOMRef": "pg-types@2.2.0"
+          },
+          "Version": "2.2.0"
+        },
+        {
+          "ID": "pgpass@1.0.5",
+          "Name": "pgpass",
+          "Identifier": {
+            "PURL": "pkg:npm/pgpass@1.0.5",
+            "UID": "2eaed699cf9c78b9",
+            "BOMRef": "pgpass@1.0.5"
+          },
+          "Version": "1.0.5"
+        },
+        {
+          "ID": "postgres-array@2.0.0",
+          "Name": "postgres-array",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-array@2.0.0",
+            "UID": "f6878e3e6e21eba2",
+            "BOMRef": "postgres-array@2.0.0"
+          },
+          "Version": "2.0.0"
+        },
+        {
+          "ID": "postgres-array@3.0.4",
+          "Name": "postgres-array",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-array@3.0.4",
+            "UID": "f8aaed7eb2860562",
+            "BOMRef": "postgres-array@3.0.4"
+          },
+          "Version": "3.0.4"
+        },
+        {
+          "ID": "postgres-bytea@1.0.1",
+          "Name": "postgres-bytea",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-bytea@1.0.1",
+            "UID": "4b6dfe28603deec1",
+            "BOMRef": "postgres-bytea@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "postgres-date@1.0.7",
+          "Name": "postgres-date",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-date@1.0.7",
+            "UID": "1e6e7db1911fc98e",
+            "BOMRef": "postgres-date@1.0.7"
+          },
+          "Version": "1.0.7"
+        },
+        {
+          "ID": "postgres-interval@1.2.0",
+          "Name": "postgres-interval",
+          "Identifier": {
+            "PURL": "pkg:npm/postgres-interval@1.2.0",
+            "UID": "7914a5b1371a1bd4",
+            "BOMRef": "postgres-interval@1.2.0"
+          },
+          "Version": "1.2.0"
+        },
+        {
+          "ID": "proxy-addr@2.0.7",
+          "Name": "proxy-addr",
+          "Identifier": {
+            "PURL": "pkg:npm/proxy-addr@2.0.7",
+            "UID": "203422cedbd0ad54",
+            "BOMRef": "proxy-addr@2.0.7"
+          },
+          "Version": "2.0.7"
+        },
+        {
+          "ID": "qs@6.16.0",
+          "Name": "qs",
+          "Identifier": {
+            "PURL": "pkg:npm/qs@6.16.0",
+            "UID": "944b52070bb3339b",
+            "BOMRef": "qs@6.16.0"
+          },
+          "Version": "6.16.0"
+        },
+        {
+          "ID": "range-parser@1.3.0",
+          "Name": "range-parser",
+          "Identifier": {
+            "PURL": "pkg:npm/range-parser@1.3.0",
+            "UID": "17ec713bc093e6ec",
+            "BOMRef": "range-parser@1.3.0"
+          },
+          "Version": "1.3.0"
+        },
+        {
+          "ID": "raw-body@3.0.2",
+          "Name": "raw-body",
+          "Identifier": {
+            "PURL": "pkg:npm/raw-body@3.0.2",
+            "UID": "fa1f5b06dc73ccdc",
+            "BOMRef": "raw-body@3.0.2"
+          },
+          "Version": "3.0.2"
+        },
+        {
+          "ID": "router@2.2.0",
+          "Name": "router",
+          "Identifier": {
+            "PURL": "pkg:npm/router@2.2.0",
+            "UID": "fb49a54eb0bd5a0",
+            "BOMRef": "router@2.2.0"
+          },
+          "Version": "2.2.0"
+        },
+        {
+          "ID": "safer-buffer@2.1.2",
+          "Name": "safer-buffer",
+          "Identifier": {
+            "PURL": "pkg:npm/safer-buffer@2.1.2",
+            "UID": "16b956c07ef76f1",
+            "BOMRef": "safer-buffer@2.1.2"
+          },
+          "Version": "2.1.2"
+        },
+        {
+          "ID": "send@1.2.1",
+          "Name": "send",
+          "Identifier": {
+            "PURL": "pkg:npm/send@1.2.1",
+            "UID": "30f92633fdc183a2",
+            "BOMRef": "send@1.2.1"
+          },
+          "Version": "1.2.1"
+        },
+        {
+          "ID": "serve-static@2.2.1",
+          "Name": "serve-static",
+          "Identifier": {
+            "PURL": "pkg:npm/serve-static@2.2.1",
+            "UID": "6602108259af508e",
+            "BOMRef": "serve-static@2.2.1"
+          },
+          "Version": "2.2.1"
+        },
+        {
+          "ID": "setprototypeof@1.2.0",
+          "Name": "setprototypeof",
+          "Identifier": {
+            "PURL": "pkg:npm/setprototypeof@1.2.0",
+            "UID": "1a44f1c6c1caf52",
+            "BOMRef": "setprototypeof@1.2.0"
+          },
+          "Version": "1.2.0"
+        },
+        {
+          "ID": "side-channel@1.1.1",
+          "Name": "side-channel",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel@1.1.1",
+            "UID": "2ef43799822b7c88",
+            "BOMRef": "side-channel@1.1.1"
+          },
+          "Version": "1.1.1"
+        },
+        {
+          "ID": "side-channel-list@1.0.1",
+          "Name": "side-channel-list",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel-list@1.0.1",
+            "UID": "bff9bcc1842131d",
+            "BOMRef": "side-channel-list@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "side-channel-map@1.0.1",
+          "Name": "side-channel-map",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel-map@1.0.1",
+            "UID": "26e882d608f55a32",
+            "BOMRef": "side-channel-map@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "side-channel-weakmap@1.0.2",
+          "Name": "side-channel-weakmap",
+          "Identifier": {
+            "PURL": "pkg:npm/side-channel-weakmap@1.0.2",
+            "UID": "70d2e5ff26b4564b",
+            "BOMRef": "side-channel-weakmap@1.0.2"
+          },
+          "Version": "1.0.2"
+        },
+        {
+          "ID": "split2@4.2.0",
+          "Name": "split2",
+          "Identifier": {
+            "PURL": "pkg:npm/split2@4.2.0",
+            "UID": "cc82e2f7bb14cce2",
+            "BOMRef": "split2@4.2.0"
+          },
+          "Version": "4.2.0"
+        },
+        {
+          "ID": "statuses@2.0.2",
+          "Name": "statuses",
+          "Identifier": {
+            "PURL": "pkg:npm/statuses@2.0.2",
+            "UID": "c6cca74202b90566",
+            "BOMRef": "statuses@2.0.2"
+          },
+          "Version": "2.0.2"
+        },
+        {
+          "ID": "supports-color@8.1.1",
+          "Name": "supports-color",
+          "Identifier": {
+            "PURL": "pkg:npm/supports-color@8.1.1",
+            "UID": "c85b900e760eca54",
+            "BOMRef": "supports-color@8.1.1"
+          },
+          "Version": "8.1.1"
+        },
+        {
+          "ID": "toidentifier@1.0.1",
+          "Name": "toidentifier",
+          "Identifier": {
+            "PURL": "pkg:npm/toidentifier@1.0.1",
+            "UID": "a8492dc8bb9b8e2",
+            "BOMRef": "toidentifier@1.0.1"
+          },
+          "Version": "1.0.1"
+        },
+        {
+          "ID": "tslib@2.8.1",
+          "Name": "tslib",
+          "Identifier": {
+            "PURL": "pkg:npm/tslib@2.8.1",
+            "UID": "7d6fbb4a6c19234a",
+            "BOMRef": "tslib@2.8.1"
+          },
+          "Version": "2.8.1"
+        },
+        {
+          "ID": "type-is@2.1.0",
+          "Name": "type-is",
+          "Identifier": {
+            "PURL": "pkg:npm/type-is@2.1.0",
+            "UID": "e06b067fb4917f3a",
+            "BOMRef": "type-is@2.1.0"
+          },
+          "Version": "2.1.0"
+        },
+        {
+          "ID": "unpipe@1.0.0",
+          "Name": "unpipe",
+          "Identifier": {
+            "PURL": "pkg:npm/unpipe@1.0.0",
+            "UID": "9f03e7b584bb8261",
+            "BOMRef": "unpipe@1.0.0"
+          },
+          "Version": "1.0.0"
+        },
+        {
+          "ID": "urlpattern-polyfill@10.1.0",
+          "Name": "urlpattern-polyfill",
+          "Identifier": {
+            "PURL": "pkg:npm/urlpattern-polyfill@10.1.0",
+            "UID": "c07358ca6a9ba21a",
+            "BOMRef": "urlpattern-polyfill@10.1.0"
+          },
+          "Version": "10.1.0"
+        },
+        {
+          "ID": "vary@1.1.2",
+          "Name": "vary",
+          "Identifier": {
+            "PURL": "pkg:npm/vary@1.1.2",
+            "UID": "d2f185558bfe868b",
+            "BOMRef": "vary@1.1.2"
+          },
+          "Version": "1.1.2"
+        },
+        {
+          "ID": "wrappy@1.0.2",
+          "Name": "wrappy",
+          "Identifier": {
+            "PURL": "pkg:npm/wrappy@1.0.2",
+            "UID": "a40a27f5304fb6fe",
+            "BOMRef": "wrappy@1.0.2"
+          },
+          "Version": "1.0.2"
+        },
+        {
+          "ID": "xtend@4.0.2",
+          "Name": "xtend",
+          "Identifier": {
+            "PURL": "pkg:npm/xtend@4.0.2",
+            "UID": "a90163dfa5a7fdd4",
+            "BOMRef": "xtend@4.0.2"
+          },
+          "Version": "4.0.2"
+        },
+        {
+          "ID": "zod@4.6.1",
+          "Name": "zod",
+          "Identifier": {
+            "PURL": "pkg:npm/zod@4.6.1",
+            "UID": "d448a0227b18267a",
+            "BOMRef": "zod@4.6.1"
+          },
+          "Version": "4.6.1"
+        }
+      ]
+    }
+  ]
+}

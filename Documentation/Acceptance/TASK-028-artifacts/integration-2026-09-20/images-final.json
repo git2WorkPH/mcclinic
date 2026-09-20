@@ -1,0 +1,47 @@
+{
+  "staging": {
+    "Id": "sha256:5b824b135a6f736d5b4f8e05c33d68026001a17f14bb2c408bbe145e6a51e6ae",
+    "RepoDigests": [
+      "mcclinic-staging@sha256:5b824b135a6f736d5b4f8e05c33d68026001a17f14bb2c408bbe145e6a51e6ae"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux",
+    "Size": 57617872
+  },
+  "api": {
+    "Id": "sha256:3f8fb83fdf54e20859fff6145575f37fd9e9aa4300d07038b39e9933513debd6",
+    "RepoDigests": [
+      "mcclinic-api@sha256:3f8fb83fdf54e20859fff6145575f37fd9e9aa4300d07038b39e9933513debd6"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux",
+    "Size": 57617145
+  },
+  "web": {
+    "Id": "sha256:37a5ed2c3a97ee74b66278b7f19292f0584a779c80183fcd60cbbb3cced38773",
+    "RepoDigests": [
+      "mcclinic-web@sha256:37a5ed2c3a97ee74b66278b7f19292f0584a779c80183fcd60cbbb3cced38773"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux",
+    "Size": 55323363
+  },
+  "migration": {
+    "Id": "sha256:ca9c972a9c1aca056080e5f9c2042fc0187a7de8b6002c0e87f01548784267c1",
+    "RepoDigests": [
+      "mcclinic-migration@sha256:ca9c972a9c1aca056080e5f9c2042fc0187a7de8b6002c0e87f01548784267c1"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux",
+    "Size": 333536072
+  },
+  "mailbox": {
+    "Id": "sha256:43b02b8c8f30f1f1efbd5fe015c191498fce3d83fd6e988ec03ddcc33b5fec7f",
+    "RepoDigests": [
+      "mcclinic-mailbox@sha256:43b02b8c8f30f1f1efbd5fe015c191498fce3d83fd6e988ec03ddcc33b5fec7f"
+    ],
+    "Architecture": "arm64",
+    "Os": "linux",
+    "Size": 55008041
+  }
+}

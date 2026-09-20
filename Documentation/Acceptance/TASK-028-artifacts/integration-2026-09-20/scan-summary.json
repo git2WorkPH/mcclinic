@@ -1,0 +1,65 @@
+{
+  "final-migration-image-scan.json": {
+    "severities": {
+      "LOW": 82,
+      "HIGH": 60,
+      "MEDIUM": 103,
+      "UNKNOWN": 3,
+      "CRITICAL": 4
+    },
+    "createdAt": "2026-09-20T20:11:32.070443+10:00",
+    "artifact": "mcclinic-migration:task028"
+  },
+  "final-mailbox-image-scan.json": {
+    "severities": {
+      "LOW": 16,
+      "MEDIUM": 15
+    },
+    "createdAt": "2026-09-20T20:11:33.025326+10:00",
+    "artifact": "mcclinic-mailbox:task028"
+  },
+  "final-web-image-scan.json": {
+    "severities": {
+      "LOW": 16,
+      "MEDIUM": 15
+    },
+    "createdAt": "2026-09-20T20:11:24.724361+10:00",
+    "artifact": "mcclinic-web:task028"
+  },
+  "final-api-image-scan.json": {
+    "severities": {
+      "LOW": 16,
+      "MEDIUM": 15
+    },
+    "createdAt": "2026-09-20T20:11:24.617954+10:00",
+    "artifact": "mcclinic-api:task028"
+  },
+  "final-web-bundle-scan.json": {
+    "severities": {},
+    "createdAt": "2026-09-20T20:11:33.190053+10:00",
+    "artifact": ".local/task028-verification/web-sbom.cdx.json"
+  },
+  "final-mailbox-bundle-scan.json": {
+    "severities": {},
+    "createdAt": "2026-09-20T20:11:33.239689+10:00",
+    "artifact": ".local/task028-verification/mailbox-sbom.cdx.json"
+  },
+  "final-api-bundle-scan.json": {
+    "severities": {},
+    "createdAt": "2026-09-20T20:11:33.138296+10:00",
+    "artifact": ".local/task028-verification/api-sbom.cdx.json"
+  },
+  "final-staging-bundle-scan.json": {
+    "severities": {},
+    "createdAt": "2026-09-20T20:11:33.083308+10:00",
+    "artifact": ".local/task028-verification/staging-sbom.cdx.json"
+  },
+  "final-staging-image-scan.json": {
+    "severities": {
+      "LOW": 16,
+      "MEDIUM": 15
+    },
+    "createdAt": "2026-09-20T20:11:24.502133+10:00",
+    "artifact": "mcclinic-staging:task028"
+  }
+}
