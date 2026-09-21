@@ -5,10 +5,12 @@ Phase: synthetic development; local release preparation, NO-GO for public/real-p
 Active requirements: REQ-FOUND-015 / REQ-FOUND-012.
 Active tasks: TASK-041 and TASK-042 locally completed; TASK-028 remains Approved / In progress.
 Current branch: codex/TASK-041-dotenv-terraform.
-Observed HEAD before this memory update: 993142aed07026c861f72d9db3de2ab66e7d9807.
-Observed status before this memory update: intended dotenv/Terraform/TypeScript policy/docs/evidence changes uncommitted; two unrelated edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts remain unstaged/excluded.
+Observed HEAD before this memory update: 0b0fee760edd827b833a1a6e3c0b743ce22f4d07.
+Observed status before this memory update: README first-time setup follow-up and task evidence uncommitted; two unrelated edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts remain unstaged/excluded.
 
 ## Authority / Git reconciliation
+
+- README follow-up: owner requested setup for machines without brew/Node/pnpm. Validated prior memory against 0b0fee7, which committed TASK-041/042. Added OS prerequisites, pinned tooling, dotenv/database setup, synthetic login/onboarding and safe stop/resume to [README](../../README.md). Historical content preserved; no merge/push or database mutation.
 
 - Read memory and checked branch/HEAD/status, worktrees and local/remote branches. Prior handoff matched after master merge at 993142a, verified origin/master. Created this task branch from that base; no matching remote/local TASK-041/042 branch.
 - Owner requested dotenv codebase update and moving away from Python, then explicitly chose “Implement Terraform alongside CloudFormation now”, followed by “continue”. This approves the two bounded local tasks. No new merge/push, AWS spending/apply, real data, live mail/billing or deletion authorized.
@@ -23,6 +25,8 @@ Observed status before this memory update: intended dotenv/Terraform/TypeScript 
 - [Shared logs](../Acceptance/TASK-041-artifacts/2026-09-21/); [MVP defaults](../Project/MVP_ASSUMPTIONS.md). No clinical/product behavior, schema/migration or permission removal.
 
 ## Verification
+
+- README-only follow-up: shell syntax, local links and package-script references checked; versions/accounts/committed Compose username verified against source. Formatting and diff review passed. Fresh OS installation and application suites not rerun for documentation-only changes. Unrelated two-file diff hash unchanged.
 
 - pnpm check PASS: lint/boundaries/types, 54 unit/API tests, Prisma generation and API/web builds. Codegen/contract diff PASS.
 - Final four runtime/integration files PASS / eight tests: compiled dotenv API from alternate cwd; existing packaged/staging guards; rebuilt real hardened-image bootstrap/repeated migrations/original checksums/TLS denials/runtime permissions. One earlier bootstrap failure did not recur in independent/final runs; cause unestablished, no retry/skip added. Investigate if it recurs.

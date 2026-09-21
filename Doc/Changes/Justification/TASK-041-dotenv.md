@@ -1,5 +1,9 @@
 # TASK-041 — Change justification
 
+## Owner-requested README follow-up — 2026-09-21
+
+The owner requests first-time local setup instructions for machines without Homebrew, Node or pnpm. Add an ordered README guide covering OS prerequisites, pinned tooling, dotenv, the committed PostgreSQL configuration, migrations, synthetic login, startup and safe shutdown. Preserve historical starter instructions and unrelated Compose/mailbox edits. KEEP all application tests; no code or behavior changes. Verify command references, Markdown formatting, shell syntax and local links; do not install software or mutate the operator database to validate documentation.
+
 Owner request authorizes local dotenv implementation; REQ-FOUND-015 AC-01–04. Existing local commands depend on exported shell variables; workspace working directories differ and naive dotenv/config would read inconsistent files. Add one local-only resolver at the API infrastructure edge, loading root .env before config use with override=false and quiet logging. Keep process environment authoritative and skip cloud/packaged/production/test/CI contexts. Root Prisma config/local tools reuse it; frontend only consumes supported nonsecret proxy config. Pin already installed dotenv version; do not update unrelated dependencies. Preserve two unrelated edits and all existing .env files.
 
 KEEP all tests/guards. ADD root-path/compiled-path, precedence, missing/error and cloud/test boundary checks; verify safe example ignored/private configuration exclusions. No removal of existing behavior/files/migrations. Docs/requirements/task/ADR/memory updated; local commit only.

@@ -2,6 +2,213 @@
 
 > Current project: MCClinic includes a synthetic-data development MVP with clinical workflows, multiple practices and account onboarding. The original starter and foundation descriptions below are preserved as history. See the current account flows at the end of this README and the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) for local setup.
 
+## Run MCClinic locally — first-time setup
+
+This guide runs the database in Docker and the API and desktop web app on your computer. Use **synthetic patients only**; this is a development MVP. You need internet access for the initial downloads, repository access, a browser and a text editor. Run commands one block at a time and stop if a command fails.
+
+### 1. Install your operating system prerequisites
+
+**macOS — Terminal**
+
+Install Apple's command-line tools and finish the installer before continuing:
+
+```sh
+xcode-select --install
+```
+
+If they are already installed, continue. Install [Homebrew](https://brew.sh/) if `brew --version` is unavailable:
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Follow the installer's **Next steps** to add Homebrew to your shell, then open a new terminal:
+
+```sh
+brew install git
+git --version
+touch ~/.zshrc
+```
+
+Download [Docker Desktop for Mac](https://docs.docker.com/desktop/setup/install/mac-install/), choosing Apple silicon or Intel to match your Mac. Install and open it, finish setup and wait until its engine is running. Keep Docker Desktop open while using the app.
+
+**Windows — WSL 2 / Ubuntu**
+
+Use the Linux environment for the remaining commands. In an administrator PowerShell window, follow [Microsoft's WSL installation guide](https://learn.microsoft.com/en-us/windows/wsl/install):
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+Restart if requested, open Ubuntu and create its Linux username/password. Install Docker Desktop for Windows and enable its [WSL 2 integration](https://docs.docker.com/desktop/features/wsl/) for Ubuntu. Run the following in **Ubuntu**, then continue there, keeping the checkout under your Linux home directory:
+
+```sh
+sudo apt update
+sudo apt install -y git curl ca-certificates
+```
+
+**Linux — Ubuntu/Debian**
+
+Install Git, curl and certificates using the two `apt` commands above. Follow the official [Docker Engine installation instructions](https://docs.docker.com/engine/install/) for your distribution, including the Compose plugin and permission setup. Ensure your user can run `docker info`. Other distributions should use their own package manager. Homebrew is not required on Linux or Windows.
+
+### 2. Install Node.js and pnpm
+
+In macOS Terminal, Ubuntu/WSL or your Linux shell, install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) if you do not already have it:
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash
+```
+
+Open a new terminal, or load the default nvm installation in the current one:
+
+```sh
+. "$HOME/.nvm/nvm.sh"
+nvm install 24.21.0
+nvm use 24.21.0
+npm install --global pnpm@10.34.5
+```
+
+Use the repository's pinned versions, rather than installing the latest Node or pnpm. Node includes npm; [pnpm supports installation through npm](https://pnpm.io/installation). No global Prisma, TypeScript or React installation is needed.
+
+Confirm the tools work before continuing:
+
+```sh
+node --version
+pnpm --version
+git --version
+docker --version
+docker compose version
+docker info
+```
+
+Expect Node `v24.21.0`, pnpm `10.34.5`, and a successful Docker server connection. Terraform, AWS CLI, LocalStack, Python and a separate PostgreSQL installation are **not required** for this local app setup.
+
+### 3. Get the project and install dependencies
+
+For a new checkout:
+
+```sh
+git clone https://github.com/git2WorkPH/mcclinic.git
+cd mcclinic
+```
+
+If GitHub denies access, ask the maintainer for repository access and the intended release/branch. Use a checkout containing this guide and `.env.example`; the dotenv changes must be available in the branch supplied to you. If you already have the project, open a terminal in its root instead of cloning again. All remaining commands run from that root, where `package.json` lives.
+
+```sh
+nvm install
+nvm use
+pnpm install --frozen-lockfile
+```
+
+### 4. Configure the local environment
+
+Copy the example only if you do not already have `.env`:
+
+```sh
+cp -n .env.example .env
+```
+
+Open `.env` in your text editor. For a **fresh database using the committed Compose configuration**, use the following structure. Replace both occurrences of `YOUR_DB_PASSWORD` with the same development-only password; choose letters and numbers to avoid URL-encoding issues. Replace `YOUR_DEMO_PASSWORD` with a different password of at least 12 characters. These uppercase values are placeholders.
+
+```dotenv
+APP_ENV=development
+MVP_SYNTHETIC_ONLY=true
+HOST=127.0.0.1
+PORT=4000
+POSTGRES_PASSWORD=YOUR_DB_PASSWORD
+DATABASE_URL=postgresql://ehr_dev:YOUR_DB_PASSWORD@127.0.0.1:5432/mcclinic
+DEMO_PASSWORD=YOUR_DEMO_PASSWORD
+EHR_API_TARGET=http://127.0.0.1:4000
+```
+
+`POSTGRES_PASSWORD` is an additional setting for Docker Compose. The committed Compose database user is `ehr_dev`; **the database name is `mcclinic`**. If your local Compose file has a different `POSTGRES_USER`, use that username in `DATABASE_URL`. For an existing database, retain its actual credentials and volume. Editing `.env` does not change passwords stored in an existing database.
+
+The app loads root `.env` automatically for local development. Existing exported shell variables take precedence, so remove stale exports from your shell if they conflict. Never commit `.env` or put secrets in `VITE_*` variables. See [environment configuration](Documentation/Project/ENVIRONMENT_CONFIGURATION.md) for details.
+
+### 5. Start PostgreSQL and prepare the database
+
+```sh
+docker compose --env-file .env -f infrastructure/docker/compose.yaml up -d --wait postgres
+docker compose --env-file .env -f infrastructure/docker/compose.yaml ps
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+```
+
+The database should report healthy before running the Prisma commands. These steps generate the database client, apply migrations and create synthetic demo accounts. Seeding preserves existing accounts and **does not reset their passwords**. If your existing database is still named `ehr_mvp`, follow the non-destructive rename procedure in the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) first; do not delete its volume.
+
+### 6. Start the app in two terminals
+
+**Terminal 1 — API**, from the repository root:
+
+```sh
+nvm use
+pnpm dev:mvp
+```
+
+**Terminal 2 — web app**, also from the repository root:
+
+```sh
+nvm use
+pnpm dev:web
+```
+
+Leave both terminals running. Open **<http://127.0.0.1:5173/clinic>**. Use the `/clinic` path for the complete MVP. The web development server forwards API requests to port 4000.
+
+Sign in with one of the seeded usernames and the `DEMO_PASSWORD` you selected:
+
+| Username    | Main purpose                                                   |
+| ----------- | -------------------------------------------------------------- |
+| `clinician` | Patient records, consultations, prescriptions and certificates |
+| `reception` | Reception, appointments and check-in                           |
+| `admin`     | Practice settings, membership and administrative workflows     |
+
+Use the [SaaS walkthrough](Documentation/Project/SAAS_RUNBOOK.md) to try practice switching, branding and templates. For a new account, open **Account onboarding and recovery** and use a synthetic email such as `doctor@example.test`. Verification and recovery messages stay local; in a third terminal run:
+
+```sh
+pnpm dev:mailbox
+```
+
+Open the local verification link, verify the account, then sign in. No real email is sent. See the [onboarding runbook](Documentation/Project/ONBOARDING_RUNBOOK.md) for practice creation, invitations and recovery. Keep the ignored `.local/` state and its onboarding encryption key with your development database; custom state paths must also be supplied to the mailbox command.
+
+### 7. Stop and resume safely
+
+Press **Ctrl+C** in each app terminal. Stop PostgreSQL without deleting its data:
+
+```sh
+docker compose --env-file .env -f infrastructure/docker/compose.yaml stop postgres
+```
+
+Next time, open Docker, repeat the PostgreSQL `up -d --wait postgres` command and start the two app terminals. You do not need to reinstall dependencies or seed again each time. After receiving code updates, install with the frozen lockfile and run database generation/migrations as instructed by that release. Preserve your `.env`, database volume and `.local/` state; do not use `down -v`, volume pruning or database deletion to troubleshoot setup.
+
+### Troubleshooting and optional verification
+
+| Problem                                  | What to check                                                                                                                                                         |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `brew` / `nvm` / `pnpm` not found        | Complete the installer's shell setup, reopen the terminal and run `nvm use` in the project. With nvm, install pnpm without `sudo`.                                    |
+| Cannot connect to Docker                 | Start Docker Desktop or the Linux Docker service. On Windows, confirm Ubuntu WSL integration is enabled.                                                              |
+| PostgreSQL password authentication fails | Match `DATABASE_URL` to the actual database user/password. Existing volumes keep their original credentials despite Compose environment changes.                      |
+| Port already in use                      | Check for another local service on 5432, 4000 or 5173. Stop only a service you recognize, or coordinate matching port changes in Compose, `.env` and the browser URL. |
+| Web page opens but requests fail         | Confirm `pnpm dev:mvp` is running, migrations succeeded and `EHR_API_TARGET` matches the API port. Check both terminal error messages.                                |
+| Demo login fails after changing `.env`   | Seeding never overwrites passwords; use the account's existing password.                                                                                              |
+| Database client missing                  | Run `pnpm db:generate` after dependency installation. Do not broadly enable blocked dependency scripts.                                                               |
+
+For contributors, these checks are optional for simply opening the app. Docker must be running for integration/browser tests:
+
+```sh
+pnpm check
+pnpm test:integration
+pnpm test:mvp
+pnpm exec playwright install chromium
+pnpm test:mvp:web
+```
+
+On Linux/WSL, Playwright may request OS browser dependencies; use `pnpm exec playwright install --with-deps chromium` when needed. Fresh-machine installer steps have been checked against official documentation; they have not been executed on every operating system. For the separately packaged Docker app, see the [packaged runbook](Documentation/Project/PACKAGED_RUNBOOK.md).
+
+## Historical starter setup (preserved)
+
+The sections below retain the original kit installation history. Use the first-time app setup above to run today's MCClinic MVP.
+
 Repository-local governance, six focused skills, EHR architecture, and concise committed session memory. This package contains documentation and templates; it does not include an application, approved implementation tasks, or live integrations.
 
 ## Install
