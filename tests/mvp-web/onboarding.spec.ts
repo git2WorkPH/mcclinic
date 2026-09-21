@@ -1,12 +1,222 @@
-import {expect,test,type Page} from '@playwright/test';
-import {readFileSync,readdirSync} from 'node:fs';
-import {resolve} from 'node:path';
-import {randomUUID} from 'node:crypto';
-import {totp} from '../../apps/api/src/modules/onboarding/infrastructure/crypto';
-const password='Synthetic-onboarding-browser-2026';
-function message(email:string,kind:string){const dir=resolve(process.env.EHR_LOCAL_STATE_DIR!,'mailbox');return readdirSync(dir).map(n=>JSON.parse(readFileSync(resolve(dir,n),'utf8')) as {to:string;kind:string;token:string}).find(m=>m.to===email&&m.kind===kind)!.token;}
-test('onboarding control visibly opens the account options',async({page})=>{await page.goto('/clinic');const button=page.getByRole('button',{name:'Account onboarding and recovery',exact:true});await expect(button).toHaveAttribute('aria-expanded','false');await button.click();await expect(button).toHaveAttribute('aria-expanded','true');await expect(page.getByText(/Account options opened/)).toBeInViewport();await expect(page.getByRole('heading',{name:'Register',exact:true})).toBeVisible();});
-async function register(page:Page,email:string,practice:string){await page.goto('/clinic');await page.getByRole('button',{name:'Account onboarding and recovery',exact:true}).click();await page.getByLabel('Account email',{exact:true}).fill(email);await page.getByLabel('Your display name',{exact:true}).fill('Synthetic Browser Doctor');await page.getByLabel('New practice name (leave empty when joining a practice)',{exact:true}).fill(practice);await page.getByLabel('Choose password (12–128 characters)',{exact:true}).fill(password);await page.getByRole('button',{name:'Create account',exact:true}).click();await expect(page.getByText(/If eligible, a verification link is in the local mailbox/)).toBeVisible();await page.goto('/clinic#verify='+message(email,'VERIFY'));await page.getByRole('button',{name:'Verify account',exact:true}).click();await expect(page.getByText(/Email verified/)).toBeVisible();expect(page.url()).not.toContain('#');}
-async function login(page:Page,email:string,code=''){await page.getByLabel('Username',{exact:true}).fill(email);await page.getByLabel('Password',{exact:true}).fill(password);await page.getByLabel('Authenticator or recovery code',{exact:true}).fill(code);await page.getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('button',{name:'Sign out',exact:true})).toBeVisible();}
-test('doctor registration, verification, invitation acceptance and practice permissions work in the browser',async({page})=>{const doctor=randomUUID()+'@example.test',staff=randomUUID()+'@example.test';await register(page,doctor,'Onboarding browser practice');await login(page,doctor);await expect(page.getByRole('heading',{name:'Onboarding browser practice',exact:true})).toBeVisible();await page.getByRole('button',{name:'Account security and invitations',exact:true}).click();await page.getByLabel('Invited email',{exact:true}).fill(staff);await page.getByRole('button',{name:'Send local invitation',exact:true}).click();await expect(page.getByText(/Invitation captured/)).toBeVisible();await page.getByRole('button',{name:'Sign out',exact:true}).click();await register(page,staff,'');await page.goto('/clinic#invite='+message(staff,'INVITE'));await page.getByLabel('Your account password',{exact:true}).fill(password);await page.getByRole('button',{name:'Join practice',exact:true}).click();await expect(page.getByText(/Invitation accepted/)).toBeVisible();await login(page,staff);await expect(page.getByRole('heading',{name:'Onboarding browser practice',exact:true})).toBeVisible();await expect(page.getByText('Synthetic Browser Doctor · reception',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Account security and invitations',exact:true}).click();await expect(page.getByLabel('Invited email',{exact:true})).toHaveCount(0);await page.screenshot({path:'test-results/mvp/onboarding-membership.png',fullPage:true});});
-test('authenticator enrollment, recovery-code login and password recovery are real web workflows',async({page})=>{const email=randomUUID()+'@example.test';await register(page,email,'Security browser practice');await login(page,email);await page.getByRole('button',{name:'Account security and invitations',exact:true}).click();await page.getByLabel('Current account password',{exact:true}).fill(password);await page.getByRole('button',{name:'Set up authenticator',exact:true}).click();await expect(page.getByTestId('mfa-secret')).toBeVisible();const secret=(await page.getByTestId('mfa-secret').textContent())!;await page.getByLabel('Security code',{exact:true}).fill(totp(secret,Math.floor(Date.now()/30000)));await page.getByRole('button',{name:'Confirm authenticator',exact:true}).click();await expect(page.getByTestId('recovery-codes')).toBeVisible();const codes=(await page.getByTestId('recovery-codes').textContent())!.split('\n');expect(codes).toHaveLength(8);await page.getByRole('button',{name:'I saved my codes — sign in again',exact:true}).click();await login(page,email,codes[0]);await page.getByRole('button',{name:'Sign out',exact:true}).click();await page.getByRole('button',{name:'Account onboarding and recovery',exact:true}).click();await page.getByRole('button',{name:'Recover password',exact:true}).click();await page.getByLabel('Account email',{exact:true}).fill(email);await page.getByRole('button',{name:'Request reset link',exact:true}).click();await expect(page.getByText(/If eligible, a reset link/)).toBeVisible();await page.goto('/clinic#reset='+message(email,'RESET'));await page.getByLabel('New password (12–128 characters)',{exact:true}).fill(password+'new');await page.getByLabel('Authenticator or recovery code (if enabled)',{exact:true}).fill(codes[1]!);await page.getByRole('button',{name:'Reset password',exact:true}).click();await expect(page.getByText(/Password changed and sessions revoked/)).toBeVisible();await page.getByLabel('Username',{exact:true}).fill(email);await page.getByLabel('Password',{exact:true}).fill(password+'new');await page.getByLabel('Authenticator or recovery code',{exact:true}).fill(codes[2]!);await page.getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('heading',{name:'Security browser practice',exact:true})).toBeVisible();});
+import { expect, test, type Page } from '@playwright/test';
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { totp } from '../../apps/api/src/modules/onboarding/infrastructure/crypto';
+const password = 'Synthetic-onboarding-browser-2026';
+function message(email: string, kind: string) {
+  const dir = resolve(process.env.EHR_LOCAL_STATE_DIR!, 'mailbox');
+  return readdirSync(dir)
+    .map(
+      (n) =>
+        JSON.parse(readFileSync(resolve(dir, n), 'utf8')) as {
+          to: string;
+          kind: string;
+          token: string;
+        },
+    )
+    .find((m) => m.to === email && m.kind === kind)!.token;
+}
+test('onboarding control visibly opens the account options', async ({
+  page,
+}) => {
+  await page.goto('/clinic');
+  const button = page.getByRole('button', {
+    name: 'Account onboarding and recovery',
+    exact: true,
+  });
+  await expect(button).toHaveAttribute('aria-expanded', 'false');
+  await button.click();
+  await expect(button).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByText(/Account options opened/)).toBeInViewport();
+  await expect(
+    page.getByRole('heading', { name: 'Register', exact: true }),
+  ).toBeVisible();
+});
+async function register(page: Page, email: string, practice: string) {
+  await page.goto('/clinic');
+  await page
+    .getByRole('button', {
+      name: 'Account onboarding and recovery',
+      exact: true,
+    })
+    .click();
+  await page.getByLabel('Account email', { exact: true }).fill(email);
+  await page
+    .getByLabel('Your display name', { exact: true })
+    .fill('Synthetic Browser Doctor');
+  await page
+    .getByLabel('New practice name (leave empty when joining a practice)', {
+      exact: true,
+    })
+    .fill(practice);
+  await page
+    .getByLabel('Choose password (12–128 characters)', { exact: true })
+    .fill(password);
+  await page
+    .getByRole('button', { name: 'Create account', exact: true })
+    .click();
+  await expect(
+    page.getByText(/If eligible, a verification link is in the local mailbox/),
+  ).toBeVisible();
+  await page.goto('/clinic#verify=' + message(email, 'VERIFY'));
+  await page
+    .getByRole('button', { name: 'Verify account', exact: true })
+    .click();
+  await expect(page.getByText(/Email verified/)).toBeVisible();
+  expect(page.url()).not.toContain('#');
+}
+async function login(page: Page, email: string, code = '') {
+  await page.getByLabel('Username', { exact: true }).fill(email);
+  await page.getByLabel('Password', { exact: true }).fill(password);
+  await page
+    .getByLabel('Authenticator or recovery code', { exact: true })
+    .fill(code);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'Sign out', exact: true }),
+  ).toBeVisible();
+}
+test('doctor registration, verification, invitation acceptance and practice permissions work in the browser', async ({
+  page,
+}) => {
+  const doctor = randomUUID() + '@example.test',
+    staff = randomUUID() + '@example.test';
+  await register(page, doctor, 'Onboarding browser practice');
+  await login(page, doctor);
+  await expect(
+    page.getByRole('heading', {
+      name: 'Onboarding browser practice',
+      exact: true,
+    }),
+  ).toBeVisible();
+  await page
+    .getByRole('button', {
+      name: 'Account security and invitations',
+      exact: true,
+    })
+    .click();
+  await page.getByLabel('Invited email', { exact: true }).fill(staff);
+  await page
+    .getByRole('button', { name: 'Send local invitation', exact: true })
+    .click();
+  await expect(page.getByText(/Invitation captured/)).toBeVisible();
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
+  await register(page, staff, '');
+  await page.goto('/clinic#invite=' + message(staff, 'INVITE'));
+  await page
+    .getByLabel('Your account password', { exact: true })
+    .fill(password);
+  await page
+    .getByRole('button', { name: 'Join practice', exact: true })
+    .click();
+  await expect(page.getByText(/Invitation accepted/)).toBeVisible();
+  await login(page, staff);
+  await expect(
+    page.getByRole('heading', {
+      name: 'Onboarding browser practice',
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText('Synthetic Browser Doctor · reception', { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Practice settings', exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('button', {
+      name: 'Account security and invitations',
+      exact: true,
+    }),
+  ).toHaveCount(0);
+  await page
+    .getByRole('button', { name: 'Account security', exact: true })
+    .click();
+  await expect(page.getByLabel('Invited email', { exact: true })).toHaveCount(
+    0,
+  );
+  await page.screenshot({
+    path: 'test-results/mvp/onboarding-membership.png',
+    fullPage: true,
+  });
+});
+test('authenticator enrollment, recovery-code login and password recovery are real web workflows', async ({
+  page,
+}) => {
+  const email = randomUUID() + '@example.test';
+  await register(page, email, 'Security browser practice');
+  await login(page, email);
+  await page
+    .getByRole('button', {
+      name: 'Account security and invitations',
+      exact: true,
+    })
+    .click();
+  await page
+    .getByLabel('Current account password', { exact: true })
+    .fill(password);
+  await page
+    .getByRole('button', { name: 'Set up authenticator', exact: true })
+    .click();
+  await expect(page.getByTestId('mfa-secret')).toBeVisible();
+  const secret = (await page.getByTestId('mfa-secret').textContent())!;
+  await page
+    .getByLabel('Security code', { exact: true })
+    .fill(totp(secret, Math.floor(Date.now() / 30000)));
+  await page
+    .getByRole('button', { name: 'Confirm authenticator', exact: true })
+    .click();
+  await expect(page.getByTestId('recovery-codes')).toBeVisible();
+  const codes = (await page.getByTestId('recovery-codes').textContent())!.split(
+    '\n',
+  );
+  expect(codes).toHaveLength(8);
+  await page
+    .getByRole('button', {
+      name: 'I saved my codes — sign in again',
+      exact: true,
+    })
+    .click();
+  await login(page, email, codes[0]);
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
+  await page
+    .getByRole('button', {
+      name: 'Account onboarding and recovery',
+      exact: true,
+    })
+    .click();
+  await page
+    .getByRole('button', { name: 'Recover password', exact: true })
+    .click();
+  await page.getByLabel('Account email', { exact: true }).fill(email);
+  await page
+    .getByRole('button', { name: 'Request reset link', exact: true })
+    .click();
+  await expect(page.getByText(/If eligible, a reset link/)).toBeVisible();
+  await page.goto('/clinic#reset=' + message(email, 'RESET'));
+  await page
+    .getByLabel('New password (12–128 characters)', { exact: true })
+    .fill(password + 'new');
+  await page
+    .getByLabel('Authenticator or recovery code (if enabled)', { exact: true })
+    .fill(codes[1]!);
+  await page
+    .getByRole('button', { name: 'Reset password', exact: true })
+    .click();
+  await expect(
+    page.getByText(/Password changed and sessions revoked/),
+  ).toBeVisible();
+  await page.getByLabel('Username', { exact: true }).fill(email);
+  await page.getByLabel('Password', { exact: true }).fill(password + 'new');
+  await page
+    .getByLabel('Authenticator or recovery code', { exact: true })
+    .fill(codes[2]!);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await expect(
+    page.getByRole('heading', {
+      name: 'Security browser practice',
+      exact: true,
+    }),
+  ).toBeVisible();
+});

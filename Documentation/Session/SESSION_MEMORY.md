@@ -2,13 +2,15 @@
 
 Updated: 2026-09-21 (Australia/Sydney).
 Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
-Active requirements: REQ-FOUND-015 / REQ-FOUND-012.
-Active tasks: TASK-041 and TASK-042 locally completed; TASK-028 remains Approved / In progress.
+Active requirements: REQ-FOUND-010 / REQ-FOUND-011 / REQ-FOUND-012.
+Active tasks: TASK-043 completed for synthetic development; TASK-028 remains Approved / In progress.
 Current branch: master.
-Observed HEAD before this memory update: 7c740caecf597cc82a749d5f007d07446a6ed1d4.
-Observed status before this memory update: README invitation how-to uncommitted; otherwise clean.
+Observed HEAD before this memory update: 78298db0133071e02fa6b2c183fc6f761ce0e19a.
+Observed status before this memory update: intended TASK-043 UI, tests, docs and evidence uncommitted; otherwise clean.
 
 ## Authority / Git reconciliation
+
+- TASK-043: owner said non-admin signups should not see settings and only admins may invite/add members. Ordinary invited clinician/reception memberships lack management permission. Personal Account security remains visible; invitation/Practice settings controls require administrator role or the existing explicit creator management grant. Direct invite/member denial and receptionist UI covered. [Task](../Tasks/Completed/TASK-043.md), [evidence](../Acceptance/TASK-043-acceptance.md), [justification](../../Doc/Changes/Justification/TASK-043-admin-settings.md). Git at 78298db on master before this work; no unrelated changes present. Remote task branch check failed due network DNS, so no new branch was created.
 
 - Owner requested invitation acceptance steps in "how to use". README now covers manager invitation, matching-email registration/verification, local mailbox access, **Join practice**, sign-in and practice switching. Checked exact UI labels against `OnboardingPanel.tsx` and `useOnboarding.ts`; no application change. Git shows prior 7c740ca and 0b0fee7 on master, with clean pre-edit status; prior two unrelated working-tree edits are absent. Local documentation-only follow-up, no push/deploy.
 
@@ -28,6 +30,8 @@ Observed status before this memory update: README invitation how-to uncommitted;
 
 ## Verification
 
+- TASK-043: lint, typecheck, build, onboarding integration 8/8 and MVP Playwright 7/7 PASS with Docker access; first sandboxed integration attempt could not reach Docker and was rerun successfully. Changed-file format/diff checks pass. No production claim.
+
 - README-only follow-up: shell syntax, local links and package-script references checked; versions/accounts/committed Compose username verified against source. Formatting and diff review passed. Fresh OS installation and application suites not rerun for documentation-only changes. Unrelated two-file diff hash unchanged.
 
 - pnpm check PASS: lint/boundaries/types, 54 unit/API tests, Prisma generation and API/web builds. Codegen/contract diff PASS.
@@ -38,6 +42,6 @@ Observed status before this memory update: README invitation how-to uncommitted;
 
 ## Exact next action / open gates
 
-Continue bounded local TASK-028 cost/anomaly and operator-monitoring preparation using one selected infrastructure owner; preserve both candidates/history and update justification before code. No AWS spending yet. Verify remote/master before any push; this README follow-up has only local documentation authorization.
+Continue bounded local TASK-028 cost/anomaly and operator-monitoring preparation using one selected infrastructure owner; preserve both candidates/history and update justification before code. No AWS spending yet. Verify remote/master before any push; TASK-043 has local-only authorization.
 
 Full TASK-028/029/030/031 remain incomplete: account/domain/budget/tester/operator approval, protected remote state, real IAM/RDS/KMS/EFS/CloudFront/notifications, drift/PITR/key/sink recovery and target-ISP/load evidence are missing. FIND-013 and Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge. TASK-024 deferred; TASK-036–040 future nice-to-have. Memory is an index, never approval or ground truth.

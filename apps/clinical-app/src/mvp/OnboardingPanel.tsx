@@ -191,7 +191,7 @@ export function AccountSecurityPanel({
   return (
     <View style={styles.body}>
       <Button secondary onPress={() => setOpen(!open)}>
-        Account security and invitations
+        {manager ? 'Account security and invitations' : 'Account security'}
       </Button>
       {open && (
         <Card title="Account security">

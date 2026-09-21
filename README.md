@@ -288,6 +288,8 @@ flowchart TD
 
 The manager sends invitations from **Account security and invitations**, choosing clinician, reception or administrator. An existing verified user skips registration and verification; the current invitation flow can be accessed from the sign-in page after signing out. Acceptance rechecks the inviter's authority and available clinician seats.
 
+Only a practice administrator or a practice creator with an explicit management grant sees invitation and Practice settings controls. An invited clinician or receptionist sees **Account security** for their own password/MFA controls, with no member invitation form. The server also refuses membership changes from those ordinary roles.
+
 **How the invited person joins (local demo):**
 
 1. The practice manager signs in, opens **Account security and invitations**, enters the person's synthetic email address, chooses **Clinician** or **Reception**, and sends the invitation.
