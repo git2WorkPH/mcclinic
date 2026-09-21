@@ -288,6 +288,16 @@ flowchart TD
 
 The manager sends invitations from **Account security and invitations**, choosing clinician, reception or administrator. An existing verified user skips registration and verification; the current invitation flow can be accessed from the sign-in page after signing out. Acceptance rechecks the inviter's authority and available clinician seats.
 
+**How the invited person joins (local demo):**
+
+1. The practice manager signs in, opens **Account security and invitations**, enters the person's synthetic email address, chooses **Clinician** or **Reception**, and sends the invitation.
+2. The invited person registers using that exact email address, leaves the optional practice name blank, and verifies the account using the verification link. A person who already has a verified account can skip registration and verification.
+3. The invited person opens the invitation link from the local mailbox. With the source app, run `pnpm dev:mailbox` at the repository root. With the packaged Docker app, run the mailbox command in the [packaged runbook](Documentation/Project/PACKAGED_RUNBOOK.md#account-verification-and-recovery). Messages are captured locally; they do not arrive in a real email inbox.
+4. The link opens **Accept invitation** on the sign-in page and fills in the invitation token. The invited person enters **their own account password** and an authenticator or recovery code if MFA is enabled, then selects **Join practice**. Invitation acceptance does not sign them in automatically.
+5. The invited person signs in with that same email and password, then uses the practice switcher to select the invited practice. If it is their only practice, the app may select it automatically. Their role controls which records and actions they can access.
+
+If the practice is missing, sign out and sign in again, then check that the invitation was accepted with the same email address. The invitation expires after seven days; a practice manager can send a new one if needed. Adding an existing seeded demo user by username in **Practice settings** is a separate membership flow and does not require this email invitation.
+
 ### 3. Returning user signing in
 
 ```mermaid

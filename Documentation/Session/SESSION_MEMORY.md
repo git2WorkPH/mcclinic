@@ -4,11 +4,13 @@ Updated: 2026-09-21 (Australia/Sydney).
 Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
 Active requirements: REQ-FOUND-015 / REQ-FOUND-012.
 Active tasks: TASK-041 and TASK-042 locally completed; TASK-028 remains Approved / In progress.
-Current branch: codex/TASK-041-dotenv-terraform.
-Observed HEAD before this memory update: 0b0fee760edd827b833a1a6e3c0b743ce22f4d07.
-Observed status before this memory update: README first-time setup follow-up and task evidence uncommitted; two unrelated edits in infrastructure/docker/compose.yaml and tooling/read-local-mail.ts remain unstaged/excluded.
+Current branch: master.
+Observed HEAD before this memory update: 7c740caecf597cc82a749d5f007d07446a6ed1d4.
+Observed status before this memory update: README invitation how-to uncommitted; otherwise clean.
 
 ## Authority / Git reconciliation
+
+- Owner requested invitation acceptance steps in "how to use". README now covers manager invitation, matching-email registration/verification, local mailbox access, **Join practice**, sign-in and practice switching. Checked exact UI labels against `OnboardingPanel.tsx` and `useOnboarding.ts`; no application change. Git shows prior 7c740ca and 0b0fee7 on master, with clean pre-edit status; prior two unrelated working-tree edits are absent. Local documentation-only follow-up, no push/deploy.
 
 - README follow-up: owner requested setup for machines without brew/Node/pnpm. Validated prior memory against 0b0fee7, which committed TASK-041/042. Added OS prerequisites, pinned tooling, dotenv/database setup, synthetic login/onboarding and safe stop/resume to [README](../../README.md). Historical content preserved; no merge/push or database mutation.
 
@@ -36,6 +38,6 @@ Observed status before this memory update: README first-time setup follow-up and
 
 ## Exact next action / open gates
 
-Review the committed dotenv/Terraform branch with the owner before any new master merge/push. Then resume bounded local TASK-028 cost/anomaly and operator-monitoring preparation using one selected infrastructure owner; preserve both candidates/history and update justification before code. No AWS spending yet.
+Continue bounded local TASK-028 cost/anomaly and operator-monitoring preparation using one selected infrastructure owner; preserve both candidates/history and update justification before code. No AWS spending yet. Verify remote/master before any push; this README follow-up has only local documentation authorization.
 
 Full TASK-028/029/030/031 remain incomplete: account/domain/budget/tester/operator approval, protected remote state, real IAM/RDS/KMS/EFS/CloudFront/notifications, drift/PITR/key/sink recovery and target-ISP/load evidence are missing. FIND-013 and Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge. TASK-024 deferred; TASK-036–040 future nice-to-have. Memory is an index, never approval or ground truth.
