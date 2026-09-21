@@ -63,3 +63,7 @@ ADR-015 adds a separate HTTPS/cookie-only staging composition root without relax
 ## TASK-028 migration candidate — 2026-09-21
 
 Use the separately built `migration-hardened` target as the locally verified candidate for a later reviewed synthetic staging database job. It preserves the existing job command/UID1000 and original migrations, with frozen Prisma CLI/native engine, verified native TLS and no package installer/shell. This default does not activate or publish it, change local Compose, or remove the original full migration image. All images need current revision/scan evidence before later release. Existing production findings, AWS authorization, budget and operational gates remain open.
+
+## Local configuration and Terraform — 2026-09-21
+
+Owner authorizes TASK-041 dotenv and TASK-042 native Terraform alongside existing CloudFormation. Root `.env` is optional/local-only, process env wins, production/staging injection remains separate. Native Terraform and TypeScript custom policy tests are the new development tooling; existing Python/cfn-lint/CloudFormation files stay preserved and optional. Terraform is prepared only, using mocked tests with no AWS calls. State custody, resource ownership, account/budget/operator approval and all production findings remain open. No automatic migration execution, live billing, deployment or deletion.

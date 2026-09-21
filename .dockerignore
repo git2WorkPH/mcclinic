@@ -6,3 +6,12 @@
 playwright-report
 test-results
 coverage
+
+# Local tooling, identity state and Terraform artifacts must never enter build contexts.
+.local/
+.pnpm-store/
+**/.terraform/
+**/*.tfstate*
+**/*.tfplan*
+**/*.tfvars
+**/*.tfvars.json

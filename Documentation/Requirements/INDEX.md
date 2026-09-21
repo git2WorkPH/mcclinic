@@ -43,3 +43,6 @@ The initial table/status above is historical initialization text. Later approval
 | [REQ-FEAT-018](Features/REQ-FEAT-018.md)     | Optional X-ray and 2D echo records           | TASK-039, TASK-040 |
 
 Assessment: ../Assessment/OPTIONAL-MODULES.md. Findings: FIND-014–016. ADR-011 remains Proposed.
+
+- [REQ-FOUND-015 — Local dotenv configuration](Foundation/REQ-FOUND-015.md): owner-approved synthetic development, TASK-041; explicit environment precedence and cloud separation.
+- REQ-FOUND-012 Terraform overlay: TASK-042 adds a parallel native candidate and TypeScript custom policy checks; original cloud approval/deployed gates remain unchanged.

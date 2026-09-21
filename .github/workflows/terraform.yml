@@ -1,0 +1,24 @@
+name: Verify Terraform locally
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  synthetic-plan:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: 'true'
+      AWS_EC2_METADATA_DISABLED: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.9
+          terraform_wrapper: false
+      - name: Check formatting
+        run: terraform -chdir=infrastructure/terraform/staging fmt -check -recursive
+      - name: Install locked provider without backend
+        run: terraform -chdir=infrastructure/terraform/staging init -backend=false -input=false -lockfile=readonly
+      - name: Validate provider schema
+        run: terraform -chdir=infrastructure/terraform/staging validate
+      - name: Mocked plan security checks (no AWS credentials or resources)
+        run: terraform -chdir=infrastructure/terraform/staging test

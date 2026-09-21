@@ -14,6 +14,7 @@
     "@ehr/graphql-contract": "workspace:*",
     "@prisma/adapter-pg": "7.10.0",
     "@prisma/client": "7.10.0",
+    "dotenv": "17.4.2",
     "express": "5.2.1",
     "graphql": "16.11.0",
     "graphql-yoga": "5.22.0",

@@ -1,5 +1,48 @@
-import {Client} from 'pg';
-import {pathToFileURL} from 'node:url';
+import { loadLocalEnvironment } from '../apps/api/src/runtime/local-environment.js';
+loadLocalEnvironment();
+import { Client } from 'pg';
+import { pathToFileURL } from 'node:url';
 /** Rename the same local database, retaining its OID and data. Never drop or terminate sessions. */
-export async function renameDatabase(connectionString:string){const url=new URL(connectionString);if(!['localhost','127.0.0.1','[::1]'].includes(url.hostname))throw new Error('Only a local development database can be renamed.');const source=decodeURIComponent(url.pathname.slice(1));if(source==='mcclinic')return 'Database URL already selects mcclinic.';if(!['ehr_mvp','ehr_dev'].includes(source))throw new Error('Expected the existing ehr_mvp or ehr_dev database.');url.pathname='/postgres';const client=new Client({connectionString:url.toString()});await client.connect();try{const rows=await client.query<{datname:string}>('SELECT datname FROM pg_database WHERE datname = ANY($1::text[])',[[source,'mcclinic']]);if(rows.rows.some(r=>r.datname==='mcclinic'))throw new Error('mcclinic already exists. Nothing was renamed; inspect both databases.');if(!rows.rows.some(r=>r.datname===source))throw new Error('Source database was not found.');await client.query(`ALTER DATABASE "${source}" RENAME TO "mcclinic"`);return 'Database renamed to mcclinic. Update DATABASE_URL; credentials and stored records are unchanged.';}finally{await client.end();}}
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){if(!process.env.DATABASE_URL)throw new Error('Set DATABASE_URL to the existing local database. Stop API, Studio and other database clients first.');try{console.log(await renameDatabase(process.env.DATABASE_URL));}catch(error){console.error(error instanceof Error?error.message:'Rename failed.');process.exitCode=1;}}
+export async function renameDatabase(connectionString: string) {
+  const url = new URL(connectionString);
+  if (!['localhost', '127.0.0.1', '[::1]'].includes(url.hostname))
+    throw new Error('Only a local development database can be renamed.');
+  const source = decodeURIComponent(url.pathname.slice(1));
+  if (source === 'mcclinic') return 'Database URL already selects mcclinic.';
+  if (!['ehr_mvp', 'ehr_dev'].includes(source))
+    throw new Error('Expected the existing ehr_mvp or ehr_dev database.');
+  url.pathname = '/postgres';
+  const client = new Client({ connectionString: url.toString() });
+  await client.connect();
+  try {
+    const rows = await client.query<{ datname: string }>(
+      'SELECT datname FROM pg_database WHERE datname = ANY($1::text[])',
+      [[source, 'mcclinic']],
+    );
+    if (rows.rows.some((r) => r.datname === 'mcclinic'))
+      throw new Error(
+        'mcclinic already exists. Nothing was renamed; inspect both databases.',
+      );
+    if (!rows.rows.some((r) => r.datname === source))
+      throw new Error('Source database was not found.');
+    await client.query(`ALTER DATABASE "${source}" RENAME TO "mcclinic"`);
+    return 'Database renamed to mcclinic. Update DATABASE_URL; credentials and stored records are unchanged.';
+  } finally {
+    await client.end();
+  }
+}
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+  if (!process.env.DATABASE_URL)
+    throw new Error(
+      'Set DATABASE_URL to the existing local database. Stop API, Studio and other database clients first.',
+    );
+  try {
+    console.log(await renameDatabase(process.env.DATABASE_URL));
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : 'Rename failed.');
+    process.exitCode = 1;
+  }
+}

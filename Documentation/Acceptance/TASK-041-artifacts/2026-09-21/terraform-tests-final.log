@@ -1,0 +1,14 @@
+tests/security.tftest.hcl... in progress
+  run "private_synthetic_plan"... pass
+  run "reject_unapproved_provisioning"... pass
+  run "reject_public_testers"... pass
+  run "reject_activation_without_custody"... pass
+  run "reject_mutable_image"... pass
+  run "reject_shared_database_secret"... pass
+  run "reject_missing_budget"... pass
+  run "reject_wrong_region"... pass
+  run "reject_weak_origin_secret"... pass
+tests/security.tftest.hcl... tearing down
+tests/security.tftest.hcl... pass
+
+Success! 9 passed, 0 failed.

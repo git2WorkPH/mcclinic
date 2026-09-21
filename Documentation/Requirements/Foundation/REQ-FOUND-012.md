@@ -58,3 +58,9 @@ AC-02–04 local preparation now includes a separate synthetic staging runtime, 
 ## Native migration evidence — 2026-09-21
 
 AC-03/04 local artifact verification now includes the additive migration-hardened image, original migration checksums, repeatability, verified native TLS certificate/hostname denials and runtime privilege restrictions. This extends local release evidence only; original cost, owner authorization and deployed acceptance requirements remain unchanged. See TASK-028 acceptance and Open FIND-013 for artifact-specific scan coverage and limitations.
+
+## Parallel Terraform overlay — 2026-09-21
+
+Owner approved TASK-042 alongside preserved CloudFormation. AC-02–04 add native Terraform local validation/mocked security tests, explicit state/ownership/deletion boundaries, and TypeScript parity for the existing custom Python checks. No production/deployed acceptance or AWS spending inferred. ADR-017 records the scoped architecture decision.
+
+TASK-042 local Terraform/TypeScript tooling criteria accepted on 2026-09-21; see ../../Acceptance/TASK-042-acceptance.md. This does not complete TASK-028 or any deployed/cost/production gate.

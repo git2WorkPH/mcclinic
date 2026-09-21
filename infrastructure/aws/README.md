@@ -45,3 +45,7 @@ pnpm exec vitest run tests/staging-runtime.test.ts tests/staging-roles.integrati
 ```
 
 The last command uses local PostgreSQL containers and a locally generated test TLS certificate; it does not use AWS. Neither successful schema validation nor local database tests verify RDS-specific role restrictions, EFS policies, CloudFront/ALB behavior or actual KMS permissions. All deployed TASK-028/029/030 acceptance remains pending.
+
+## TypeScript checks and Terraform alternative — 2026-09-21
+
+The current custom policy command is `pnpm test:infrastructure`, with every assertion from both preserved Python suites plus strict YAML parsing checks. Python is optional for these checks; the earlier cfn-lint command is still a distinct optional CloudFormation schema check. No original script/template was deleted. Native Terraform validation/mocked plans are documented in [the parallel candidate](../terraform/README.md). Choose one owner per eventual environment; no AWS resources have been provisioned by either path.

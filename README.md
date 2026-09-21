@@ -131,3 +131,9 @@ GitHub Verify runs an explicit `pnpm lint` step and checks changed supported fil
 - Check committed changes against a base: `FORMAT_BASE=$(git rev-parse master) pnpm format:changed`
 
 The changed-file check uses the merge base of the PR base/push predecessor and HEAD. For a new branch push, it uses the remote default branch; when that is HEAD, it checks the previous commit. A repository with no parent/base must supply an existing base commit. Missing base history fails rather than silently skipping checks. Fetch full history locally when needed. This command checks committed file selection against working-tree content; use a clean checkout to reproduce CI exactly. Generated contracts, lockfile, starter history and exported artifact evidence are excluded. Avoid passing `.` to the write command unless you intend to format all supported files.
+
+## Dotenv and infrastructure tooling — current development setup
+
+Use the repository-root `.env.example` for optional local dotenv configuration; existing shell variables take precedence. See [environment setup](Documentation/Project/ENVIRONMENT_CONFIGURATION.md) for safe setup, commands and the local/cloud boundary.
+
+A native [Terraform staging candidate](infrastructure/terraform/README.md) now sits alongside the preserved CloudFormation templates. Run `pnpm test:infrastructure` for the TypeScript policy checks; Python is no longer needed for these custom checks. Original Python/cfn-lint files remain optional for legacy CloudFormation validation. Terraform verification uses mocked providers; no AWS apply, spending or production release is authorized.

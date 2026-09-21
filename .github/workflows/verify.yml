@@ -24,6 +24,8 @@ jobs:
           FORMAT_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
           FORMAT_DEFAULT_REF: origin/${{ github.event.repository.default_branch }}
       - run: pnpm check
+      - name: Verify compiled local dotenv entry point
+        run: pnpm exec vitest run tests/local-environment.integration.test.ts
       - run: pnpm test:integration
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:web
