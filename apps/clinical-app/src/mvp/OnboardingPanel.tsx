@@ -1,12 +1,14 @@
-import { useState } from 'react';
 import { Text, View } from 'react-native';
-import * as G from '@ehr/graphql-contract/operations';
 import type { Api } from './client';
-import { Button, Card, Field, Feedback, styles, useAction } from './ui';
+import { Button, Card, Field, Feedback, styles } from './ui';
 import { useOnboarding } from '../features/onboarding/useOnboarding';
 import { onboardingGateway } from '../features/onboarding/gateway';
 import { onboardingBrowser } from '../features/onboarding/browser';
 import type { Mode } from '../features/onboarding/contracts';
+
+export { AccountSecurityPanel } from './auth/AccountSecurityPanel';
+export { PracticeInvitationPanel } from './practices/PracticeInvitationPanel';
+
 export function OnboardingPanel({ request }: { request: Api }) {
   const {
     open,
@@ -166,184 +168,6 @@ export function OnboardingPanel({ request }: { request: Api }) {
             )}
           </Card>
         </View>
-      )}
-    </View>
-  );
-}
-export function AccountSecurityPanel({
-  request,
-  onReauthenticate,
-}: {
-  request: Api;
-  onReauthenticate: () => void;
-}) {
-  const [open, setOpen] = useState(false),
-    [password, setPassword] = useState(''),
-    [code, setCode] = useState(''),
-    [secret, setSecret] = useState(''),
-    [codes, setCodes] = useState<string[]>([]),
-    [message, setMessage] = useState('');
-  const action = useAction();
-  return (
-    <View style={styles.section}>
-      <Button secondary onPress={() => setOpen(!open)}>
-        {open ? 'Close account security' : 'Manage account security'}
-      </Button>
-      {open && (
-        <Card title="Account security">
-          <Text style={styles.text}>
-            Use an authenticator app with a manually entered secret. MFA changes
-            revoke all sessions. Keep recovery codes privately; they are shown
-            once.
-          </Text>
-          {codes.length > 0 ? (
-            <>
-              <Text selectable testID="recovery-codes">
-                {codes.join('\n')}
-              </Text>
-              <Button onPress={onReauthenticate}>
-                I saved my codes — sign in again
-              </Button>
-            </>
-          ) : (
-            <>
-              <Field
-                label="Current account password"
-                value={password}
-                onChange={setPassword}
-                password
-              />
-              <Field label="Security code" value={code} onChange={setCode} />
-              <View style={styles.row}>
-                <Button
-                  secondary
-                  disabled={action.busy}
-                  onPress={() =>
-                    void action.run(async () => {
-                      const v = await request(G.AccountSecurityDocument, {});
-                      setMessage(
-                        v.accountMfaEnabled
-                          ? 'MFA is enabled.'
-                          : 'MFA is not enabled.',
-                      );
-                    })
-                  }
-                >
-                  Check MFA status
-                </Button>
-                <Button
-                  disabled={action.busy}
-                  onPress={() =>
-                    void action.run(async () => {
-                      const v = JSON.parse(
-                        (await request(G.StartAccountMfaDocument, { password }))
-                          .startAccountMfa,
-                      ) as { secret: string };
-                      setSecret(v.secret);
-                      setMessage(
-                        'Enter this secret in your authenticator, then confirm its code within 10 minutes.',
-                      );
-                    })
-                  }
-                >
-                  Set up authenticator
-                </Button>
-                <Button
-                  secondary
-                  disabled={action.busy}
-                  onPress={() =>
-                    void action.run(async () => {
-                      await request(G.DisableAccountMfaDocument, {
-                        password,
-                        code,
-                      });
-                      onReauthenticate();
-                    })
-                  }
-                >
-                  Disable MFA
-                </Button>
-              </View>
-              {Boolean(secret) && (
-                <>
-                  <Text selectable testID="mfa-secret">
-                    {secret}
-                  </Text>
-                  <Button
-                    disabled={action.busy}
-                    onPress={() =>
-                      void action.run(async () => {
-                        const v = await request(G.ConfirmAccountMfaDocument, {
-                          code,
-                        });
-                        setCodes(JSON.parse(v.confirmAccountMfa));
-                        setSecret('');
-                        setPassword('');
-                        setCode('');
-                        setMessage(
-                          'MFA enabled. All prior sessions are revoked.',
-                        );
-                      })
-                    }
-                  >
-                    Confirm authenticator
-                  </Button>
-                </>
-              )}
-            </>
-          )}
-          <Feedback state={action} />
-          {Boolean(message) && (
-            <Text accessibilityRole="status">{message}</Text>
-          )}
-        </Card>
-      )}
-    </View>
-  );
-}
-
-export function PracticeInvitationPanel({ request }: { request: Api }) {
-  const [email, setEmail] = useState(''),
-    [role, setRole] = useState('RECEPTION'),
-    [message, setMessage] = useState('');
-  const action = useAction();
-  return (
-    <View style={styles.section}>
-      <Text style={styles.subheading}>Invite a practice member</Text>
-      <Text style={styles.muted}>
-        Invitations are limited to this practice and expire after seven days.
-      </Text>
-      <Field label="Invited email" value={email} onChange={setEmail} />
-      <View style={styles.tabs}>
-        {['RECEPTION', 'CLINICIAN', 'ADMINISTRATOR'].map((value) => (
-          <Button
-            key={value}
-            secondary={role !== value}
-            onPress={() => setRole(value)}
-          >
-            {value}
-          </Button>
-        ))}
-      </View>
-      <Button
-        disabled={action.busy}
-        onPress={() =>
-          void action.run(async () => {
-            await request(G.InvitePracticeMemberDocument, { email, role });
-            setEmail('');
-            setMessage(
-              'Invitation captured in the local mailbox. It expires in seven days.',
-            );
-          }, `invite:${email}:${role}`)
-        }
-      >
-        Send local invitation
-      </Button>
-      <Feedback state={action} />
-      {Boolean(message) && (
-        <Text accessibilityRole="status" style={styles.success}>
-          {message}
-        </Text>
       )}
     </View>
   );

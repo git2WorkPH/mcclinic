@@ -2,11 +2,43 @@
 
 Updated: 2026-10-03 (Australia/Sydney).
 Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
-Active requirements: REQ-FEAT-019 / REQ-FOUND-012.
-Active tasks: TASK-044 completed locally; TASK-028 remains Approved / In progress.
-Current branch: task/TASK-044-role-aware-ui.
-Observed HEAD before this memory update: 8af62a7bcaff6fc9bea070a8fc79c0951e98696a.
-Observed status before this memory update: intended TASK-044 UI, browser tests, requirements, runbooks, acceptance and handover uncommitted; no unrelated changes.
+Active requirements: REQ-FOUND-002 / REQ-FEAT-019 / REQ-FOUND-012.
+Active tasks: TASK-045 completed locally; TASK-028 remains Approved / In progress.
+Current branch: task/TASK-045-component-boundaries.
+Observed HEAD before this memory update: 007a93b2acb601efc2a61ef85625353755303781.
+Observed status before this memory update: intended TASK-045 frontend component relocation, governance, acceptance, architecture map and handover uncommitted; no unrelated behavioral changes. The pre-existing blank line in `MvpApp.tsx` was absorbed by its explicitly authorized structural rewrite.
+
+## Current technical handover — TASK-045
+
+Authority: on 2026-10-03 the owner requested that all frontend functionality be broken into its own components, explicitly naming login as an example. Canonical records are [TASK-045](../Tasks/Completed/TASK-045.md), [justification](../../Doc/Changes/Justification/TASK-045-component-boundaries.md), [acceptance](../Acceptance/TASK-045-acceptance.md), and the [frontend component map](../Architecture/FRONTEND_COMPONENT_MAP.md). Branch `task/TASK-045-component-boundaries` started from clean local/remote `master` at `007a93b`; no matching local or remote task branch existed.
+
+Implementation map:
+
+- `apps/clinical-app/src/mvp/MvpApp.tsx`: thin composition root for session validation, sign-in/sign-out state, selected practice, top-level section and feature entry points. It re-exports `PatientForm` for caller compatibility.
+- `auth/`: `LoginPanel` and personal `AccountSecurityPanel` including MFA/recovery-code lifecycle.
+- `shell/`: `AppHeader`, role-aware `AppNavigation`, `RoleOverview`, `WorkspaceRouter` and administrator `AuditPanel`.
+- `patients/`: `PatientDirectory`, `PatientRegistration` and reusable `PatientForm`; selected-patient feature routing remains in `PatientWorkspace.tsx`.
+- `consultations/`: consultation/note/version workflow and patient `HistoryPanel`.
+- `documents/`: document editor, version list, immutable issued preview/printing, and input defaults; `DocumentPanel.tsx` orchestrates selection and refresh.
+- `appointments/`: appointment reschedule/cancel/check-in/history row and local date-input conversion; `SchedulePanel.tsx` owns listing/booking.
+- `practices/`: practice administration, invitation form, template/branding/subscription types; `PracticeSettings.tsx` owns practice context/switching and the permission-gated administration entry.
+- `OnboardingPanel.tsx`: public account registration/verification/recovery/invitation acceptance using the pre-existing onboarding hook. It re-exports relocated security/invitation components for import compatibility.
+
+Behavior and authority invariants: no GraphQL operation, API, database schema, migration, audit event, clinical rule or server permission changed. Administrator/explicit manager visibility remains a presentation mirror only; the server remains authoritative. All synthetic document preview/printing behavior and `DEMO — NOT FOR CLINICAL USE` marking remain intact. No test, assertion or supported workflow was deleted.
+
+Verification on 2026-10-03: `pnpm check` PASS (lint/boundaries, types, 54 unit tests, Prisma generate, API/web builds); `pnpm test:onboarding` PASS 8; `pnpm test:mvp` PASS 14; `pnpm test:mvp:web` PASS 7; `pnpm test:web` PASS 2. The first MVP browser run passed six and exposed two mechanically renamed template accessibility labels; the original labels were restored and the unchanged seven-test suite passed. Final formatting/diff review is recorded in acceptance.
+
+Resume procedure after interruption or credit limit:
+
+1. Run `git status --short --branch`, `git rev-parse HEAD`, and `git log -3 --oneline`; compare them with this snapshot.
+2. Read the four canonical TASK-045 records linked above. If the local task commit exists, inspect `git show --stat <commit>`; otherwise inspect `git diff 007a93b --`.
+3. Keep `MvpApp` and root feature panels focused on composition. Put new workflow components in the owning feature folder and shared visual primitives in `ui.tsx` only when reused.
+4. Preserve existing accessibility labels, public exports, GraphQL operations, server authorization and browser outcomes. Do not move clinical or permission rules into the UI.
+5. After any code change, rerun targeted Prettier, `pnpm check`, `pnpm test:onboarding`, `pnpm test:mvp`, `pnpm test:mvp:web`, and `pnpm test:web`. Docker is required for database/browser suites.
+6. Review the full diff for unauthorized deletion, changed labels, changed authorization, lost assertions and generated/schema drift. Update acceptance and memory with new evidence only.
+7. Commit only TASK-045 files locally. Merge/push/deploy require separate explicit authorization.
+
+Known limits: the presentation still uses local component state and the existing typed request function; this task did not introduce a query/cache library or native navigation. `PracticeAdministration`, `DocumentEditor`, `ConsultationPanel` and `AppointmentRow` are cohesive feature components and can be split further when an approved workflow change gives the child state an independent lifecycle. No production usability, performance, accessibility audit, legal compliance or real-data readiness is claimed.
 
 ## Current technical handover — TASK-044
 
@@ -71,6 +103,6 @@ Known limits: this is desktop React Native Web, with no offline synchronization 
 
 ## Exact next action / open gates
 
-Review the local TASK-044 commit with the owner, then obtain explicit authorization before merging/pushing it to master. After integration, rebuild the packaged demo and resume bounded local TASK-028 cost/anomaly and operator-monitoring preparation. No AWS spending yet.
+Review the local TASK-045 commit with the owner, then obtain explicit authorization before merging/pushing it to master. After integration, rebuild the packaged demo and resume bounded local TASK-028 cost/anomaly and operator-monitoring preparation. No AWS spending yet.
 
 Full TASK-028/029/030/031 remain incomplete: account/domain/budget/tester/operator approval, protected remote state, real IAM/RDS/KMS/EFS/CloudFront/notifications, drift/PITR/key/sink recovery and target-ISP/load evidence are missing. FIND-013 and Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge. TASK-024 deferred; TASK-036–040 future nice-to-have. Memory is an index, never approval or ground truth.

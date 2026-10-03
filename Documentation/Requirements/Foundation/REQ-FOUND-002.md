@@ -68,3 +68,7 @@ Current v0.2-MVP scope: implemented and verified under the owner exception; see 
 ## Boundary refinement — 2026-09-13
 
 TASK-032 applies FR-01/02 and AC-01/02 to public onboarding presentation/transport/browser separation and backend onboarding composition. See [acceptance](../../Acceptance/TASK-032-acceptance.md). This is bounded evidence, not whole-codebase conformance; FIND-012 retains the deeper store and enforcement gaps. No change to approved behavior or production readiness.
+
+## Frontend component refinement — 2026-10-03
+
+TASK-045 applies FR-03 and the feature-owned modular principle to the React Native Web MVP presentation. Authentication, shell, patient, consultation, document, appointment and practice UI now have explicit component ownership while retaining the typed GraphQL boundary and server authority. See the [component map](../../Architecture/FRONTEND_COMPONENT_MAP.md) and [acceptance evidence](../../Acceptance/TASK-045-acceptance.md). This is maintainability evidence, not a production compliance or usability claim.
