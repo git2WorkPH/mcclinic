@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Text, View } from "react-native";
-import * as G from "@ehr/graphql-contract/operations";
-import type { Api } from "./client";
+import { useState } from 'react';
+import { Text, View } from 'react-native';
+import * as G from '@ehr/graphql-contract/operations';
+import type { Api } from './client';
 import {
   Button,
   Card,
@@ -11,10 +11,10 @@ import {
   styles,
   useAction,
   useLoad,
-} from "./ui";
-import { PatientForm } from "./MvpApp";
-import { DocumentPanel } from "./DocumentPanel";
-import { SchedulePanel } from "./SchedulePanel";
+} from './ui';
+import { PatientForm } from './MvpApp';
+import { DocumentPanel } from './DocumentPanel';
+import { SchedulePanel } from './SchedulePanel';
 export function PatientWorkspace({
   request,
   patientId,
@@ -23,10 +23,10 @@ export function PatientWorkspace({
 }: {
   request: Api;
   patientId: string;
-  actor: NonNullable<G.ViewerQuery["me"]>;
+  actor: NonNullable<G.ViewerQuery['me']>;
   onChanged: () => void;
 }) {
-  const [tab, setTab] = useState("Profile"),
+  const [tab, setTab] = useState('Profile'),
     [refresh, setRefresh] = useState(0);
   const [sourceId, setSourceId] = useState<string | undefined>();
   const profile = useLoad(
@@ -56,31 +56,38 @@ export function PatientWorkspace({
   };
   return (
     <>
-      <Card>
+      <View style={styles.patientContext}>
         <Text role="heading" style={styles.heading}>
           {p.givenName} {p.familyName}
         </Text>
         <Text style={styles.text}>
-          DOB {p.birthDate} · {p.phone || "No phone"}
+          DOB {p.birthDate} · {p.phone || 'No phone'}
         </Text>
         <Text style={styles.muted}>
           Patient ID {p.id} · Profile version {p.version}
         </Text>
         <View style={styles.tabs}>
           {[
-            "Profile",
-            ...(actor.role === "CLINICIAN"
-              ? ["Consultations", "Documents", "History"]
+            'Profile',
+            ...(actor.role === 'CLINICIAN'
+              ? ['Consultations', 'Documents', 'History']
               : []),
-            "Appointments",
+            'Appointments',
           ].map((t) => (
-            <Button key={t} secondary={tab !== t} onPress={() => { setSourceId(undefined); setTab(t); }}>
+            <Button
+              key={t}
+              secondary={tab !== t}
+              onPress={() => {
+                setSourceId(undefined);
+                setTab(t);
+              }}
+            >
               {t}
             </Button>
           ))}
         </View>
-      </Card>
-      {tab === "Profile" ? (
+      </View>
+      {tab === 'Profile' ? (
         <Card title="Patient profile">
           <PatientForm
             key={p.version}
@@ -106,22 +113,33 @@ export function PatientWorkspace({
             Reload profile
           </Button>
         </Card>
-      ) : tab === "Consultations" ? (
+      ) : tab === 'Consultations' ? (
         <Consultations
           request={request}
           patientId={patientId}
           actorId={actor.id}
           sourceId={sourceId}
         />
-      ) : tab === "Documents" ? (
+      ) : tab === 'Documents' ? (
         <DocumentPanel
           request={request}
           patientId={patientId}
           actorId={actor.id}
           sourceId={sourceId}
         />
-      ) : tab === "History" ? (
-        <HistoryPanel request={request} patientId={patientId} onSource={(id, type) => { setSourceId(id); setTab(type === "CONSULTATION" || type === "NOTE" ? "Consultations" : "Documents"); }} />
+      ) : tab === 'History' ? (
+        <HistoryPanel
+          request={request}
+          patientId={patientId}
+          onSource={(id, type) => {
+            setSourceId(id);
+            setTab(
+              type === 'CONSULTATION' || type === 'NOTE'
+                ? 'Consultations'
+                : 'Documents',
+            );
+          }}
+        />
       ) : (
         <SchedulePanel request={request} patientId={patientId} />
       )}
@@ -161,7 +179,7 @@ function Consultations({
             ).startConsultation;
             setSelected(created.id);
             setRefresh(refresh + 1);
-          }, "start:" + patientId)
+          }, 'start:' + patientId)
         }
       >
         Start consultation
@@ -175,30 +193,32 @@ function Consultations({
       {records.value?.consultations.length === 0 && (
         <Text style={styles.muted}>No consultations yet.</Text>
       )}
-      {records.value?.consultations.filter(e => !sourceId || e.id === sourceId).map((e) => (
-        <View key={e.id} style={styles.item}>
-          <View style={styles.row}>
-            <Button
-              secondary={selected !== e.id}
-              onPress={() => setSelected(e.id)}
-            >
-              {formatTime(e.occurredAt)}
-            </Button>
-            <Text style={styles.badge}>
-              {e.state} · note {e.noteState} v{e.noteVersion}
-            </Text>
+      {records.value?.consultations
+        .filter((e) => !sourceId || e.id === sourceId)
+        .map((e) => (
+          <View key={e.id} style={styles.item}>
+            <View style={styles.row}>
+              <Button
+                secondary={selected !== e.id}
+                onPress={() => setSelected(e.id)}
+              >
+                {formatTime(e.occurredAt)}
+              </Button>
+              <Text style={styles.badge}>
+                {e.state} · note {e.noteState} v{e.noteVersion}
+              </Text>
+            </View>
+            {selected === e.id && (
+              <NoteEditor
+                key={`${e.id}:${e.noteVersion}:${e.version}`}
+                request={request}
+                encounter={e}
+                canEdit={e.providerId === actorId}
+                onSaved={() => setRefresh(refresh + 1)}
+              />
+            )}
           </View>
-          {selected === e.id && (
-            <NoteEditor
-              key={`${e.id}:${e.noteVersion}:${e.version}`}
-              request={request}
-              encounter={e}
-              canEdit={e.providerId === actorId}
-              onSaved={() => setRefresh(refresh + 1)}
-            />
-          )}
-        </View>
-      ))}
+        ))}
     </Card>
   );
 }
@@ -214,7 +234,7 @@ function NoteEditor({
   onSaved: () => void;
 }) {
   const [text, setText] = useState(e.noteText),
-    [reason, setReason] = useState(""),
+    [reason, setReason] = useState(''),
     [showVersions, setShowVersions] = useState(false);
   const action = useAction();
   function save(finalize: boolean) {
@@ -242,7 +262,7 @@ function NoteEditor({
   return (
     <View style={{ gap: 14 }}>
       <Text style={styles.muted}>
-        Encounter {e.id} · clinical time shown in{" "}
+        Encounter {e.id} · clinical time shown in{' '}
         {Intl.DateTimeFormat().resolvedOptions().timeZone}
       </Text>
       {canEdit ? (
@@ -253,7 +273,7 @@ function NoteEditor({
             onChange={setText}
             multiline
           />
-          {e.noteState === "FINALIZED" && (
+          {e.noteState === 'FINALIZED' && (
             <Field
               label="Note amendment reason"
               value={reason}
@@ -261,7 +281,7 @@ function NoteEditor({
             />
           )}
           <View style={styles.row}>
-            {e.noteState === "DRAFT" && (
+            {e.noteState === 'DRAFT' && (
               <Button
                 secondary
                 disabled={action.busy}
@@ -271,11 +291,11 @@ function NoteEditor({
               </Button>
             )}
             <Button disabled={action.busy} onPress={() => save(true)}>
-              {e.noteState === "FINALIZED"
-                ? "Save note amendment"
-                : "Finalize note"}
+              {e.noteState === 'FINALIZED'
+                ? 'Save note amendment'
+                : 'Finalize note'}
             </Button>
-            {e.state === "OPEN" && e.noteState === "FINALIZED" && (
+            {e.state === 'OPEN' && e.noteState === 'FINALIZED' && (
               <Button
                 secondary
                 disabled={action.busy}
@@ -287,7 +307,7 @@ function NoteEditor({
                       expected: e.version,
                     });
                     onSaved();
-                  }, "close:" + e.id)
+                  }, 'close:' + e.id)
                 }
               >
                 Close consultation
@@ -296,7 +316,7 @@ function NoteEditor({
           </View>
         </>
       ) : (
-        <Text style={styles.text}>{e.noteText || "No note recorded."}</Text>
+        <Text style={styles.text}>{e.noteText || 'No note recorded.'}</Text>
       )}
       <Feedback state={action} />
       <View style={styles.row}>
@@ -330,7 +350,7 @@ function NoteVersions({ request, id }: { request: Api; id: string }) {
           </Text>
           <Text style={styles.text}>{v.text}</Text>
           <Text style={styles.muted}>
-            {v.reason || "Initial entry"} · {formatTime(v.recordedAt)} · author{" "}
+            {v.reason || 'Initial entry'} · {formatTime(v.recordedAt)} · author{' '}
             {v.authorId}
           </Text>
         </View>
@@ -356,7 +376,7 @@ function HistoryPanel({
     <Card title="Patient history">
       <Text style={styles.muted}>
         Clinical time is listed first; recorded time preserves amendment
-        provenance. Times shown in{" "}
+        provenance. Times shown in{' '}
         {Intl.DateTimeFormat().resolvedOptions().timeZone}.
       </Text>
       {Boolean(result.error) && (
@@ -371,13 +391,15 @@ function HistoryPanel({
           </Text>
           <Text style={styles.text}>{e.summary}</Text>
           <Text style={styles.muted}>
-            Clinical: {formatTime(e.occurredAt)} · Recorded:{" "}
+            Clinical: {formatTime(e.occurredAt)} · Recorded:{' '}
             {formatTime(e.recordedAt)}
           </Text>
           <Text selectable style={styles.muted}>
             Source {e.sourceId}
           </Text>
-          <Button secondary onPress={() => onSource(e.sourceId, e.type)}>Open source record</Button>
+          <Button secondary onPress={() => onSource(e.sourceId, e.type)}>
+            Open source record
+          </Button>
         </View>
       ))}
       {result.value?.history.total === 0 && (

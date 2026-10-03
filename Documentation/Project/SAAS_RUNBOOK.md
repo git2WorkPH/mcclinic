@@ -29,7 +29,7 @@ Open `http://127.0.0.1:5173/clinic`. Use your existing local demo credentials (`
 ## Exercise SaaS workflows
 
 1. Sign in as `admin`. Existing records appear in **Default practice**. Create a new synthetic practice; it starts empty on SOLO/TRIAL.
-2. Open **Practice settings**. Set the system name, clinic contacts, PNG/JPEG logo (up to 100 KB) and one of the supported accessible colors. Save; the workspace header updates.
+2. Open **Practice administration → Branding**. Set the system name, clinic contacts, PNG/JPEG logo (up to 100 KB) and one of the supported accessible colors. Save; the workspace header updates.
 3. Add an existing synthetic account by username as clinician/reception/administrator. SOLO allows one active clinician; TEAM allows five. The server prevents removing the last active manager and enforces concurrent seat grants.
 4. Choose a prescription or certificate template. Edit heading/body/footer with allowed double-brace placeholders. Live preview uses synthetic data and the document renderer. Save a draft or publish; unpublished edits do not affect the published template.
 5. Sign in as `clinician`, switch into that practice, register a synthetic patient and create/issue a document. Referenced missing fields must be supplied before issue. Templates and branding are snapshotted; change them as manager and reprint the old issued version to verify it is unchanged. Amendments retain earlier versions.

@@ -85,6 +85,9 @@ test('doctor registration, verification, invitation acceptance and practice perm
   await register(page, doctor, 'Onboarding browser practice');
   await login(page, doctor);
   await expect(
+    page.getByRole('heading', { name: 'Clinical workspace', exact: true }),
+  ).toBeVisible();
+  await expect(
     page.getByRole('heading', {
       name: 'Onboarding browser practice',
       exact: true,
@@ -92,10 +95,11 @@ test('doctor registration, verification, invitation acceptance and practice perm
   ).toBeVisible();
   await page
     .getByRole('button', {
-      name: 'Account security and invitations',
+      name: 'Practice administration',
       exact: true,
     })
     .click();
+  await page.getByRole('button', { name: 'Members', exact: true }).click();
   await page.getByLabel('Invited email', { exact: true }).fill(staff);
   await page
     .getByRole('button', { name: 'Send local invitation', exact: true })
@@ -113,6 +117,9 @@ test('doctor registration, verification, invitation acceptance and practice perm
   await expect(page.getByText(/Invitation accepted/)).toBeVisible();
   await login(page, staff);
   await expect(
+    page.getByRole('heading', { name: 'Reception workspace', exact: true }),
+  ).toBeVisible();
+  await expect(
     page.getByRole('heading', {
       name: 'Onboarding browser practice',
       exact: true,
@@ -126,12 +133,13 @@ test('doctor registration, verification, invitation acceptance and practice perm
   ).toHaveCount(0);
   await expect(
     page.getByRole('button', {
-      name: 'Account security and invitations',
+      name: 'Practice administration',
       exact: true,
     }),
   ).toHaveCount(0);
+  await page.getByRole('button', { name: 'My account', exact: true }).click();
   await page
-    .getByRole('button', { name: 'Account security', exact: true })
+    .getByRole('button', { name: 'Manage account security', exact: true })
     .click();
   await expect(page.getByLabel('Invited email', { exact: true })).toHaveCount(
     0,
@@ -149,9 +157,12 @@ test('authenticator enrollment, recovery-code login and password recovery are re
   await login(page, email);
   await page
     .getByRole('button', {
-      name: 'Account security and invitations',
+      name: 'My account',
       exact: true,
     })
+    .click();
+  await page
+    .getByRole('button', { name: 'Manage account security', exact: true })
     .click();
   await page
     .getByLabel('Current account password', { exact: true })

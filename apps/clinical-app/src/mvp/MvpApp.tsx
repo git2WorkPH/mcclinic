@@ -1,9 +1,9 @@
-import {OnboardingPanel,AccountSecurityPanel} from "./OnboardingPanel";
-import { PracticeBar } from "./PracticeSettings";
-import { useEffect, useMemo, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
-import * as G from "@ehr/graphql-contract/operations";
-import { api, type Api } from "./client";
+import { OnboardingPanel, AccountSecurityPanel } from './OnboardingPanel';
+import { PracticeBar } from './PracticeSettings';
+import { useEffect, useMemo, useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import * as G from '@ehr/graphql-contract/operations';
+import { api, type Api } from './client';
 import {
   Button,
   Card,
@@ -12,20 +12,25 @@ import {
   styles,
   useAction,
   useLoad,
-} from "./ui";
-import { PatientWorkspace } from "./PatientWorkspace";
-import { SchedulePanel } from "./SchedulePanel";
-type Viewer = NonNullable<G.ViewerQuery["me"]>;
+} from './ui';
+import { PatientWorkspace } from './PatientWorkspace';
+import { SchedulePanel } from './SchedulePanel';
+type Viewer = NonNullable<G.ViewerQuery['me']>;
 export function MvpApp() {
   const [token, setToken] = useState(
-      () => sessionStorage.getItem("ehr-mvp-session") ?? "",
+      () => sessionStorage.getItem('ehr-mvp-session') ?? '',
     ),
     [actor, setActor] = useState<Viewer | null>(null),
     [checking, setChecking] = useState(Boolean(token));
-  const [brand,setBrand]=useState<{name:string;color:string}|null>(null);
-  const [logoutError, setLogoutError] = useState("");
-  const [practiceId,setPracticeId]=useState<string | undefined>(()=>sessionStorage.getItem("ehr-practice") ?? undefined);
-  const request = useMemo(() => api(token,practiceId), [token,practiceId]);
+  const [brand, setBrand] = useState<{ name: string; color: string } | null>(
+    null,
+  );
+  const [section, setSection] = useState('Overview');
+  const [logoutError, setLogoutError] = useState('');
+  const [practiceId, setPracticeId] = useState<string | undefined>(
+    () => sessionStorage.getItem('ehr-practice') ?? undefined,
+  );
+  const request = useMemo(() => api(token, practiceId), [token, practiceId]);
   useEffect(() => {
     let active = true;
     if (!token) {
@@ -38,16 +43,16 @@ export function MvpApp() {
         if (active) {
           setActor(v.me);
           if (!v.me) {
-            sessionStorage.removeItem("ehr-mvp-session");
-            setToken("");
+            sessionStorage.removeItem('ehr-mvp-session');
+            setToken('');
           }
         }
       })
       .catch(() => {
         if (active) {
           setActor(null);
-          sessionStorage.removeItem("ehr-mvp-session");
-          setToken("");
+          sessionStorage.removeItem('ehr-mvp-session');
+          setToken('');
         }
       })
       .finally(() => {
@@ -57,11 +62,12 @@ export function MvpApp() {
       active = false;
     };
   }, [token, request]);
-  function signedIn(value: G.SignInMutation["login"]) {
-    sessionStorage.removeItem("ehr-practice");
+  function signedIn(value: G.SignInMutation['login']) {
+    sessionStorage.removeItem('ehr-practice');
     setPracticeId(undefined);
-    sessionStorage.setItem("ehr-mvp-session", value.token);
-    setActor({...value.actor,canManage:null});
+    sessionStorage.setItem('ehr-mvp-session', value.token);
+    setActor({ ...value.actor, canManage: null });
+    setSection('Overview');
     setToken(value.token);
   }
   return (
@@ -71,36 +77,42 @@ export function MvpApp() {
           DEVELOPMENT MVP · SYNTHETIC DATA ONLY · NOT FOR CLINICAL USE
         </Text>
       </View>
-      <View style={[styles.header,brand?{backgroundColor:brand.color}:{}]}>
-        <Text style={styles.brand}>{brand?.name ?? "Moncal Clinical"}</Text>
-        <Text style={styles.headerText}>A clear view of your clinic</Text>
-        {actor && (
-          <View style={styles.row}>
-            <Text style={styles.headerText}>
-              {actor.name} · {actor.role.toLowerCase()}
-            </Text>
-            <Button
-              secondary
-              onPress={() => {
-                setLogoutError("");
-                void request(G.SignOutDocument, {})
-                  .then(() => {
-                    sessionStorage.removeItem("ehr-mvp-session");
-                    setToken("");
-                    setActor(null);
-                    setBrand(null);
-                  })
-                  .catch(() =>
-                    setLogoutError(
-                      "Sign out failed. Please retry to revoke your session.",
-                    ),
-                  );
-              }}
-            >
-              Sign out
-            </Button>
+      <View
+        style={[styles.header, brand ? { backgroundColor: brand.color } : {}]}
+      >
+        <View style={styles.headerRow}>
+          <View>
+            <Text style={styles.brand}>{brand?.name ?? 'Moncal Clinical'}</Text>
+            <Text style={styles.headerText}>A clear view of your clinic</Text>
           </View>
-        )}
+          {actor && (
+            <View style={styles.row}>
+              <Text style={styles.headerText}>
+                {actor.name} · {actor.role.toLowerCase()}
+              </Text>
+              <Button
+                secondary
+                onPress={() => {
+                  setLogoutError('');
+                  void request(G.SignOutDocument, {})
+                    .then(() => {
+                      sessionStorage.removeItem('ehr-mvp-session');
+                      setToken('');
+                      setActor(null);
+                      setBrand(null);
+                    })
+                    .catch(() =>
+                      setLogoutError(
+                        'Sign out failed. Please retry to revoke your session.',
+                      ),
+                    );
+                }}
+              >
+                Sign out
+              </Button>
+            </View>
+          )}
+        </View>
       </View>
       {Boolean(logoutError) && (
         <Text accessibilityRole="alert">{logoutError}</Text>
@@ -110,15 +122,131 @@ export function MvpApp() {
           <Text>Checking session…</Text>
         </View>
       ) : actor ? (
-        <>
-          <PracticeBar request={request} actor={actor} onBrand={setBrand} onSwitch={(id)=>{setBrand(null);sessionStorage.setItem("ehr-practice",id);setActor(null);setChecking(true);setPracticeId(id);}} />
-          <AccountSecurityPanel key={"security:"+(practiceId ?? "default")} request={request} manager={actor.role==="ADMINISTRATOR"||Boolean(actor.canManage)} onReauthenticate={()=>{sessionStorage.removeItem("ehr-mvp-session");setToken("");setActor(null);setBrand(null);}} />
-          <Workspace key={practiceId ?? "default"} request={request} actor={actor} />
-        </>
+        <View style={styles.shell}>
+          <PracticeBar
+            request={request}
+            actor={actor}
+            expanded={section === 'Practice'}
+            onBrand={setBrand}
+            onSwitch={(id) => {
+              setBrand(null);
+              sessionStorage.setItem('ehr-practice', id);
+              setActor(null);
+              setChecking(true);
+              setPracticeId(id);
+              setSection('Overview');
+            }}
+          />
+          <View accessibilityRole="tablist" style={styles.navigation}>
+            {[
+              'Overview',
+              'Patients',
+              'Appointments',
+              'Practice',
+              'My account',
+              ...(actor.role === 'ADMINISTRATOR' ? ['Audit'] : []),
+            ].map((name) => (
+              <Button
+                key={name}
+                secondary={section !== name}
+                accessibilityState={{ selected: section === name }}
+                onPress={() => setSection(name)}
+              >
+                {name === 'Practice' &&
+                (actor.role === 'ADMINISTRATOR' || actor.canManage)
+                  ? 'Practice administration'
+                  : name}
+              </Button>
+            ))}
+          </View>
+          {section === 'Overview' ? (
+            <RoleOverview actor={actor} onNavigate={setSection} />
+          ) : section === 'My account' ? (
+            <AccountSecurityPanel
+              key={'security:' + (practiceId ?? 'default')}
+              request={request}
+              onReauthenticate={() => {
+                sessionStorage.removeItem('ehr-mvp-session');
+                setToken('');
+                setActor(null);
+                setBrand(null);
+              }}
+            />
+          ) : section !== 'Practice' ? (
+            <Workspace
+              key={practiceId ?? 'default'}
+              request={request}
+              actor={actor}
+              section={section}
+            />
+          ) : null}
+        </View>
       ) : (
-        <><Login request={request} onLogin={signedIn} /><OnboardingPanel request={request} /></>
+        <>
+          <Login request={request} onLogin={signedIn} />
+          <OnboardingPanel request={request} />
+        </>
       )}
     </ScrollView>
+  );
+}
+
+function RoleOverview({
+  actor,
+  onNavigate,
+}: {
+  actor: Viewer;
+  onNavigate: (section: string) => void;
+}) {
+  const manager = actor.role === 'ADMINISTRATOR' || Boolean(actor.canManage);
+  const title =
+    actor.role === 'CLINICIAN'
+      ? 'Clinical workspace'
+      : actor.role === 'RECEPTION'
+        ? 'Reception workspace'
+        : 'Practice operations';
+  return (
+    <View style={styles.columns}>
+      <View style={styles.main}>
+        <Card title={title}>
+          <Text style={styles.text}>
+            {actor.role === 'CLINICIAN'
+              ? 'Find a patient, review their history, document a consultation, or prepare a clinical document.'
+              : actor.role === 'RECEPTION'
+                ? 'Find or register a patient, manage appointments, and record arrivals.'
+                : 'Review practice configuration, membership, subscription state, and audit activity.'}
+          </Text>
+          <View style={styles.row}>
+            <Button onPress={() => onNavigate('Patients')}>
+              Open patients
+            </Button>
+            <Button secondary onPress={() => onNavigate('Appointments')}>
+              Open appointments
+            </Button>
+            {manager && (
+              <Button secondary onPress={() => onNavigate('Practice')}>
+                Open practice administration
+              </Button>
+            )}
+            {actor.role === 'ADMINISTRATOR' && (
+              <Button secondary onPress={() => onNavigate('Audit')}>
+                Open audit trail
+              </Button>
+            )}
+          </View>
+        </Card>
+      </View>
+      <View style={styles.sidebar}>
+        <Card title="Your access">
+          <Text style={styles.text}>{actor.role.toLowerCase()}</Text>
+          <Text style={styles.muted}>
+            {manager
+              ? 'You can manage this practice.'
+              : 'Practice administration is hidden for this membership.'}
+          </Text>
+        </Card>
+      </View>
+    </View>
   );
 }
 function Login({
@@ -126,10 +254,11 @@ function Login({
   onLogin,
 }: {
   request: Api;
-  onLogin: (value: G.SignInMutation["login"]) => void;
+  onLogin: (value: G.SignInMutation['login']) => void;
 }) {
-  const [username, setUsername] = useState(""),
-    [password, setPassword] = useState(""), [code,setCode]=useState("");
+  const [username, setUsername] = useState(''),
+    [password, setPassword] = useState(''),
+    [code, setCode] = useState('');
   const action = useAction();
   return (
     <View style={[styles.body, styles.login]}>
@@ -142,13 +271,18 @@ function Login({
           onChange={setPassword}
           password
         />
-        <Field label="Authenticator or recovery code" value={code} onChange={setCode} />
+        <Field
+          label="Authenticator or recovery code"
+          value={code}
+          onChange={setCode}
+        />
         <Button
           disabled={action.busy}
           onPress={() =>
             void action.run(async () => {
               onLogin(
-                (await request(G.SignInDocument, { username, password, code })).login,
+                (await request(G.SignInDocument, { username, password, code }))
+                  .login,
               );
             })
           }
@@ -164,11 +298,18 @@ function Login({
     </View>
   );
 }
-function Workspace({ request, actor }: { request: Api; actor: Viewer }) {
-  const [section, setSection] = useState("Patients"),
-    [patientId, setPatientId] = useState<string | null>(null),
-    [query, setQuery] = useState(""),
-    [search, setSearch] = useState(""),
+function Workspace({
+  request,
+  actor,
+  section,
+}: {
+  request: Api;
+  actor: Viewer;
+  section: string;
+}) {
+  const [patientId, setPatientId] = useState<string | null>(null),
+    [query, setQuery] = useState(''),
+    [search, setSearch] = useState(''),
     [offset, setOffset] = useState(0),
     [refresh, setRefresh] = useState(0),
     [register, setRegister] = useState(false);
@@ -178,25 +319,10 @@ function Workspace({ request, actor }: { request: Api; actor: Viewer }) {
     [request, search, offset, refresh],
   );
   return (
-    <View style={styles.body}>
-      <View style={styles.tabs}>
-        {[
-          "Patients",
-          "Appointments",
-          ...(actor.role === "ADMINISTRATOR" ? ["Audit"] : []),
-        ].map((name) => (
-          <Button
-            key={name}
-            secondary={section !== name}
-            onPress={() => setSection(name)}
-          >
-            {name}
-          </Button>
-        ))}
-      </View>
-      {section === "Audit" ? (
+    <View style={styles.section}>
+      {section === 'Audit' ? (
         <AuditPanel request={request} />
-      ) : section === "Appointments" ? (
+      ) : section === 'Appointments' ? (
         <SchedulePanel request={request} />
       ) : (
         <View style={styles.columns}>
@@ -314,12 +440,12 @@ function Workspace({ request, actor }: { request: Api; actor: Viewer }) {
   );
 }
 const emptyPatient: G.PatientInput = {
-  givenName: "",
-  familyName: "",
-  birthDate: "",
-  phone: "",
-  email: "",
-  address: "",
+  givenName: '',
+  familyName: '',
+  birthDate: '',
+  phone: '',
+  email: '',
+  address: '',
 };
 export function PatientForm({
   initial = emptyPatient,
@@ -336,12 +462,12 @@ export function PatientForm({
       <View style={styles.row}>
         {(
           [
-            ["givenName", "Given name"],
-            ["familyName", "Family name"],
-            ["birthDate", "Birth date (YYYY-MM-DD)"],
-            ["phone", "Phone"],
-            ["email", "Email"],
-            ["address", "Address"],
+            ['givenName', 'Given name'],
+            ['familyName', 'Family name'],
+            ['birthDate', 'Birth date (YYYY-MM-DD)'],
+            ['phone', 'Phone'],
+            ['email', 'Email'],
+            ['address', 'Address'],
           ] as const
         ).map(([field, label]) => (
           <Field
@@ -410,7 +536,7 @@ function AuditPanel({ request }: { request: Api }) {
             {e.action} · {e.outcome}
           </Text>
           <Text style={styles.muted}>
-            {e.recordedAt} · actor {e.actorId ?? "unauthenticated"} · subject{" "}
+            {e.recordedAt} · actor {e.actorId ?? 'unauthenticated'} · subject{' '}
             {e.subjectId}
           </Text>
         </View>

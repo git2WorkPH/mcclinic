@@ -1,12 +1,41 @@
 # Session memory
 
-Updated: 2026-09-21 (Australia/Sydney).
+Updated: 2026-10-03 (Australia/Sydney).
 Phase: synthetic development; local release preparation, NO-GO for public/real-patient release.
-Active requirements: REQ-FOUND-010 / REQ-FOUND-011 / REQ-FOUND-012.
-Active tasks: TASK-043 completed for synthetic development; TASK-028 remains Approved / In progress.
-Current branch: master.
-Observed HEAD before this memory update: 78298db0133071e02fa6b2c183fc6f761ce0e19a.
-Observed status before this memory update: intended TASK-043 UI, tests, docs and evidence uncommitted; otherwise clean.
+Active requirements: REQ-FEAT-019 / REQ-FOUND-012.
+Active tasks: TASK-044 completed locally; TASK-028 remains Approved / In progress.
+Current branch: task/TASK-044-role-aware-ui.
+Observed HEAD before this memory update: 8af62a7bcaff6fc9bea070a8fc79c0951e98696a.
+Observed status before this memory update: intended TASK-044 UI, browser tests, requirements, runbooks, acceptance and handover uncommitted; no unrelated changes.
+
+## Current technical handover — TASK-044
+
+Authority: owner requested implementation of the recommended UI and a detailed handover before TASK-028. [REQ-FEAT-019](../Requirements/Features/REQ-FEAT-019.md), [completed task](../Tasks/Completed/TASK-044.md), [justification](../../Doc/Changes/Justification/TASK-044-role-aware-ui.md), and [acceptance](../Acceptance/TASK-044-acceptance.md) are canonical. Branch was created from verified `master`/`origin/master` at `8af62a7`; no remote TASK-044 branch existed locally. Do not push/merge/deploy without separate authorization.
+
+Implementation map:
+
+- `apps/clinical-app/src/mvp/MvpApp.tsx`: owns shell section state and role-aware navigation. Sections are Overview, Patients, Appointments, Practice/Practice administration, My account, and administrator-only Audit. Overview gives clinician, reception and administrator distinct guidance/quick actions. Practice switching resets to Overview and reloads the actor for the selected practice.
+- `PracticeSettings.tsx`: compact practice identity/status/switcher; expanded practice actions retain create/export for existing users. Only `ADMINISTRATOR` or `canManage` sees administration. Administration subsections are Branding, Members, Templates and Subscription; subsection selection survives data refresh. The plan badge does not grant authority.
+- `OnboardingPanel.tsx`: `AccountSecurityPanel` now contains personal MFA only. `PracticeInvitationPanel` moved beside membership management and continues using the same invite mutation/local mailbox, role selection and seven-day message.
+- `PatientWorkspace.tsx`: patient identity/version/tabs use a distinct context panel so identity remains prominent while changing clinical tabs.
+- `ui.tsx`: adds shell/navigation/compact/status/patient styles and selected accessibility state; existing controls and feedback primitives remain.
+- `tests/mvp-web/onboarding.spec.ts` and `saas.spec.ts`: selectors follow the new shell; reception cannot see Practice administration/invitations; manager invitation, branding, membership, templates and subscription outcomes remain exercised. Existing journey/printing/foundation tests remain unchanged.
+- `README.md`, `ONBOARDING_RUNBOOK.md`, and `SAAS_RUNBOOK.md`: current labels are **Practice administration → Members/Branding** and **My account → Manage account security**.
+
+Authorization invariant: ordinary invited clinician/reception memberships never see practice administration or invitations. Administrator role and the explicit `canManage` grant held by a solo practice creator are management capabilities. `SOLO` is a clinician-seat entitlement only. UI checks mirror server rules; GraphQL use cases/persistence still revalidate authority.
+
+Verification completed on 2026-10-03: `pnpm check` PASS (54 tests plus lint/type/build); `pnpm test:onboarding` PASS 8; `pnpm test:mvp` PASS 14; `pnpm test:mvp:web` PASS 7; `pnpm test:web` PASS 2; targeted Prettier and diff checks PASS. Browser screenshots under ignored `test-results/mvp/` were visually reviewed for clinician, reception and administrator layouts. The initial sandboxed check could not bind loopback; approved local-socket rerun passed. No tests were skipped/weakened.
+
+Resume procedure after interruption or credit limit:
+
+1. Read this file, then run `git status --short --branch`, `git rev-parse HEAD`, `git log -3 --oneline`, and compare with the snapshot above.
+2. Read the four canonical TASK-044 records linked above. If the task commit exists, inspect `git show --stat <commit>`; otherwise inspect `git diff 8af62a7 --` and continue only the recorded scope.
+3. Do not recreate the UI or reformat unrelated files. Preserve APIs, schema, migrations, authorization and clinical workflows. Most large line counts are pinned Prettier expansion of legacy compact files.
+4. If code changes after the recorded verification, rerun targeted formatting, `pnpm check`, `pnpm test:onboarding`, `pnpm test:mvp`, `pnpm test:mvp:web`, and `pnpm test:web`. Docker Desktop is required for database/browser suites; local socket tests may need approved execution outside the sandbox.
+5. Review the full diff using project-review. Confirm no nonmanager invitation/settings path, no plan-derived privilege, no lost workflow/assertion and no deletion. Update acceptance and this handover with only newly observed evidence.
+6. Commit only TASK-044 files locally. Rebuild packaged Docker images before demonstrating this UI; an older running image will continue showing the previous layout. Merge/push require explicit owner authorization.
+
+Known limits: this is desktop React Native Web, with no offline synchronization or native navigation. No formal clinic-user usability study, production email, live billing, real data, Philippine legal/privacy/signature/retention conclusion or public deployment is included. The bundled app grew slightly; no performance threshold was established. These limits do not block synthetic MVP demonstration.
 
 ## Authority / Git reconciliation
 
@@ -42,6 +71,6 @@ Observed status before this memory update: intended TASK-043 UI, tests, docs and
 
 ## Exact next action / open gates
 
-Continue bounded local TASK-028 cost/anomaly and operator-monitoring preparation using one selected infrastructure owner; preserve both candidates/history and update justification before code. No AWS spending yet. Verify remote/master before any push; TASK-043 has local-only authorization.
+Review the local TASK-044 commit with the owner, then obtain explicit authorization before merging/pushing it to master. After integration, rebuild the packaged demo and resume bounded local TASK-028 cost/anomaly and operator-monitoring preparation. No AWS spending yet.
 
 Full TASK-028/029/030/031 remain incomplete: account/domain/budget/tester/operator approval, protected remote state, real IAM/RDS/KMS/EFS/CloudFront/notifications, drift/PITR/key/sink recovery and target-ISP/load evidence are missing. FIND-013 and Philippine clinical/privacy/legal/signature/retention findings remain Open. No purge. TASK-024 deferred; TASK-036–040 future nice-to-have. Memory is an index, never approval or ground truth.
